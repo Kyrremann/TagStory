@@ -1,0 +1,44 @@
+Hvordan skal historiene representeres på mobilen internt? Database, jSON eller XML?
+
+jSON er best i forhold til overføring, da det kreves mindre byte for å representere
+dataen.
+Spørsmålet da er om vi skal beholde dataen i jSON form, eller lagre dette i en 
+sqlite database.
+
+Et annet spørsmål er om hvordan vi skal hente opp dataen fra mobilen. Hvis alt ligger
+lagret som en database kan vi hente det den valgte historien og gjøre den om til 
+et objekt. Hvis vi ikke gjør dette, så må dataen sendes rundt eller bli kaldt for
+hver aktivitet (objektet må også bli sendt, men dette er jo enklere).
+
+Jeg tenker at det er best å sende dataen fra serveren som et jSON-objekt. Så "kaste"
+den til sqlite-databasen.
+
+Derfor trenger vi en klasse/methode som kan hente, sende og parse jSON (bibliotek?). Neste
+klasse vi trenger er for Databasen. Bruker standard oppsett og lager metode for å:
+- legge inn ny historie (fra jSON)
+- hente alle titlene (og forfatteren) på historiene (brukes i listen over historier 
+du har lastet ned på mobilen din)
+- hente og legge inn informasjon om brukeren din (flere brukere på en mobil?) 
+- lagre informasjon om historien din fortløpende (brukes når du går løypen, kan være
+informasjon om hvor du er, tid du har brukt, bilde du har tatt og mer...)
+
+Vi må legge til muligheter for å kommentere og komme med tilbakemeldinger på hver og 
+enkelt historie. Dette kan jo gjøres på flere måter, men normen er vel x-antall stjerner
+og en liten tekst.
+
+
+Vi må også finne en løsning på hvordan vi skal lage en ny bruker. For skal man
+kunne lage en bruker uten å være på nett (kanskje kun på nettsiden), for da må vi
+generere en hashsum som er unik, slik at man ikke ender opp med duplikater. Kan
+løses med å bruke timestamp (i ms) sammen med brukernavnet ditt. For eksempel
+123456789kyrremann
+
+Trenger også en klasse for rfid-gjennkjenning. Mener det er et eget bibliotek for
+dette. Så tror ikke vi trenger så mye arbeid på den siden. Vi skal jo i første 
+omgang kun lese en hashsum (men bør lage det åpent nok for mer informasjon).
+
+Skal vi gi brukere muligheter for å lage egne tags' i starten, stemmer for at
+vi gjør dette senere.
+
+Senere i utviklingen kan vi jo gjøre det mer fancy med at man kan logge inn med 
+Gmail, Facebook og lignende tjenester.

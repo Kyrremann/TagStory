@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="app_name">TagStor</string>
+    <string name="title_story_detail">Story Detail</string>
+    <string name="title_story_list">Stories</string>
+
+</resources>

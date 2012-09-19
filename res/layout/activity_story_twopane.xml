@@ -9,7 +9,7 @@
     android:showDividers="middle"
     tools:context=".StoryListActivity">
 
-    <fragment android:name="no.uio.ifi.inf5162.tagstory.StoryListFragment"
+    <fragment android:name="no.uio.ifi.inf5261.tagstory.StoryListFragment"
         android:id="@+id/story_list"
         android:layout_width="0dp"
         android:layout_height="match_parent"

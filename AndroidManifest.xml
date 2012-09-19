@@ -1,11 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="no.uio.ifi.inf5162.tagstory"
+    package="no.uio.ifi.inf5261.tagstory"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="15" />
+
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -26,6 +32,17 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".StoryListActivity" />
+        </activity>
+        <activity android:name=".story.StoryActivity" >
+        </activity>
+        <activity android:name="no.uio.ifi.inf5261.tagstory.rfid.DetectStory" >
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
         </activity>
     </application>
 

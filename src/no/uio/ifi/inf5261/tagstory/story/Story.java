@@ -16,6 +16,7 @@ public class Story implements Serializable {
 	private int tagCount;
 	private String ageGroup;
 	private String genre;
+	private String area;
 	
 	public Story(String hash, String author, String title) {
 		this.hash = hash;
@@ -77,6 +78,20 @@ public class Story implements Serializable {
 	public String getGenre() {
 		return genre;
 	}
+	/**
+	 * @return the area
+	 */
+	public String getArea() {
+		return area;
+	}
+
+	/**
+	 * @param area the area to set
+	 */
+	public void setArea(String area) {
+		this.area = area;
+	}
+
 	/**
 	 * @param genre the genre to set
 	 */

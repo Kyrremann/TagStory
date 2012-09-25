@@ -19,9 +19,17 @@ public class Database {
 	public static final String STORY_ID = "_id";
 	public static final String STORY_AUTHOR = "AUTHOR";
 	public static final String STORY_TITLE = "STORY_NAME";
+	public static final String STORY_START = "START";
+	public static final String STORY_AGE = "AGE";
+	public static final String STORY_GENRE = "GENRE";
+	public static final String STORY_AREA = "AREA";
+	public static final String STORY_DESC = "DESC";
+	public static final String STORY_TAG_COUNT = "TAG_COUNT";
+	public static final String STORY_DATE = "DATE";
 
 	private static final String TAG_TABLE_NAME = "TAGS";
 	public static final String TAG_ID = "_id";
+	public static final String TAG_GPS = "GPS";
 	public static final String TAG_STORIES = "TAG_STORIES";
 
 	private static final String PARTS_TABLE_NAME = "PARTS";
@@ -35,9 +43,13 @@ public class Database {
 
 	private static final String STORY_CREATE = "CREATE TABLE "
 			+ STORY_TABLE_NAME + " (" + STORY_ID + " TEXT, " + STORY_AUTHOR
-			+ " TEXT, " + STORY_TITLE + " TEXT);";
+			+ " TEXT, " + STORY_TITLE + " TEXT, " + STORY_START + " TEXT, "
+			+ STORY_DESC + " TEXT, " + STORY_AGE + " TEXT, " + STORY_GENRE
+			+ " TEXT, " + STORY_AREA + " TEXT, " + STORY_TAG_COUNT + " TEXT, "
+			+ STORY_DATE + " TEXT);";
 	private static final String TAG_CREATE = "CREATE TABLE " + TAG_TABLE_NAME
-			+ " (" + TAG_ID + " TEXT, " + TAG_STORIES + " TEXT);";
+			+ " (" + TAG_ID + " TEXT, " + TAG_GPS + " TEXT, " + TAG_STORIES
+			+ " TEXT);";
 	private static final String PARTS_CREATE = "CREATE TABLE "
 			+ PARTS_TABLE_NAME + " (" + PARTS_ID + " int AUTO_INCREMENT, "
 			+ PARTS_STORY + " TEXT, " + PARTS_TAG + " TEXT, " + PARTS_TEXT
@@ -72,18 +84,25 @@ public class Database {
 		}
 
 		public void populate(SQLiteDatabase db) {
-			db.execSQL("INSERT INTO " + STORY_TABLE_NAME
-					+ " VALUES ('0', 'Haruki Murakami', 'Kafka on the Shore')");
-			db.execSQL("INSERT INTO " + STORY_TABLE_NAME
-					+ " VALUES ('1', 'Henrik Ibsen', 'Peer Gynt')");
-			db.execSQL("INSERT INTO " + STORY_TABLE_NAME
-					+ " VALUES ('2', 'Jane Austen', 'Pride and Prejudice')");
-			db.execSQL("INSERT INTO " + STORY_TABLE_NAME
-					+ " VALUES ('3', 'J.R.R. Tolkien', 'Lord of the Rings')");
-
-			db.execSQL("INSERT INTO " + STORY_TABLE_NAME
-					+ " VALUES ('4', 'Randall Munroe', 'Pwned (Xkcd.com)')");
-			db.execSQL("INSERT INTO " + PARTS_TABLE_NAME 
+			db.execSQL("INSERT INTO "
+					+ STORY_TABLE_NAME
+					+ " VALUES ('0', 'Haruki Murakami', 'Kafka on the Shore', 'tag1', "
+					+ "'Comprising two distinct but interrelated plots, the narrative runs back and forth between the two, taking up each plotline in alternating chapters.', "
+					+ "'All ages', 'Novel', 'Japan',  '3', '2002')");
+			db.execSQL("INSERT INTO "
+					+ STORY_TABLE_NAME
+					+ " VALUES ('1', 'Henrik Ibsen', 'Peer Gynt', 'tag', 'desc', 'age', 'genre', 'area', 'count', 'date')");
+			db.execSQL("INSERT INTO "
+					+ STORY_TABLE_NAME
+					+ " VALUES ('2', 'Jane Austen', 'Pride and Prejudice', 'tag', 'desc', 'age', 'genre', 'area', 'count', 'date')");
+			db.execSQL("INSERT INTO "
+					+ STORY_TABLE_NAME
+					+ " VALUES ('3', 'J.R.R. Tolkien', 'Lord of the Rings', 'tag', 'desc', 'age', 'genre', 'area', 'count', 'date')");
+			db.execSQL("INSERT INTO "
+					+ STORY_TABLE_NAME
+					+ " VALUES ('4', 'Randall Munroe', 'Pwned (Xkcd.com)', 'tag', 'desc', 'age', 'genre', 'area', 'count', 'date')");
+			db.execSQL("INSERT INTO "
+					+ PARTS_TABLE_NAME
 					+ " VALUES ('0', '3', 'test5', 'Welcome to text-only Counter Strike. You are in a dark, outdoor map.', 'north; south; east; west;')");
 		}
 	}

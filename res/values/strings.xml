@@ -12,12 +12,17 @@
     <string name="email">E-mail</string>
     <string name="email_hint">plus e-mail here...</string>
     <string name="cancel">Cancel</string>
+    <string name="description">Description</string>
+    <string name="description_hint">Where is the tag</string>
+    <string name="gps">GPS</string>
+    <string name="gps_hint">More presicely...</string>
     
     <string name="front_menu_log_in">Log in</string>
     <string name="front_menu_create_user">Create user</string>
     <string name="front_menu_about">About</string>
     <string name="front_menu_options">Options</string>
     <string name="front_menu_update_stories">Update stories</string>
+    <string name="front_menu_create_tag">Create tag</string>
     
     <string name="detail_menu_start_story">Start story</string>
     
@@ -32,7 +37,11 @@
     <string name="new_user_cancel">Never!</string>
     <string name="new_user_info">Please fill in every field.</string>
     
-    <string name="about_title"></string>
+    <string name="about_title">About</string>
     <string name="about_info">Tag Story combines text based adventure games with NFC technology for an interactive, outdoor woodland adventure.\n\nMade as part of a project in INF5261 at University of Oslo.</string>
     <string name="about_cancel">Okay...</string>
+    
+    <string name="create_tag_title">Tag-O-Creator</string>
+    <string name="create_tag_info">Type in description and gps for the tag.</string>
+    <string name="create_tag_write">Write to tag</string>
 </resources>

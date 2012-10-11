@@ -45,6 +45,7 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+        <activity android:name=".story.StoryTravelActivity"></activity>
     </application>
 
 </manifest>

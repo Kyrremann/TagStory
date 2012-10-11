@@ -1,8 +1,13 @@
 package no.uio.ifi.inf5261.tagstory;
 
+import java.io.IOException;
+
+import org.json.JSONException;
+
 import no.uio.ifi.inf5261.tagstory.R;
 import no.uio.ifi.inf5261.tagstory.Database.CommunicationManager;
 import no.uio.ifi.inf5261.tagstory.Database.Database;
+import no.uio.ifi.inf5261.tagstory.Database.JsonParser;
 import no.uio.ifi.inf5261.tagstory.rfid.WriteTag;
 import no.uio.ifi.inf5261.tagstory.story.StoryManager;
 import android.app.AlertDialog;
@@ -26,9 +31,9 @@ public class StoryListActivity extends FragmentActivity implements
 
 	private boolean mTwoPane;
 	private Dialog loginDialog, newUserDialog, aboutDialog, newTagDialog;
-	
+
 	private Context context;
-	
+
 	private boolean nfcWriteMode = false;
 	private String nfcMessage;
 	private WriteTag writeTag;
@@ -39,7 +44,7 @@ public class StoryListActivity extends FragmentActivity implements
 		setContentView(R.layout.activity_story_list);
 		// getActionBar().setDisplayHomeAsUpEnabled(true);
 		context = this;
-		
+
 		if (findViewById(R.id.story_detail_container) != null) {
 			mTwoPane = true;
 			((StoryListFragment) getSupportFragmentManager().findFragmentById(
@@ -73,9 +78,10 @@ public class StoryListActivity extends FragmentActivity implements
 
 		menu.add(Menu.NONE, 2, Menu.NONE, R.string.front_menu_create_user);
 		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-		item = menu.add(R.string.front_menu_options);
+		item = menu.add(Menu.NONE, 6, Menu.NONE, R.string.front_menu_options);
 		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-		item = menu.add(Menu.NONE, 5, Menu.NONE, R.string.front_menu_update_stories);
+		item = menu.add(Menu.NONE, 5, Menu.NONE,
+				R.string.front_menu_update_stories);
 		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 		item = menu.add(Menu.NONE, 3, Menu.NONE, R.string.front_menu_about);
 		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
@@ -108,9 +114,10 @@ public class StoryListActivity extends FragmentActivity implements
 			if (newTagDialog == null)
 				newTagDialog = createNewTagDialog();
 			newTagDialog.show();
-		} else if (item.getItemId() == 5) {
+		} else if (item.getItemId() == 5) { // Update
 			StoryManager storyManager = new StoryManager(this);
 			storyManager.getStoriesFromServer();
+		} else if (item.getItemId() == 6) { // Options
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -152,7 +159,8 @@ public class StoryListActivity extends FragmentActivity implements
 								System.out.println(msg.obj);
 								nfcMessage = msg.obj.toString();
 								nfcWriteMode = true;
-								writeTag = new WriteTag(context, msg.obj.toString());
+								writeTag = new WriteTag(context, msg.obj
+										.toString());
 								writeTag.enableForegroundMode();
 							};
 						};

@@ -84,8 +84,9 @@ public class StoryListFragment extends ListFragment {
 	public void onListItemClick(ListView listView, View view, int position,
 			long id) {
 		super.onListItemClick(listView, view, position, id);
-		storyCursor.moveToPosition(position);
-		mCallbacks.onItemSelected(storyCursor.getString(0));
+		// storyCursor.moveToPosition(position);
+		// mCallbacks.onItemSelected(storyCursor.getString(0));
+		mCallbacks.onItemSelected("testStory.json");
 	}
 
 	@Override

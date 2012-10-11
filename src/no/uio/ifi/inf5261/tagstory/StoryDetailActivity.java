@@ -29,9 +29,11 @@ public class StoryDetailActivity extends FragmentActivity {
         if (savedInstanceState == null) {
             Bundle arguments = new Bundle();
             ID = getIntent().getStringExtra(Database.STORY_ID);
+            if (ID != null)
             story = storyManager.getStory(ID);
-            arguments.putString(Database.STORY_AUTHOR, story.getAuthor());
-            arguments.putString(Database.STORY_TITLE, story.getTitle());
+            else
+            	story = (Story) getIntent().getSerializableExtra(StoryActivity.STORY);
+            arguments.putSerializable(StoryActivity.STORY, story);
             StoryDetailFragment fragment = new StoryDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
@@ -56,7 +58,8 @@ public class StoryDetailActivity extends FragmentActivity {
             return true;
         } else if (item.getItemId() == 0) {
         	Intent intent = new Intent(this, StoryActivity.class);
-        	intent.putExtra("STORY", story);
+        	intent.putExtra(StoryActivity.STORY, story);
+        	intent.putExtra(StoryActivity.PARTTAG, story.getStartTag());
         	startActivity(intent);
         }
 

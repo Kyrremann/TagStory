@@ -1,8 +1,63 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    style="?android:attr/textAppearanceLarge"
-    android:id="@+id/story_detail"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".StoryDetailFragment" />
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/story_detail_author"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="author" />
+
+    <TextView
+        android:id="@+id/story_detail_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="area"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/story_detail_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="genre"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/story_detail_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="agegroup"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/story_detail_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="date"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/story_detail_keywords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Keywords"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/story_detail_tagcount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tag count"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/story_detail_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="desc"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</LinearLayout>

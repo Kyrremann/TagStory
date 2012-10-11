@@ -19,7 +19,8 @@ public class Database {
 	public static final String STORY_ID = "_id";
 	public static final String STORY_AUTHOR = "AUTHOR";
 	public static final String STORY_TITLE = "STORY_NAME";
-	public static final String STORY_START = "START";
+	public static final String STORY_START_TAG = "START_TAG";
+	public static final String STORY_START_DESC = "START_DESC";
 	public static final String STORY_AGE = "AGE";
 	public static final String STORY_GENRE = "GENRE";
 	public static final String STORY_AREA = "AREA";
@@ -38,22 +39,25 @@ public class Database {
 	public static final String PARTS_TAG = "TAG";
 	public static final String PARTS_TEXT = "TEXT";
 	public static final String PARTS_WAYPOINT = "WAYPOINT";
+	public static final String PARTS_ANSWERE_TYPE = "ANSWERE_TYPE";
+	public static final String PARTS_ANSWERES = "ANSWERES";
 
 	// private static final String = "";
 
 	private static final String STORY_CREATE = "CREATE TABLE "
 			+ STORY_TABLE_NAME + " (" + STORY_ID + " TEXT, " + STORY_AUTHOR
-			+ " TEXT, " + STORY_TITLE + " TEXT, " + STORY_START + " TEXT, "
-			+ STORY_DESC + " TEXT, " + STORY_AGE + " TEXT, " + STORY_GENRE
-			+ " TEXT, " + STORY_AREA + " TEXT, " + STORY_TAG_COUNT + " TEXT, "
-			+ STORY_DATE + " TEXT);";
+			+ " TEXT, " + STORY_TITLE + " TEXT, " + STORY_START_TAG + " TEXT, "
+			+ STORY_START_DESC + " TEXT, " + STORY_DESC + " TEXT, " + STORY_AGE
+			+ " TEXT, " + STORY_GENRE + " TEXT, " + STORY_AREA + " TEXT, "
+			+ STORY_TAG_COUNT + " NUMBER, " + STORY_DATE + " TEXT);";
 	private static final String TAG_CREATE = "CREATE TABLE " + TAG_TABLE_NAME
 			+ " (" + TAG_ID + " TEXT, " + TAG_GPS + " TEXT, " + TAG_STORIES
 			+ " TEXT);";
 	private static final String PARTS_CREATE = "CREATE TABLE "
 			+ PARTS_TABLE_NAME + " (" + PARTS_ID + " int AUTO_INCREMENT, "
 			+ PARTS_STORY + " TEXT, " + PARTS_TAG + " TEXT, " + PARTS_TEXT
-			+ " TEXT, " + PARTS_WAYPOINT + " TEXT);";
+			+ " TEXT, " + PARTS_WAYPOINT + " TEXT, " + PARTS_ANSWERE_TYPE
+			+ " TEXT, " + PARTS_ANSWERES + " TEXT);";
 
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -84,26 +88,29 @@ public class Database {
 		}
 
 		public void populate(SQLiteDatabase db) {
+			// STORIES
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
-					+ " VALUES ('0', 'Haruki Murakami', 'Kafka on the Shore', 'tag1', "
+					+ " VALUES ('0', 'Haruki Murakami', 'Kafka on the Shore', 'start_tag', 'start_desc',"
 					+ "'Comprising two distinct but interrelated plots, the narrative runs back and forth between the two, taking up each plotline in alternating chapters.', "
 					+ "'All ages', 'Novel', 'Japan',  '3', '2002')");
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
-					+ " VALUES ('1', 'Henrik Ibsen', 'Peer Gynt', 'tag', 'desc', 'age', 'genre', 'area', 'count', 'date')");
+					+ " VALUES ('1', 'Henrik Ibsen', 'Peer Gynt', 'start_tag', 'start_desc', 'desc', 'age', 'genre', 'area', '-1', 'date')");
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
-					+ " VALUES ('2', 'Jane Austen', 'Pride and Prejudice', 'tag', 'desc', 'age', 'genre', 'area', 'count', 'date')");
+					+ " VALUES ('2', 'Jane Austen', 'Pride and Prejudice', 'start_tag', 'start_desc', 'desc', 'age', 'genre', 'area', '-1', 'date')");
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
-					+ " VALUES ('3', 'J.R.R. Tolkien', 'Lord of the Rings', 'tag', 'desc', 'age', 'genre', 'area', 'count', 'date')");
+					+ " VALUES ('3', 'J.R.R. Tolkien', 'Lord of the Rings', 'start_tag', 'start_desc', 'desc', 'age', 'genre', 'area', '-1', 'date')");
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
-					+ " VALUES ('4', 'Randall Munroe', 'Pwned (Xkcd.com)', 'tag', 'desc', 'age', 'genre', 'area', 'count', 'date')");
+					+ " VALUES ('4', 'Randall Munroe', 'Pwned (Xkcd.com)', 'test1', 'Find the spawn place (tag number 1)', 'A text-only counter Strike. How long can you manage to survive?', '15+', 'FPS', 'area', '5', '19.06.1999')");
+			
+			// PARTS
 			db.execSQL("INSERT INTO "
 					+ PARTS_TABLE_NAME
-					+ " VALUES ('0', '3', 'test5', 'Welcome to text-only Counter Strike. You are in a dark, outdoor map.', 'north; south; east; west;')");
+					+ " VALUES ('0', '4', 'test5', 'Welcome to text-only Counter Strike. You are in a dark, outdoor map.', 'north; south; east; west;', 'choice_singel', 'You have been pwn by a grue.')");
 		}
 	}
 

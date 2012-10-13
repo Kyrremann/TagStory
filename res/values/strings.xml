@@ -4,7 +4,6 @@
     <string name="title_story_detail">Story Detail</string>
     <string name="title_story_list">Stories</string>
     
-    
     <string name="username">Username</string>
     <string name="username_hint">Username goes here...</string>
     <string name="password">Password</string>
@@ -44,4 +43,14 @@
     <string name="create_tag_title">Tag-O-Creator</string>
     <string name="create_tag_info">Type in description and gps for the tag.</string>
     <string name="create_tag_write">Write to tag</string>
+    
+    <string name="story_finished">The End</string>
+    <string name="story_new_story">Look for a new story</string>
+    <string name="story_scan_tag">Scan tag</string>
+    
+    <string name="story_arrow_gps_is_off">Please turn on your GPS</string>
+    <string name="story_arrow_turn_on">Turn on</string>
+    <string name="story_arrow_no">No thank you</string>
+	<string name="story_arrow_gps_wait">Waiting for GPS. This may take some time. Please position yourself with clear sight to the sky.</string>
+  
 </resources>

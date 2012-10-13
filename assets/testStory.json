@@ -1,0 +1,128 @@
+{
+    "story": {
+	"UUID":"01",
+	"author":"author",
+	"title":"title",
+	"genre":"genre",
+	"agegroup":"agegroup",
+	"date":"date",
+	"description":"This is a long description about how this adventure is crazy funny! PS: It's also a test story, so you can see what this app supports in story telling!",
+	"keywords":"food; random; adventure",
+	"startTag":"1001",
+	"tagCount":"7",
+	"parts": { 
+	    "1001": { 
+		"UUID":"1001",
+		"belongsToTag":"2001",
+		"partDesc":"This is the main text descriping the story you are on, and just giving you one option to get to next tag. Telling it where it is, or a riddle",
+		"choiceDesc":"There is only one choice here, and it's a riddle to get to the next tag. Enjoy!",
+		"partOptions": {
+		    "Just go to the next one": {
+			"optSelectMethod":"hint_text",
+			"optHintText":"Do you know where I can get a coffee at a reasonable price? That's where the next tag is ;)",
+			"optNext":"1002"
+		    }
+		},
+		"isEndPoint":"false"
+	    },
+	    "1002": { 
+		"UUID":"1002",
+		"belongsToTag":"2002",
+		"partDesc":"People like fruit because it's...",
+		"choiceDesc":"Pick a fruit",
+		"partOptions": {
+		    "Banana": {
+			"optSelectMethod":"hint_text",
+			"optHintText":"Go to the tree",
+			"optNext":"1005"
+		    }, 
+		    "Apple": {
+			"optSelectMethod":"hint_image",
+			"optImageSrc":"test.jpg",
+			"optHintText":"Do you know where this image is taken?",
+			"optNext":"1004"
+		    }, 
+		    "Orange": {
+			"optSelectMethod":"hint_sound",
+			"optSoundSrc":"02_keflings_spring.mp3",
+			"optHintText":"Listen to the text and tell me who you are",
+			"optNext":"1003"
+		    }
+		},
+		"isEndPoint":"false"
+	    },
+	    "1003": {
+		"UUID":"1003",
+		"belongsToTag":"2003",
+		"partDesc":"You are in a beautiful forest...",
+		"choiceDesc":"Where is that damn rock!",
+		"partOptions": {
+		    "Take a look": {
+			"optSelectMethod":"hint_image",
+			"optImageSrc":"test.jpg",
+			"optHintText":"Do you know where this rock is?",
+			"optNext":"1004"
+		    }
+		},
+		"isEndPoint":"false"
+	    }, 
+	    "1004": {
+		"UUID":"1004",
+		"belongsToTag":"2004",
+		"partDesc":"This rock is funny looking",
+		"choiceDesc":"Play a song on the rock",
+		"partOptions": {
+		    "Bada boom": {
+			"optSelectMethod":"hint_sound",
+			"optSoundSrc":"02_keflings_spring.mp3",
+			"optHintText":"I got an answer",
+			"optNext":"1005" 
+		    },
+		    "Bing bing doom": {
+			"optSelectMethod":"hint_text",
+			"optHintText":"blarg",
+			"optNext":"1004" 
+		    }
+		},
+		"isEndPoint":"false"
+	    }, 
+	    "1005": {
+		"UUID":"1005",
+		"belongsToTag":"2005",
+		"partDesc":"What a place!",
+		"choiceDesc":"Please follow the arrow",
+		"partOptions": {
+		    "Follow me": {
+			"optSelectMethod":"hint_arrow",
+			"optCord":"10.10.10.10",
+			"optArrowLength":"true",
+			"optHintText":"Just follow the arrow and you will find the treasure (with optional length to the treasure)",
+			"optNext":"1006"
+		    }
+		},
+		"isEndPoint":"false"
+	    }, 
+	    "1006": {
+		"UUID":"1006",
+		"belongsToTag":"2006",
+		"partDesc":"text",
+		"choiceDesc":"",
+		"partOptions": {
+ 		    "Follow the map": {
+			"optSelectMethod":"hint_map",
+			"optCord":"10.10.10.10",
+			"optHintText":"Just navigate with the map",
+			"optNext":"1007"
+		    }
+		},
+		"isEndPoint":"false"
+	    }, 
+	    "1007": {
+		"UUID":"1007",
+		"belongsToTag":"2007",
+		"partDesc":"You are done! Thank you for experiencing my story! Hope you enjoyed it.",
+		"isEndPoint":"true"
+	    }
+	}
+    }
+}

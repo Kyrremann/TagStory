@@ -56,7 +56,7 @@ public class WriteTag {
 				NdefRecord record = new NdefRecord(NdefRecord.TNF_WELL_KNOWN,
 						NdefRecord.RTD_TEXT, new byte[0], payload);
 
-				NdefMessage tagMessage = new NdefMessage(record);
+				NdefMessage tagMessage = null; //new NdefMessage(record);
 
 				ndef.connect();
 				ndef.writeNdefMessage(tagMessage);

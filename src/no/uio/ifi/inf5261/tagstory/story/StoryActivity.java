@@ -8,6 +8,9 @@ import java.util.List;
 import no.uio.ifi.inf5261.tagstory.R;
 import no.uio.ifi.inf5261.tagstory.StoryDetailActivity;
 import no.uio.ifi.inf5261.tagstory.StoryListActivity;
+import no.uio.ifi.inf5261.tagstory.story.option.ArrowNavigationActivity;
+import no.uio.ifi.inf5261.tagstory.story.option.AudioPlayerActivity;
+import no.uio.ifi.inf5261.tagstory.story.option.MapNavigationActivity;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -41,10 +44,10 @@ public class StoryActivity extends Activity {
 
 	public static final String STORY = "STORY";
 	public static final String PARTTAG = "TAG";
-	public static final String PREVIEWSTAG = "PREVIEWS";
+	public static final String PREVIOUSTAG = "PREVIOUS";
 	private Story story;
 	private StoryPart part;
-	private String partTag, previewsTag;
+	private String partTag, previousTag;
 
 	// protected NfcAdapter nfcAdapter;
 	// protected PendingIntent nfcPendingIntent;
@@ -60,7 +63,7 @@ public class StoryActivity extends Activity {
 		story = (Story) getIntent().getSerializableExtra(STORY);
 		setTitle(story.getTitle());
 		partTag = getIntent().getStringExtra(PARTTAG);
-		previewsTag = getIntent().getStringExtra(PREVIEWSTAG);
+		previousTag = getIntent().getStringExtra(PREVIOUSTAG);
 		part = story.getStoryPart(partTag);
 
 		((TextView) findViewById(R.id.story_part_uuid)).setText("UUID: "
@@ -76,10 +79,13 @@ public class StoryActivity extends Activity {
 			View view = getProperOptionView(part.getOptions());
 			((LinearLayout) findViewById(R.id.story_part_option)).addView(view);
 		} else {
-			Toast.makeText(this, "You've done it! Thank you for using Tag Story. hope you enjoyed the ride.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(
+					this,
+					"You've done it! Thank you for using Tag Story. hope you enjoyed the ride.",
+					Toast.LENGTH_SHORT).show();
 			finish();
 		}
-		
+
 		// LinearLayout layout = (LinearLayout)
 		// findViewById(R.id.story_part_option);
 
@@ -103,12 +109,8 @@ public class StoryActivity extends Activity {
 			button.setOnClickListener(new OnClickListener() {
 
 				@Override
-				public void onClick(View v) {
-					Intent intent = new Intent(v.getContext(),
-							StoryTravelActivity.class);
-					intent.putExtra(STORY, story);
-					intent.putExtra(StoryTravelActivity.OPTION, option);
-					intent.putExtra(PARTTAG, partTag);
+				public void onClick(View view) {
+					Intent intent = createTravelIntent(option);
 					startActivity(intent);
 				}
 			});
@@ -116,9 +118,6 @@ public class StoryActivity extends Activity {
 			// Also send the option with the intent
 			view = button;
 		} else {
-			Toast.makeText(this,
-					"Too many options! I''m counting " + options.size(),
-					Toast.LENGTH_SHORT).show();
 			ListView listView = new ListView(this);
 			final String[] keys = options.keySet().toArray(
 					new String[options.size()]);
@@ -129,12 +128,8 @@ public class StoryActivity extends Activity {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-					Intent intent = new Intent(view.getContext(),
-							StoryTravelActivity.class);
-					StoryPartOption option = options.get(keys[position]);
-					intent.putExtra(STORY, story);
-					intent.putExtra(StoryTravelActivity.OPTION, option);
-					intent.putExtra(PARTTAG, partTag);
+					Intent intent = createTravelIntent(options
+							.get(keys[position]));
 					startActivity(intent);
 				}
 			});
@@ -144,11 +139,30 @@ public class StoryActivity extends Activity {
 		return view;
 	}
 
+	private Intent createTravelIntent(StoryPartOption option) {
+		Intent intent = new Intent();
+		intent.putExtra(STORY, story);
+		intent.putExtra(StoryTravelActivity.OPTION, option);
+		intent.putExtra(PARTTAG, partTag);
+		intent.putExtra(PREVIOUSTAG, previousTag);
+		String opt = option.getOptSelectMethod();
+		if (opt.equals(StoryPartOption.HINT_SOUND))
+			intent.setClass(this, AudioPlayerActivity.class);
+		else if (opt.equals(StoryPartOption.HINT_ARROW))
+			intent.setClass(this, ArrowNavigationActivity.class);
+		else if (opt.equals(StoryPartOption.HINT_MAP))
+			intent.setClass(this, MapNavigationActivity.class);
+		else
+			intent.setClass(this, StoryTravelActivity.class);
+
+		return intent;
+	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == android.R.id.home) {
 			Intent intent;
-			if (previewsTag == null) {
+			if (previousTag == null) {
 				intent = new Intent(this, StoryDetailActivity.class);
 				intent.putExtra(STORY, story);
 			} else {

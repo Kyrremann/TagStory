@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/story_option_layout" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="5dp"
+    android:background="@color/tree_green" >
 
-    <TextView
-        android:id="@+id/story_option_hint"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/story_option_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hint text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:background="@drawable/description_textview_green"
+        android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:onClick="readyToScan"
-        android:text="Scan next tag" />
+        <TextView
+            android:id="@+id/story_option_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

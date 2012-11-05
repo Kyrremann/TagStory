@@ -31,9 +31,9 @@ public class StoryTravelActivity extends Activity {
 		story = (Story) bundle.getSerializable(StoryActivity.STORY);
 		partTag = bundle.getString(StoryActivity.PARTTAG);
 		previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);
-		
+
 		setTitle(option.getUUID());
-		
+
 		((TextView) findViewById(R.id.story_option_hint)).setText(option
 				.getOptHintText());
 		layout = findViewById(R.id.story_option_layout);
@@ -46,7 +46,9 @@ public class StoryTravelActivity extends Activity {
 
 	private View createImageHint(String optImageSrc) {
 		ImageView imageView = new ImageView(this);
-		imageView.setImageResource(R.drawable.ic_launcher);
+		System.out.println(optImageSrc);
+		imageView.setImageResource(getResources().getIdentifier(optImageSrc,
+				"drawable", getPackageName()));
 		return imageView;
 	}
 
@@ -57,15 +59,16 @@ public class StoryTravelActivity extends Activity {
 		intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
 		startActivity(intent);
 	}
-	
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-    
-    	MenuItem item = menu.add(Menu.NONE, 0, Menu.NONE, R.string.story_scan_tag);
-    	item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-    	
-    	return true;
-    }
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		MenuItem item = menu.add(Menu.NONE, 0, Menu.NONE,
+				R.string.story_scan_tag);
+		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+		return true;
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

@@ -32,20 +32,22 @@ public class StoryDetailFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_story_detail,
 				container, false);
 		if (story != null) {
+			((TextView) rootView.findViewById(R.id.story_detail_title))
+					.setText(story.getTitle());
 			((TextView) rootView.findViewById(R.id.story_detail_author))
-					.setText("Author: " + story.getAuthor());
+					.setText(story.getAuthor());
 			((TextView) rootView.findViewById(R.id.story_detail_age))
 					.setText("Agegroup: " + story.getAgeGroup());
 			((TextView) rootView.findViewById(R.id.story_detail_desc))
-					.setText("Description:\n" + story.getDesc());
+					.setText(story.getDesc());
 			((TextView) rootView.findViewById(R.id.story_detail_area))
 					.setText("Area: " + story.getArea());
 			((TextView) rootView.findViewById(R.id.story_detail_date))
-					.setText("Date: " + story.getDate());
+					.setText(story.getDate());
 			((TextView) rootView.findViewById(R.id.story_detail_keywords))
-					.setText("Keywords: " + story.getKeywords());
+					.setText(story.getKeywords().toString());
 			((TextView) rootView.findViewById(R.id.story_detail_tagcount))
-					.setText("Tag count: " + story.getTagCount());
+					.setText(story.getTagCount() + " tags");
 			((TextView) rootView.findViewById(R.id.story_detail_genre))
 					.setText("Genre: " + story.getGenre());
 		}

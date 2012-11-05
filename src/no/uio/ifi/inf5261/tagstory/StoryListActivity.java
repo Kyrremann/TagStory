@@ -9,6 +9,7 @@ import no.uio.ifi.inf5261.tagstory.Database.CommunicationManager;
 import no.uio.ifi.inf5261.tagstory.Database.Database;
 import no.uio.ifi.inf5261.tagstory.Database.JsonParser;
 import no.uio.ifi.inf5261.tagstory.rfid.WriteTag;
+import no.uio.ifi.inf5261.tagstory.story.StoryActivity;
 import no.uio.ifi.inf5261.tagstory.story.StoryManager;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;

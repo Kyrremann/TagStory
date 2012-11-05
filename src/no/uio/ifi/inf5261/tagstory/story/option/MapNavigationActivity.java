@@ -1,21 +1,7 @@
 package no.uio.ifi.inf5261.tagstory.story.option;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import no.uio.ifi.inf5261.tagstory.R;
 import no.uio.ifi.inf5261.tagstory.story.Story;
@@ -31,6 +17,7 @@ import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.maps.GeoPoint;
@@ -63,31 +50,24 @@ public class MapNavigationActivity extends MapActivity {
 		partTag = bundle.getString(StoryActivity.PARTTAG);
 		previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);
 
-		((TextView) findViewById(R.id.story_map_hint)).setText(option
-				.getOptHintText());
+		if (option.getOptHintText().length() > 0) {
+			LinearLayout layout = (LinearLayout) findViewById(R.id.activity_map_layout);
+			TextView textView = new TextView(this);
+			textView.setText(option.getOptHintText());
+			layout.addView(textView);
+		}
 
 		mapView = (MapView) findViewById(R.id.story_map_view);
 		mapView.setBuiltInZoomControls(true);
 
-//		overlayList = mapView.getOverlays();
-//		mapOverlay = new MapOverlay(getResources().getDrawable(
-//				R.drawable.ic_launcher), this);
-//
-//		GeoPoint geoPoint = new GeoPoint((int) (59.908803 * 1e6),
-//				(int) (10.776598 * 1e6));
-//		OverlayItem item = new OverlayItem(geoPoint, "Go here",
-//				"Outside the prison");
-//		mapOverlay.addOverlay(item);
-//
-//		GeoPoint point2 = new GeoPoint(35410000, 139460000);
-//		OverlayItem overlayitem2 = new OverlayItem(point2, "Sekai, konichiwa!",
-//				"I'm in Japan!");
-//		mapOverlay.addOverlay(overlayitem2);
-//
-//		GeoPoint point = new GeoPoint(19240000, -99120000);
-//		OverlayItem overlayitem = new OverlayItem(point, "Hola, Mundo!",
-//				"I'm in Mexico City!");
-//		mapOverlay.addOverlay(overlayitem);
+		overlayList = mapView.getOverlays();
+		mapOverlay = new MapOverlay(getResources().getDrawable(
+				R.drawable.mappointer), this);
+
+		GeoPoint geoPoint = new GeoPoint((int) (option.getOptLat() * 1e6),
+				(int) (option.getOptLong() * 1e6));
+		OverlayItem item = new OverlayItem(geoPoint, "Her skal du starte", "");
+		mapOverlay.addOverlay(item);
 
 		overlayList.add(mapOverlay);
 	}

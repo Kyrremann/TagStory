@@ -11,6 +11,7 @@
 	"keywords":"quiz, naturfag, sognsvann",
 	"startTag":"UUID",
 	"tagCount":"int",
+	"language":"no_bm",
 	"parts": {
 	    "UUID": { 
 		"UUID":"UUID",
@@ -34,9 +35,13 @@
 		"partDesc":"Flaggermus (Chiroptera) er en orden som består av forholdsvis små, flyvende pattedyr. Dette er de eneste pattedyrene som kan fly aktivt ved å slå med vingene ved hjelp av muskelkraft. Flere andre pattedyr kan glidefly, men ikke fly i egentlig forstand. Se for eksempel skjermflygere. Flaggermusenes søstergruppe er Zooamata.",
 		"choiceDesc":"",
 		"partOptions": {
-		    "Trykk for flaggermusquiz å starte flaggermusquiz": {
+		    "Trykk for å starte flaggermusquiz": {
 			"optSelectMethod":"quiz",
 			"optHintText":"String",
+			"optQuiz":{
+			    "quizQ":"String",
+			    "quizA":"boolean"
+			},
 			"optNext":"UUID"
 		    }
 		},

@@ -18,46 +18,11 @@ public class Database {
 	private static final String STORY_TABLE_NAME = "STORIES";
 	public static final String STORY_ID = "_id";
 	public static final String STORY_AUTHOR = "AUTHOR";
-	public static final String STORY_TITLE = "STORY_NAME";
-	public static final String STORY_START_TAG = "START_TAG";
-	public static final String STORY_START_DESC = "START_DESC";
-	public static final String STORY_AGE = "AGE";
-	public static final String STORY_GENRE = "GENRE";
-	public static final String STORY_AREA = "AREA";
-	public static final String STORY_DESC = "DESC";
-	public static final String STORY_TAG_COUNT = "TAG_COUNT";
-	public static final String STORY_DATE = "DATE";
-
-	private static final String TAG_TABLE_NAME = "TAGS";
-	public static final String TAG_ID = "_id";
-	public static final String TAG_GPS = "GPS";
-	public static final String TAG_STORIES = "TAG_STORIES";
-
-	private static final String PARTS_TABLE_NAME = "PARTS";
-	public static final String PARTS_ID = "_id";
-	public static final String PARTS_STORY = "STORY";
-	public static final String PARTS_TAG = "TAG";
-	public static final String PARTS_TEXT = "TEXT";
-	public static final String PARTS_WAYPOINT = "WAYPOINT";
-	public static final String PARTS_ANSWERE_TYPE = "ANSWERE_TYPE";
-	public static final String PARTS_ANSWERES = "ANSWERES";
-
-	// private static final String = "";
+	public static final String STORY_TITLE = "TITLE";
 
 	private static final String STORY_CREATE = "CREATE TABLE "
 			+ STORY_TABLE_NAME + " (" + STORY_ID + " TEXT, " + STORY_AUTHOR
-			+ " TEXT, " + STORY_TITLE + " TEXT, " + STORY_START_TAG + " TEXT, "
-			+ STORY_START_DESC + " TEXT, " + STORY_DESC + " TEXT, " + STORY_AGE
-			+ " TEXT, " + STORY_GENRE + " TEXT, " + STORY_AREA + " TEXT, "
-			+ STORY_TAG_COUNT + " NUMBER, " + STORY_DATE + " TEXT);";
-	private static final String TAG_CREATE = "CREATE TABLE " + TAG_TABLE_NAME
-			+ " (" + TAG_ID + " TEXT, " + TAG_GPS + " TEXT, " + TAG_STORIES
-			+ " TEXT);";
-	private static final String PARTS_CREATE = "CREATE TABLE "
-			+ PARTS_TABLE_NAME + " (" + PARTS_ID + " int AUTO_INCREMENT, "
-			+ PARTS_STORY + " TEXT, " + PARTS_TAG + " TEXT, " + PARTS_TEXT
-			+ " TEXT, " + PARTS_WAYPOINT + " TEXT, " + PARTS_ANSWERE_TYPE
-			+ " TEXT, " + PARTS_ANSWERES + " TEXT);";
+			+ " TEXT, " + STORY_TITLE + " TEXT);";
 
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -68,8 +33,6 @@ public class Database {
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			db.execSQL(STORY_CREATE);
-			db.execSQL(TAG_CREATE);
-			db.execSQL(PARTS_CREATE);
 			populate(db);
 		}
 
@@ -80,8 +43,6 @@ public class Database {
 
 			// Kills the table and existing data
 			db.execSQL("DROP TABLE IF EXISTS " + STORY_TABLE_NAME);
-			db.execSQL("DROP TABLE IF EXISTS " + TAG_TABLE_NAME);
-			db.execSQL("DROP TABLE IF EXISTS " + PARTS_TABLE_NAME);
 
 			// Recreates the database with a new version
 			onCreate(db);
@@ -91,26 +52,10 @@ public class Database {
 			// STORIES
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
-					+ " VALUES ('0', 'Haruki Murakami', 'Kafka on the Shore', 'start_tag', 'start_desc',"
-					+ "'Comprising two distinct but interrelated plots, the narrative runs back and forth between the two, taking up each plotline in alternating chapters.', "
-					+ "'All ages', 'Novel', 'Japan',  '3', '2002')");
+					+ " VALUES ('4ff0b8f0-18a6-11e2-892e-0800200c9a66', 'Kyrre Havik Eriksen', 'Skattejakt på blindern')");
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
-					+ " VALUES ('1', 'Henrik Ibsen', 'Peer Gynt', 'start_tag', 'start_desc', 'desc', 'age', 'genre', 'area', '-1', 'date')");
-			db.execSQL("INSERT INTO "
-					+ STORY_TABLE_NAME
-					+ " VALUES ('2', 'Jane Austen', 'Pride and Prejudice', 'start_tag', 'start_desc', 'desc', 'age', 'genre', 'area', '-1', 'date')");
-			db.execSQL("INSERT INTO "
-					+ STORY_TABLE_NAME
-					+ " VALUES ('3', 'J.R.R. Tolkien', 'Lord of the Rings', 'start_tag', 'start_desc', 'desc', 'age', 'genre', 'area', '-1', 'date')");
-			db.execSQL("INSERT INTO "
-					+ STORY_TABLE_NAME
-					+ " VALUES ('4', 'Randall Munroe', 'Pwned (Xkcd.com)', 'test1', 'Find the spawn place (tag number 1)', 'A text-only counter Strike. How long can you manage to survive?', '15+', 'FPS', 'area', '5', '19.06.1999')");
-			
-			// PARTS
-			db.execSQL("INSERT INTO "
-					+ PARTS_TABLE_NAME
-					+ " VALUES ('0', '4', 'test5', 'Welcome to text-only Counter Strike. You are in a dark, outdoor map.', 'north; south; east; west;', 'choice_singel', 'You have been pwn by a grue.')");
+					+ " VALUES ('ae7fed40-19c4-11e2-892e-0800200c9a66', 'Randall Munroe', 'Pwned (Xkcd.com)')");
 		}
 	}
 
@@ -135,36 +80,12 @@ public class Database {
 	 * @return A Cursor containing a list of stories titles and the author.
 	 */
 	public Cursor getStoryList() {
-		return db.query(STORY_TABLE_NAME, new String[] { STORY_ID, STORY_TITLE,
-				STORY_AUTHOR }, null, null, null, null, STORY_TITLE + " DESC");
+		return db.query(STORY_TABLE_NAME, null, null, null, null, null,
+				STORY_TITLE + " DESC");
 	}
 
 	public void setTable(String rowID, String update) {
 		db.execSQL("UPDATE " + STORY_TABLE_NAME + " SET value ='" + update
 				+ "' WHERE _id = '" + rowID + "'");
-	}
-
-	/**
-	 * Return a specific story based on Author and title of the Story.
-	 * 
-	 * @param author
-	 * @param storyName
-	 * @return
-	 */
-	public Cursor getStory(String author, String storyName) {
-		return db.query(STORY_TABLE_NAME, null, STORY_AUTHOR + "=? AND "
-				+ STORY_TITLE + "=?", new String[] { author, storyName }, null,
-				null, null);
-	}
-
-	/**
-	 * Return a specific story based on the ID.
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public Cursor getStory(String id) {
-		return db.query(STORY_TABLE_NAME, null, STORY_ID + "=?",
-				new String[] { id }, null, null, null);
 	}
 }

@@ -17,7 +17,8 @@ public class StoryPartOption implements Serializable {
 	private String optNext;
 	private String optImageSrc;
 	private String optSoundSrc;
-	private String optCord;
+	private double optLong;
+	private double optLat;
 	private boolean optArrowLength;
 	
 	public StoryPartOption(String UUID, String optSelectMethod, String optHintText, String optNext) {
@@ -70,10 +71,17 @@ public class StoryPartOption implements Serializable {
 	}
 
 	/**
-	 * @return the optCord
+	 * @return the optLong
 	 */
-	public String getOptCord() {
-		return optCord;
+	public double getOptLong() {
+		return optLong;
+	}
+	
+	/**
+	 * @return the optLat
+	 */
+	public double getOptLat() {
+		return optLat;
 	}
 
 	/**
@@ -88,13 +96,6 @@ public class StoryPartOption implements Serializable {
 	 */
 	public void setOptArrowLength(boolean optArrowLength) {
 		this.optArrowLength = optArrowLength;
-	}
-
-	/**
-	 * @param optCord the optCord to set
-	 */
-	public void setOptCord(String optCord) {
-		this.optCord = optCord;
 	}
 
 	/**
@@ -137,6 +138,14 @@ public class StoryPartOption implements Serializable {
 	 */
 	public void setOptSelectMethod(String optSelectMethod) {
 		this.optSelectMethod = optSelectMethod;
+	}
+
+	public void setOptLong(double d) {
+		this.optLong = d;
+	}
+
+	public void setOptLat(double d) {
+		this.optLat = d;
 	}
 
 }

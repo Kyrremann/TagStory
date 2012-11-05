@@ -12,7 +12,10 @@ import no.uio.ifi.inf5261.tagstory.story.option.ArrowNavigationActivity;
 import no.uio.ifi.inf5261.tagstory.story.option.AudioPlayerActivity;
 import no.uio.ifi.inf5261.tagstory.story.option.MapNavigationActivity;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.nfc.FormatException;
@@ -37,6 +40,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,24 +70,23 @@ public class StoryActivity extends Activity {
 		previousTag = getIntent().getStringExtra(PREVIOUSTAG);
 		part = story.getStoryPart(partTag);
 
-		((TextView) findViewById(R.id.story_part_uuid)).setText("UUID: "
-				+ part.getUUID());
-		((TextView) findViewById(R.id.story_part_belongsto))
-				.setText("Belongs to: " + part.getBelongsToTag());
-		((TextView) findViewById(R.id.story_part_desc)).setText("Description\n"
-				+ part.getDescription());
-		((TextView) findViewById(R.id.story_part_choice)).setText("Choice\n"
-				+ part.getChoiceDescription());
+//		((TextView) findViewById(R.id.story_part_uuid)).setText("UUID: "
+//				+ part.getUUID());
+//		((TextView) findViewById(R.id.story_part_belongsto))
+//				.setText("Belongs to: " + part.getBelongsToTag());
+		((TextView) findViewById(R.id.story_part_desc)).setText(part.getDescription());
+		if (part.getOptions() == null || part.getOptions().size() == 0)
+			((TextView) findViewById(R.id.story_part_choice))
+					.setText("Choice\n" + part.getChoiceDescription());
 
 		if (!part.getIsEndpoint()) {
-			View view = getProperOptionView(part.getOptions());
-			((LinearLayout) findViewById(R.id.story_part_option)).addView(view);
+			generateOptionFunction(part.getOptions());
 		} else {
-			Toast.makeText(
-					this,
-					"You've done it! Thank you for using Tag Story. hope you enjoyed the ride.",
-					Toast.LENGTH_SHORT).show();
-			finish();
+			Intent intent = new Intent(this, StoryFinishedActivity.class);
+			intent.putExtra(STORY, story);
+			intent.putExtra(PARTTAG, partTag);
+			intent.putExtra(PREVIOUSTAG, previousTag);
+			startActivity(intent);
 		}
 
 		// LinearLayout layout = (LinearLayout)
@@ -97,14 +100,13 @@ public class StoryActivity extends Activity {
 		// this.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
 	}
 
-	private View getProperOptionView(
+	private void generateOptionFunction(
 			final HashMap<String, StoryPartOption> options) {
+		Button button = (Button) findViewById(R.id.story_activity_travel);
 
-		View view;
 		if (options.size() == 1) {
 			final StoryPartOption option = options.values().iterator().next();
 
-			Button button = new Button(this);
 			button.setText(option.getUUID());
 			button.setOnClickListener(new OnClickListener() {
 
@@ -114,29 +116,40 @@ public class StoryActivity extends Activity {
 					startActivity(intent);
 				}
 			});
-			// TODO: Make a listener for this one button
-			// Also send the option with the intent
-			view = button;
 		} else {
-			ListView listView = new ListView(this);
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			// builder.setTitle("Choose you future");
+			// TODO: Set max length on choice description, or find an new way to
+			// show it
+			// builder.setTitle(part.getChoiceDescription());
+
 			final String[] keys = options.keySet().toArray(
 					new String[options.size()]);
-			listView.setAdapter(new ArrayAdapter<String>(this,
-					android.R.layout.simple_list_item_1, keys));
-			listView.setOnItemClickListener(new OnItemClickListener() {
+
+			builder.setSingleChoiceItems(keys, -1,
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// System.out.println(((AlertDialog)
+							// dialog).getListView().getItemAtPosition(which));
+							startActivity(createTravelIntent(options
+									.get(((AlertDialog) dialog).getListView()
+											.getItemAtPosition(which))));
+						}
+					});
+
+			final Dialog dialog = builder.create();
+
+			button.setText(R.string.story_find_next);
+			button.setOnClickListener(new OnClickListener() {
 
 				@Override
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id) {
-					Intent intent = createTravelIntent(options
-							.get(keys[position]));
-					startActivity(intent);
+				public void onClick(View view) {
+					dialog.show();
 				}
 			});
-			view = listView;
 		}
-
-		return view;
 	}
 
 	private Intent createTravelIntent(StoryPartOption option) {

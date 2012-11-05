@@ -280,13 +280,12 @@ public class ArrowNavigationActivity extends Activity {
 
 		@Override
 		public void onLocationChanged(Location location) {
-			Log.d("GPS", "Working on it...");
 			if (location != null) {
 				loc = location;
 				Location target = new Location("TEST"); // TODO: Set the
 														// location here
-				target.setLatitude(59.908803);
-				target.setLongitude(10.776598);
+				target.setLatitude(option.getOptLat());
+				target.setLongitude(option.getOptLong());
 				dist = (long) loc.distanceTo(target);
 				dir = loc.bearingTo(target);
 				mView.invalidate();

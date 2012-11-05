@@ -27,9 +27,10 @@ public class JsonParser {
 			PART_DESCRIPTION = "partDesc", CHOICE_DESCRIPTION = "choiceDesc",
 			IS_ENDPOINT = "isEndPoint", PART_OPTIONS = "partOptions";
 	public static final String OPT_SELECT_METHOD = "optSelectMethod",
-			OPT_CORD = "optCord", OPT_HINT_TEXT = "optHintText",
-			OPT_NEXT = "optNext", OPT_IMAGE_SRC = "optImageSrc",
-			OPT_SOUND_SRC = "optSoundSrc", OPT_ARROW_LENGTH = "optArrowLength";
+			OPT_LONG = "optLong", OPT_LAT = "optLat",
+			OPT_HINT_TEXT = "optHintText", OPT_NEXT = "optNext",
+			OPT_IMAGE_SRC = "optImageSrc", OPT_SOUND_SRC = "optSoundSrc",
+			OPT_ARROW_LENGTH = "optArrowLength";
 
 	public static JSONObject parseJson(Context context, String UUID)
 			throws IOException, JSONException {
@@ -47,7 +48,7 @@ public class JsonParser {
 			throws JSONException, IOException {
 		JSONObject storyObject = parseJson(context, UUID).getJSONObject(STORY);
 		// Log.d(UUID, storyObject.toString(4));
-
+		
 		Story story = new Story(storyObject.getString(JsonParser.UUID),
 				storyObject.getString(AUTHOR), storyObject.getString(TITLE));
 		story.setAgeGroup(storyObject.getString(AGEGROUP));
@@ -112,8 +113,10 @@ public class JsonParser {
 				if (optKey.equals(OPT_ARROW_LENGTH))
 					option.setOptArrowLength(object
 							.getBoolean(OPT_ARROW_LENGTH));
-				else if (optKey.equals(OPT_CORD))
-					option.setOptCord(object.getString(OPT_CORD));
+				else if (optKey.equals(OPT_LONG))
+					option.setOptLong(object.getDouble(OPT_LONG));
+				else if (optKey.equals(OPT_LAT))
+					option.setOptLat(object.getDouble(OPT_LAT));
 				else if (optKey.equals(OPT_IMAGE_SRC))
 					option.setOptImageSrc(object.getString(OPT_IMAGE_SRC));
 				else if (optKey.equals(OPT_SOUND_SRC))

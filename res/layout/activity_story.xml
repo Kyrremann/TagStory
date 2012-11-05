@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/story_part_option"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:background="@color/tree_green"
+    android:padding="5dp" >
 
+    <!--
     <TextView
         android:id="@+id/story_part_uuid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:text="UUID"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -16,29 +20,49 @@
         android:id="@+id/story_part_belongsto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/story_part_uuid"
         android:text="Belongs to"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+    -->
 
-    <Space
+    <ScrollView
+        android:id="@+id/story_part_scrollview"
         android:layout_width="fill_parent"
-        android:layout_height="10dp" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="5dp" >
 
-    <TextView
-        android:id="@+id/story_part_desc"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/story_part_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/scrollView1"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/rounded_textview_green"
+                android:paddingBottom="5dp"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/story_part_choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_textview_green"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/story_activity_travel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Description"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" />
 
-    <Space
-        android:layout_width="fill_parent"
-        android:layout_height="10dp" />
-
-    <TextView
-        android:id="@+id/story_part_choice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choice"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-</LinearLayout>
+</RelativeLayout>

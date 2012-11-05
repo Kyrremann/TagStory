@@ -42,6 +42,10 @@
 			    "int": {
 				"quizQ":"String",
 				"quizA":"boolean"
+			    },
+			    "int": {
+				"quizQ":"String",
+				"quizA":"boolean"
 			    }
 			},
 			"optNext":"UUID"

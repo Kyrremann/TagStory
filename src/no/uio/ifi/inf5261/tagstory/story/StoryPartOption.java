@@ -1,6 +1,8 @@
 package no.uio.ifi.inf5261.tagstory.story;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StoryPartOption implements Serializable {
 
@@ -9,6 +11,7 @@ public class StoryPartOption implements Serializable {
 	public static String HINT_TEXT = "hint_text";
 	public static String HINT_MAP = "hint_map";
 	public static String HINT_ARROW = "hint_arrow";
+	public static String HINT_QUIZ = "hint_quiz";
 	
 	private static final long serialVersionUID = -7137600478159292595L;
 	private String UUID;
@@ -20,12 +23,14 @@ public class StoryPartOption implements Serializable {
 	private double optLong;
 	private double optLat;
 	private boolean optArrowLength;
+	private List<QuizNode> quiz;
 	
 	public StoryPartOption(String UUID, String optSelectMethod, String optHintText, String optNext) {
 		this.setUUID(UUID);
 		this.optSelectMethod = optSelectMethod;
 		this.setOptHintText(optHintText);
 		this.optNext = optNext;
+		this.quiz = new ArrayList<QuizNode>();
 	}
 
 	/**
@@ -83,12 +88,34 @@ public class StoryPartOption implements Serializable {
 	public double getOptLat() {
 		return optLat;
 	}
+	
+	/**
+	 * 
+	 * @return the optQuiz
+	 */
+	public List<QuizNode> getQuiz() {
+		return quiz;
+	}
+	
+	/**
+	 * 
+	 * @param location of the question
+	 * @retur the question at the specified location
+	 * @see List
+	 */
+	public QuizNode getFromQuiz(int location) {
+		return quiz.get(location);
+	}
 
 	/**
 	 * @return the optArrowLength
 	 */
 	public boolean isOptArrowLength() {
 		return optArrowLength;
+	}
+	
+	public void addToQuiz(int location, String question, boolean answere) {
+		quiz.add(location, new QuizNode(question, answere));
 	}
 
 	/**
@@ -146,6 +173,31 @@ public class StoryPartOption implements Serializable {
 
 	public void setOptLat(double d) {
 		this.optLat = d;
+	}
+	
+	public class QuizNode {
+		
+		private String question;
+		private boolean answer;
+		
+		public QuizNode(String question, boolean answer) {
+			this.question = question;
+			this.answer = answer;
+		}
+
+		/**
+		 * @return the question
+		 */
+		public String getQuestion() {
+			return question;
+		}
+
+		/**
+		 * @return the answer
+		 */
+		public boolean isAnswer() {
+			return answer;
+		}
 	}
 
 }

@@ -11,6 +11,7 @@ import no.uio.ifi.inf5261.tagstory.StoryListActivity;
 import no.uio.ifi.inf5261.tagstory.story.option.ArrowNavigationActivity;
 import no.uio.ifi.inf5261.tagstory.story.option.AudioPlayerActivity;
 import no.uio.ifi.inf5261.tagstory.story.option.MapNavigationActivity;
+import no.uio.ifi.inf5261.tagstory.story.option.QuizActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -70,11 +71,12 @@ public class StoryActivity extends Activity {
 		previousTag = getIntent().getStringExtra(PREVIOUSTAG);
 		part = story.getStoryPart(partTag);
 
-//		((TextView) findViewById(R.id.story_part_uuid)).setText("UUID: "
-//				+ part.getUUID());
-//		((TextView) findViewById(R.id.story_part_belongsto))
-//				.setText("Belongs to: " + part.getBelongsToTag());
-		((TextView) findViewById(R.id.story_part_desc)).setText(part.getDescription());
+		// ((TextView) findViewById(R.id.story_part_uuid)).setText("UUID: "
+		// + part.getUUID());
+		// ((TextView) findViewById(R.id.story_part_belongsto))
+		// .setText("Belongs to: " + part.getBelongsToTag());
+		((TextView) findViewById(R.id.story_part_desc)).setText(part
+				.getDescription());
 		if (part.getOptions() == null || part.getOptions().size() == 0)
 			((TextView) findViewById(R.id.story_part_choice))
 					.setText("Choice\n" + part.getChoiceDescription());
@@ -165,6 +167,8 @@ public class StoryActivity extends Activity {
 			intent.setClass(this, ArrowNavigationActivity.class);
 		else if (opt.equals(StoryPartOption.HINT_MAP))
 			intent.setClass(this, MapNavigationActivity.class);
+		else if (opt.equals(StoryPartOption.HINT_QUIZ))
+			intent.setClass(this, QuizActivity.class);
 		else
 			intent.setClass(this, StoryTravelActivity.class);
 

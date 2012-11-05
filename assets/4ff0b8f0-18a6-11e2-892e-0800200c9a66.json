@@ -107,6 +107,7 @@
 		    "Følg pilen så kommer du nok frem.": {
 			"optSelectMethod":"hint_arrow",
 			"optHintText":"",
+			"optArrowLength":"true",
 			"optLat":"59.942325",
 			"optLong":"10.718322",
 			"optNext":"4ff0b8f6-18a6-11e2-892e-0800200c9a66"

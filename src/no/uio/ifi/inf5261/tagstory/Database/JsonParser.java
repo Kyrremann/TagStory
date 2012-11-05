@@ -30,16 +30,18 @@ public class JsonParser {
 			OPT_LONG = "optLong", OPT_LAT = "optLat",
 			OPT_HINT_TEXT = "optHintText", OPT_NEXT = "optNext",
 			OPT_IMAGE_SRC = "optImageSrc", OPT_SOUND_SRC = "optSoundSrc",
-			OPT_ARROW_LENGTH = "optArrowLength";
+			OPT_ARROW_LENGTH = "optArrowLength", OPT_QUIZ = "optQuiz", QUIZ_Q = "quizQ", QUIZ_A = "quizA";
+	public static final String HINT_TEXT = "hint_text",
+			HINT_IMAGE = "hint_image", HINT_MAP = "hint_map",
+			HINT_ARROW = "hint_arrow", HINT_SOUD = "hint_sound",
+			HINT_QUIZ = "hint_quiz";
 
 	public static JSONObject parseJson(Context context, String UUID)
 			throws IOException, JSONException {
 		InputStream inputStream = context.getAssets().open(UUID);
 		byte[] buffer = new byte[inputStream.available()];
 		inputStream.read(buffer);
-		// Log.d("UUID", new String(buffer));
 		inputStream.close();
-		// System.out.println(new JSONObject(new String(buffer)));
 
 		return new JSONObject(new String(buffer));
 	}
@@ -48,7 +50,7 @@ public class JsonParser {
 			throws JSONException, IOException {
 		JSONObject storyObject = parseJson(context, UUID).getJSONObject(STORY);
 		// Log.d(UUID, storyObject.toString(4));
-		
+
 		Story story = new Story(storyObject.getString(JsonParser.UUID),
 				storyObject.getString(AUTHOR), storyObject.getString(TITLE));
 		story.setAgeGroup(storyObject.getString(AGEGROUP));
@@ -106,21 +108,26 @@ public class JsonParser {
 					object.getString(OPT_SELECT_METHOD),
 					object.getString(OPT_HINT_TEXT), object.getString(OPT_NEXT));
 
-			@SuppressWarnings("unchecked")
-			Iterator<String> optKeys = object.keys();
-			while (optKeys.hasNext()) {
-				String optKey = optKeys.next();
-				if (optKey.equals(OPT_ARROW_LENGTH))
-					option.setOptArrowLength(object
-							.getBoolean(OPT_ARROW_LENGTH));
-				else if (optKey.equals(OPT_LONG))
-					option.setOptLong(object.getDouble(OPT_LONG));
-				else if (optKey.equals(OPT_LAT))
-					option.setOptLat(object.getDouble(OPT_LAT));
-				else if (optKey.equals(OPT_IMAGE_SRC))
-					option.setOptImageSrc(object.getString(OPT_IMAGE_SRC));
-				else if (optKey.equals(OPT_SOUND_SRC))
-					option.setOptSoundSrc(object.getString(OPT_SOUND_SRC));
+			if (object.getString(OPT_SELECT_METHOD).equals(HINT_IMAGE))
+				option.setOptImageSrc(object.getString(OPT_IMAGE_SRC));
+			else if (object.getString(OPT_SELECT_METHOD).equals(HINT_MAP)) {
+				option.setOptLat(object.getDouble(OPT_LAT));
+				option.setOptLong(object.getDouble(OPT_LONG));
+			} else if (object.getString(OPT_SELECT_METHOD).equals(HINT_ARROW)) {
+				option.setOptLat(object.getDouble(OPT_LAT));
+				option.setOptLong(object.getDouble(OPT_LONG));
+				option.setOptArrowLength(object.getBoolean(OPT_ARROW_LENGTH));
+			} else if (object.getString(OPT_SELECT_METHOD).equals(HINT_IMAGE))
+				option.setOptImageSrc(object.getString(OPT_IMAGE_SRC));
+			else if (object.getString(OPT_SELECT_METHOD).equals(HINT_QUIZ)) {
+				JSONObject quiz = object.getJSONObject(OPT_QUIZ);
+				@SuppressWarnings("unchecked")
+				Iterator<String> quizKeys = quiz.keys();
+				JSONObject question;
+				while (quizKeys.hasNext()) {
+					question = quiz.getJSONObject(quizKeys.next());
+					option.addToQuiz(Integer.parseInt(key), question.getString(QUIZ_Q), question.getBoolean(QUIZ_A));
+				}
 			}
 			map.put(key, option);
 		}

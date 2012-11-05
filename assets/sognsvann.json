@@ -1,0 +1,77 @@
+{
+    "story": {
+	"UUID":"UUID",
+	"author":"Thomas Portia",
+	"title":"Naturquiz for Sognsvann",
+	"genre":"quiz - natur",
+	"agegroup":"0-99",
+	"area":"Sognsvann",
+	"date":"4.11.12",
+	"description":"String",
+	"keywords":"quiz, naturfag, sognsvann",
+	"startTag":"UUID",
+	"tagCount":"int",
+	"parts": {
+	    "UUID": { 
+		"UUID":"UUID",
+		"belongsToTag":"UUID",
+		"partTitle":"String",
+		"partDesc":"String",
+		"choiceDesc":"String",
+		"partOptions": {
+		    "String": {
+			"optSelectMethod":"enum",
+			"optHintText":"String",
+			"optNext":"UUID"
+		    }
+		},
+		"isEndPoint":"boolean"
+	    },
+	    "UUID": { 
+		"UUID":"UUID",
+		"belongsToTag":"UUID",
+		"partTitle":"Flaggermus",
+		"partDesc":"Flaggermus (Chiroptera) er en orden som består av forholdsvis små, flyvende pattedyr. Dette er de eneste pattedyrene som kan fly aktivt ved å slå med vingene ved hjelp av muskelkraft. Flere andre pattedyr kan glidefly, men ikke fly i egentlig forstand. Se for eksempel skjermflygere. Flaggermusenes søstergruppe er Zooamata.",
+		"choiceDesc":"",
+		"partOptions": {
+		    "Trykk for flaggermusquiz å starte flaggermusquiz": {
+			"optSelectMethod":"quiz",
+			"optHintText":"String",
+			"optNext":"UUID"
+		    }
+		},
+		"isEndPoint":"boolean"
+	    },
+	    "UUID": { 
+		"UUID":"UUID",
+		"belongsToTag":"UUID",
+		"partTitle":"String",
+		"partDesc":"String",
+		"choiceDesc":"String",
+		"partOptions": {
+		    "String": {
+			"optSelectMethod":"enum",
+			"optHintText":"String",
+			"optNext":"UUID"
+		    }
+		},
+		"isEndPoint":"boolean"
+	    },
+	    "UUID": { 
+		"UUID":"UUID",
+		"belongsToTag":"UUID",
+		"partTitle":"String",
+		"partDesc":"String",
+		"choiceDesc":"String",
+		"partOptions": {
+		    "String": {
+			"optSelectMethod":"enum",
+			"optHintText":"String",
+			"optNext":"UUID"
+		    }
+		},
+		"isEndPoint":"true"
+	    }
+	}
+    }
+}

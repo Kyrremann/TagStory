@@ -1,0 +1,31 @@
+{
+    "story": {
+	"UUID":"UUID",
+	"author":"String",
+	"title":"String",
+	"genre":"String",
+	"agegroup":"String",
+	"area":"String",
+	"date":"String",
+	"description":"String",
+	"keywords":"list",
+	"startTag":"UUID",
+	"tagCount":"int",
+	"parts": { 
+	    "UUID": { 
+		"UUID":"UUID",
+		"belongsToTag":"UUID",
+		"partDesc":"String",
+		"choiceDesc":"String",
+		"partOptions": {
+		    "String": {
+			"optSelectMethod":"enum",
+			"optHintText":"String",
+			"optNext":"UUID"
+		    }
+		},
+		"isEndPoint":"boolean"
+	    }
+	}
+    }
+}

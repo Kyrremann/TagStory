@@ -1,10 +1,11 @@
 {
     "story": {
-	"UUID":"01",
+	"UUID":"c74dbd7f-e302-438c-80e6-dbb9feb5374a",
 	"author":"author",
 	"title":"title",
 	"genre":"genre",
 	"agegroup":"agegroup",
+	"area":"area",
 	"date":"date",
 	"description":"This is a long description about how this adventure is crazy funny! PS: It's also a test story, so you can see what this app supports in story telling!",
 	"keywords":"food; random; adventure",
@@ -13,11 +14,11 @@
 	"parts": { 
 	    "1001": { 
 		"UUID":"1001",
-		"belongsToTag":"2001",
-		"partDesc":"This is the main text descriping the story you are on, and just giving you one option to get to next tag. Telling it where it is, or a riddle",
+		"belongsToTag":"test1001",
+		"partDesc":"This is the main text describing the story you are on, and just giving you one option to get to next tag. Telling it where it is, or a riddle",
 		"choiceDesc":"There is only one choice here, and it's a riddle to get to the next tag. Enjoy!",
 		"partOptions": {
-		    "Just go to the next one": {
+		    "Show me how to get to the next tag": {
 			"optSelectMethod":"hint_text",
 			"optHintText":"Do you know where I can get a coffee at a reasonable price? That's where the next tag is ;)",
 			"optNext":"1002"
@@ -27,7 +28,7 @@
 	    },
 	    "1002": { 
 		"UUID":"1002",
-		"belongsToTag":"2002",
+		"belongsToTag":"test1002",
 		"partDesc":"People like fruit because it's...",
 		"choiceDesc":"Pick a fruit",
 		"partOptions": {
@@ -53,7 +54,7 @@
 	    },
 	    "1003": {
 		"UUID":"1003",
-		"belongsToTag":"2003",
+		"belongsToTag":"test1003",
 		"partDesc":"You are in a beautiful forest...",
 		"choiceDesc":"Where is that damn rock!",
 		"partOptions": {
@@ -68,7 +69,7 @@
 	    }, 
 	    "1004": {
 		"UUID":"1004",
-		"belongsToTag":"2004",
+		"belongsToTag":"test1004",
 		"partDesc":"This rock is funny looking",
 		"choiceDesc":"Play a song on the rock",
 		"partOptions": {
@@ -88,7 +89,7 @@
 	    }, 
 	    "1005": {
 		"UUID":"1005",
-		"belongsToTag":"2005",
+		"belongsToTag":"test1005",
 		"partDesc":"What a place!",
 		"choiceDesc":"Please follow the arrow",
 		"partOptions": {
@@ -104,7 +105,7 @@
 	    }, 
 	    "1006": {
 		"UUID":"1006",
-		"belongsToTag":"2006",
+		"belongsToTag":"test1006",
 		"partDesc":"text",
 		"choiceDesc":"",
 		"partOptions": {
@@ -119,7 +120,7 @@
 	    }, 
 	    "1007": {
 		"UUID":"1007",
-		"belongsToTag":"2007",
+		"belongsToTag":"test1007",
 		"partDesc":"You are done! Thank you for experiencing my story! Hope you enjoyed it.",
 		"isEndPoint":"true"
 	    }

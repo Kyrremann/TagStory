@@ -38,9 +38,11 @@
 		    "Trykk for å starte flaggermusquiz": {
 			"optSelectMethod":"quiz",
 			"optHintText":"String",
-			"optQuiz":{
-			    "quizQ":"String",
-			    "quizA":"boolean"
+			"optQuiz": {
+			    "int": {
+				"quizQ":"String",
+				"quizA":"boolean"
+			    }
 			},
 			"optNext":"UUID"
 		    }

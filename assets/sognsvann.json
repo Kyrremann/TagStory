@@ -58,7 +58,7 @@
 			    "5": {
 				"quizQ":"De fleste flaggermus har veldig godt syn, navigerer med stor presisjon ved å sende ut ekkolokalisering (lyd ikke vi klarer å høre men som flaggermusene hører). Dessuten overfører de sjelden sykdommer til andre dyr og mennesker?",
 				"quizA":"true"
-			    }
+			    },
 			    "6": {
 				"quizQ":"Flaggermus arten med kallenavnet “den flyvende reven” livnærer seg av å spise frukt og  har et vingespenn på 3 fot?",
 				"quizA":"false",
@@ -101,7 +101,7 @@
 			    "5": {
 				"quizQ":"Ved å bade i områder av vannet som ikke inneholder mye snegler, det vil si å unngå områder med mye vegetasjon i vannet, reduserer sjansen for svømmekløe?",
 				"quizA":"true"
-			    }
+			    },
 			    "6": {
 				"quizQ":"Ved å svømme på dype områder, som for eksempel fra flytebrygger, reduserer risikoen for svømmekløe?",
 				"quizA":"true",
@@ -178,16 +178,16 @@
 			    "5": {
 				"quizQ":"I metropoler (byer over 1 million innbyggere), overlever et tre i gjennomsnitt bare i 8 år?",
 				"quizA":"true"
-			    }
+			    },
 			    "6": {
 				"quizQ":"Trær fornyer luften ved å absorbere karbondioksid og produsere oksygen. Mengden oksygen som produseres av et hektar trær (10 000 km^2) er nok til at 7 mennesker skal kunne få puste gjennom et helt år?",
 				"quizA":"true"
-			    }
+			    },
 			    "7": {
 				"quizQ":"Trær mottar 60% av næringen sin fra atmosfæren og bare 40% fra bakken den vokser på?",
 				"quizA":"false",
 				"quizC":"Feil, trær mottar 90% av næringen sin fra atmosfæren og 10% fra bakken."
-			    }
+			    },
 			    "8": {
 				"quizQ":"Trær vokser fra toppen og ikke fra bunn slik mange tror. En kvist sin plassering på stammen vil bare bevege seg oppover noen få centimeter i løpet av en 1000 års periode.",
 				"quizA":"true"
@@ -229,7 +229,7 @@
 			    "5": {
 				"quizQ":"Sauer har en synsvidde på 300 grader, som gjør det mulig å se bakover uten at de trenger å snu på hodet?",
 				"quizA":"true"
-			    }
+			    },
 			    "6": {
 				"quizQ":"I 1996 ble en sau ved navn Dolly klonet og hun ble dermed verdens første klonede pattedyr?",
 				"quizA":"true"
@@ -271,7 +271,7 @@
 			    "5": {
 				"quizQ":"En maur art som elver i Amazonas (Polyergus Rufescens) drar på røvertokt og stjeler puppene til andre maur som de tar de med til sin egen koloni for å ha som slaver. Når de klekkes arbeider de som slaver inne i kolonien for dronningen?",
 				"quizA":"true"
-			    }
+			    },
 			    "6": {
 				"quizQ":"Gjennomsnittsalderen til en maur er 45-60 dager. Mauren bruker ikke bare antennene den har på hode til å føle med, men også til å lukte med?",
 				"quizA":"true"
@@ -286,7 +286,7 @@
 		"UUID":"UUID",
 		"belongsToTag":"UUID",
 		"partTitle":"Høyspentmast",
-		"partDesc":".......",
+		"partDesc":"Strøm eller elektrisk strøm er en form for energi, hvor elektroner, negativt ladde partikler blir fraktet. Den frie flyten av elektroner som har falt av de tilhørende atomene sine blir til elektrisk strøm. Elektrisk strøm er en sekundær energikilde, og skapes etter omdanning av primære energikilder som olje, gass, kull, atomkraft og andre naturlige energikilder som sol, vind og andre naturkrefter.",
 		"choiceDesc":"",
 		"partOptions": {
 		    "Trykk for å starte quiz om høyspentmaster": {

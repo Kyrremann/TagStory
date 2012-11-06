@@ -26,7 +26,7 @@
 			"optNext":"UUID"
 		    }
 		},
-		"isEndPoint":"boolean"
+		"isEndPoint":"false"
 	    },
 	    "UUID": { 
 		"UUID":"UUID",
@@ -68,7 +68,7 @@
 			"optNext":"UUID"
 		    }
 		},
-		"isEndPoint":"boolean"
+		"isEndPoint":"false"
 	    },
 	    "UUID": { 
 		"UUID":"UUID",
@@ -111,7 +111,7 @@
 			"optNext":"UUID"
 		    }
 		},
-		"isEndPoint":"boolean"
+		"isEndPoint":"false"
 	    },
 	     "UUID": { 
 		"UUID":"UUID",
@@ -145,7 +145,7 @@
 			"optNext":"UUID"
 		    }
 		},
-		"isEndPoint":"boolean"
+		"isEndPoint":"false"
 	    },
 	    	    "UUID": { 
 		"UUID":"UUID",
@@ -195,7 +195,7 @@
 			"optNext":"UUID"
 		    }
 		},
-		"isEndPoint":"boolean"
+		"isEndPoint":"false"
 	    },
 	    "UUID": { 
 		"UUID":"UUID",
@@ -238,7 +238,7 @@
 			"optNext":"UUID"
 		    }
 		},
-		"isEndPoint":"boolean"
+		"isEndPoint":"false"
 	    },
 	    "UUID": { 
 		"UUID":"UUID",
@@ -280,7 +280,7 @@
 			"optNext":"UUID"
 		    }
 		},
-		"isEndPoint":"boolean"
+		"isEndPoint":"false"
 	    },
 	    "UUID": { 
 		"UUID":"UUID",
@@ -319,7 +319,7 @@
 			"optNext":"UUID"
 		    }
 		},
-		"isEndPoint":"boolean"
+		"isEndPoint":"false"
 	    },
 	    "UUID": { 
 		"UUID":"UUID",

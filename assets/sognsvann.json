@@ -39,13 +39,29 @@
 			"optSelectMethod":"hint_quiz",
 			"optHintText":"String",
 			"optQuiz": {
-			    "int": {
-				"quizQ":"String",
-				"quizA":"boolean"
+			    "1": {
+				"quizQ":"Flaggermus flyr alltid mot venstre når de forlater hulen?",
+				"quizA":"true"
 			    },
-			    "int": {
-				"quizQ":"String",
-				"quizA":"boolean"
+			    "2": {
+				"quizQ":"Det finnes over 1200 kjente arter av flaggermus, og de utgjør dermed ca. 25% av alle jordas pattedyr. De fleste av disse er så små at de får plass i hånden din?",
+				"quizA":"true"
+			    },
+			    "3": {
+				"quizQ":"Myotis, en liten brun flaggermus, kan spise opptil 1000 mygg på en time og er i forhold til sin beskjedne størrelse, blant de mest lengstlevende pattedyrene som finnes?",
+				"quizA":"true"
+			    },
+			    "4": {
+				"quizQ":"Et antikoaguleringsmiddel som utvinnes fra vampyrflaggermusens spytt, benyttes til behandling av  pasienter med hjerteproblemer og brukes på pasienter som har fått slag?",
+				"quizA":"true"
+			    },
+			    "5": {
+				"quizQ":"De fleste flaggermus har veldig godt syn, navigerer med stor presisjon ved å sende ut ekkolokalisering (lyd ikke vi klarer å høre men som flaggermusene hører). Dessuten overfører de sjelden sykdommer til andre dyr og mennesker?",
+				"quizA":"true"
+			    }
+			    "6": {
+				"quizQ":"Flaggermus arten med kallenavnet “den flyvende reven” livnærer seg av å spise frukt og  har et vingespenn på 3 fot?",
+				"quizA":"false"
 			    }
 			},
 			"optNext":"UUID"

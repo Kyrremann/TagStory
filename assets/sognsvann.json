@@ -1,16 +1,16 @@
 {
     "story": {
 	"UUID":"UUID",
-	"author":"Thomas Portia",
+	"author":"Thomas Portilla",
 	"title":"Naturquiz for Sognsvann",
 	"genre":"quiz - natur",
 	"agegroup":"0-99",
 	"area":"Sognsvann",
 	"date":"4.11.12",
 	"description":"String",
-	"keywords":"quiz, naturfag, sognsvann",
+	"keywords":"quiz, naturfag, fakta, sognsvann",
 	"startTag":"UUID",
-	"tagCount":"int",
+	"tagCount":"9",
 	"language":"no_bm",
 	"parts": {
 	    "UUID": { 
@@ -32,7 +32,7 @@
 		"UUID":"UUID",
 		"belongsToTag":"UUID",
 		"partTitle":"Flaggermus",
-		"partDesc":"Flaggermus (Chiroptera) er en orden som består av forholdsvis små, flyvende pattedyr. Dette er de eneste pattedyrene som kan fly aktivt ved å slå med vingene ved hjelp av muskelkraft. Flere andre pattedyr kan glidefly, men ikke fly i egentlig forstand. Se for eksempel skjermflygere. Flaggermusenes søstergruppe er Zooamata.",
+		"partDesc":"Flaggermus (Chiroptera) er en orden som består av forholdsvis små, flyvende pattedyr. Dette er de eneste pattedyrene som kan fly aktivt ved å slå med vingene ved hjelp av muskelkraft. Flere andre pattedyr kan glidefly, men ikke fly i egentlig forstand.",
 		"choiceDesc":"",
 		"partOptions": {
 		    "Trykk for å starte flaggermusquiz": {
@@ -61,8 +61,86 @@
 			    }
 			    "6": {
 				"quizQ":"Flaggermus arten med kallenavnet “den flyvende reven” livnærer seg av å spise frukt og  har et vingespenn på 3 fot?",
-				"quizA":"false"
+				"quizA":"false",
+				"quizC":"Feil, vingespennet er faktisk på nesten 6 fot."
 			    }
+			},
+			"optNext":"UUID"
+		    }
+		},
+		"isEndPoint":"boolean"
+	    },
+	    "UUID": { 
+		"UUID":"UUID",
+		"belongsToTag":"UUID",
+		"partTitle":"Flytebryggen",
+		"partDesc":"Svømmekløe eller cercariedermatitt er et kløende utslett som kan oppstå etter bading i ferskvann. Det er en kortvarig immunreaksjon som forårsakes av parasittiske ikter. Det er når vannet får temperatur opp mot 20 grader at man er mest utsatt, og spesielt i ferskvann men det kan også forekomme i hav. Barn er mer utsatt enn voksne. Svømmekløe er ikke farlig.",
+		"choiceDesc":"",
+		"partOptions": {
+		    "Trykk for å starte quiz om badevannet": {
+			"optSelectMethod":"hint_quiz",
+			"optHintText":"String",
+			"optQuiz": {
+			    "1": {
+				"quizQ":"Ikter er en parasitt som formeres i vannlevende snegler, før de legger på svøm etter fugler og blodårene deres?",
+				"quizA":"true"
+			    },
+			    "2": {
+				"quizQ":"Innimellom bommer parasittene og treffer et menneske, men de kan ikke utvikle seg hos oss. I stedet dør de under huden vår og gir allergiske reaksjoner hos enkelte og gir utslag i form av sterk kløe?",
+				"quizA":"true"
+			    },
+			    "3": {
+				"quizQ":"De første symptomene på svømmekløe er en kilende og prikkende følelse i huden. Dette merker du like etter at du har kommet opp av vannet. Etter hvert kan det også oppstå røde hevelser på dette området?",
+				"quizA":"true"
+			    },
+			    "4": {
+				"quizQ":"I Oslo er Sognsvann en av de minst utsatte badeplassene for å få svømmekløe?",
+				"quizA":"false",
+				"quizC":"Feil, Sognsvann er blant de mest utsatte områdene for Svømmekløe."
+			    },
+			    "5": {
+				"quizQ":"Ved å bade i områder av vannet som ikke inneholder mye snegler, det vil si å unngå områder med mye vegetasjon i vannet, reduserer sjansen for svømmekløe?",
+				"quizA":"true"
+			    }
+			    "6": {
+				"quizQ":"Ved å svømme på dype områder, som for eksempel fra flytebrygger, reduserer risikoen for svømmekløe?",
+				"quizA":"true",
+				"quizMore":"Dypt vann inneholder mindre vegetasjon og snegler i vannet enn grunt vann."
+			    }
+			},
+			"optNext":"UUID"
+		    }
+		},
+		"isEndPoint":"boolean"
+	    },
+	     "UUID": { 
+		"UUID":"UUID",
+		"belongsToTag":"UUID",
+		"partTitle":"Stranden",
+		"partDesc":"Stedet var en plass under Nordre Sandaas gård. Stranden var i bruk i 1857, da var stedet bolig for steinhuggere. Steinhuggerer  bryter ut eller tar ut stein fra et steinbrudd i fjellet. Steinbruddsvirksomhet er det arbeid som må til for å ta ut en bergressurs fra der den ligger i fast fjell til den er klar for salg. Det kan være løsmasse eller steinblokker.",
+		"choiceDesc":"",
+		"partOptions": {
+		    "Trykk for å starte flaggermusquiz": {
+			"optSelectMethod":"hint_quiz",
+			"optHintText":"String",
+			"optQuiz": {
+			    "1": {
+				"quizQ":"Fra 1820 og godt inn på 1900-tallet ble det drevet mange steinbrudd på nordmarkitt i traktene rundt Sognsvann. Steinhoggerne og steinbryterne bodde på mange av plassene i området.",
+				"quizA":"true"
+			    },
+			    "2": {
+				"quizQ":"Dammene ved Store og Lille Åklungen, Svartkulp og Sognsvann ble alle bygd i denne perioden av nordmarkittblokker?",
+				"quizA":"true"
+			    },
+			    "3": {
+				"quizQ":"Stein fra åsene nord for byen ble brukt i mange bygninger i Oslo og ellers i landet; blant annet Universitetsbygningen, Trefoldighetskirken, Holmenkollen kapell, Slottets sokkel og Stortingsbygningen?",
+				"quizA":"false",
+				"quizC":"Holmenkollen kapell er primært laget av tre."
+			    },
+			    "4": {
+				"quizQ":"Før første verdenskrig ble det eksportert større mengder nordmarkitt til Angola til oppbygging av kulturminner og statlige bygninger i hovedstaden Luanda?",
+				"quizA":"false",
+				"quizC":"Feil, dette stemmer ikke ;P"
 			},
 			"optNext":"UUID"
 		    }

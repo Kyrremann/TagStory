@@ -1,7 +1,6 @@
 package no.uio.ifi.inf5261.tagstory.story;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import no.uio.ifi.inf5261.tagstory.story.game.QuizNode;
@@ -17,34 +16,29 @@ public class StoryPart implements Serializable {
 	private String gameButton;
 	private boolean isEndpoint;
 	private HashMap<String, StoryPartOption> options;
-	private ArrayList<QuizNode> quiz;
+	private HashMap<Integer, QuizNode> quiz;
 
 	public StoryPart(String UUID, String belongsToTag, String description,
 			String isEndpoint) {
-		this.setUUID(UUID);
-		this.setBelongsToTag(belongsToTag);
-		this.setDescription(description);
-		this.setIsEndpoint(isEndpoint);
-	}
-	
-	public StoryPart(String UUID, String belongsToTag, String description, String gameMode,
-			String isEndpoint) {
-		this.setUUID(UUID);
-		this.setBelongsToTag(belongsToTag);
-		this.setDescription(description);
-		this.setGameMode(gameMode);
-		this.setIsEndpoint(isEndpoint);
+		this(UUID, belongsToTag, description, null, null, null, isEndpoint);
 	}
 
 	public StoryPart(String UUID, String belongsToTag, String description,
-			String choiceDescription, String isEndpoint,
-			HashMap<String, StoryPartOption> options) {
+			String gameMode, String isEndpoint) {
+		this(UUID, belongsToTag, description, null, gameMode, null, isEndpoint);
+	}
+
+	public StoryPart(String UUID, String belongsToTag, String description,
+			String choiceDescription, String gameMode,
+			HashMap<String, StoryPartOption> options, String isEndpoint) {
 		this.setUUID(UUID);
 		this.setBelongsToTag(belongsToTag);
 		this.setDescription(description);
 		this.setChoiceDescription(choiceDescription);
-		this.setIsEndpoint(isEndpoint);
+		this.setGameMode(gameMode);
+		this.quiz = new HashMap<Integer, QuizNode>();
 		this.setOptions(options);
+		this.setIsEndpoint(isEndpoint);
 	}
 
 	/**
@@ -99,10 +93,10 @@ public class StoryPart implements Serializable {
 	/**
 	 * @return the quiz
 	 */
-	public ArrayList<QuizNode> getQuiz() {
+	public HashMap<Integer, QuizNode> getQuiz() {
 		return quiz;
 	}
-	
+
 	public QuizNode getQuizNode(int location) {
 		return quiz.get(location);
 	}
@@ -115,14 +109,16 @@ public class StoryPart implements Serializable {
 	}
 
 	/**
-	 * @param gameButton the gameButton to set
+	 * @param gameButton
+	 *            the gameButton to set
 	 */
 	public void setGameButton(String gameButton) {
 		this.gameButton = gameButton;
 	}
 
 	/**
-	 * @param gameMode the gameMode to set
+	 * @param gameMode
+	 *            the gameMode to set
 	 */
 	public void setGameMode(String gameMode) {
 		this.gameMode = gameMode;
@@ -186,10 +182,9 @@ public class StoryPart implements Serializable {
 	public void setUUID(String uUID) {
 		UUID = uUID;
 	}
-	
 
 	public void addToQuiz(int location, String question, boolean answer) {
-		quiz.add(location, new QuizNode(question, answer));
+		quiz.put(location, new QuizNode(question, answer));
 	}
 
 	public void addCorrectionToQuiz(int location, String correction) {

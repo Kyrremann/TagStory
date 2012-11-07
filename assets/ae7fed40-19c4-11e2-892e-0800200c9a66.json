@@ -17,6 +17,7 @@
 		"belongsToTag":"UUID",
 		"partDesc":"Welcome to text-only Counter Strike\nYou are in a dark, outdoor map.",
 		"choiceDesc":"Where do you want to go?",
+		"gameMode":"none",
 		"partOptions": {
 		    "Go north": {
 			"optSelectMethod":"hint_text",
@@ -54,6 +55,7 @@
 		"belongsToTag":"UUID",
 		"partDesc":"You are now in a sandy, outdoor map.",
 		"choiceDesc":"Where do you want to go next?",
+		"gameMode":"none",
 		"partOptions": {
 		    "Go north": {
 			"optSelectMethod":"hint_text",
@@ -85,6 +87,7 @@
 		"belongsToTag":"UUID",
 		"partDesc":"You are now in more light, outdoor map.",
 		"choiceDesc":"Where next?",
+		"gameMode":"none",
 		"partOptions": {
 		    "Go north": {
 			"optSelectMethod":"hint_text",
@@ -114,6 +117,7 @@
 		"UUID":"d1f8f4c0-19cd-11e2-892e-0800200c9a66",
 		"belongsToTag":"UUID",
 		"partDesc":"You have been pwn by a grue.",
+		"gameMode":"none",
 		"isEndPoint":"true"
 	    }
 	}

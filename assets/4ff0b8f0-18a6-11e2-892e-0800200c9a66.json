@@ -17,6 +17,7 @@
 		"belongsToTag":"-1",
 		"partDesc":"La oss sette i gang. Første \"skatt\" er enkel å finne.",
 		"choiceDesc":"Bare kom deg til stedet pilen på kartet viser.",
+		"gameMode":"none",
 		"partOptions": {
 		    "Vis kartet": {
 			"optSelectMethod":"hint_map",
@@ -33,6 +34,7 @@
 		"belongsToTag":"98936356-18a6-11e2-892e-0800200c9a66",
 		"partDesc":"Fysikkbygningen\nFysikkbygningen (1935) var planlagt i nyklassistisk stil, slik som universitetet i sentrum. Mens bygningene var under bygging dro arkitektene på studietur til Europa. Der var funkisstilen det mest morderne, og en funkisfasade ble, nesten som innpakningpapir, trukket over den klassiske strukturen. Norge fikk sin første funkisbygning av betydelig omfang. Det falt ikke i like god smak – bygningen ble kritisert for å fjerne verdigheten fra universitetet.",
 		"choiceDesc":"Hvor går neste tur? Velg en av tre måter for å komme til en av tre forskjellige steder:",
+		"gameMode":"none",
 		"partOptions": {
 		    "Bilde": {
 			"optSelectMethod":"hint_image",
@@ -59,6 +61,7 @@
 		"belongsToTag":"98936355-18a6-11e2-892e-0800200c9a66",
 		"partDesc":"Kunstverk\nPå Blindern finner du monumentale modernistiske skultputrer som står i stil med Leif Moens (1928-1986) bygninger til HF (1960-63), Matematikk (65-66) og SV (66-68). Det første verk du møter er Arnold Haukelands (1920-1983) Air. Skulpturen ble satt opp i 1962 og var en gave fra Freia AS til universitetets 150-års jubileum i 1961. Air betraktes som den første monumentale nonfigurative uteskulpturen i Norge.",
 		"choiceDesc":"",
+		"gameMode":"none",
 		"partOptions": {
 		    "Følg med for mer kunst": {
 			"optSelectMethod":"hint_image",
@@ -74,6 +77,7 @@
 		"belongsToTag":"98936354-18a6-11e2-892e-0800200c9a66",
 		"partDesc":"Kunstverk\nDa HF-bygningen var ny, var det planer om en skulptur på plassen. Først i 2005 kom skulpturen Brudt form av Aase Texmon Rygh (1925) på plassen foran HF-bygget. Verkets historie startet i 1981 da Texmon Rygh med Brudt form vant en lukket konkurranse om utsmykning av området ved Furuset T-banestasjon i Oslo. Årene gikk og området ble endret.",
 		"choiceDesc":"",
+		"gameMode":"none",
 		"partOptions": {
 		    "Hvor kan neste være?": {
 			"optSelectMethod":"hint_image",
@@ -89,6 +93,7 @@
 		"belongsToTag":"98936353-18a6-11e2-892e-0800200c9a66",
 		"partDesc":"Kunstverk\nEn lignende historie har Delt form av Ervin Løffler (1922) som ble laget til Romsås skole. Skulpturen består av 2 hovedformer. Disse omslutter og griper i hverandre med en indre dynamikk som gjør at skulpturen endrer karakter ettersom man beveger seg rundt den. Denne skulpturen står foran Eilert Sundts hus B. og kom på plass sommeren 2010 etter samarbeid med Oslo kommune og Norsk billedhoggerforening.",
 		"choiceDesc":"Nå er du nok lei av å se på kunstverk. La oss finne noe annet.",
+		"gameMode":"none",
 		"partOptions": {
 		    "Til neste tag": {
 			"optSelectMethod":"hint_text",
@@ -103,6 +108,7 @@
 		"belongsToTag":"98936357-18a6-11e2-892e-0800200c9a66",
 		"partDesc":"Villa Eika\nFør Universitetet ble lagt til Blindern lå øvre Blindern gård her. Det eneste bygget som står igjen fra den perioden er Villa Eika. Bygningen var imidlertid utplarselert fra Blindern Gård på 1890-tallet og var privat bolig / sommerbolig frem til 1960-tallet. På slutten av 70-tallet ble det bestemt å bevare Villa Eika for at noe av det «originale» Blindern skulle stå igjen.",
 		"choiceDesc":"Neste sted er ikke en bygning.",
+		"gameMode":"none",
 		"partOptions": {
 		    "Følg pilen så kommer du nok frem.": {
 			"optSelectMethod":"hint_arrow",
@@ -119,6 +125,7 @@
 		"UUID":"4ff0b8f6-18a6-11e2-892e-0800200c9a66",
 		"belongsToTag":"98936359-18a6-11e2-892e-0800200c9a66",
 		"partDesc":"Ifi 2\nOle-Johan Dahls hus åpnet 2. september 2011 og er bygget for å skape en campus rundt Gaustadbekken for informatikkstudiet. Prosjektet kan i ambisjonsnivå sammenlignes med fysikkbygningen fra 1935. I bygget finnes et omfattende kunstnerisk program, med utsmyking av Bård Breivik, Vibeke Jensen, Tone Myskja, Patrik Entian, Höfflin & Glissmann og Beret Aksnes. Her vises to verk: Uteskulpturen Fraktaler av Bård er en kunstneriske tolkning av fraktaler, altså en form man finner i sneilehus, bakterier og galakser og Vibeke Jensens The Cube som blant annet inneholder et interaktivt øye.\nDa var historien over for denne gangen. Håper du har hatt en flott tur rundt om på Blindern.",
+		"gameMode":"none",
 		"isEndPoint":"true"
 	    }
 	}

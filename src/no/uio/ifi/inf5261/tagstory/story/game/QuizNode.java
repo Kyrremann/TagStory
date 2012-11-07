@@ -1,7 +1,10 @@
 package no.uio.ifi.inf5261.tagstory.story.game;
 
-public class QuizNode {
+import java.io.Serializable;
 
+public class QuizNode implements Serializable {
+
+	private static final long serialVersionUID = 782243272221115589L;
 	private String question;
 	private String correction;
 	private boolean answer;

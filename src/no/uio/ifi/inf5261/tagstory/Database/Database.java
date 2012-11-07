@@ -56,6 +56,9 @@ public class Database {
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
 					+ " VALUES ('ae7fed40-19c4-11e2-892e-0800200c9a66', 'Randall Munroe', 'Pwned (Xkcd.com)')");
+			db.execSQL("INSERT INTO "
+					+ STORY_TABLE_NAME
+					+ " VALUES ('5640553e-8fe9-46d3-b647-6aebb70882a5', 'Thomas Portilla', 'Naturquiz for Sognsvann')");
 		}
 	}
 

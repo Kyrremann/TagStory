@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 
 import no.uio.ifi.inf5261.tagstory.story.Story;
 import no.uio.ifi.inf5261.tagstory.story.StoryPart;
@@ -14,7 +13,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
-import android.util.Log;
 
 public class JsonParser {
 
@@ -45,7 +43,6 @@ public class JsonParser {
 		byte[] buffer = new byte[inputStream.available()];
 		inputStream.read(buffer);
 		inputStream.close();
-
 		return new JSONObject(new String(buffer));
 	}
 
@@ -85,17 +82,19 @@ public class JsonParser {
 					object.getString(PART_DESCRIPTION),
 					object.getString(GAME_MODE), object.getString(IS_ENDPOINT));
 			if (!storyPart.getIsEndpoint()) {
-				if (storyPart.getGameMode().equals(QUIZ)) {
+				if (storyPart.getGameMode() != null && storyPart.getGameMode().equals(QUIZ)) {
 					storyPart.setGameButton(object.getString(GAME_BUTTON));
 					JSONObject quiz = object.getJSONObject(QUIZ);
-
+					
 					@SuppressWarnings("unchecked")
 					Iterator<String> quizKeys = quiz.keys();
 					JSONObject question;
 					int location;
+					String quizKey;
 					while (quizKeys.hasNext()) {
-						question = quiz.getJSONObject(quizKeys.next());
-						location = Integer.parseInt(key);
+						quizKey = quizKeys.next();
+						question = quiz.getJSONObject(quizKey);
+						location = Integer.parseInt(quizKey);
 						storyPart.addToQuiz(location,
 								question.getString(QUIZ_Q),
 								question.getBoolean(QUIZ_A));

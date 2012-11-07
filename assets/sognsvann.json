@@ -1,6 +1,6 @@
 {
     "story": {
-	"UUID":"UUID",
+	"UUID":"5640553e-8fe9-46d3-b647-6aebb70882a5",
 	"author":"Thomas Portilla",
 	"title":"Naturquiz for Sognsvann",
 	"genre":"quiz - natur",
@@ -9,13 +9,13 @@
 	"date":"4.11.12",
 	"description":"String",
 	"keywords":"quiz, naturfag, fakta, sognsvann",
-	"startTag":"UUID",
+	"startTag":"d3013c60-28c8-11e2-81c1-0800200c9a66",
 	"tagCount":"9",
 	"language":"no_bm",
 	"parts": {
-	    "UUID": { 
-		"UUID":"UUID",
-		"belongsToTag":"UUID",
+	    "f0869759-b7f8-4555-933e-b27bc4c0ab2f": { 
+		"UUID":"f0869759-b7f8-4555-933e-b27bc4c0ab2f",
+		"belongsToTag":"d3013c60-28c8-11e2-81c1-0800200c9a66",
 		"partTitle":"Sognsvannquiz",
 		"partDesc":"Velkommen til Thomas sin Sognsvannquiz. Kos deg på tur rundt sognsvann.",
 		"choiceDesc":"",
@@ -24,14 +24,14 @@
 			"optSelectMethod":"hint_map",
 			"optLen":"float",
 			"optLat":"float",
-			"optNext":"UUID"
+			"optNext":"c6d5b0b2-f175-42df-bc3f-dec670f46763"
 		    }
 		},
 		"isEndPoint":"false"
 	    },
-	    "UUID": { 
-		"UUID":"UUID",
-		"belongsToTag":"UUID",
+	    "c6d5b0b2-f175-42df-bc3f-dec670f46763": { 
+		"UUID":"c6d5b0b2-f175-42df-bc3f-dec670f46763",
+		"belongsToTag":"d3013c61-28c8-11e2-81c1-0800200c9a66",
 		"partTitle":"Flaggermus",
 		"partDesc":"Flaggermus (Chiroptera) er en orden som består av forholdsvis små, flyvende pattedyr. Dette er de eneste pattedyrene som kan fly aktivt ved å slå med vingene ved hjelp av muskelkraft. Flere andre pattedyr kan glidefly, men ikke fly i egentlig forstand.",
 		"choiceDesc":"",
@@ -68,14 +68,14 @@
 		    "String": {
 			"optSelectMethod":"hint_text",
 			"optHintText":"Følg vannet til flytebryggen",
-			"optNext":"UUID"
+			"optNext":"1efe1da1-411e-4963-8d60-b1bf62181832"
 		    }
 		},
 		"isEndPoint":"false"
 	    },
-	    "UUID": { 
-		"UUID":"UUID",
-		"belongsToTag":"UUID",
+	    "1efe1da1-411e-4963-8d60-b1bf62181832": { 
+		"UUID":"1efe1da1-411e-4963-8d60-b1bf62181832",
+		"belongsToTag":"d3013c62-28c8-11e2-81c1-0800200c9a66",
 		"partTitle":"Flytebryggen",
 		"partDesc":"Svømmekløe eller cercariedermatitt er et kløende utslett som kan oppstå etter bading i ferskvann. Det er en kortvarig immunreaksjon som forårsakes av parasittiske ikter. Det er når vannet får temperatur opp mot 20 grader at man er mest utsatt, og spesielt i ferskvann men det kan også forekomme i hav. Barn er mer utsatt enn voksne. Svømmekløe er ikke farlig.",
 		"choiceDesc":"",
@@ -113,14 +113,14 @@
 		    "String": {
 			"optSelectMethod":"hint_text",
 			"optHintText":"Følg turveien videre rundt vannet til du kommer til et lønnetre som står i enden av en gressbakke med svak oppoverskrens. Rett ved stien står finner du en stor sten med et skilt som viser sykling forbudt.",
-			"optNext":"UUID"
+			"optNext":"3385706e-509d-47a2-a5c2-f268a7bc2cee"
 		    }
 		},
 		"isEndPoint":"false"
 	    },
-	    "UUID": { 
-		"UUID":"UUID",
-		"belongsToTag":"UUID",
+	    "3385706e-509d-47a2-a5c2-f268a7bc2cee": { 
+		"UUID":"3385706e-509d-47a2-a5c2-f268a7bc2cee",
+		"belongsToTag":"d3013c63-28c8-11e2-81c1-0800200c9a66",
 		"partTitle":"Stranden",
 		"partDesc":"Stedet var en plass under Nordre Sandaas gård. Stranden var i bruk i 1857, da var stedet bolig for steinhuggere. Steinhuggerer  bryter ut eller tar ut stein fra et steinbrudd i fjellet. Steinbruddsvirksomhet er det arbeid som må til for å ta ut en bergressurs fra der den ligger i fast fjell til den er klar for salg. Det kan være løsmasse eller steinblokker.",
 		"choiceDesc":"",
@@ -150,14 +150,14 @@
 		    "String": {
 			"optSelectMethod":"hint_text",
 			"optHintText":"Følg turveien videre rundt vannet til du kommer til et lønnetre som står i enden av en gressbakke med svak oppoverskrens. Rett ved stien står finner du en stor sten med et skilt som viser sykling forbudt.",
-			"optNext":"UUID"
+			"optNext":"3cc51a34-336f-40e4-9524-65251449f02e"
 		    }
 		},
 		"isEndPoint":"false"
 	    },
-	    "UUID": { 
-		"UUID":"UUID",
-		"belongsToTag":"UUID",
+	    "3cc51a34-336f-40e4-9524-65251449f02e": { 
+		"UUID":"3cc51a34-336f-40e4-9524-65251449f02e",
+		"belongsToTag":"d3013c64-28c8-11e2-81c1-0800200c9a66",
 		"partTitle":"Lønnen",
 		"partDesc":"Trær er vanligvis høyreiste planter, ofte med en stamme med greiner, men de kan ha flere stammer. Greiner og stamme består av langstrakte celler bygd opp av cellulose som er kittet sammen med lignin. Dette gjør veden hard og stabil. I tillegg inneholder veden i mange treslag kvae for å beskytte mot sopp og insektangrep. Trær kan bli over 100 meter høye og tidvis bli over 1000 år gamle.",
 		"choiceDesc":"",
@@ -203,14 +203,14 @@
 		    "String": {
 			"optSelectMethod":"hint_quiz",
 			"optHintText":"Gå videre langs vannet og rund enden (kortsiden) av det. Etter du har passert en liten bru kan du begynne å se etter skiltet Søndre Skjeggerud.",
-			"optNext":"UUID"
+			"optNext":"38bbdbff-3707-45f8-a676-c8a5d5b6b297"
 		    }
 		},
 		"isEndPoint":"false"
 	    },
-	    "UUID": { 
-		"UUID":"UUID",
-		"belongsToTag":"UUID",
+	    "38bbdbff-3707-45f8-a676-c8a5d5b6b297": { 
+		"UUID":"38bbdbff-3707-45f8-a676-c8a5d5b6b297",
+		"belongsToTag":"d3013c65-28c8-11e2-81c1-0800200c9a66",
 		"partTitle":"Søndre Skjeggerud",
 		"partDesc":"Søndre Skjeggerud var opprinnelig en husmannsplass under Vestre Sogn gård. Her var det et en-etasjet tømmerhus og fjøs og låve på nordsiden av hovedhuset. Plassen ble nedlagt og husene ble revet på grunn av vannrestriksjonene ca. 1914. I 1865 ble det holdt husdyr på gården. Det var en hest, fire kuer, to faar og fjerkre på plassen, og det ble også dyrket korn. Av de 16-17 husdyr artene som mennesket har temmet, ble 13 temmet i Europa. I Sør-Amerika var det bare lamaen som ble temmet. Urbefolkningen i Nord-Amerika temmet ingen, tvert imot utryddet de hesten som fantes der da de kom. Det var spanjolene som gjeninnførte hesten til Nord-Amerika og viste indianerne at den kunne brukes som arbeidsdyr. De eldste funn av knokler fra husdyr i Norge er funnet i Skipshelleren i Hordaland.",
 		"choiceDesc":"",
@@ -248,14 +248,14 @@
 		    "String": {
 			"optSelectMethod":"hint_text",
 			"optHintText":"Følg turveien videre rundt vannet til du ser tre maurtuer på høyre hånd",
-			"optNext":"UUID"
+			"optNext":"a009cdbc-6a39-4f18-98c0-f1dde1fbf937"
 		    }
 		},
 		"isEndPoint":"false"
 	    },
-	    "UUID": { 
-		"UUID":"UUID",
-		"belongsToTag":"UUID",
+	    "a009cdbc-6a39-4f18-98c0-f1dde1fbf937": { 
+		"UUID":"a009cdbc-6a39-4f18-98c0-f1dde1fbf937",
+		"belongsToTag":"d3013c66-28c8-11e2-81c1-0800200c9a66",
 		"partTitle":"De tre tuene",
 		"partDesc":"Maur er hovedsakelig små insekter som utgjør en familie av årevinger. De fleste artene er under 1 cm lange. Det er beskrevet 12 500 forskjellige arter i verden, men det blir stadig oppdaget nye og man regner med at det finnes 15 000. Maurene har mindre artsmangfold i kalde klima og det er funnet bare 53 arter i Norge. De er sosiale insekter, som lever i kompliserte samfunn. Mange arter bygger forseggjorte bol, kalt maurtuer.",
 		"choiceDesc":"",
@@ -292,14 +292,14 @@
 		    "": {
 			"optSelectMethod":"hint_text",
 			"optHintText":"Følg turen videre rundt vannet til du kommer til høyspentmastene",
-			"optNext":"UUID"
+			"optNext":"cdd0dde1-62e8-4cb0-ba9e-d28c6ed3d3b8"
 		    }
 		},
 		"isEndPoint":"false"
 	    },
-	    "UUID": { 
-		"UUID":"UUID",
-		"belongsToTag":"UUID",
+	    "cdd0dde1-62e8-4cb0-ba9e-d28c6ed3d3b8": { 
+		"UUID":"cdd0dde1-62e8-4cb0-ba9e-d28c6ed3d3b8",
+		"belongsToTag":"d3013c67-28c8-11e2-81c1-0800200c9a66",
 		"partTitle":"Høyspentmast",
 		"partDesc":"Strøm eller elektrisk strøm er en form for energi, hvor elektroner, negativt ladde partikler blir fraktet. Den frie flyten av elektroner som har falt av de tilhørende atomene sine blir til elektrisk strøm. Elektrisk strøm er en sekundær energikilde, og skapes etter omdanning av primære energikilder som olje, gass, kull, atomkraft og andre naturlige energikilder som sol, vind og andre naturkrefter.",
 		"choiceDesc":"",
@@ -334,14 +334,14 @@
 			"optSelectMethod":"hint_map",
 			"optLen":"float",
 			"optLat":"float",
-			"optNext":"UUID"
+			"optNext":"74b5fe6d-dedd-43a9-b7e1-b6d19efc0358"
 		    }
 		},
 		"isEndPoint":"false"
 	    },
-	    "UUID": { 
-		"UUID":"UUID",
-		"belongsToTag":"UUID",
+	    "74b5fe6d-dedd-43a9-b7e1-b6d19efc0358": { 
+		"UUID":"74b5fe6d-dedd-43a9-b7e1-b6d19efc0358",
+		"belongsToTag":"d3013c68-28c8-11e2-81c1-0800200c9a66",
 		"partDesc":"",
 		"isEndPoint":"true"
 	    }

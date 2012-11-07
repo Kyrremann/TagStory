@@ -19,6 +19,7 @@
 		"partTitle":"Sognsvannquiz",
 		"partDesc":"Velkommen til Thomas sin Sognsvannquiz. Kos deg på tur rundt sognsvann.",
 		"choiceDesc":"",
+		"gameMode":"none",
 		"partOptions": {
 		    "Kart til Sognsvann": {
 			"optSelectMethod":"hint_map",
@@ -35,8 +36,8 @@
 		"partTitle":"Flaggermus",
 		"partDesc":"Flaggermus (Chiroptera) er en orden som består av forholdsvis små, flyvende pattedyr. Dette er de eneste pattedyrene som kan fly aktivt ved å slå med vingene ved hjelp av muskelkraft. Flere andre pattedyr kan glidefly, men ikke fly i egentlig forstand.",
 		"choiceDesc":"",
-		"quizMode":"true",
-		"quizButton":"Trykk for å starte flaggermusquiz",
+		"gameMode":"quiz",
+		"gameButton":"Trykk for å starte flaggermusquiz",
 		"quiz": {
 		    "1": {
 			"quizQ":"Flaggermus flyr alltid mot venstre når de forlater hulen?",
@@ -79,8 +80,8 @@
 		"partTitle":"Flytebryggen",
 		"partDesc":"Svømmekløe eller cercariedermatitt er et kløende utslett som kan oppstå etter bading i ferskvann. Det er en kortvarig immunreaksjon som forårsakes av parasittiske ikter. Det er når vannet får temperatur opp mot 20 grader at man er mest utsatt, og spesielt i ferskvann men det kan også forekomme i hav. Barn er mer utsatt enn voksne. Svømmekløe er ikke farlig.",
 		"choiceDesc":"",
-		"quizMode":"true",
-		"quizButton":"Trykk for å starte quiz om badevannet",
+		"gameMode":"quiz",
+		"gameButton":"Trykk for å starte quiz om badevannet",
 		"quiz": {
 		    "1": {
 			"quizQ":"Ikter er en parasitt som formeres i vannlevende snegler, før de legger på svøm etter fugler og blodårene deres?",
@@ -124,8 +125,8 @@
 		"partTitle":"Stranden",
 		"partDesc":"Stedet var en plass under Nordre Sandaas gård. Stranden var i bruk i 1857, da var stedet bolig for steinhuggere. Steinhuggerer  bryter ut eller tar ut stein fra et steinbrudd i fjellet. Steinbruddsvirksomhet er det arbeid som må til for å ta ut en bergressurs fra der den ligger i fast fjell til den er klar for salg. Det kan være løsmasse eller steinblokker.",
 		"choiceDesc":"",
-		"quizMode":"true",
-		"quizButton":"Trykk for å starte steinbruddquiz",
+		"gameMode":"quiz",
+		"gameButton":"Trykk for å starte steinbruddquiz",
 		"quiz": {
 		    "1": {
 			"quizQ":"Fra 1820 og godt inn på 1900-tallet ble det drevet mange steinbrudd på nordmarkitt i traktene rundt Sognsvann. Steinhoggerne og steinbryterne bodde på mange av plassene i området.",
@@ -161,8 +162,8 @@
 		"partTitle":"Lønnen",
 		"partDesc":"Trær er vanligvis høyreiste planter, ofte med en stamme med greiner, men de kan ha flere stammer. Greiner og stamme består av langstrakte celler bygd opp av cellulose som er kittet sammen med lignin. Dette gjør veden hard og stabil. I tillegg inneholder veden i mange treslag kvae for å beskytte mot sopp og insektangrep. Trær kan bli over 100 meter høye og tidvis bli over 1000 år gamle.",
 		"choiceDesc":"",
-		"quizMode":"true",
-		"quizButton":"Trykk for å starte trequiz",
+		"gameMode":"quiz",
+		"gameButton":"Trykk for å starte trequiz",
 		"quiz": {
 		    "1": {
 			"quizQ":"Dendrokronologi er en metoden for å finne ut av treets alder ved hjelp av ultralyd?",
@@ -214,8 +215,8 @@
 		"partTitle":"Søndre Skjeggerud",
 		"partDesc":"Søndre Skjeggerud var opprinnelig en husmannsplass under Vestre Sogn gård. Her var det et en-etasjet tømmerhus og fjøs og låve på nordsiden av hovedhuset. Plassen ble nedlagt og husene ble revet på grunn av vannrestriksjonene ca. 1914. I 1865 ble det holdt husdyr på gården. Det var en hest, fire kuer, to faar og fjerkre på plassen, og det ble også dyrket korn. Av de 16-17 husdyr artene som mennesket har temmet, ble 13 temmet i Europa. I Sør-Amerika var det bare lamaen som ble temmet. Urbefolkningen i Nord-Amerika temmet ingen, tvert imot utryddet de hesten som fantes der da de kom. Det var spanjolene som gjeninnførte hesten til Nord-Amerika og viste indianerne at den kunne brukes som arbeidsdyr. De eldste funn av knokler fra husdyr i Norge er funnet i Skipshelleren i Hordaland.",
 		"choiceDesc":"",
-		"quizMode":"true",
-		"quizButton":"Trykk for å starte husdyrquiz",
+		"gameMode":"quiz",
+		"gameButton":"Trykk for å starte husdyrquiz",
 		"quiz": {
 		    "1": {
 			"quizQ":"Gjennomsnittlig vil en ku på 450 kilo produsere en svimlende mengde av 10 tonn med avføring hvert år?",
@@ -259,8 +260,8 @@
 		"partTitle":"De tre tuene",
 		"partDesc":"Maur er hovedsakelig små insekter som utgjør en familie av årevinger. De fleste artene er under 1 cm lange. Det er beskrevet 12 500 forskjellige arter i verden, men det blir stadig oppdaget nye og man regner med at det finnes 15 000. Maurene har mindre artsmangfold i kalde klima og det er funnet bare 53 arter i Norge. De er sosiale insekter, som lever i kompliserte samfunn. Mange arter bygger forseggjorte bol, kalt maurtuer.",
 		"choiceDesc":"",
-		"quizMode":"true",
-		"quizButton":"Trykk for å starte maurquiz",
+		"gameMode":"quiz",
+		"gameButton":"Trykk for å starte maurquiz",
 		"quiz": {
 		    "1": {
 			"quizQ":"Maurens ben er veldig sterke og gjør at den kan løpe veldig fort. Hvis vi skulle klare å løpe like fort som mauren klarer i forhold til størrelsen vår, måtte vi være i stand til å løpe like raskt som en veddeløpshest?",
@@ -303,8 +304,8 @@
 		"partTitle":"Høyspentmast",
 		"partDesc":"Strøm eller elektrisk strøm er en form for energi, hvor elektroner, negativt ladde partikler blir fraktet. Den frie flyten av elektroner som har falt av de tilhørende atomene sine blir til elektrisk strøm. Elektrisk strøm er en sekundær energikilde, og skapes etter omdanning av primære energikilder som olje, gass, kull, atomkraft og andre naturlige energikilder som sol, vind og andre naturkrefter.",
 		"choiceDesc":"",
-		"quizMode":"true",
-		"quizButton":"Trykk for å starte høyspentquiz",
+		"gameMode":"quiz",
+		"gameButton":"Trykk for å starte høyspentquiz",
 		"quiz": {
 		    "1": {
 			"quizQ":"Høyspentmaster er vanlgvis laget av stål og er fra 15 til 55 meter høye. De aller høyeste finnes på Zhoushan øya og knytter den til det Kinesiske fastland i et 2.7 kilometer langt belte. De høyeste strekker seg opp til 370 meter?",
@@ -343,6 +344,7 @@
 		"UUID":"UUID",
 		"belongsToTag":"UUID",
 		"partDesc":"",
+		"gameMode":"none",
 		"isEndPoint":"true"
 	    }
 	}

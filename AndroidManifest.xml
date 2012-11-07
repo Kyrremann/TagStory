@@ -57,7 +57,7 @@
         </activity>
         <activity android:name=".story.option.MapNavigationActivity" >
         </activity>
-        <activity android:name=".story.option.QuizActivity" >
+        <activity android:name=".story.game.QuizActivity" >
         </activity>
         <activity android:name=".story.StoryFinishedActivity"></activity>
     </application>

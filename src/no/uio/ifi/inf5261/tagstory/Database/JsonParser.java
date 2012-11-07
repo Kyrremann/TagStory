@@ -22,7 +22,8 @@ public class JsonParser {
 			AUTHOR = "author", TITLE = "title", AGEGROUP = "agegroup",
 			DATE = "date", GENRE = "genre", DESCRIPTION = "description",
 			START_TAG = "startTag", KEYWORDS = "keywords",
-			TAG_COUNT = "tagCount", PARTS = "parts";
+			TAG_COUNT = "tagCount", PARTS = "parts", GAME_MODE = "gameMode",
+			GAME_BUTTON = "gameButton";
 	public static final String BELONSG_TO_TAG = "belongsToTag",
 			PART_DESCRIPTION = "partDesc", CHOICE_DESCRIPTION = "choiceDesc",
 			IS_ENDPOINT = "isEndPoint", PART_OPTIONS = "partOptions";
@@ -30,7 +31,9 @@ public class JsonParser {
 			OPT_LONG = "optLong", OPT_LAT = "optLat",
 			OPT_HINT_TEXT = "optHintText", OPT_NEXT = "optNext",
 			OPT_IMAGE_SRC = "optImageSrc", OPT_SOUND_SRC = "optSoundSrc",
-			OPT_ARROW_LENGTH = "optArrowLength", OPT_QUIZ = "optQuiz", QUIZ_Q = "quizQ", QUIZ_A = "quizA";
+			OPT_ARROW_LENGTH = "optArrowLength";
+	public static final String QUIZ = "quiz", QUIZ_Q = "quizQ",
+			QUIZ_A = "quizA", QUIZ_C = "quizC";
 	public static final String HINT_TEXT = "hint_text",
 			HINT_IMAGE = "hint_image", HINT_MAP = "hint_map",
 			HINT_ARROW = "hint_arrow", HINT_SOUD = "hint_sound",
@@ -80,8 +83,27 @@ public class JsonParser {
 			StoryPart storyPart = new StoryPart(key,
 					object.getString(BELONSG_TO_TAG),
 					object.getString(PART_DESCRIPTION),
-					object.getString(IS_ENDPOINT));
+					object.getString(GAME_MODE), object.getString(IS_ENDPOINT));
 			if (!storyPart.getIsEndpoint()) {
+				if (storyPart.getGameMode().equals(QUIZ)) {
+					storyPart.setGameButton(object.getString(GAME_BUTTON));
+					JSONObject quiz = object.getJSONObject(QUIZ);
+
+					@SuppressWarnings("unchecked")
+					Iterator<String> quizKeys = quiz.keys();
+					JSONObject question;
+					int location;
+					while (quizKeys.hasNext()) {
+						question = quiz.getJSONObject(quizKeys.next());
+						location = Integer.parseInt(key);
+						storyPart.addToQuiz(location,
+								question.getString(QUIZ_Q),
+								question.getBoolean(QUIZ_A));
+						if (question.has(QUIZ_C))
+							storyPart.addCorrectionToQuiz(location,
+									question.getString(QUIZ_C));
+					}
+				}
 				storyPart.setChoiceDescription(object
 						.getString(CHOICE_DESCRIPTION));
 				storyPart.setOptions(parseJsonOptions(object
@@ -119,16 +141,7 @@ public class JsonParser {
 				option.setOptArrowLength(object.getBoolean(OPT_ARROW_LENGTH));
 			} else if (object.getString(OPT_SELECT_METHOD).equals(HINT_IMAGE))
 				option.setOptImageSrc(object.getString(OPT_IMAGE_SRC));
-			else if (object.getString(OPT_SELECT_METHOD).equals(HINT_QUIZ)) {
-				JSONObject quiz = object.getJSONObject(OPT_QUIZ);
-				@SuppressWarnings("unchecked")
-				Iterator<String> quizKeys = quiz.keys();
-				JSONObject question;
-				while (quizKeys.hasNext()) {
-					question = quiz.getJSONObject(quizKeys.next());
-					option.addToQuiz(Integer.parseInt(key), question.getString(QUIZ_Q), question.getBoolean(QUIZ_A));
-				}
-			}
+
 			map.put(key, option);
 		}
 

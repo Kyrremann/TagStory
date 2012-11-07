@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:onClick="quizAnswere"
+                android:onClick="quizAnswer"
                 android:text="@string/story_quiz_true" />
 
             <Button
@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:onClick="quizAnswere"
+                android:onClick="quizAnswer"
                 android:text="@string/story_quiz_false" />
         </LinearLayout>
     </ScrollView>

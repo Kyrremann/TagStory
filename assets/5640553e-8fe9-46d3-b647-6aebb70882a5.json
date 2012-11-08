@@ -1,0 +1,354 @@
+{
+    "story": {
+	"UUID":"5640553e-8fe9-46d3-b647-6aebb70882a5",
+	"author":"Thomas Portilla",
+	"title":"Naturquiz for Sognsvann",
+	"genre":"quiz - natur",
+	"agegroup":"0-99",
+	"area":"Sognsvann",
+	"date":"4.11.12",
+	"description":"String",
+	"keywords":"quiz, naturfag, fakta, sognsvann",
+	"startTag":"f0869759-b7f8-4555-933e-b27bc4c0ab2f",
+	"tagCount":"9",
+	"language":"no_bm",
+	"parts": {
+	    "f0869759-b7f8-4555-933e-b27bc4c0ab2f": { 
+		"UUID":"f0869759-b7f8-4555-933e-b27bc4c0ab2f",
+		"belongsToTag":"d3013c60-28c8-11e2-81c1-0800200c9a66",
+		"partTitle":"Sognsvannquiz",
+		"partDesc":"Velkommen til Thomas sin Sognsvannquiz. Kos deg på tur rundt sognsvann.",
+		"choiceDesc":"",
+		"gameMode":"none",
+		"partOptions": {
+		    "Kart til Sognsvann": {
+			"optSelectMethod":"hint_map",
+			"optHintText":"",
+			"optLong":"10.731658",
+			"optLat":"59.969193",
+			"optNext":"c6d5b0b2-f175-42df-bc3f-dec670f46763"
+		    }
+		},
+		"isEndPoint":"false"
+	    },
+	    "c6d5b0b2-f175-42df-bc3f-dec670f46763": { 
+		"UUID":"c6d5b0b2-f175-42df-bc3f-dec670f46763",
+		"belongsToTag":"d3013c61-28c8-11e2-81c1-0800200c9a66",
+		"partTitle":"Flaggermus",
+		"partDesc":"Flaggermus (Chiroptera) er en orden som består av forholdsvis små, flyvende pattedyr. Dette er de eneste pattedyrene som kan fly aktivt ved å slå med vingene ved hjelp av muskelkraft. Flere andre pattedyr kan glidefly, men ikke fly i egentlig forstand.",
+		"choiceDesc":"",
+		"gameMode":"quiz",
+		"gameButton":"Trykk for å starte flaggermusquiz",
+		"quiz": {
+		    "1": {
+			"quizQ":"Flaggermus flyr alltid mot venstre når de forlater hulen?",
+			"quizA":"true"
+		    },
+		    "2": {
+			"quizQ":"Det finnes over 1200 kjente arter av flaggermus, og de utgjør dermed ca. 25% av alle jordas pattedyr. De fleste av disse er så små at de får plass i hånden din?",
+			"quizA":"true"
+		    },
+		    "3": {
+			"quizQ":"Myotis, en liten brun flaggermus, kan spise opptil 1000 mygg på en time og er i forhold til sin beskjedne størrelse, blant de mest lengstlevende pattedyrene som finnes?",
+			"quizA":"true"
+		    },
+		    "4": {
+			"quizQ":"Et antikoaguleringsmiddel som utvinnes fra vampyrflaggermusens spytt, benyttes til behandling av  pasienter med hjerteproblemer og brukes på pasienter som har fått slag?",
+			"quizA":"true"
+		    },
+		    "5": {
+			"quizQ":"De fleste flaggermus har veldig godt syn, navigerer med stor presisjon ved å sende ut ekkolokalisering (lyd ikke vi klarer å høre men som flaggermusene hører). Dessuten overfører de sjelden sykdommer til andre dyr og mennesker?",
+			"quizA":"true"
+		    },
+		    "6": {
+			"quizQ":"Flaggermus arten med kallenavnet “den flyvende reven” livnærer seg av å spise frukt og  har et vingespenn på 3 fot?",
+			"quizA":"false",
+			"quizC":"Feil, vingespennet er faktisk på nesten 6 fot."
+		    }
+		},
+		"partOptions": {
+		    "String": {
+			"optSelectMethod":"hint_text",
+			"optHintText":"Følg vannet til flytebryggen",
+			"optNext":"1efe1da1-411e-4963-8d60-b1bf62181832"
+		    }
+		},
+		"isEndPoint":"false"
+	    },
+	    "1efe1da1-411e-4963-8d60-b1bf62181832": { 
+		"UUID":"1efe1da1-411e-4963-8d60-b1bf62181832",
+		"belongsToTag":"d3013c62-28c8-11e2-81c1-0800200c9a66",
+		"partTitle":"Flytebryggen",
+		"partDesc":"Svømmekløe eller cercariedermatitt er et kløende utslett som kan oppstå etter bading i ferskvann. Det er en kortvarig immunreaksjon som forårsakes av parasittiske ikter. Det er når vannet får temperatur opp mot 20 grader at man er mest utsatt, og spesielt i ferskvann men det kan også forekomme i hav. Barn er mer utsatt enn voksne. Svømmekløe er ikke farlig.",
+		"choiceDesc":"",
+		"gameMode":"quiz",
+		"gameButton":"Trykk for å starte quiz om badevannet",
+		"quiz": {
+		    "1": {
+			"quizQ":"Ikter er en parasitt som formeres i vannlevende snegler, før de legger på svøm etter fugler og blodårene deres?",
+			"quizA":"true"
+		    },
+		    "2": {
+			"quizQ":"Innimellom bommer parasittene og treffer et menneske, men de kan ikke utvikle seg hos oss. I stedet dør de under huden vår og gir allergiske reaksjoner hos enkelte og gir utslag i form av sterk kløe?",
+			"quizA":"true"
+		    },
+		    "3": {
+			"quizQ":"De første symptomene på svømmekløe er en kilende og prikkende følelse i huden. Dette merker du like etter at du har kommet opp av vannet. Etter hvert kan det også oppstå røde hevelser på dette området?",
+			"quizA":"true"
+		    },
+		    "4": {
+			"quizQ":"I Oslo er Sognsvann en av de minst utsatte badeplassene for å få svømmekløe?",
+			"quizA":"false",
+			"quizC":"Feil, Sognsvann er blant de mest utsatte områdene for Svømmekløe."
+		    },
+		    "5": {
+			"quizQ":"Ved å bade i områder av vannet som ikke inneholder mye snegler, det vil si å unngå områder med mye vegetasjon i vannet, reduserer sjansen for svømmekløe?",
+			"quizA":"true"
+		    },
+		    "6": {
+			"quizQ":"Ved å svømme på dype områder, som for eksempel fra flytebrygger, reduserer risikoen for svømmekløe?",
+			"quizA":"true",
+			"quizC":"Dypt vann inneholder mindre vegetasjon og snegler i vannet enn grunt vann."
+		    }
+		},
+		"partOptions": {
+		    "String": {
+			"optSelectMethod":"hint_text",
+			"optHintText":"Følg turveien videre rundt vannet til du kommer til et lønnetre som står i enden av en gressbakke med svak oppoverskrens. Rett ved stien står finner du en stor sten med et skilt som viser sykling forbudt.",
+			"optNext":"3385706e-509d-47a2-a5c2-f268a7bc2cee"
+		    }
+		},
+		"isEndPoint":"false"
+	    },
+	    "3385706e-509d-47a2-a5c2-f268a7bc2cee": { 
+		"UUID":"3385706e-509d-47a2-a5c2-f268a7bc2cee",
+		"belongsToTag":"d3013c63-28c8-11e2-81c1-0800200c9a66",
+		"partTitle":"Stranden",
+		"partDesc":"Stedet var en plass under Nordre Sandaas gård. Stranden var i bruk i 1857, da var stedet bolig for steinhuggere. Steinhuggerer  bryter ut eller tar ut stein fra et steinbrudd i fjellet. Steinbruddsvirksomhet er det arbeid som må til for å ta ut en bergressurs fra der den ligger i fast fjell til den er klar for salg. Det kan være løsmasse eller steinblokker.",
+		"choiceDesc":"",
+		"gameMode":"quiz",
+		"gameButton":"Trykk for å starte steinbruddquiz",
+		"quiz": {
+		    "1": {
+			"quizQ":"Fra 1820 og godt inn på 1900-tallet ble det drevet mange steinbrudd på nordmarkitt i traktene rundt Sognsvann. Steinhoggerne og steinbryterne bodde på mange av plassene i området.",
+			"quizA":"true"
+		    },
+		    "2": {
+			"quizQ":"Dammene ved Store og Lille Åklungen, Svartkulp og Sognsvann ble alle bygd i denne perioden av nordmarkittblokker?",
+			"quizA":"true"
+		    },
+		    "3": {
+			"quizQ":"Stein fra åsene nord for byen ble brukt i mange bygninger i Oslo og ellers i landet; blant annet Universitetsbygningen, Trefoldighetskirken, Holmenkollen kapell, Slottets sokkel og Stortingsbygningen?",
+			"quizA":"false",
+			"quizC":"Holmenkollen kapell er primært laget av tre."
+		    },
+		    "4": {
+			"quizQ":"Før første verdenskrig ble det eksportert større mengder nordmarkitt til Angola til oppbygging av kulturminner og statlige bygninger i hovedstaden Luanda?",
+			"quizA":"false",
+			"quizC":"Feil, dette stemmer ikke ;P"
+		    }
+		},
+		"partOptions": {
+		    "String": {
+			"optSelectMethod":"hint_text",
+			"optHintText":"Følg turveien videre rundt vannet til du kommer til et lønnetre som står i enden av en gressbakke med svak oppoverskrens. Rett ved stien står finner du en stor sten med et skilt som viser sykling forbudt.",
+			"optNext":"3cc51a34-336f-40e4-9524-65251449f02e"
+		    }
+		},
+		"isEndPoint":"false"
+	    },
+	    "3cc51a34-336f-40e4-9524-65251449f02e": { 
+		"UUID":"3cc51a34-336f-40e4-9524-65251449f02e",
+		"belongsToTag":"d3013c64-28c8-11e2-81c1-0800200c9a66",
+		"partTitle":"Lønnen",
+		"partDesc":"Trær er vanligvis høyreiste planter, ofte med en stamme med greiner, men de kan ha flere stammer. Greiner og stamme består av langstrakte celler bygd opp av cellulose som er kittet sammen med lignin. Dette gjør veden hard og stabil. I tillegg inneholder veden i mange treslag kvae for å beskytte mot sopp og insektangrep. Trær kan bli over 100 meter høye og tidvis bli over 1000 år gamle.",
+		"choiceDesc":"",
+		"gameMode":"quiz",
+		"gameButton":"Trykk for å starte trequiz",
+		"quiz": {
+		    "1": {
+			"quizQ":"Dendrokronologi er en metoden for å finne ut av treets alder ved hjelp av ultralyd?",
+			"quizA":"false",
+			"quizC":"Dendrokronologi vil si å undersøke årringene til treet. Kalles også for treringdatering eller årring-datering"
+		    },
+		    "2": {
+			"quizQ":"Ved å se på treets ringer kan man se på treets vekst fra en sesong til en annen. Treets ringer gir oss også nøyaktig informasjon om naturhendelser som har funnet sted, inkludert vulkanutbrudd?",
+			"quizA":"true"
+		    },
+		    "3": {
+			"quizQ":"Ingen trær dør av alderdom. Derimot tar insekter eller sykdom livet av treet. Verdens eldste trær er noen 4600 år gamle furuer som står i Bristlecone USA",
+			"quizA":"true"
+		    },
+		    "4": {
+			"quizQ":"Enkelte salix trær signaliserer til hverandre. Når de angripes av insekter, advarer de nærliggende salix trær ved å sende ut kjemiske signaler. De responderer i sin tur ved å tilføre mer garvesyre til bladene noe som gjør de mindre innbydene for de sultne insektene?",
+			"quizA":"true"
+		    },
+		    "5": {
+			"quizQ":"I metropoler (byer over 1 million innbyggere), overlever et tre i gjennomsnitt bare i 8 år?",
+			"quizA":"true"
+		    },
+		    "6": {
+			"quizQ":"Trær fornyer luften ved å absorbere karbondioksid og produsere oksygen. Mengden oksygen som produseres av et hektar trær (10 000 km^2) er nok til at 7 mennesker skal kunne få puste gjennom et helt år?",
+			"quizA":"true"
+		    },
+		    "7": {
+			"quizQ":"Trær mottar 60% av næringen sin fra atmosfæren og bare 40% fra bakken den vokser på?",
+			"quizA":"false",
+			"quizC":"Feil, trær mottar 90% av næringen sin fra atmosfæren og 10% fra bakken."
+		    },
+		    "8": {
+			"quizQ":"Trær vokser fra toppen og ikke fra bunn slik mange tror. En kvist sin plassering på stammen vil bare bevege seg oppover noen få centimeter i løpet av en 1000 års periode.",
+			"quizA":"true"
+		    }
+		},
+		"partOptions": {
+		    "String": {
+			"optSelectMethod":"hint_quiz",
+			"optHintText":"Gå videre langs vannet og rund enden (kortsiden) av det. Etter du har passert en liten bru kan du begynne å se etter skiltet Søndre Skjeggerud.",
+			"optNext":"38bbdbff-3707-45f8-a676-c8a5d5b6b297"
+		    }
+		},
+		"isEndPoint":"false"
+	    },
+	    "38bbdbff-3707-45f8-a676-c8a5d5b6b297": { 
+		"UUID":"38bbdbff-3707-45f8-a676-c8a5d5b6b297",
+		"belongsToTag":"d3013c65-28c8-11e2-81c1-0800200c9a66",
+		"partTitle":"Søndre Skjeggerud",
+		"partDesc":"Søndre Skjeggerud var opprinnelig en husmannsplass under Vestre Sogn gård. Her var det et en-etasjet tømmerhus og fjøs og låve på nordsiden av hovedhuset. Plassen ble nedlagt og husene ble revet på grunn av vannrestriksjonene ca. 1914. I 1865 ble det holdt husdyr på gården. Det var en hest, fire kuer, to faar og fjerkre på plassen, og det ble også dyrket korn. Av de 16-17 husdyr artene som mennesket har temmet, ble 13 temmet i Europa. I Sør-Amerika var det bare lamaen som ble temmet. Urbefolkningen i Nord-Amerika temmet ingen, tvert imot utryddet de hesten som fantes der da de kom. Det var spanjolene som gjeninnførte hesten til Nord-Amerika og viste indianerne at den kunne brukes som arbeidsdyr. De eldste funn av knokler fra husdyr i Norge er funnet i Skipshelleren i Hordaland.",
+		"choiceDesc":"",
+		"gameMode":"quiz",
+		"gameButton":"Trykk for å starte husdyrquiz",
+		"quiz": {
+		    "1": {
+			"quizQ":"Gjennomsnittlig vil en ku på 450 kilo produsere en svimlende mengde av 10 tonn med avføring hvert år?",
+			"quizA":"true"
+		    },
+		    "2": {
+			"quizQ":"Kuer har en fantastisk luktesans som gjør de i stand til å legge merke til lukter på distanser på 4 km. I tillegg har kan de høre både høy- og lavfrekvente lyder bedre enn mennesker?",
+			"quizA":"false",
+			"quizC":"Feil, Kuer kan lukte over distanser på hele 8 km."
+		    },
+		    "3": {
+			"quizQ":"Storfe anses som hellige i en rekke av verdens religioner, deriblant hinduisme og de gamle religionene i Egypt og Hellas. I hinduismen er kua dyrket som kilde til mat og symbol på liv og kan ikke tas livet av. At okser er identifisert i Norrøn mytologi med både tordenguden Tor og fruktbarhetsgudinnen Frøya er det derimot færre som vet?",
+			"quizA":"true"
+		    },
+		    "4": {
+			"quizQ":"India har den største populasjonene med sauer av alle land. Totalt sett finnes over 1 milliard sauer i verden?",
+			"quizA":"false",
+			"quizC":"Feil, Kina har den største populasjonen med sauer."
+		    },
+		    "5": {
+			"quizQ":"Sauer har en synsvidde på 300 grader, som gjør det mulig å se bakover uten at de trenger å snu på hodet?",
+			"quizA":"true"
+		    },
+		    "6": {
+			"quizQ":"I 1996 ble en sau ved navn Dolly klonet og hun ble dermed verdens første klonede pattedyr?",
+			"quizA":"true"
+		    }
+		},
+		"partOptions": {
+		    "String": {
+			"optSelectMethod":"hint_text",
+			"optHintText":"Følg turveien videre rundt vannet til du ser tre maurtuer på høyre hånd",
+			"optNext":"a009cdbc-6a39-4f18-98c0-f1dde1fbf937"
+		    }
+		},
+		"isEndPoint":"false"
+	    },
+	    "a009cdbc-6a39-4f18-98c0-f1dde1fbf937": { 
+		"UUID":"a009cdbc-6a39-4f18-98c0-f1dde1fbf937",
+		"belongsToTag":"d3013c66-28c8-11e2-81c1-0800200c9a66",
+		"partTitle":"De tre tuene",
+		"partDesc":"Maur er hovedsakelig små insekter som utgjør en familie av årevinger. De fleste artene er under 1 cm lange. Det er beskrevet 12 500 forskjellige arter i verden, men det blir stadig oppdaget nye og man regner med at det finnes 15 000. Maurene har mindre artsmangfold i kalde klima og det er funnet bare 53 arter i Norge. De er sosiale insekter, som lever i kompliserte samfunn. Mange arter bygger forseggjorte bol, kalt maurtuer.",
+		"choiceDesc":"",
+		"gameMode":"quiz",
+		"gameButton":"Trykk for å starte maurquiz",
+		"quiz": {
+		    "1": {
+			"quizQ":"Maurens ben er veldig sterke og gjør at den kan løpe veldig fort. Hvis vi skulle klare å løpe like fort som mauren klarer i forhold til størrelsen vår, måtte vi være i stand til å løpe like raskt som en veddeløpshest?",
+			"quizA":"true"
+		    },
+		    "2": {
+			"quizQ":"Biologer klassifiserer maur som en spesiell type veps (Hymenoptera Formicidae). Det finnes over 12 500 forskjellige maurarter. Hver eneste koloni har minst en dronning?",
+			"quizA":"true"
+		    },
+		    "3": {
+			"quizQ":"Vanlige Skogsmaur har ingen brodd å stikke med, men kan sprute maursyre. Enkelte fugler legger maur i fjærne slik at maurene skal sprute maursyre på dem. Maursyren hjelper fuglene med å holde parasitter unna fjærne sine?",
+			"quizA":"true"
+		    },
+		    "4": {
+			"quizQ":"Maur er svært sterke i forhold til sin egen kroppsvekt. Mauren kan løfte 100 ganger det den selv veier med kjevene?",
+			"quizA":"false",
+			"quizC":"Feil, mauren kan løfte cirka 50 ganger sin kroppsvekt."
+		    },
+		    "5": {
+			"quizQ":"En maurart som lever i Amazonas (Polyergus Rufescens) drar på røvertokt og stjeler puppene til andre maur som de tar de med til sin egen koloni for å ha som slaver. Når de klekkes arbeider de som slaver inne i kolonien for dronningen?",
+			"quizA":"true"
+		    },
+		    "6": {
+			"quizQ":"Gjennomsnittsalderen til en maur er 45-60 dager. Mauren bruker ikke bare antennene den har på hode til å føle med, men også til å lukte med?",
+			"quizA":"true"
+		    }
+		},
+		"partOptions": {
+		    "": {
+			"optSelectMethod":"hint_text",
+			"optHintText":"Følg turen videre rundt vannet til du kommer til høyspentmastene",
+			"optNext":"cdd0dde1-62e8-4cb0-ba9e-d28c6ed3d3b8"
+		    }
+		},
+		"isEndPoint":"false"
+	    },
+	    "cdd0dde1-62e8-4cb0-ba9e-d28c6ed3d3b8": { 
+		"UUID":"cdd0dde1-62e8-4cb0-ba9e-d28c6ed3d3b8",
+		"belongsToTag":"d3013c67-28c8-11e2-81c1-0800200c9a66",
+		"partTitle":"Høyspentmast",
+		"partDesc":"Strøm eller elektrisk strøm er en form for energi, hvor elektroner, negativt ladde partikler blir fraktet. Den frie flyten av elektroner som har falt av de tilhørende atomene sine blir til elektrisk strøm. Elektrisk strøm er en sekundær energikilde, og skapes etter omdanning av primære energikilder som olje, gass, kull, atomkraft og andre naturlige energikilder som sol, vind og andre naturkrefter.",
+		"choiceDesc":"",
+		"gameMode":"quiz",
+		"gameButton":"Trykk for å starte høyspentquiz",
+		"quiz": {
+		    "1": {
+			"quizQ":"Høyspentmaster er vanlgvis laget av stål og er fra 15 til 55 meter høye. De aller høyeste finnes på Zhoushan øya og knytter den til det Kinesiske fastland i et 2.7 kilometer langt belte. De høyeste strekker seg opp til 370 meter?",
+			"quizA":"true"
+		    },
+		    "2": {
+			"quizQ":"I  følge statens strålevern bør man ved bygging av nye høyspentledninger forsøke å unngå å legge de nært til boliger, barnehager skoler mv., fordi de kan gi økt risiko for enkelte kreftformer ved langvarig eksponering?",
+			"quizA":"true"
+		    },
+		    "3": {
+			"quizQ":"Høyspentledninger avgir et sterkt magnetfelt. Omfattende internasjonal forskning har funnet at det er en mulig økt risiko for at barn som vokser opp i boliger der magnetfeltet er over 0,4 µT (mikrotesla), utvikler blodkreft?",
+			"quizA":"true"
+		    },
+		    "4": {
+			"quizQ":"En typisk høyspentledning i utmark er på over 10 000 volt, mens en høyspentledning i byen er på under 10 000 volt?",
+			"quizA":"false",
+			"quizC":"Feil, en typisk høyspentledning i utmarka er på over 1000 volt, mens i byen er den på under 1000 volt. Til sammenligning er strømmen i stikkontakten på 220 volt nok til å gi deg alvorlige skader eller kunne forårsake død. Et 4.5 volts bakterie kan man slikke på uten at det gjør noe annet enn å kile på tungen din, fordi spenningen er så lav."
+		    },
+		    "5": {
+			"quizQ":"Man får kun elektrisk støt hvis strømmen går gjennom kroppen din til jord?",
+			"quizA":"true",
+			"quizC":"Med jord menes alt annet som kroppen din er i kontakt med som for eksempel gulv, stoler, gress og så videre. Det er derfor fuglene kan sitte på elektriske ledninger uten å få støt. Kommer fuglene nær to ledninger får også de støt."
+		    }
+		},
+		"partOptions": {
+		    "Kart til Sognsvann": {
+			"optSelectMethod":"hint_map",
+			"optHintText":"",
+			"optLong":"10.726967",
+			"optLat":"59.969979",
+			"optNext":"74b5fe6d-dedd-43a9-b7e1-b6d19efc0358"
+		    }
+		},
+		"isEndPoint":"false"
+	    },
+	    "74b5fe6d-dedd-43a9-b7e1-b6d19efc0358": { 
+		"UUID":"74b5fe6d-dedd-43a9-b7e1-b6d19efc0358",
+		"belongsToTag":"d3013c68-28c8-11e2-81c1-0800200c9a66",
+		"partDesc":"Da var turen rundt Sognsvann over. Håper du hadde en fin tur og at du lærte noe nytt. Velkommen tilbak neste gang.",
+		"gameMode":"none",
+		"isEndPoint":"true"
+	    }
+	}
+    }
+}

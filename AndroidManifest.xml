@@ -20,7 +20,9 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <uses-library android:name="com.google.android.maps" android:required="true"/>
+        <uses-library
+            android:name="com.google.android.maps"
+            android:required="true" />
 
         <activity
             android:name=".StoryListActivity"
@@ -41,13 +43,13 @@
         <activity android:name=".story.StoryActivity" >
         </activity>
         <activity android:name="no.uio.ifi.inf5261.tagstory.rfid.DetectStory" >
-            <intent-filter>
+            <!-- <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data android:mimeType="text/plain" />
-            </intent-filter>
+            </intent-filter> -->
         </activity>
         <activity android:name=".story.StoryTravelActivity" >
         </activity>
@@ -56,10 +58,16 @@
         <activity android:name=".story.option.ArrowNavigationActivity" >
         </activity>
         <activity android:name=".story.option.MapNavigationActivity" >
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
         </activity>
         <activity android:name=".story.game.QuizActivity" >
         </activity>
-        <activity android:name=".story.StoryFinishedActivity"></activity>
+        <activity android:name=".story.StoryFinishedActivity" >
+        </activity>
     </application>
 
 </manifest>

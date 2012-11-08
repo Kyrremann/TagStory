@@ -1,21 +1,16 @@
 package no.uio.ifi.inf5261.tagstory.story.option;
 
-import java.util.ArrayList;
-
 import no.uio.ifi.inf5261.tagstory.R;
 import no.uio.ifi.inf5261.tagstory.story.Story;
 import no.uio.ifi.inf5261.tagstory.story.StoryActivity;
 import no.uio.ifi.inf5261.tagstory.story.StoryPartOption;
 import no.uio.ifi.inf5261.tagstory.story.StoryTravelActivity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -32,18 +27,13 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager.LayoutParams;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.FrameLayout;
-import android.widget.GridView;
 import android.widget.TextView;
 
-public class ArrowNavigationActivity extends Activity {
+public class ArrowNavigationActivity extends NFCActivity {
 
 	private final float DIST_ACCEPT = 10;
 	private final float COMPASS_PUSH = 40;
@@ -67,9 +57,7 @@ public class ArrowNavigationActivity extends Activity {
 	private Bitmap compassCircle;
 	private Bitmap compassHand;
 
-	private Story story;
-	private StoryPartOption option;
-	private String partTag, previousTag;
+	private String previousTag;
 
 	Runnable onEverySecond = null;
 
@@ -78,16 +66,18 @@ public class ArrowNavigationActivity extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_story_arrow);
-		
+
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		Bundle bundle = getIntent().getExtras();
-		option = (StoryPartOption) bundle.getSerializable(StoryTravelActivity.OPTION);
+		option = (StoryPartOption) bundle
+				.getSerializable(StoryTravelActivity.OPTION);
 		story = (Story) bundle.getSerializable(StoryActivity.STORY);
 		partTag = bundle.getString(StoryActivity.PARTTAG);
 		previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);
-		
-		((TextView) findViewById(R.id.story_arrow_hint)).setText(option.getOptHintText());
+
+		((TextView) findViewById(R.id.story_arrow_hint)).setText(option
+				.getOptHintText());
 
 		// TODO: Screen orientation
 		// setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -183,16 +173,17 @@ public class ArrowNavigationActivity extends Activity {
 		mSensorManager.unregisterListener(magnetListener);
 		super.onStop();
 	}
-	
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-    
-    	MenuItem item = menu.add(Menu.NONE, 0, Menu.NONE, R.string.story_scan_tag);
-    	item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-    	
-    	return true;
-    }
-	
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		MenuItem item = menu.add(Menu.NONE, 0, Menu.NONE,
+				R.string.story_scan_tag);
+		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+		return true;
+	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == android.R.id.home) {
@@ -203,11 +194,12 @@ public class ArrowNavigationActivity extends Activity {
 			NavUtils.navigateUpTo(this, intent);
 			return true;
 		} else if (item.getItemId() == 0) {
-			Intent intent = new Intent(this, StoryActivity.class);
-			intent.putExtra(StoryActivity.STORY, story);
-			intent.putExtra(StoryActivity.PARTTAG, option.getOptNext());
-			intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
-			startActivity(intent);
+			startScanning();
+			// Intent intent = new Intent(this, StoryActivity.class);
+			// intent.putExtra(StoryActivity.STORY, story);
+			// intent.putExtra(StoryActivity.PARTTAG, option.getOptNext());
+			// intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
+			// startActivity(intent);
 		}
 
 		return super.onOptionsItemSelected(item);

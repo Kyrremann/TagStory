@@ -1,6 +1,7 @@
 package no.uio.ifi.inf5261.tagstory.story;
 
 import no.uio.ifi.inf5261.tagstory.R;
+import no.uio.ifi.inf5261.tagstory.story.option.NFCActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,12 +13,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class StoryTravelActivity extends Activity {
+public class StoryTravelActivity extends NFCActivity {
 
 	public static final String OPTION = "OPTION";
-	private StoryPartOption option;
-	private Story story;
-	private String partTag, previousTag;
+	private String previousTag;
 	private View layout;
 
 	@Override
@@ -52,13 +51,13 @@ public class StoryTravelActivity extends Activity {
 		return imageView;
 	}
 
-	public void readyToScan(View view) {
-		Intent intent = new Intent(this, StoryActivity.class);
-		intent.putExtra(StoryActivity.STORY, story);
-		intent.putExtra(StoryActivity.PARTTAG, option.getOptNext());
-		intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
-		startActivity(intent);
-	}
+	// public void readyToScan(View view) {
+	// Intent intent = new Intent(this, StoryActivity.class);
+	// intent.putExtra(StoryActivity.STORY, story);
+	// intent.putExtra(StoryActivity.PARTTAG, option.getOptNext());
+	// intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
+	// startActivity(intent);
+	// }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -80,11 +79,12 @@ public class StoryTravelActivity extends Activity {
 			NavUtils.navigateUpTo(this, intent);
 			return true;
 		} else if (item.getItemId() == 0) {
-			Intent intent = new Intent(this, StoryActivity.class);
-			intent.putExtra(StoryActivity.STORY, story);
-			intent.putExtra(StoryActivity.PARTTAG, option.getOptNext());
-			intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
-			startActivity(intent);
+			startScanning();
+//			Intent intent = new Intent(this, StoryActivity.class);
+//			intent.putExtra(StoryActivity.STORY, story);
+//			intent.putExtra(StoryActivity.PARTTAG, option.getOptNext());
+//			intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
+//			startActivity(intent);
 		}
 
 		return super.onOptionsItemSelected(item);

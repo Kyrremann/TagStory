@@ -8,7 +8,6 @@ import no.uio.ifi.inf5261.tagstory.story.StoryActivity;
 import no.uio.ifi.inf5261.tagstory.story.StoryPartOption;
 import no.uio.ifi.inf5261.tagstory.story.StoryTravelActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
@@ -22,9 +21,9 @@ import android.view.MotionEvent;
 import android.widget.MediaController;
 import android.widget.TextView;
 
-public class AudioPlayerActivity extends Activity implements
+public class AudioPlayerActivity extends NFCActivity implements
 		OnPreparedListener, MediaController.MediaPlayerControl {
-	
+
 	private static final String TAG = "AudioPlayer";
 
 	public static final String AUDIO_FILE_NAME = "audioFileName";
@@ -32,9 +31,7 @@ public class AudioPlayerActivity extends Activity implements
 	private MediaPlayer mediaPlayer;
 	private MediaController mediaController;
 	private String audioFile;
-	private Story story;
-	private StoryPartOption option;
-	private String partTag, previousTag;
+	private String previousTag;
 
 	private Handler handler = new Handler();
 
@@ -45,15 +42,17 @@ public class AudioPlayerActivity extends Activity implements
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		Bundle bundle = getIntent().getExtras();
-		option = (StoryPartOption) bundle.getSerializable(StoryTravelActivity.OPTION);
+		option = (StoryPartOption) bundle
+				.getSerializable(StoryTravelActivity.OPTION);
 		story = (Story) bundle.getSerializable(StoryActivity.STORY);
 		partTag = bundle.getString(StoryActivity.PARTTAG);
 		previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);
-		
+
 		audioFile = option.getOptSoundSrc();
 		((TextView) findViewById(R.id.story_audio_song)).setText(audioFile);
-		((TextView) findViewById(R.id.story_audio_hint)).setText(option.getOptHintText());
-		
+		((TextView) findViewById(R.id.story_audio_hint)).setText(option
+				.getOptHintText());
+
 		mediaPlayer = new MediaPlayer();
 		mediaPlayer.setOnPreparedListener(this);
 
@@ -68,12 +67,11 @@ public class AudioPlayerActivity extends Activity implements
 			Log.e(TAG, "Could not open file " + audioFile + " for playback.", e);
 		}
 	}
-	
+
 	@Override
 	protected void onPause() {
-		pause();
-		
 		super.onPause();
+		pause();
 	}
 
 	public boolean onTouchEvent(MotionEvent event) {
@@ -139,16 +137,17 @@ public class AudioPlayerActivity extends Activity implements
 			}
 		});
 	}
-	
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-    
-    	MenuItem item = menu.add(Menu.NONE, 0, Menu.NONE, R.string.story_scan_tag);
-    	item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-    	
-    	return true;
-    }
-	
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		MenuItem item = menu.add(Menu.NONE, 0, Menu.NONE,
+				R.string.story_scan_tag);
+		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+		return true;
+	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == android.R.id.home) {
@@ -159,11 +158,12 @@ public class AudioPlayerActivity extends Activity implements
 			NavUtils.navigateUpTo(this, intent);
 			return true;
 		} else if (item.getItemId() == 0) {
-			Intent intent = new Intent(this, StoryActivity.class);
-			intent.putExtra(StoryActivity.STORY, story);
-			intent.putExtra(StoryActivity.PARTTAG, option.getOptNext());
-			intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
-			startActivity(intent);
+			startScanning();
+			// Intent intent = new Intent(this, StoryActivity.class);
+			// intent.putExtra(StoryActivity.STORY, story);
+			// intent.putExtra(StoryActivity.PARTTAG, option.getOptNext());
+			// intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
+			// startActivity(intent);
 		}
 
 		return super.onOptionsItemSelected(item);

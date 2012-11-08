@@ -16,6 +16,6 @@ Todo
 ### App
 * Get compass to work properly
 * User profile and functionality in the application
-* Point scroing?
+* Point scoring?
 * Better app-UI
 * Let the user click and zoom images

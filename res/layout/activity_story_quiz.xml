@@ -13,25 +13,25 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-
-            <Button
-                android:id="@+id/story_part_quiz_yes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:onClick="quizAnswer"
-                android:text="@string/story_quiz_true" />
-
-            <Button
-                android:id="@+id/story_part_quiz_no"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:onClick="quizAnswer"
-                android:text="@string/story_quiz_false" />
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/story_part_quiz_yes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="quizAnswer"
+        android:text="@string/story_quiz_true" />
+
+    <Button
+        android:id="@+id/story_part_quiz_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:onClick="quizAnswer"
+        android:text="@string/story_quiz_false" />
 
 </RelativeLayout>

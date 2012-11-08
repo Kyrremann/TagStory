@@ -28,6 +28,8 @@
     
     <string name="story_scan_info">Please scan a tag to see it\'s info, or just do whatever you want!</string>
     <string name="story_find_next">Click to decide where to go next</string>
+    <string name="story_next_part">Next part</string>
+    <string name="story_ready">I am ready</string>
     
     <string name="login_title">Please log in</string>
     <string name="login_login">Log in</string>

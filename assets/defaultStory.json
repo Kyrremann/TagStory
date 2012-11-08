@@ -11,16 +11,32 @@
 	"keywords":"list",
 	"startTag":"UUID",
 	"tagCount":"int",
+	"language":"no_bm",
 	"parts": { 
 	    "UUID": { 
 		"UUID":"UUID",
 		"belongsToTag":"UUID",
+		"partTitle":"String",
 		"partDesc":"String",
 		"choiceDesc":"String",
+		"gameMode":"none|quiz",
+		"gameButton":"String",
+		"quiz": {
+		    "int": {
+			"quizQ":"String",
+			"quizA":"String",
+			"quizC":"String"
+		    }
+		}
 		"partOptions": {
 		    "String": {
-			"optSelectMethod":"enum",
+			"optSelectMethod":"hint_text|hint_image|hint_sound|hint_map|hint_arrow|hint_video",
 			"optHintText":"String",
+			"optImgSrc":"String",
+			"optSoundSrc":"String",
+			"optLong":"float",
+			"optLat":"float",
+			"optArrowLength":"boolean",
 			"optNext":"UUID"
 		    }
 		},

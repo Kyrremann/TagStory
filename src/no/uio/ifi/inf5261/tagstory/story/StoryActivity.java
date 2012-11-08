@@ -17,6 +17,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -67,7 +68,7 @@ public class StoryActivity extends Activity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		story = (Story) getIntent().getSerializableExtra(STORY);
-		setTitle(story.getTitle());
+		setTitle(story.getTitle()); // TODO: Should be part title
 		partTag = getIntent().getStringExtra(PARTTAG);
 		previousTag = getIntent().getStringExtra(PREVIOUSTAG);
 		part = story.getStoryPart(partTag);
@@ -78,13 +79,7 @@ public class StoryActivity extends Activity {
 			((TextView) findViewById(R.id.story_part_choice))
 					.setText("Choice\n" + part.getChoiceDescription());
 
-		if (part.getGameMode().equals(JsonParser.QUIZ)) {
-			Intent intent = new Intent(this, QuizActivity.class);
-			intent.putExtra(STORY, story);
-			intent.putExtra(PARTTAG, partTag);
-			intent.putExtra(PREVIOUSTAG, previousTag);
-			startActivity(intent);
-		} else if (!part.getIsEndpoint()) {
+		if (!part.getIsEndpoint()) {
 			generateOptionFunction(part.getOptions());
 		} else {
 			Intent intent = new Intent(this, StoryFinishedActivity.class);
@@ -112,12 +107,17 @@ public class StoryActivity extends Activity {
 		if (options.size() == 1) {
 			final StoryPartOption option = options.values().iterator().next();
 
-			button.setText(option.getUUID());
+			if (part.getGameMode().equals(JsonParser.QUIZ))
+				button.setText(part.getGameButton());
+			else
+				button.setText(option.getUUID());
+			
 			button.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View view) {
-					Intent intent = createTravelIntent(option);
+					Intent intent = createTravelIntent(getApplicationContext(),
+							story, option, partTag, previousTag);
 					startActivity(intent);
 				}
 			});
@@ -138,9 +138,12 @@ public class StoryActivity extends Activity {
 						public void onClick(DialogInterface dialog, int which) {
 							// System.out.println(((AlertDialog)
 							// dialog).getListView().getItemAtPosition(which));
-							startActivity(createTravelIntent(options
-									.get(((AlertDialog) dialog).getListView()
-											.getItemAtPosition(which))));
+							startActivity(createTravelIntent(
+									getApplicationContext(), story, options
+											.get(((AlertDialog) dialog)
+													.getListView()
+													.getItemAtPosition(which)),
+									partTag, previousTag));
 						}
 					});
 
@@ -157,21 +160,25 @@ public class StoryActivity extends Activity {
 		}
 	}
 
-	private Intent createTravelIntent(StoryPartOption option) {
+	public static Intent createTravelIntent(Context context, Story story,
+			StoryPartOption option, String partTag, String previousTag) {
 		Intent intent = new Intent();
 		intent.putExtra(STORY, story);
 		intent.putExtra(StoryTravelActivity.OPTION, option);
 		intent.putExtra(PARTTAG, partTag);
 		intent.putExtra(PREVIOUSTAG, previousTag);
 		String opt = option.getOptSelectMethod();
-		if (opt.equals(StoryPartOption.HINT_SOUND))
-			intent.setClass(this, AudioPlayerActivity.class);
+
+		if (story.getStoryPart(partTag).getGameMode().equals(JsonParser.QUIZ))
+			intent.setClass(context, QuizActivity.class);
+		else if (opt.equals(StoryPartOption.HINT_SOUND))
+			intent.setClass(context, AudioPlayerActivity.class);
 		else if (opt.equals(StoryPartOption.HINT_ARROW))
-			intent.setClass(this, ArrowNavigationActivity.class);
+			intent.setClass(context, ArrowNavigationActivity.class);
 		else if (opt.equals(StoryPartOption.HINT_MAP))
-			intent.setClass(this, MapNavigationActivity.class);
+			intent.setClass(context, MapNavigationActivity.class);
 		else
-			intent.setClass(this, StoryTravelActivity.class);
+			intent.setClass(context, StoryTravelActivity.class);
 
 		return intent;
 	}

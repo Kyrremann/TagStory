@@ -34,8 +34,7 @@ public class JsonParser {
 			QUIZ_A = "quizA", QUIZ_C = "quizC";
 	public static final String HINT_TEXT = "hint_text",
 			HINT_IMAGE = "hint_image", HINT_MAP = "hint_map",
-			HINT_ARROW = "hint_arrow", HINT_SOUD = "hint_sound",
-			HINT_QUIZ = "hint_quiz";
+			HINT_ARROW = "hint_arrow", HINT_SOUD = "hint_sound";
 
 	public static JSONObject parseJson(Context context, String UUID)
 			throws IOException, JSONException {

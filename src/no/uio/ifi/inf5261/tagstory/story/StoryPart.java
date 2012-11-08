@@ -3,6 +3,7 @@ package no.uio.ifi.inf5261.tagstory.story;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import no.uio.ifi.inf5261.tagstory.Database.JsonParser;
 import no.uio.ifi.inf5261.tagstory.story.game.QuizNode;
 
 public class StoryPart implements Serializable {
@@ -36,9 +37,11 @@ public class StoryPart implements Serializable {
 		this.setDescription(description);
 		this.setChoiceDescription(choiceDescription);
 		this.setGameMode(gameMode);
-		this.quiz = new HashMap<Integer, QuizNode>();
 		this.setOptions(options);
 		this.setIsEndpoint(isEndpoint);
+		
+		if (getGameMode().equals(JsonParser.QUIZ))
+			this.quiz = new HashMap<Integer, QuizNode>();
 	}
 
 	/**
@@ -95,6 +98,10 @@ public class StoryPart implements Serializable {
 	 */
 	public HashMap<Integer, QuizNode> getQuiz() {
 		return quiz;
+	}
+	
+	public int getQuizSize() {
+		return quiz.size();
 	}
 
 	public QuizNode getQuizNode(int location) {

@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
@@ -22,16 +21,13 @@ import android.widget.TextView;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
-import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
-public class MapNavigationActivity extends MapActivity {
+public class MapNavigationActivity extends NFCMapActivity {
 
-	private Story story;
-	private StoryPartOption option;
-	private String partTag, previousTag;
+	private String previousTag;
 
 	private MapView mapView;
 	private List<Overlay> overlayList;
@@ -59,22 +55,24 @@ public class MapNavigationActivity extends MapActivity {
 
 		mapView = (MapView) findViewById(R.id.story_map_view);
 		mapView.setBuiltInZoomControls(true);
+		// TODO: Zoom level could be set in the .json file
+		mapView.getController().setZoom(15);
 
 		overlayList = mapView.getOverlays();
-		mapOverlay = new MapOverlay(getResources().getDrawable(
-				R.drawable.mappointer), this);
+		mapOverlay = new MapOverlay(getResources()
+				.getDrawable(R.drawable.arrow), this);
 
 		GeoPoint geoPoint = new GeoPoint((int) (option.getOptLat() * 1e6),
 				(int) (option.getOptLong() * 1e6));
 		OverlayItem item = new OverlayItem(geoPoint, "Her skal du starte", "");
 		mapOverlay.addOverlay(item);
+		mapView.getController().setCenter(geoPoint);
 
 		overlayList.add(mapOverlay);
 	}
 
 	@Override
 	protected boolean isRouteDisplayed() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -98,11 +96,7 @@ public class MapNavigationActivity extends MapActivity {
 			NavUtils.navigateUpTo(this, intent);
 			return true;
 		} else if (item.getItemId() == 0) {
-			Intent intent = new Intent(this, StoryActivity.class);
-			intent.putExtra(StoryActivity.STORY, story);
-			intent.putExtra(StoryActivity.PARTTAG, option.getOptNext());
-			intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
-			startActivity(intent);
+			startScanning();
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -144,4 +138,6 @@ public class MapNavigationActivity extends MapActivity {
 			return true;
 		}
 	}
+
+
 }

@@ -61,7 +61,7 @@
 	
     <string name="story_quiz_true">Sant</string>
     <string name="story_quiz_false">Usant</string>
-    <string name="story_quiz_correction">More...</string>
+    <string name="story_quiz_correction">Correction</string>
     <string name="story_quiz_next">Next question</string>
 	
 	<color name="light_tree_green">#739D88</color>

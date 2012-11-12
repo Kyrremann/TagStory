@@ -47,6 +47,7 @@ public abstract class NFCActivity extends Activity {
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
 						progressDialog.dismiss();
+						disableForegroundMode();
 					}
 				});
 		progressDialog.setButton(ProgressDialog.BUTTON_NEGATIVE, "Cheat",
@@ -71,7 +72,7 @@ public abstract class NFCActivity extends Activity {
 
 	@Override
 	public void onNewIntent(Intent intent) {
-		progressDialog.setMessage("Scanning tag");
+		progressDialog.setMessage("Reading tag");
 		Parcelable[] rawMsgs = intent
 				.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
 		NdefMessage msg = (NdefMessage) rawMsgs[0];

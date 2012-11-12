@@ -80,31 +80,48 @@ public class QuizActivity extends Activity {
 		case R.id.story_part_quiz_yes:
 			if (node.isAnswer())
 				quizPoint++;
+			else if (node.getCorrection() != null) {
+				AlertDialog.Builder builder = new Builder(this);
+				builder.setTitle(R.string.story_quiz_correction);
+				builder.setMessage(node.getCorrection());
+				builder.setNeutralButton(R.string.story_quiz_next,
+						new OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								dialog.dismiss();
+								addQuestion(++quizNumber);
+							}
+						});
+				builder.create().show();
+			}
 			break;
 		case R.id.story_part_quiz_no:
 			if (!node.isAnswer())
 				quizPoint++;
+			else if (node.getCorrection() != null) {
+				AlertDialog.Builder builder = new Builder(this);
+				builder.setTitle(R.string.story_quiz_correction);
+				builder.setMessage(node.getCorrection());
+				builder.setNeutralButton(R.string.story_quiz_next,
+						new OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								dialog.dismiss();
+								addQuestion(++quizNumber);
+							}
+						});
+				builder.create().show();
+			}
 			break;
 		}
 
 		textView.setAlpha(.5f);
 
-		if (node.getCorrection() != null) {
-			AlertDialog.Builder builder = new Builder(this);
-			builder.setTitle(R.string.story_quiz_correction);
-			builder.setMessage(node.getCorrection());
-			builder.setNeutralButton(R.string.story_quiz_next,
-					new OnClickListener() {
-
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();
-							addQuestion(++quizNumber);
-						}
-					});
-			builder.create().show();
-		} else
-			addQuestion(++quizNumber);
+		addQuestion(++quizNumber);
 	}
 
 	private void goToTagDialog() {

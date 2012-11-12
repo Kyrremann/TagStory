@@ -44,9 +44,9 @@
 			"optHintText":"Gå på turstien til høyre langs vannet til du kommer til en klynge med bjerketrær som har fastmontert noe som ser ut som fuglekasser.",
 			"optNext":"c6d5b0b2-f175-42df-bc3f-dec670f46763"
 		    },
-		    "Steinbruddquiz": {
+		    "Strandenquiz": {
 			"optSelectMethod":"hint_text",
-			"optHintText":"Gå på turstien til høyre langs vannet til du kommer til en klynge med bjerketrær som har fastmontert noe som ser ut som fuglekasser.",
+			"optHintText":"Gå langs turstien og finn skiltet som markerer Stranden.",
 			"optNext":"3385706e-509d-47a2-a5c2-f268a7bc2cee"
 		    }
 		},

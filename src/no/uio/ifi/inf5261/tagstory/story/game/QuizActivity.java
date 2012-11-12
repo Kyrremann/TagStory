@@ -80,10 +80,13 @@ public class QuizActivity extends Activity {
 		case R.id.story_part_quiz_yes:
 			if (node.isAnswer())
 				quizPoint++;
-			else if (node.getCorrection() != null) {
+			else {
 				AlertDialog.Builder builder = new Builder(this);
 				builder.setTitle(R.string.story_quiz_correction);
-				builder.setMessage(node.getCorrection());
+				if (node.getCorrection() != null)
+					builder.setMessage(node.getCorrection());
+				else
+					builder.setMessage("Du svarte feil");
 				builder.setNeutralButton(R.string.story_quiz_next,
 						new OnClickListener() {
 
@@ -91,7 +94,7 @@ public class QuizActivity extends Activity {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								dialog.dismiss();
-								addQuestion(++quizNumber);
+								// addQuestion(++quizNumber);
 							}
 						});
 				builder.create().show();
@@ -100,10 +103,13 @@ public class QuizActivity extends Activity {
 		case R.id.story_part_quiz_no:
 			if (!node.isAnswer())
 				quizPoint++;
-			else if (node.getCorrection() != null) {
+			else {
 				AlertDialog.Builder builder = new Builder(this);
 				builder.setTitle(R.string.story_quiz_correction);
-				builder.setMessage(node.getCorrection());
+				if (node.getCorrection() != null)
+					builder.setMessage(node.getCorrection());
+				else
+					builder.setMessage("Du svarte feil");
 				builder.setNeutralButton(R.string.story_quiz_next,
 						new OnClickListener() {
 
@@ -111,7 +117,7 @@ public class QuizActivity extends Activity {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								dialog.dismiss();
-								addQuestion(++quizNumber);
+								// addQuestion(++quizNumber);
 							}
 						});
 				builder.create().show();

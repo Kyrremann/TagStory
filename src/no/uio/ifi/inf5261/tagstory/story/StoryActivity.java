@@ -75,9 +75,14 @@ public class StoryActivity extends Activity {
 
 		((TextView) findViewById(R.id.story_part_desc)).setText(part
 				.getDescription());
-		if (part.getOptions() == null || part.getOptions().size() == 0)
+		if (part.getChoiceDescription() != null
+				&& part.getChoiceDescription().length() != 0) {
+			((TextView) findViewById(R.id.story_part_choice)).setText(part
+					.getChoiceDescription());
+		} else {
 			((TextView) findViewById(R.id.story_part_choice))
-					.setText("Choice\n" + part.getChoiceDescription());
+					.setBackgroundResource(0);
+		}
 
 		if (!part.getIsEndpoint()) {
 			generateOptionFunction(part.getOptions());
@@ -118,7 +123,8 @@ public class StoryActivity extends Activity {
 				public void onClick(View view) {
 					Intent intent;
 					if (part.getGameMode().equals(JsonParser.QUIZ)) {
-						intent = new Intent(getApplicationContext(), QuizActivity.class);
+						intent = new Intent(getApplicationContext(),
+								QuizActivity.class);
 						intent.putExtra(StoryActivity.STORY, story);
 						intent.putExtra(StoryActivity.PARTTAG, partTag);
 						intent.putExtra(StoryActivity.PREVIOUSTAG, previousTag);

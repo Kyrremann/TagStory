@@ -31,7 +31,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_margin="5dp" >
+        android:layout_margin="10dp" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,17 +40,16 @@
 
             <TextView
                 android:id="@+id/story_part_desc"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/scrollView1"
-                android:layout_centerHorizontal="true"
                 android:background="@drawable/rounded_textview_green"
                 android:paddingBottom="5dp"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/story_part_choice"
-                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_textview_green"
                 android:textAppearance="?android:attr/textAppearanceMedium" />

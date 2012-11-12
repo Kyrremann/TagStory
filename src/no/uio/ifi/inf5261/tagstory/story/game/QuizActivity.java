@@ -1,5 +1,7 @@
 package no.uio.ifi.inf5261.tagstory.story.game;
 
+import java.util.HashMap;
+
 import no.uio.ifi.inf5261.tagstory.R;
 import no.uio.ifi.inf5261.tagstory.story.Story;
 import no.uio.ifi.inf5261.tagstory.story.StoryActivity;
@@ -8,6 +10,7 @@ import no.uio.ifi.inf5261.tagstory.story.StoryPartOption;
 import no.uio.ifi.inf5261.tagstory.story.StoryTravelActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -59,13 +62,13 @@ public class QuizActivity extends Activity {
 		// textView.setTextAppearance(this, android.R.attr.textAppearanceLarge);
 		textView.setTextSize(21);
 		textView.setPadding(16, 16, 16, 16);
-//		textView.setOnClickListener(new View.OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				v.setAlpha(1f);
-//			}
-//		});
+		// textView.setOnClickListener(new View.OnClickListener() {
+		//
+		// @Override
+		// public void onClick(View v) {
+		// v.setAlpha(1f);
+		// }
+		// });
 		layout.addView(textView, 0);
 	}
 
@@ -111,7 +114,8 @@ public class QuizActivity extends Activity {
 		if (part.getOptions().size() == 1) {
 			final StoryPartOption option = part.getOptions().values()
 					.iterator().next();
-			builder.setMessage("You scored " + quizPoint + " point(s).");
+			builder.setMessage("You scored " + quizPoint
+					+ " point(s) of possible " + part.getQuizSize() + ".");
 			builder.setNeutralButton(R.string.story_ready,
 					new OnClickListener() {
 
@@ -124,8 +128,27 @@ public class QuizActivity extends Activity {
 						}
 					});
 		} else {
-			// TODO
-			System.out.println("Is not yet implemented");
+			final HashMap<String, StoryPartOption> options = part.getOptions();
+			final String[] keys = options.keySet().toArray(
+					new String[options.size()]);
+
+			builder.setMessage("You scored " + quizPoint
+					+ " point(s) of possible " + part.getQuizSize() + ".");
+			builder.setSingleChoiceItems(keys, -1,
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							StoryPartOption option = options
+									.get(((AlertDialog) dialog).getListView()
+											.getItemAtPosition(which));
+							startActivity(StoryActivity.createTravelIntent(
+									getApplicationContext(), story, option,
+									option.getOptNext(), partTag));
+						}
+					});
+
 		}
 
 		builder.create().show();
@@ -133,12 +156,7 @@ public class QuizActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
-		MenuItem item = menu.add(Menu.NONE, 0, Menu.NONE,
-				R.string.story_scan_tag);
-		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
-		return true;
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
@@ -150,12 +168,6 @@ public class QuizActivity extends Activity {
 			intent.putExtra(StoryActivity.PREVIOUSTAG, previousTag);
 			NavUtils.navigateUpTo(this, intent);
 			return true;
-		} else if (item.getItemId() == 0) {
-			Intent intent = new Intent(this, StoryActivity.class);
-			intent.putExtra(StoryActivity.STORY, story);
-			// intent.putExtra(StoryActivity.PARTTAG, option.getOptNext());
-			intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
-			startActivity(intent);
 		}
 
 		return super.onOptionsItemSelected(item);

@@ -9,15 +9,15 @@
 	"date":"4.11.12",
 	"description":"String",
 	"keywords":"quiz, naturfag, fakta, sognsvann",
-	"startTag":"f0869759-b7f8-4555-933e-b27bc4c0ab2f",
+	"startTag":"f0869758-b7f8-4555-933e-b27bc4c0ab2f",
 	"tagCount":"9",
 	"language":"no_bm",
 	"parts": {
-	    "f0869759-b7f8-4555-933e-b27bc4c0ab2f": { 
-		"UUID":"f0869759-b7f8-4555-933e-b27bc4c0ab2f",
-		"belongsToTag":"d3013c60-28c8-11e2-81c1-0800200c9a66",
+	    "f0869758-b7f8-4555-933e-b27bc4c0ab2f": { 
+		"UUID":"f0869758-b7f8-4555-933e-b27bc4c0ab2f",
+		"belongsToTag":"-1",
 		"partTitle":"Sognsvannquiz",
-		"partDesc":"Velkommen til Thomas sin Sognsvannquiz. Kos deg på tur rundt sognsvann.",
+		"partDesc":"Velkommen til Tag Story natur- og områdequiz for Sognsvannsområdet. Du har nå funnet din første tag så nå begynner quizen som i alt består av 9 steder, markert med tags. På i alt 7 av 9 steder må det i tillegg til å finne og scanne taggene, svares på spørsmål før man kan gå videre til neste sted. Starten og slutten på turen, dvs. start- og slutt-tag, vises med GPS koordinater og er rene transportetapper.",
 		"choiceDesc":"",
 		"gameMode":"none",
 		"partOptions": {
@@ -26,7 +26,28 @@
 			"optHintText":"",
 			"optLong":"10.731658",
 			"optLat":"59.969193",
+			"optNext":"f0869759-b7f8-4555-933e-b27bc4c0ab2f"
+		    }
+		},
+		"isEndPoint":"false"
+	    },
+	    "f0869759-b7f8-4555-933e-b27bc4c0ab2f": { 
+		"UUID":"f0869759-b7f8-4555-933e-b27bc4c0ab2f",
+		"belongsToTag":"d3013c60-28c8-11e2-81c1-0800200c9a66",
+		"partTitle":"Sognsvannquiz",
+		"partDesc":"Sognsvann er en innsjø i Oslomarka som ligger ved markagrensen, rett nord for Oslo. Sognsvann var drikkevann for Oslo fra 1876 til 1967. Ved sørenden ligger Sognsvann gård, anlagt på endemorenen etter siste istid, da havnivået nådde nesten helt opp til det som nå er Sognsvann. Vannet ligger i et populært turområde, og ved selve vannet er det ypperlig for grilling, bading, strandvolleyball og annen lek og moro.",
+		"choiceDesc":"Hva er det neste du vil gjøre?",
+		"gameMode":"none",
+		"partOptions": {
+		    "Flaggermusquiz": {
+			"optSelectMethod":"hint_text",
+			"optHintText":"Gå på turstien til høyre langs vannet til du kommer til en klynge med bjerketrær som har fastmontert noe som ser ut som fuglekasser.",
 			"optNext":"c6d5b0b2-f175-42df-bc3f-dec670f46763"
+		    },
+		    "Steinbruddquiz": {
+			"optSelectMethod":"hint_text",
+			"optHintText":"Gå på turstien til høyre langs vannet til du kommer til en klynge med bjerketrær som har fastmontert noe som ser ut som fuglekasser.",
+			"optNext":"3385706e-509d-47a2-a5c2-f268a7bc2cee"
 		    }
 		},
 		"isEndPoint":"false"
@@ -345,7 +366,8 @@
 	    "74b5fe6d-dedd-43a9-b7e1-b6d19efc0358": { 
 		"UUID":"74b5fe6d-dedd-43a9-b7e1-b6d19efc0358",
 		"belongsToTag":"d3013c68-28c8-11e2-81c1-0800200c9a66",
-		"partDesc":"Da var turen rundt Sognsvann over. Håper du hadde en fin tur og at du lærte noe nytt. Velkommen tilbak neste gang.",
+		"partTitle":"Slutt",
+		"partDesc":"Du har nå spilt ferdig historien. Håper du har hatt en fornøyelig tur og at du vil besøke Tag Stroy (tagstory.no) for flere begivenhetstrike historier i fremtiden.",
 		"gameMode":"none",
 		"isEndPoint":"true"
 	    }

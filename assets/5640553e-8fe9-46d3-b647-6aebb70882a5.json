@@ -41,12 +41,12 @@
 		"partOptions": {
 		    "Flaggermusquiz": {
 			"optSelectMethod":"hint_text",
-			"optHintText":"Gå på turstien til høyre langs vannet til du kommer til en klynge med bjerketrær som har fastmontert noe som ser ut som fuglekasser.",
+			"optHintText":"For å komme til neste tag: Gå på turstien til høyre langs vannet til du kommer til en klynge med bjerketrær som har fastmontert noe som ser ut som fuglekasser.",
 			"optNext":"c6d5b0b2-f175-42df-bc3f-dec670f46763"
 		    },
 		    "Strandenquiz": {
 			"optSelectMethod":"hint_text",
-			"optHintText":"Gå langs turstien og finn skiltet som markerer Stranden.",
+			"optHintText":"For å komme til neste tag: Gå langs turstien og finn skiltet som markerer Stranden.",
 			"optNext":"3385706e-509d-47a2-a5c2-f268a7bc2cee"
 		    }
 		},
@@ -90,7 +90,7 @@
 		"partOptions": {
 		    "String": {
 			"optSelectMethod":"hint_text",
-			"optHintText":"Følg vannet til flytebryggen",
+			"optHintText":"For å komme til neste tag: Følg vannet til flytebryggen",
 			"optNext":"1efe1da1-411e-4963-8d60-b1bf62181832"
 		    }
 		},
@@ -135,7 +135,7 @@
 		"partOptions": {
 		    "String": {
 			"optSelectMethod":"hint_text",
-			"optHintText":"Følg turveien videre rundt vannet til du kommer til et lønnetre som står i enden av en gressbakke med svak oppoverskrens. Rett ved stien står finner du en stor sten med et skilt som viser sykling forbudt.",
+			"optHintText":"For å komme til neste tag: Følg turveien videre rundt vannet til du kommer til et lønnetre som står i enden av en gressbakke med svak oppoverskrens. Rett ved stien står finner du en stor sten med et skilt som viser sykling forbudt.",
 			"optNext":"3385706e-509d-47a2-a5c2-f268a7bc2cee"
 		    }
 		},
@@ -172,7 +172,7 @@
 		"partOptions": {
 		    "String": {
 			"optSelectMethod":"hint_text",
-			"optHintText":"Følg turveien videre rundt vannet til du kommer til et lønnetre som står i enden av en gressbakke med svak oppoverskrens. Rett ved stien står finner du en stor sten med et skilt som viser sykling forbudt.",
+			"optHintText":"For å komme til neste tag: Følg turveien videre rundt vannet til du kommer til et lønnetre som står i enden av en gressbakke med svak oppoverskrens. Rett ved stien står finner du en stor sten med et skilt som viser sykling forbudt.",
 			"optNext":"3cc51a34-336f-40e4-9524-65251449f02e"
 		    }
 		},
@@ -225,7 +225,7 @@
 		"partOptions": {
 		    "String": {
 			"optSelectMethod":"hint_quiz",
-			"optHintText":"Gå videre langs vannet og rund enden (kortsiden) av det. Etter du har passert en liten bru kan du begynne å se etter skiltet Søndre Skjeggerud.",
+			"optHintText":"For å komme til neste tag: Gå videre langs vannet og rund enden (kortsiden) av det. Etter du har passert en liten bru kan du begynne å se etter skiltet Søndre Skjeggerud.",
 			"optNext":"38bbdbff-3707-45f8-a676-c8a5d5b6b297"
 		    }
 		},
@@ -270,7 +270,7 @@
 		"partOptions": {
 		    "String": {
 			"optSelectMethod":"hint_text",
-			"optHintText":"Følg turveien videre rundt vannet til du ser tre maurtuer på høyre hånd",
+			"optHintText":"For å komme til neste tag: Følg turveien videre rundt vannet til du ser tre maurtuer på høyre hånd",
 			"optNext":"a009cdbc-6a39-4f18-98c0-f1dde1fbf937"
 		    }
 		},
@@ -314,7 +314,7 @@
 		"partOptions": {
 		    "": {
 			"optSelectMethod":"hint_text",
-			"optHintText":"Følg turen videre rundt vannet til du kommer til høyspentmastene",
+			"optHintText":"For å komme til neste tag: Følg turen videre rundt vannet til du kommer til høyspentmastene",
 			"optNext":"cdd0dde1-62e8-4cb0-ba9e-d28c6ed3d3b8"
 		    }
 		},

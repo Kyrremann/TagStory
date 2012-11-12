@@ -26,6 +26,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class StoryListActivity extends FragmentActivity implements
 		StoryListFragment.Callbacks {
@@ -197,7 +199,7 @@ public class StoryListActivity extends FragmentActivity implements
 		builder.setTitle(R.string.login_title);
 		builder.setCancelable(true);
 
-		View view = View.inflate(this, R.layout.dialog_login, null);
+		final View view = View.inflate(this, R.layout.dialog_login, null);
 		builder.setView(view);
 
 		builder.setPositiveButton(R.string.login_login, new OnClickListener() {
@@ -206,6 +208,23 @@ public class StoryListActivity extends FragmentActivity implements
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Check too see if user is online and sync data, or just
 				// let the user log in in offline-mode
+				// For now it stores the user in the database if it's a new
+				// user, and if the user exists it checks to see if the password
+				// is the same
+				String username = ((TextView) view.findViewById(R.id.login_username)).getText().toString();
+				String password = ((TextView) view.findViewById(R.id.login_password)).getText().toString();
+				Database database = new Database(getApplicationContext());
+				database.open();
+				if (database.isExistsUser(username)) {
+					if (!database.isCorrectPassword(username, password)) {
+						Toast.makeText(getApplicationContext(), R.string.login_error, Toast.LENGTH_SHORT).show();
+						return;
+					}
+				} else {
+					database.setUsernameAndPassword(username, password);
+				}
+				
+				Toast.makeText(getApplicationContext(), R.string.login_success, Toast.LENGTH_SHORT).show();
 			}
 		});
 		builder.setNeutralButton(R.string.login_cancel, new OnClickListener() {

@@ -111,13 +111,21 @@ public class StoryActivity extends Activity {
 				button.setText(part.getGameButton());
 			else
 				button.setText(option.getUUID());
-			
+
 			button.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View view) {
-					Intent intent = createTravelIntent(getApplicationContext(),
-							story, option, partTag, previousTag);
+					Intent intent;
+					if (part.getGameMode().equals(JsonParser.QUIZ)) {
+						intent = new Intent(getApplicationContext(), QuizActivity.class);
+						intent.putExtra(StoryActivity.STORY, story);
+						intent.putExtra(StoryActivity.PARTTAG, partTag);
+						intent.putExtra(StoryActivity.PREVIOUSTAG, previousTag);
+					} else {
+						intent = createTravelIntent(getApplicationContext(),
+								story, option, partTag, previousTag);
+					}
 					startActivity(intent);
 				}
 			});
@@ -169,9 +177,7 @@ public class StoryActivity extends Activity {
 		intent.putExtra(PREVIOUSTAG, previousTag);
 		String opt = option.getOptSelectMethod();
 
-		if (story.getStoryPart(partTag).getGameMode().equals(JsonParser.QUIZ))
-			intent.setClass(context, QuizActivity.class);
-		else if (opt.equals(StoryPartOption.HINT_SOUND))
+		if (opt.equals(StoryPartOption.HINT_SOUND))
 			intent.setClass(context, AudioPlayerActivity.class);
 		else if (opt.equals(StoryPartOption.HINT_ARROW))
 			intent.setClass(context, ArrowNavigationActivity.class);

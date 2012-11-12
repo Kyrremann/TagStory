@@ -6,12 +6,13 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/story_part_quiz_yes" >
 
         <LinearLayout
-            android:id="@+id/activity_quiz_layout"
+            android:id="@+id/activity_layout_quiz"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical" >
         </LinearLayout>
     </ScrollView>

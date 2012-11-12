@@ -28,12 +28,14 @@
     
     <string name="story_scan_info">Please scan a tag to see it\'s info, or just do whatever you want!</string>
     <string name="story_find_next">Click to decide where to go next</string>
-    <string name="story_next_part">Next part</string>
+    <string name="story_next_part">Go to next part</string>
     <string name="story_ready">I am ready</string>
     
     <string name="login_title">Please log in</string>
     <string name="login_login">Log in</string>
     <string name="login_cancel">Not now</string>
+    <string name="login_error">Wrong username or password</string>
+    <string name="login_success">You are successfully logged in</string>
     
     <string name="new_user_title">Be a part of Tag Story</string>
     <string name="new_user_create">Join us!</string>
@@ -59,6 +61,8 @@
 	
     <string name="story_quiz_true">Sant</string>
     <string name="story_quiz_false">Usant</string>
+    <string name="story_quiz_correction">More...</string>
+    <string name="story_quiz_next">Next question</string>
 	
 	<color name="light_tree_green">#739D88</color>
 	<color name="tree_green">#1E5228</color>

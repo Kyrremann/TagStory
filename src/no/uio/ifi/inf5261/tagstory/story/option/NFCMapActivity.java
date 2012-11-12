@@ -10,44 +10,70 @@ import no.uio.ifi.inf5261.tagstory.story.StoryActivity;
 import no.uio.ifi.inf5261.tagstory.story.StoryPartOption;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.os.Parcelable;
+import android.widget.Button;
 import android.widget.Toast;
 
 public abstract class NFCMapActivity extends MapActivity {
-	
+
 	protected Story story;
 	protected StoryPartOption option;
 	protected String partTag;
-	
+
 	protected NfcAdapter nfcAdapter;
 	protected PendingIntent nfcPendingIntent;
 	protected boolean nfcScanning;
 	protected ProgressDialog progressDialog;
-	
+
 	public void startScanning() {
 		nfcScanning = true;
 		nfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
-		nfcPendingIntent = PendingIntent.getActivity(this, 0, new Intent(
-				this, this.getClass())
-				.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+		nfcPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this,
+				this.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
 
 		enableForegroundMode();
 
 		progressDialog = new ProgressDialog(this);
-		progressDialog.setMessage("Reading tag");
-		progressDialog.setTitle("Need a title");
+		progressDialog.setMessage("Searching for tag");
+		progressDialog.setButton(ProgressDialog.BUTTON_NEUTRAL, "Abort",
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+						progressDialog.dismiss();
+					}
+				});
+		progressDialog.setButton(ProgressDialog.BUTTON_NEGATIVE, "Cheat",
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+						progressDialog.dismiss();
+						Intent intent = new Intent(getApplicationContext(),
+								StoryActivity.class);
+						intent.putExtra(StoryActivity.STORY, story);
+						intent.putExtra(StoryActivity.PARTTAG,
+								option.getOptNext());
+						intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
+						startActivity(intent);
+					}
+				});
 		progressDialog.setCancelable(false);
 		progressDialog.show();
 	}
-	
+
 	@Override
 	public void onNewIntent(Intent intent) {
+		progressDialog.setMessage("Scanning tag");
 		Parcelable[] rawMsgs = intent
 				.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
 		NdefMessage msg = (NdefMessage) rawMsgs[0];
@@ -86,7 +112,8 @@ public abstract class NFCMapActivity extends MapActivity {
 			}
 		}
 
-		if (data.equals(story.getStoryPart(option.getOptNext()).getBelongsToTag())) {
+		if (data.split("\n")[0].equals(story.getStoryPart(option.getOptNext())
+				.getBelongsToTag())) {
 			progressDialog.dismiss();
 			intent = new Intent(this, StoryActivity.class);
 			intent.putExtra(StoryActivity.STORY, story);
@@ -95,11 +122,11 @@ public abstract class NFCMapActivity extends MapActivity {
 			startActivity(intent);
 		} else {
 			// TODO: What do to when user scan wrong tag?
-			Toast.makeText(this, "Sorry, your scanning the wrong tag",
+			Toast.makeText(this, "Sorry, you're scanning the wrong tag",
 					Toast.LENGTH_SHORT).show();
 		}
 	}
-	
+
 	public void enableForegroundMode() {
 		IntentFilter tagDetected = new IntentFilter(
 				NfcAdapter.ACTION_TAG_DISCOVERED); // filter for all
@@ -111,7 +138,7 @@ public abstract class NFCMapActivity extends MapActivity {
 	public void disableForegroundMode() {
 		nfcAdapter.disableForegroundDispatch(this);
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();

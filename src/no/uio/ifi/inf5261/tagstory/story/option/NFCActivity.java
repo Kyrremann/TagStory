@@ -9,6 +9,7 @@ import no.uio.ifi.inf5261.tagstory.story.StoryPartOption;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.nfc.NdefMessage;
@@ -38,14 +39,39 @@ public abstract class NFCActivity extends Activity {
 		enableForegroundMode();
 
 		progressDialog = new ProgressDialog(this);
-		progressDialog.setMessage("Reading tag");
-		progressDialog.setTitle("Need a title");
+		progressDialog.setMessage("Searching for tag");
+		progressDialog.setButton(ProgressDialog.BUTTON_NEUTRAL, "Abort",
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+						progressDialog.dismiss();
+					}
+				});
+		progressDialog.setButton(ProgressDialog.BUTTON_NEGATIVE, "Cheat",
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+						progressDialog.dismiss();
+						Intent intent = new Intent(getApplicationContext(),
+								StoryActivity.class);
+						intent.putExtra(StoryActivity.STORY, story);
+						intent.putExtra(StoryActivity.PARTTAG,
+								option.getOptNext());
+						intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
+						startActivity(intent);
+					}
+				});
 		progressDialog.setCancelable(false);
 		progressDialog.show();
 	}
 
 	@Override
 	public void onNewIntent(Intent intent) {
+		progressDialog.setMessage("Scanning tag");
 		Parcelable[] rawMsgs = intent
 				.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
 		NdefMessage msg = (NdefMessage) rawMsgs[0];
@@ -84,7 +110,7 @@ public abstract class NFCActivity extends Activity {
 			}
 		}
 
-		if (data.equals(story.getStoryPart(option.getOptNext())
+		if (data.split("\n")[0].equals(story.getStoryPart(option.getOptNext())
 				.getBelongsToTag())) {
 			progressDialog.dismiss();
 			intent = new Intent(this, StoryActivity.class);

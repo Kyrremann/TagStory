@@ -25,8 +25,9 @@ public class QuizActivity extends Activity {
 	private Story story;
 	private StoryPart part;
 	private String partTag, previousTag;
-	private int quizNumber;
+	private int quizNumber, quizPoint;
 	private LinearLayout layout;
+	private TextView textView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,39 +41,67 @@ public class QuizActivity extends Activity {
 		previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);
 		part = story.getStoryPart(partTag);
 
-		layout = (LinearLayout) findViewById(R.id.activity_quiz_layout);
+		layout = (LinearLayout) findViewById(R.id.activity_layout_quiz);
 
 		addQuestion(++quizNumber);
 	}
 
 	private void addQuestion(int location) {
 
-		if (part.getQuizSize() <= location) {
+		if (part.getQuizSize() < location) {
 			goToTagDialog();
 			return;
 		}
 
-		TextView textView = new TextView(this);
-		textView.setBackgroundResource(R.drawable.description_textview_green);
-		textView.setTextAppearance(this, android.R.attr.textAppearanceLarge);
-		textView.setPadding(0, 5, 0, 0);
+		textView = new TextView(this);
 		textView.setText(part.getQuizNode(location).getQuestion());
-		layout.addView(textView);
+		textView.setBackgroundResource(R.drawable.description_textview_green);
+		// textView.setTextAppearance(this, android.R.attr.textAppearanceLarge);
+		textView.setTextSize(21);
+		textView.setPadding(16, 16, 16, 16);
+//		textView.setOnClickListener(new View.OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				v.setAlpha(1f);
+//			}
+//		});
+		layout.addView(textView, 0);
 	}
 
 	public void quizAnswer(View view) {
 
 		// TODO: Add points to the story/user if the user answer correct
+		QuizNode node = part.getQuizNode(quizNumber);
 		switch (view.getId()) {
 		case R.id.story_part_quiz_yes:
+			if (node.isAnswer())
+				quizPoint++;
 			break;
 		case R.id.story_part_quiz_no:
+			if (!node.isAnswer())
+				quizPoint++;
 			break;
 		}
 
-		if (part.getQuizNode(quizNumber).getCorrection() != null)
-			System.out.println(part.getQuizNode(quizNumber).getCorrection());
-		addQuestion(++quizNumber);
+		textView.setAlpha(.5f);
+
+		if (node.getCorrection() != null) {
+			AlertDialog.Builder builder = new Builder(this);
+			builder.setTitle(R.string.story_quiz_correction);
+			builder.setMessage(node.getCorrection());
+			builder.setNeutralButton(R.string.story_quiz_next,
+					new OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							addQuestion(++quizNumber);
+						}
+					});
+			builder.create().show();
+		} else
+			addQuestion(++quizNumber);
 	}
 
 	private void goToTagDialog() {
@@ -80,21 +109,25 @@ public class QuizActivity extends Activity {
 		builder.setTitle(R.string.story_next_part);
 		builder.setCancelable(false);
 		if (part.getOptions().size() == 1) {
-			final StoryPartOption option = part.getOptions().values().iterator().next();
-			builder.setMessage(option.getUUID());
-			builder.setNeutralButton(R.string.story_ready, new OnClickListener() {
-				
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					Intent intent = StoryActivity.createTravelIntent(getApplicationContext(), story, option, partTag, previousTag);
-					startActivity(intent);
-				}
-			});
+			final StoryPartOption option = part.getOptions().values()
+					.iterator().next();
+			builder.setMessage("You scored " + quizPoint + " point(s).");
+			builder.setNeutralButton(R.string.story_ready,
+					new OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							Intent intent = StoryActivity.createTravelIntent(
+									getApplicationContext(), story, option,
+									option.getOptNext(), partTag);
+							startActivity(intent);
+						}
+					});
 		} else {
 			// TODO
 			System.out.println("Is not yet implemented");
 		}
-		
+
 		builder.create().show();
 	}
 

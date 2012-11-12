@@ -17,12 +17,13 @@
 		"UUID":"f0869759-b7f8-4555-933e-b27bc4c0ab2f",
 		"belongsToTag":"d3013c60-28c8-11e2-81c1-0800200c9a66",
 		"partTitle":"Sognsvannquiz",
-		"partDesc":"Velkommen til Thomas sin Sognsvannquiz. Kos deg på tur rundt sognsvann.",
+		"partDesc":"Velkommen til Tag Story natur- og områdequiz for Sognsvannsområdet. Du har nå funnet din første tag så nå begynner quizen som i alt består av 9 steder, markert med tags. På i alt 7 av 9 steder må det i tillegg til å finne og scanne taggene, svares på spørsmål før man kan gå videre til neste sted. Starten og slutten på turen, dvs. start- og slutt-tag, vises med GPS koordinater og er rene transportetapper. Sognsvann er en innsjø i Oslomarka som ligger ved markagrensen, rett nord for Oslo. Sognsvann var drikkevann for Oslo fra 1876 til 1967. Ved sørenden ligger Sognsvann gård, anlagt på endemorenen etter siste istid, da havnivået nådde nesten helt opp til det som nå er Sognsvann. Vannet ligger i et populært turområde, og ved selve vannet er det ypperlig for grilling, bading, strandvolleyball og annen lek og moro.",
 		"choiceDesc":"",
 		"gameMode":"none",
 		"partOptions": {
 		    "Kart til Sognsvann": {
 			"optSelectMethod":"hint_map",
+			"optHintText":"Gå på turstien til høyre langs vannet til du kommer til en klynge med bjerketrær som har fastmontert noe som ser ut som fuglekasser.",
 			"optLen":"float",
 			"optLat":"float",
 			"optNext":"c6d5b0b2-f175-42df-bc3f-dec670f46763"
@@ -333,6 +334,7 @@
 		"partOptions": {
 		    "Kart til Sognsvann": {
 			"optSelectMethod":"hint_map",
+			"optHintText":"Følg turstien videre rundt vannet til du nærmer deg starten på ruten din. Selv om du har gått langt og sikkert er sliten, må du klare å komme deg tilbake til slutten av ruten på den angitte tiden.",
 			"optLen":"float",
 			"optLat":"float",
 			"optNext":"74b5fe6d-dedd-43a9-b7e1-b6d19efc0358"
@@ -343,7 +345,8 @@
 	    "74b5fe6d-dedd-43a9-b7e1-b6d19efc0358": { 
 		"UUID":"74b5fe6d-dedd-43a9-b7e1-b6d19efc0358",
 		"belongsToTag":"d3013c68-28c8-11e2-81c1-0800200c9a66",
-		"partDesc":"",
+		"partTitle":"endtag",
+		"partDesc":"Du har nå spilt ferdig historien. Håper du har hatt en fornøyelig tur og at du vil besøke Tag Stroy (tagstory.no) for flere begivenhetstrike historier i fremtiden. Trykk på knappen for dine oppnådde poeng for å se hvordan du har gjort det.",
 		"gameMode":"none",
 		"isEndPoint":"true"
 	    }

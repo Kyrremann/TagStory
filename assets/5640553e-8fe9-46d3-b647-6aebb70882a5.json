@@ -355,7 +355,7 @@
 		"partOptions": {
 		    "Kart til Sognsvann": {
 			"optSelectMethod":"hint_map",
-			"optHintText":"",
+			"optHintText":"Følg turstien videre rundt vannet til du nærmer deg starten på ruten din. Neste tag er siste og avlsutningen på naturquiz'en for Sognsvann!",
 			"optLong":"10.726967",
 			"optLat":"59.969979",
 			"optNext":"74b5fe6d-dedd-43a9-b7e1-b6d19efc0358"

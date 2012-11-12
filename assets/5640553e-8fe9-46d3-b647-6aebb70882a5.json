@@ -129,7 +129,7 @@
 		    "6": {
 			"quizQ":"Ved å svømme på dype områder, som for eksempel fra flytebrygger, reduserer risikoen for svømmekløe?",
 			"quizA":"true",
-			"quizC":"Dypt vann inneholder mindre vegetasjon og snegler i vannet enn grunt vann."
+			"quizC":"Riktig, dypt vann inneholder mindre vegetasjon og snegler i vannet enn grunt vann."
 		    }
 		},
 		"partOptions": {
@@ -161,12 +161,12 @@
 		    "3": {
 			"quizQ":"Stein fra åsene nord for byen ble brukt i mange bygninger i Oslo og ellers i landet; blant annet Universitetsbygningen, Trefoldighetskirken, Holmenkollen kapell, Slottets sokkel og Stortingsbygningen?",
 			"quizA":"false",
-			"quizC":"Holmenkollen kapell er primært laget av tre."
+			"quizC":"Feil, Holmenkollen kapell er primært laget av tre."
 		    },
 		    "4": {
 			"quizQ":"Før første verdenskrig ble det eksportert større mengder nordmarkitt til Angola til oppbygging av kulturminner og statlige bygninger i hovedstaden Luanda?",
 			"quizA":"false",
-			"quizC":"Feil, dette stemmer ikke ;P"
+			"quizC":"Feil, dette stemmer ikke :P"
 		    }
 		},
 		"partOptions": {
@@ -190,7 +190,7 @@
 		    "1": {
 			"quizQ":"Dendrokronologi er en metoden for å finne ut av treets alder ved hjelp av ultralyd?",
 			"quizA":"false",
-			"quizC":"Dendrokronologi vil si å undersøke årringene til treet. Kalles også for treringdatering eller årring-datering"
+			"quizC":"Feil, dendrokronologi vil si å undersøke årringene til treet. Kalles også for treringdatering eller årring-datering"
 		    },
 		    "2": {
 			"quizQ":"Ved å se på treets ringer kan man se på treets vekst fra en sesong til en annen. Treets ringer gir oss også nøyaktig informasjon om naturhendelser som har funnet sted, inkludert vulkanutbrudd?",
@@ -334,7 +334,7 @@
 			"quizA":"true"
 		    },
 		    "2": {
-			"quizQ":"I  følge statens strålevern bør man ved bygging av nye høyspentledninger forsøke å unngå å legge de nært til boliger, barnehager skoler mv., fordi de kan gi økt risiko for enkelte kreftformer ved langvarig eksponering?",
+			"quizQ":"I følge statens strålevern bør man ved bygging av nye høyspentledninger forsøke å unngå å legge de nært til boliger, barnehager skoler mv., fordi de kan gi økt risiko for enkelte kreftformer ved langvarig eksponering?",
 			"quizA":"true"
 		    },
 		    "3": {
@@ -349,7 +349,7 @@
 		    "5": {
 			"quizQ":"Man får kun elektrisk støt hvis strømmen går gjennom kroppen din til jord?",
 			"quizA":"true",
-			"quizC":"Med jord menes alt annet som kroppen din er i kontakt med som for eksempel gulv, stoler, gress og så videre. Det er derfor fuglene kan sitte på elektriske ledninger uten å få støt. Kommer fuglene nær to ledninger får også de støt."
+			"quizC":"Riktig, med jord menes alt annet som kroppen din er i kontakt med som for eksempel gulv, stoler, gress og så videre. Det er derfor fuglene kan sitte på elektriske ledninger uten å få støt. Kommer fuglene nær to ledninger får også de støt."
 		    }
 		},
 		"partOptions": {

@@ -7,7 +7,7 @@
 	"agegroup":"0-99",
 	"area":"Sognsvann",
 	"date":"4.11.12",
-	"description":"String",
+	"description":"Velkommen til Tag Story! Her kan du lage dine egne historier med alle de oppgavene og utfordringene du måtte ønske deg. Alternativt kan du spille historier andre har laget, etterhvert som det sosiale miljøet rundt Tag Story vokser og flere historier slipper til. Uansett hva du velger, vil Tag Story gi deg en opplevelse du sent vil glemme, enjoy! ",
 	"keywords":"quiz, naturfag, fakta, sognsvann",
 	"startTag":"f0869758-b7f8-4555-933e-b27bc4c0ab2f",
 	"tagCount":"9",
@@ -41,13 +41,8 @@
 		"partOptions": {
 		    "Flaggermusquiz": {
 			"optSelectMethod":"hint_text",
-			"optHintText":"For å komme til neste tag: Gå på turstien til høyre langs vannet til du kommer til en klynge med bjerketrær som har fastmontert noe som ser ut som fuglekasser.",
+			"optHintText":"For å komme til neste tag: Gå først rett nedover mot Sognsvannet, før du tar av på turstien til høyre langs vannet. Følg stien til du kommer til en klynge med bjerketrær som har fastmontert noe som ser ut som fuglekasser.",
 			"optNext":"c6d5b0b2-f175-42df-bc3f-dec670f46763"
-		    },
-		    "Strandenquiz": {
-			"optSelectMethod":"hint_text",
-			"optHintText":"For å komme til neste tag: Gå langs turstien og finn skiltet som markerer Stranden.",
-			"optNext":"3385706e-509d-47a2-a5c2-f268a7bc2cee"
 		    }
 		},
 		"isEndPoint":"false"
@@ -90,7 +85,7 @@
 		"partOptions": {
 		    "String": {
 			"optSelectMethod":"hint_text",
-			"optHintText":"For å komme til neste tag: Følg vannet til flytebryggen",
+			"optHintText":"For å komme til neste tag: Følg vannet til til du kommer til en liten bro. På denne broen befinner neste tag seg et sted. Rett ved finnes også et skilt med påskriften 'Stranden'.",
 			"optNext":"1efe1da1-411e-4963-8d60-b1bf62181832"
 		    }
 		},
@@ -170,10 +165,15 @@
 		    }
 		},
 		"partOptions": {
-		    "String": {
+		    "Trequiz": {
 			"optSelectMethod":"hint_text",
-			"optHintText":"For å komme til neste tag: Følg turveien videre rundt vannet til du kommer til et lønnetre som står i enden av en gressbakke med svak oppoverskrens. Rett ved stien står finner du en stor sten med et skilt som viser sykling forbudt.",
+			"optHintText":"For å komme til neste tag: Følg turveien videre rundt vannet til du kommer til et lønnetre som står på toppen av en gressbakke. Rett ved stien finner du en stor sten med et skilt som viser sykling forbudt.",
 			"optNext":"3cc51a34-336f-40e4-9524-65251449f02e"
+		    },
+		    "Strandenquiz": {
+			"optSelectMethod":"hint_text",
+			"optHintText":"For å komme til neste tag: Gå ned til vannet til du kommer til flytebryggen.",
+			"optNext":"1efe1da1-411e-4963-8d60-b1bf62181832"
 		    }
 		},
 		"isEndPoint":"false"
@@ -235,7 +235,7 @@
 		"UUID":"38bbdbff-3707-45f8-a676-c8a5d5b6b297",
 		"belongsToTag":"d3013c65-28c8-11e2-81c1-0800200c9a66",
 		"partTitle":"Søndre Skjeggerud",
-		"partDesc":"Søndre Skjeggerud var opprinnelig en husmannsplass under Vestre Sogn gård. Her var det et en-etasjet tømmerhus og fjøs og låve på nordsiden av hovedhuset. Plassen ble nedlagt og husene ble revet på grunn av vannrestriksjonene ca. 1914. I 1865 ble det holdt husdyr på gården. Det var en hest, fire kuer, to faar og fjerkre på plassen, og det ble også dyrket korn. Av de 16-17 husdyr artene som mennesket har temmet, ble 13 temmet i Europa. I Sør-Amerika var det bare lamaen som ble temmet. Urbefolkningen i Nord-Amerika temmet ingen, tvert imot utryddet de hesten som fantes der da de kom. Det var spanjolene som gjeninnførte hesten til Nord-Amerika og viste indianerne at den kunne brukes som arbeidsdyr. De eldste funn av knokler fra husdyr i Norge er funnet i Skipshelleren i Hordaland.",
+		"partDesc":"Søndre Skjeggerud var opprinnelig en husmannsplass under Vestre Sogn gård. Her var det et en-etasjet tømmerhus og fjøs og låve på nordsiden av hovedhuset. Plassen ble nedlagt og husene ble revet på grunn av vannrestriksjonene ca. 1914. I 1865 ble det holdt husdyr på gården. Det var en hest, fire kuer, to faar og fjerkre på plassen, og det ble også dyrket korn. Av de 16-17 husdyr artene som mennesket har temmet, ble 13 temmet i Europa. De eldste funn av knokler fra husdyr i Norge er funnet i Skipshelleren i Hordaland.",
 		"choiceDesc":"",
 		"gameMode":"quiz",
 		"gameButton":"Trykk for å starte husdyrquiz",
@@ -254,9 +254,9 @@
 			"quizA":"true"
 		    },
 		    "4": {
-			"quizQ":"India har den største populasjonene med sauer av alle land. Totalt sett finnes over 1 milliard sauer i verden?",
+			"quizQ":"Kina har den største populasjonene med sauer av alle land. Totalt sett finnes over 3 milliard sauer i verden?",
 			"quizA":"false",
-			"quizC":"Feil, Kina har den største populasjonen med sauer."
+			"quizC":"Feil, Det finnes 1 milliard sauer i verden, selv om det er fort gjort å tro at det finnes flere ;P."
 		    },
 		    "5": {
 			"quizQ":"Sauer har en synsvidde på 300 grader, som gjør det mulig å se bakover uten at de trenger å snu på hodet?",
@@ -270,7 +270,7 @@
 		"partOptions": {
 		    "String": {
 			"optSelectMethod":"hint_text",
-			"optHintText":"For å komme til neste tag: Følg turveien videre rundt vannet til du ser tre maurtuer på høyre hånd",
+			"optHintText":"For å komme til neste tag: Følg turveien videre rundt vannet til du ser tre maurtuer på høyre hånd. Taggen finner du et sted i skogen bak tuene",
 			"optNext":"a009cdbc-6a39-4f18-98c0-f1dde1fbf937"
 		    }
 		},
@@ -355,7 +355,7 @@
 		"partOptions": {
 		    "Kart til Sognsvann": {
 			"optSelectMethod":"hint_map",
-			"optHintText":"Følg turstien videre rundt vannet til du nærmer deg starten på ruten din. Neste tag er siste og avlsutningen på naturquiz'en for Sognsvann!",
+			"optHintText":"Følg turstien videre rundt vannet til du nærmer deg starten på ruten din. Neste tag er siste og avlsutningen på naturquiz'en for Sognsvann! Etter å ha passert kortsiden av Sognsvann nærmer du deg starten igjen. Taggen finner du plassert på utedoen nærmest vannet.",
 			"optLong":"10.726967",
 			"optLat":"59.969979",
 			"optNext":"74b5fe6d-dedd-43a9-b7e1-b6d19efc0358"

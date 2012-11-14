@@ -83,10 +83,10 @@
 		    }
 		},
 		"partOptions": {
-		    "String": {
+		    "Gå til neste tag": {
 			"optSelectMethod":"hint_text",
-			"optHintText":"For å komme til neste tag: Følg vannet til til du kommer til en liten bro. På denne broen befinner neste tag seg et sted. Rett ved finnes også et skilt med påskriften 'Stranden'.",
-			"optNext":"1efe1da1-411e-4963-8d60-b1bf62181832"
+			"optHintText":"For å komme til neste tag: Følg vannet til du kommer til en liten bro. På denne broen befinner neste tag seg et sted. Rett ved finnes også et skilt med påskriften 'Stranden'.",
+			"optNext":"3385706e-509d-47a2-a5c2-f268a7bc2cee"
 		    }
 		},
 		"isEndPoint":"false"
@@ -170,7 +170,7 @@
 			"optHintText":"For å komme til neste tag: Følg turveien videre rundt vannet til du kommer til et lønnetre som står på toppen av en gressbakke. Rett ved stien finner du en stor sten med et skilt som viser sykling forbudt.",
 			"optNext":"3cc51a34-336f-40e4-9524-65251449f02e"
 		    },
-		    "Strandenquiz": {
+		    "Flytebryggequiz": {
 			"optSelectMethod":"hint_text",
 			"optHintText":"For å komme til neste tag: Gå ned til vannet til du kommer til flytebryggen.",
 			"optNext":"1efe1da1-411e-4963-8d60-b1bf62181832"

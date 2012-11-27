@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/tree_green"
-    android:padding="5dp" >
+    android:padding="16dp" >
 
     <LinearLayout
         android:id="@+id/lstory_detail_title_author"
@@ -37,22 +36,21 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
 
             <ImageView
                 android:id="@+id/story_detail_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:background="@drawable/description_textview_green"
-                android:src="@drawable/blindern" />
+                android:contentDescription="@string/detail_story_description_image"
+                android:src="@drawable/sognsvann" />
 
             <RelativeLayout
                 android:id="@+id/story_detail_extra"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/story_detail_image"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/description_textview_green"
                 android:padding="5dp" >

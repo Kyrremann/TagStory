@@ -171,7 +171,8 @@
 			"optNext":"3cc51a34-336f-40e4-9524-65251449f02e"
 		    },
 		    "Flytebryggequiz": {
-			"optSelectMethod":"hint_text",
+			"optSelectMethod":"hint_image",
+			"optImageSrc":"flytebrygge",
 			"optHintText":"For å komme til neste tag: Gå ned til vannet til du kommer til flytebryggen.",
 			"optNext":"1efe1da1-411e-4963-8d60-b1bf62181832"
 		    }

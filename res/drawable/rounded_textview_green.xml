@@ -12,7 +12,6 @@
     </item>
 
     <item
-        android="3px"
         android:bottom="3px">
 
         <shape android:shape="rectangle" >

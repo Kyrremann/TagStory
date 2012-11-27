@@ -11,13 +11,16 @@ import no.uio.ifi.inf5261.tagstory.Database.JsonParser;
 import no.uio.ifi.inf5261.tagstory.rfid.WriteTag;
 import no.uio.ifi.inf5261.tagstory.story.StoryActivity;
 import no.uio.ifi.inf5261.tagstory.story.StoryManager;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,16 +29,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class StoryListActivity extends FragmentActivity implements
+public class StoryListActivity extends ListActivity implements
 		StoryListFragment.Callbacks {
 
-	private boolean mTwoPane;
 	private Dialog loginDialog, newUserDialog, aboutDialog, newTagDialog;
 
 	private Context context;
+	private Cursor storyCursor;
+	private StoryManager storyManager;
 
 	private boolean nfcWriteMode = false;
 	private String nfcMessage;
@@ -47,29 +55,29 @@ public class StoryListActivity extends FragmentActivity implements
 		setContentView(R.layout.activity_story_list);
 		// getActionBar().setDisplayHomeAsUpEnabled(true);
 		context = this;
+		this.storyManager = new StoryManager(this);
+		this.storyCursor = storyManager.getStoryList();
 
-		if (findViewById(R.id.story_detail_container) != null) {
-			mTwoPane = true;
-			((StoryListFragment) getSupportFragmentManager().findFragmentById(
-					R.id.story_list)).setActivateOnItemClick(true);
-		}
+		setListAdapter(new SimpleCursorAdapter(this, R.layout.story_list_item,
+				storyCursor, new String[] { Database.STORY_TITLE,
+						Database.STORY_AUTHOR }, new int[] {
+						R.id.storyListItemTitle, R.id.storyListItemAuthor }, 0));
 	}
-
+	
 	@Override
 	public void onItemSelected(String id) {
-		if (mTwoPane) {
-			Bundle arguments = new Bundle();
-			arguments.putString(Database.STORY_ID, id);
-			StoryDetailFragment fragment = new StoryDetailFragment();
-			fragment.setArguments(arguments);
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.story_detail_container, fragment).commit();
-
-		} else {
-			Intent detailIntent = new Intent(this, StoryDetailActivity.class);
-			detailIntent.putExtra(Database.STORY_ID, id);
-			startActivity(detailIntent);
-		}
+		Intent detailIntent = new Intent(this, StoryDetailActivity.class);
+		detailIntent.putExtra(Database.STORY_ID, id);
+		startActivity(detailIntent);
+	}
+	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+		
+		storyCursor.moveToPosition(position);
+		onItemSelected(storyCursor.getString(0) + ".json");
+		
 	}
 
 	@Override
@@ -211,20 +219,27 @@ public class StoryListActivity extends FragmentActivity implements
 				// For now it stores the user in the database if it's a new
 				// user, and if the user exists it checks to see if the password
 				// is the same
-				String username = ((TextView) view.findViewById(R.id.login_username)).getText().toString();
-				String password = ((TextView) view.findViewById(R.id.login_password)).getText().toString();
+				String username = ((TextView) view
+						.findViewById(R.id.login_username)).getText()
+						.toString();
+				String password = ((TextView) view
+						.findViewById(R.id.login_password)).getText()
+						.toString();
 				Database database = new Database(getApplicationContext());
 				database.open();
 				if (database.isExistsUser(username)) {
 					if (!database.isCorrectPassword(username, password)) {
-						Toast.makeText(getApplicationContext(), R.string.login_error, Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(),
+								R.string.login_error, Toast.LENGTH_SHORT)
+								.show();
 						return;
 					}
 				} else {
 					database.setUsernameAndPassword(username, password);
 				}
-				
-				Toast.makeText(getApplicationContext(), R.string.login_success, Toast.LENGTH_SHORT).show();
+
+				Toast.makeText(getApplicationContext(), R.string.login_success,
+						Toast.LENGTH_SHORT).show();
 			}
 		});
 		builder.setNeutralButton(R.string.login_cancel, new OnClickListener() {

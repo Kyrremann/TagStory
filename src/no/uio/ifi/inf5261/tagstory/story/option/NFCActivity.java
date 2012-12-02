@@ -16,6 +16,7 @@ import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.os.Parcelable;
+import android.view.View;
 import android.widget.Toast;
 
 public abstract class NFCActivity extends Activity {
@@ -28,6 +29,10 @@ public abstract class NFCActivity extends Activity {
 	protected PendingIntent nfcPendingIntent;
 	protected boolean nfcScanning;
 	protected ProgressDialog progressDialog;
+	
+	public void scanTag(View v) {
+		startScanning();
+	}
 
 	public void startScanning() {
 		nfcScanning = true;

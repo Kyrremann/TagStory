@@ -56,11 +56,6 @@ public class StoryActivity extends Activity {
 	private StoryPart part;
 	private String partTag, previousTag;
 
-	// protected NfcAdapter nfcAdapter;
-	// protected PendingIntent nfcPendingIntent;
-
-	// private TextView storyStart;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -93,16 +88,6 @@ public class StoryActivity extends Activity {
 			intent.putExtra(PREVIOUSTAG, previousTag);
 			startActivity(intent);
 		}
-
-		// LinearLayout layout = (LinearLayout)
-		// findViewById(R.id.story_part_option);
-
-		// storyStart = (TextView) findViewById(R.id.textView1);
-
-		// nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-		// nfcPendingIntent = PendingIntent.getActivity(this, 0, new
-		// Intent(this,
-		// this.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
 	}
 
 	private void generateOptionFunction(

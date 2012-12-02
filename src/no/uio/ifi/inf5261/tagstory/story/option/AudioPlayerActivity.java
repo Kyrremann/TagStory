@@ -139,16 +139,6 @@ public class AudioPlayerActivity extends NFCActivity implements
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		MenuItem item = menu.add(Menu.NONE, 0, Menu.NONE,
-				R.string.story_scan_tag);
-		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
-		return true;
-	}
-
-	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == android.R.id.home) {
 			Intent intent = new Intent(this, StoryActivity.class);
@@ -157,13 +147,6 @@ public class AudioPlayerActivity extends NFCActivity implements
 			intent.putExtra(StoryActivity.PREVIOUSTAG, previousTag);
 			NavUtils.navigateUpTo(this, intent);
 			return true;
-		} else if (item.getItemId() == 0) {
-			startScanning();
-			// Intent intent = new Intent(this, StoryActivity.class);
-			// intent.putExtra(StoryActivity.STORY, story);
-			// intent.putExtra(StoryActivity.PARTTAG, option.getOptNext());
-			// intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
-			// startActivity(intent);
 		}
 
 		return super.onOptionsItemSelected(item);

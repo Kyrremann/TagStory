@@ -1,17 +1,10 @@
 package no.uio.ifi.inf5261.tagstory;
 
-import java.io.IOException;
-
-import org.json.JSONException;
-
 import no.uio.ifi.inf5261.tagstory.R;
 import no.uio.ifi.inf5261.tagstory.Database.CommunicationManager;
 import no.uio.ifi.inf5261.tagstory.Database.Database;
-import no.uio.ifi.inf5261.tagstory.Database.JsonParser;
 import no.uio.ifi.inf5261.tagstory.rfid.WriteTag;
-import no.uio.ifi.inf5261.tagstory.story.StoryActivity;
 import no.uio.ifi.inf5261.tagstory.story.StoryManager;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
@@ -24,20 +17,16 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TabHost;
-import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class StoryListActivity extends ListActivity implements
-		StoryListFragment.Callbacks {
+public class StoryListActivity extends ListActivity {
 
 	private Dialog loginDialog, newUserDialog, aboutDialog, newTagDialog;
 
@@ -58,6 +47,7 @@ public class StoryListActivity extends ListActivity implements
 		this.storyManager = new StoryManager(this);
 		this.storyCursor = storyManager.getStoryList();
 
+		// TODO Make list adapter that works with the image in the database/json
 		setListAdapter(new SimpleCursorAdapter(this, R.layout.story_list_item,
 				storyCursor, new String[] { Database.STORY_TITLE,
 						Database.STORY_AUTHOR }, new int[] {
@@ -65,18 +55,13 @@ public class StoryListActivity extends ListActivity implements
 	}
 	
 	@Override
-	public void onItemSelected(String id) {
-		Intent detailIntent = new Intent(this, StoryDetailActivity.class);
-		detailIntent.putExtra(Database.STORY_ID, id);
-		startActivity(detailIntent);
-	}
-	
-	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 		
 		storyCursor.moveToPosition(position);
-		onItemSelected(storyCursor.getString(0) + ".json");
+				Intent detailIntent = new Intent(this, StoryDetailActivity.class);
+		detailIntent.putExtra(Database.STORY_ID, storyCursor.getString(0) + ".json");
+		startActivity(detailIntent);
 		
 	}
 

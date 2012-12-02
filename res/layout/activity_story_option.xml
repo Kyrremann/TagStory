@@ -1,23 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollView1"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="5dp"
-    android:background="@color/tree_green" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
 
-    <LinearLayout
-        android:id="@+id/story_option_layout"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/scan_tag"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/description_textview_green"
-        android:orientation="vertical" >
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/darker_gray"
+        android:onClick="scanTag"
+        android:text="@string/story_scan_tag" />
 
-        <TextView
-            android:id="@+id/story_option_hint"
-            android:layout_width="wrap_content"
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/scan_tag"
+        android:padding="15dp" >
+
+        <LinearLayout
+            android:id="@+id/story_option_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-    </LinearLayout>
+            android:orientation="vertical" >
 
-</ScrollView>
+            <TextView
+                android:id="@+id/story_option_hint"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_border_light_green"
+                android:padding="10dp"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

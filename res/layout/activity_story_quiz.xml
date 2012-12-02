@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/tree_green" >
+    android:layout_height="fill_parent" >
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/story_part_quiz_yes" >
+        android:layout_above="@+id/story_part_quiz_yes"
+        android:layout_margin="15dp" >
 
         <LinearLayout
             android:id="@+id/activity_layout_quiz"
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
         </LinearLayout>
     </ScrollView>
@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:background="@android:color/darker_gray"
         android:onClick="quizAnswer"
         android:text="@string/story_quiz_true" />
 
@@ -32,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:background="@android:color/darker_gray"
         android:onClick="quizAnswer"
         android:text="@string/story_quiz_false" />
 

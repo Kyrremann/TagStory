@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_map_layout"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent" >
+
+    <Button
+        android:id="@+id/scan_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/darker_gray"
+        android:onClick="scanTag"
+        android:text="@string/story_scan_tag" />
 
     <com.google.android.maps.MapView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/story_map_view"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/scan_tag"
+        android:layout_alignParentTop="true"
         android:apiKey="0_ZqXk6eXNEWprTM_dhYsrzCA0O4Ov2egdR_Y-g"
         android:clickable="true" />
 
-</LinearLayout>
+</RelativeLayout>

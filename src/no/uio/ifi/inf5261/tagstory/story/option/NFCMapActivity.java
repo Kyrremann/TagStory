@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import com.google.android.maps.MapActivity;
 
+import no.uio.ifi.inf5261.tagstory.R;
 import no.uio.ifi.inf5261.tagstory.story.Story;
 import no.uio.ifi.inf5261.tagstory.story.StoryActivity;
 import no.uio.ifi.inf5261.tagstory.story.StoryPartOption;
@@ -17,6 +18,7 @@ import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.os.Parcelable;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -30,6 +32,10 @@ public abstract class NFCMapActivity extends MapActivity {
 	protected PendingIntent nfcPendingIntent;
 	protected boolean nfcScanning;
 	protected ProgressDialog progressDialog;
+	
+	public void scanTag(View v) {
+		startScanning();
+	}
 
 	public void startScanning() {
 		nfcScanning = true;

@@ -73,13 +73,16 @@ public class Database {
 			// STORIES
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
-					+ " VALUES ('4ff0b8f0-18a6-11e2-892e-0800200c9a66', 'Kyrre Havik Eriksen', 'Skattejakt på blindern')");
+					+ " VALUES ('4ff0b8f0-18a6-11e2-892e-0800200c9a66', 'Kyrre Havik Eriksen', 'Skattejakt på Blindern')");
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
 					+ " VALUES ('ae7fed40-19c4-11e2-892e-0800200c9a66', 'Randall Munroe', 'Pwned (Xkcd.com)')");
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
 					+ " VALUES ('5640553e-8fe9-46d3-b647-6aebb70882a5', 'Thomas Portilla', 'Naturquiz for Sognsvann')");
+			db.execSQL("INSERT INTO "
+					+ STORY_TABLE_NAME
+					+ " VALUES ('4ef0b8f0-18a6-11e2-892e-0800200c9a66', 'Bao Marianna Nguyen', 'Treasure hunt at Blindern')");
 		}
 	}
 

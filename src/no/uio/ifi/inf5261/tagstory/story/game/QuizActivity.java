@@ -58,7 +58,7 @@ public class QuizActivity extends Activity {
 
 		textView = new TextView(this);
 		textView.setText(part.getQuizNode(location).getQuestion());
-		textView.setBackgroundResource(R.drawable.description_textview_green);
+		textView.setBackgroundResource(R.drawable.background_border_light_green);
 		// textView.setTextAppearance(this, android.R.attr.textAppearanceLarge);
 		textView.setTextSize(21);
 		textView.setPadding(16, 16, 16, 16);

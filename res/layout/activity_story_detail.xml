@@ -1,121 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="16dp" >
+    android:layout_height="fill_parent" >
 
-    <LinearLayout
-        android:id="@+id/lstory_detail_title_author"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/start_story_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/description_textview_green"
-        android:orientation="vertical"
-        android:paddingLeft="5dp" >
-
-        <TextView
-            android:id="@+id/story_detail_title"
-            style="?android:attr/textAppearanceLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/story_detail_author"
-            style="?android:attr/textAppearanceSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp" />
-    </LinearLayout>
+        android:layout_alignParentRight="true"
+        android:background="@android:color/darker_gray"
+        android:onClick="startStory"
+        android:text="Start Story" />
 
     <ScrollView
-        android:layout_width="fill_parent"
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/lstory_detail_title_author"
-        android:layout_marginTop="5dp" >
+        android:layout_above="@+id/start_story_button"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="15dp" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:orientation="vertical" >
 
             <ImageView
                 android:id="@+id/story_detail_image"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/description_textview_green"
-                android:contentDescription="@string/detail_story_description_image"
-                android:src="@drawable/sognsvann" />
+                android:src="@drawable/blindern" />
 
-            <RelativeLayout
-                android:id="@+id/story_detail_extra"
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView1"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/description_textview_green"
-                android:padding="5dp" >
+                android:layout_height="wrap_content" >
 
-                <TextView
-                    android:id="@+id/story_detail_date"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/story_detail_genre"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal" >
 
-                <TextView
-                    android:id="@+id/story_detail_genre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
 
-                <TextView
-                    android:id="@+id/story_detail_area"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@id/story_detail_genre"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                        <RatingBar
+                            android:numStars="1"
+                            android:rating="1"
+                            android:isIndicator="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/story_detail_age"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/story_detail_area"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="-20dp"
+                            android:text="4"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/story_detail_tagcount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/story_detail_area"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@id/story_detail_date"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-            </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:gravity="bottom"
+                        android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/story_detail_keywords"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/description_textview_green"
-                android:padding="5dp"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|bottom"
+                            android:text="Family"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:gravity="bottom"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|bottom"
+                            android:text="Mystery"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <TextView
                 android:id="@+id/story_detail_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/description_textview_green"
-                android:padding="5dp"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:background="@drawable/background_border_light_green"
+                android:padding="10dp"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="10dp"
+                android:background="@color/android_light_green"
+                android:layout_marginBottom="10dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_border_light_green"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_toLeftOf="@+id/imageView1"
+                    android:text="Super historie! Anbefaler den til alle."
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/textView1"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="3"
+                    android:stepSize="1.0" />
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@android:drawable/ic_menu_gallery" />
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="5dp"
+                android:background="@color/android_light_green" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_border_light_green"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_toLeftOf="@+id/imageView1"
+                    android:text="Flott med all den faktaen om Blindern."
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/textView1"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="5"
+                    android:stepSize="1.0" />
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@android:drawable/ic_menu_gallery" />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 

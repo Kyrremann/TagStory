@@ -45,28 +45,9 @@ public class StoryTravelActivity extends NFCActivity {
 
 	private View createImageHint(String optImageSrc) {
 		ImageView imageView = new ImageView(this);
-		System.out.println(optImageSrc);
 		imageView.setImageResource(getResources().getIdentifier(optImageSrc,
 				"drawable", getPackageName()));
 		return imageView;
-	}
-
-	// public void readyToScan(View view) {
-	// Intent intent = new Intent(this, StoryActivity.class);
-	// intent.putExtra(StoryActivity.STORY, story);
-	// intent.putExtra(StoryActivity.PARTTAG, option.getOptNext());
-	// intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
-	// startActivity(intent);
-	// }
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		MenuItem item = menu.add(Menu.NONE, 0, Menu.NONE,
-				R.string.story_scan_tag);
-		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
-		return true;
 	}
 
 	@Override
@@ -78,13 +59,6 @@ public class StoryTravelActivity extends NFCActivity {
 			intent.putExtra(StoryActivity.PREVIOUSTAG, previousTag);
 			NavUtils.navigateUpTo(this, intent);
 			return true;
-		} else if (item.getItemId() == 0) {
-			startScanning();
-//			Intent intent = new Intent(this, StoryActivity.class);
-//			intent.putExtra(StoryActivity.STORY, story);
-//			intent.putExtra(StoryActivity.PARTTAG, option.getOptNext());
-//			intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
-//			startActivity(intent);
 		}
 
 		return super.onOptionsItemSelected(item);

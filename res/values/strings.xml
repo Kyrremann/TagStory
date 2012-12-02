@@ -4,6 +4,7 @@
     <string name="title_story_detail">Story Detail</string>
     <string name="title_story_list">Stories</string>
     <string name="no_stories">No stories for you</string>
+    <string name="add_more_stories">Click to look for more stories</string>
     
     <string name="username">Username</string>
     <string name="username_hint">Username goes here&#8230;</string>

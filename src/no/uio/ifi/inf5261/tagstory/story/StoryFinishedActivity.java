@@ -30,7 +30,7 @@ public class StoryFinishedActivity extends Activity {
 				.getDescription());
 	}
 
-	public void doneWithStory(View view) {
+	public void endOfStory(View view) {
 		NavUtils.navigateUpTo(this, new Intent(this, StoryListActivity.class));
 	}
 

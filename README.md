@@ -6,16 +6,21 @@ Better description pending...
 
 Todo
 ----
-* Create tags with UUID (at least 9)
-* Create a box or something that the tag can be taped to
-* Place them out at Sognsvann
 * Make web site
  * Let the user make a profile
  * Let the user create stories
+* Tags can not be hanged on metal
+* Check out what TripAdvisor have done on suggesting routes, maybe we can do something similar
 
 ### App
 * Get compass to work properly
 * User profile and functionality in the application
 * Point scoring?
-* Better app-UI
+* Better UI for the quizmode. Green when correct, red when you failed
+ * Have a small image next to the question, question mark for the current question, 'check' sign for correct, and an 'X' for wrong
 * Let the user click and zoom images
+* Travel - Let the user move X meters and then "automagically" scan the tag.
+* Statestic about where you are on the route, also see where other are
+* Scan tags with QR-code or GPS
+* Better history of where you are in the story (in case of app failure)
+* Send "help" or messages to people on a Story. Similar to Hunger Games

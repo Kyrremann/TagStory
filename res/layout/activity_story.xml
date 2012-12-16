@@ -11,7 +11,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:background="@android:color/darker_gray" />
+        android:textStyle="bold"
+        android:background="@android:color/holo_orange_dark" />
 
     <ScrollView
         android:id="@+id/story_part_scrollview"

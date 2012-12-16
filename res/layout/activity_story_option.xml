@@ -10,7 +10,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:background="@android:color/darker_gray"
+        android:textStyle="bold"
+        android:background="@android:color/holo_orange_dark"
         android:onClick="scanTag"
         android:text="@string/story_scan_tag" />
 

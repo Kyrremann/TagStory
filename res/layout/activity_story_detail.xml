@@ -10,7 +10,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:background="@android:color/darker_gray"
+        android:textStyle="bold"
+        android:background="@android:color/holo_orange_dark"
         android:onClick="startStory"
         android:text="Start Story" />
 
@@ -55,11 +56,11 @@
                         android:orientation="vertical" >
 
                         <RatingBar
-                            android:numStars="1"
-                            android:rating="1"
-                            android:isIndicator="true"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:isIndicator="true"
+                            android:numStars="1"
+                            android:rating="1" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -68,8 +69,8 @@
                             android:layout_marginTop="-20dp"
                             android:text="4"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textStyle="bold"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -87,8 +88,8 @@
                             android:layout_gravity="center_horizontal|bottom"
                             android:text="Family"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textStyle="bold"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -106,8 +107,8 @@
                             android:layout_gravity="center_horizontal|bottom"
                             android:text="Mystery"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textStyle="bold"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
@@ -124,8 +125,8 @@
             <Space
                 android:layout_width="fill_parent"
                 android:layout_height="10dp"
-                android:background="@color/android_light_green"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:background="@color/android_light_green" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

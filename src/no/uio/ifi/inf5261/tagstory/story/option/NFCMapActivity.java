@@ -48,14 +48,19 @@ public abstract class NFCMapActivity extends MapActivity {
 
 		progressDialog = new ProgressDialog(this);
 		progressDialog.setMessage("Searching for tag");
+		progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+			
+			@Override
+			public void onCancel(DialogInterface dialog) {
+				cancelDialog(dialog);
+			}
+		});
 		progressDialog.setButton(ProgressDialog.BUTTON_NEUTRAL, "Abort",
 				new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-						progressDialog.dismiss();
-						disableForegroundMode();
+						cancelDialog(dialog);
 					}
 				});
 		progressDialog.setButton(ProgressDialog.BUTTON_NEGATIVE, "Cheat",
@@ -74,8 +79,39 @@ public abstract class NFCMapActivity extends MapActivity {
 						startActivity(intent);
 					}
 				});
-		progressDialog.setCancelable(false);
+		progressDialog.setButton(ProgressDialog.BUTTON_POSITIVE, "QR-Code", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+			Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+
+		    intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+		    startActivityForResult(intent, 0);
+			}
+		});
 		progressDialog.show();
+	}
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+	    if (requestCode == 0) {
+	        if (resultCode == RESULT_OK) {
+	            //  The Intents Fairy has delivered us some data!
+	            String contents = intent.getStringExtra("SCAN_RESULT");
+	            String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+	            // Handle successful scan
+	            System.out.println("Contents: " + contents);
+	            System.out.println("Format: " + format);
+	        } else if (resultCode == RESULT_CANCELED) {
+	            // Handle cancel
+	        }
+	    }
+	}
+	
+	private void cancelDialog(DialogInterface dialog) {
+		dialog.dismiss();
+		progressDialog.dismiss();
+		disableForegroundMode();
 	}
 
 	@Override

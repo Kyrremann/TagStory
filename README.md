@@ -2,7 +2,12 @@ Tag Story - A INF5162 project
 -----------------------------
 Tag Story is a project focusing on getting people in all ages out into the woods. This is done by making narrative stories that the user can help to develope by visiting different tags outside.
 
-Better description pending...
+Better description is pending...
+
+--
+24 May 2013
+Tag Story is up and running and is going to be used in a project this summer. In that case we will build a new web page and reorginize the github project. We will also create wiki pages about the project, how to make stories, and a list of stories to try.
+--
 
 Todo
 ----

@@ -1,24 +1,28 @@
 {
     "story": {
-	"UUID":"UUID",
+	"UUID":"story UUID",
 	"author":"String",
 	"title":"String",
 	"genre":"String",
-	"agegroup":"children|adult|family",
+	"agegroup":"children|adult|family|teenager",
 	"area":"String",
-	"date":"String",
+	"country":"String",
+	"date":"created String",
 	"description":"String",
 	"image":"String",
 	"keywords":"list",
-	"startTag":"UUID",
+	"url":"String",
+	"startTag":"part UUID",
 	"tagCount":"int",
 	"language":"no_bm",
+	"tagTypes":"nfc|qr|gps",
+	"gameModes":"none|quiz",
 	"parts": { 
-	    "UUID": { 
-		"UUID":"UUID",
-		"belongsToTag":"UUID",
-		"partTitle":"String",
-		"partDesc":"String",
+	    "UUID": {
+		"belongsToTag":"tag UUID",
+		"tagMode":"nfc|qr|gps",
+		"title":"String",
+		"desc":"String",
 		"choiceDesc":"String",
 		"gameMode":"none|quiz",
 		"gameButton":"String",
@@ -29,16 +33,16 @@
 			"quizC":"String"
 		    }
 		}
-		"partOptions": {
+		"options": {
 		    "String": {
-			"optSelectMethod":"hint_text|hint_image|hint_sound|hint_map|hint_arrow|hint_video",
-			"optHintText":"String",
-			"optImgSrc":"String",
-			"optSoundSrc":"String",
-			"optLong":"float",
-			"optLat":"float",
-			"optArrowLength":"boolean",
-			"optNext":"UUID"
+			"selectMethod":"hint_text|hint_image|hint_sound|hint_map|hint_arrow|hint_video",
+			"hintText":"String",
+			"imgSrc":"String",
+			"soundSrc":"String",
+			"long":"float",
+			"lat":"float",
+			"arrowLength":"boolean",
+			"next":"part UUID"
 		    }
 		},
 		"isEndPoint":"boolean"

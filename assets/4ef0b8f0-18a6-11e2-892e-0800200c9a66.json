@@ -7,92 +7,96 @@
 	"agegroup":"0-99",
 	"area":"Blindern",
 	"date":"18/10/12",
+	"image":"flytebrygge.jpg",
+	"language":"no_bm",
 	"description":"This story is the very first story in the TagStory. Come with us on a treasure hunt. To find the treasure you need to solve the clues. You can find all the clues at the University of Oslo.",
 	"keywords":"jakt; skatt; gps; blindern",
 	"startTag":"4ff0b8f5-18a6-11e2-892e-0800200c9a66",
 	"tagCount":"6",
+	"tagTypes":"nfc;qr",
+	"gameModes":"none",
 	"parts": { 
 	    "4ff0b8f5-18a6-11e2-892e-0800200c9a66": {
-		"UUID":"4ff0b8f5-18a6-11e2-892e-0800200c9a66",
 		"belongsToTag":"-1",
-		"partDesc":"Let's start! The first clue is on a place where they study the laws of gravity and where the Pendulum is.",
+		"tagMode":"nfc;qr";
+		"desc":"Let's start! The first clue is on a place where they study the laws of gravity and where the Pendulum is.",
 		"choiceDesc":"Use the map and find the location where the arrow points.",
 		"gameMode":"none",
-		"partOptions": {
+		"options": {
 		    "Vis kartet": {
-			"optSelectMethod":"hint_map",
-			"optHintText":"",
-			"optLong":"10.71918",
-			"optLat":"59.938053",
-			"optNext":"4ff0b8f9-18a6-11e2-892e-0800200c9a66"
+			"selectMethod":"hint_map",
+			"hintText":"",
+			"long":"10.71918",
+			"lat":"59.938053",
+			"next":"4ff0b8f9-18a6-11e2-892e-0800200c9a66"
 		    }
 		},
 		"isEndPoint":"false"
 	    },
 	    "4ff0b8f9-18a6-11e2-892e-0800200c9a66": { 
-		"UUID":"4ff0b8f9-18a6-11e2-892e-0800200c9a66",
+		"tagMode":"nfc;qr";
 		"belongsToTag":"98936356-18a6-11e2-892e-0800200c9a66",
-		"partDesc":"Fysikkbygningen (1935)\n was planned in neoclassicism style such as the University downtown. While the building was under construction, architects went on a study trip to Europe. There was functionalist style that was most modern, and a functionalist façade was build upon it, almost like wrapping paper, drawn over the classical structure. Norway got its first functionalist building of considerable extent. It did not suit taste of the general public - the building was criticized for removing the dignity of the university.",
+		"desc":"Fysikkbygningen (1935)\n was planned in neoclassicism style such as the University downtown. While the building was under construction, architects went on a study trip to Europe. There was functionalist style that was most modern, and a functionalist façade was build upon it, almost like wrapping paper, drawn over the classical structure. Norway got its first functionalist building of considerable extent. It did not suit taste of the general public - the building was criticized for removing the dignity of the university.",
 		"choiceDesc":"Hvor går neste tur?",
 		"gameMode":"none",
-		"partOptions": {
+		"options": {
 		    "Studenteneshus": {
-			"optSelectMethod":"hint_text",
-			"optHintText":"The next location is outside, by a big and great tree, beside a building made of wood. I wonder what this student-friendly building this can be? It is at least not very far from the University Library.",
-			"optNext":"4ff0b8f8-18a6-11e2-892e-0800200c9a66"
+			"selectMethod":"hint_text",
+			"hintText":"The next location is outside, by a big and great tree, beside a building made of wood. I wonder what this student-friendly building this can be? It is at least not very far from the University Library.",
+			"next":"4ff0b8f8-18a6-11e2-892e-0800200c9a66"
 		    }
 		},
 		"isEndPoint":"false"
 	    },
 	    "4ff0b8f8-18a6-11e2-892e-0800200c9a66": { 
-		"UUID":"4ff0b8f8-18a6-11e2-892e-0800200c9a66",
+		"tagMode":"nfc;qr";
 		"belongsToTag":"98936357-18a6-11e2-892e-0800200c9a66",
-		"partDesc":"Villa Eika\nBefore the University was built on Blindern, there was a big farm here. The only building that remains from that time is Villa Eika. The building was however deployed from the University Farm in 1890 and was a private residence / summer residence until the 1960s. In the late 70th century, it was decided to preserve Villa Eika that some of the \"original\" Blindern would stand again.",
+		"desc":"Villa Eika\nBefore the University was built on Blindern, there was a big farm here. The only building that remains from that time is Villa Eika. The building was however deployed from the University Farm in 1890 and was a private residence / summer residence until the 1960s. In the late 70th century, it was decided to preserve Villa Eika that some of the \"original\" Blindern would stand again.",
 		"choiceDesc":"The next location is not a building.",
 		"gameMode":"none",
-		"partOptions": {
+		"options": {
 		    "Time for some art": {
-			"optSelectMethod":"hint_text",
-			"optHintText":"The first piece of art is on Frederikkeplassen",
-			"optNext":"4ff0b8f4-18a6-11e2-892e-0800200c9a66"
+			"selectMethod":"hint_text",
+			"hintText":"The first piece of art is on Frederikkeplassen",
+			"next":"4ff0b8f4-18a6-11e2-892e-0800200c9a66"
 		    }
 		},
 		"isEndPoint":"false"
 	    },
 	    "4ff0b8f4-18a6-11e2-892e-0800200c9a66": { 
-		"UUID":"4ff0b8f4-18a6-11e2-892e-0800200c9a66",
+		"tagMode":"nfc;qr";
 		"belongsToTag":"98936355-18a6-11e2-892e-0800200c9a66",
-		"partDesc":"Air\nOn Blindern you will find monumental modernist sculptures that match the style of art of Leif Moen (1928-1986) that match the buildings to the Faculty of Humanities (1960-1963), Faculty of Mathematics (65-66) and Faculty of Social Science(66-68). The first work you encounter is Arnold Shouts Lands (1920-1983) \"Air\". The sculpture was erected in 1962 and was a gift from AS Freia to the universitys 150-year anniversary in 1961. Air is considered the first monumental figurative painting uteskulpturen in Norway.",
+		"desc":"Air\nOn Blindern you will find monumental modernist sculptures that match the style of art of Leif Moen (1928-1986) that match the buildings to the Faculty of Humanities (1960-1963), Faculty of Mathematics (65-66) and Faculty of Social Science(66-68). The first work you encounter is Arnold Shouts Lands (1920-1983) \"Air\". The sculpture was erected in 1962 and was a gift from AS Freia to the universitys 150-year anniversary in 1961. Air is considered the first monumental figurative painting uteskulpturen in Norway.",
 		"choiceDesc":"The University of Oslo has two more great pieces of art at here Blindern",
 		"gameMode":"none",
-		"partOptions": {
+		"options": {
 		    "Where can it be?": {
-			"optSelectMethod":"hint_text",
-			"optHintText":"If you know where to find the Faculty of Humanities and Social Science, you will easily find them.",
-			"optNext":"4ff0b8f3-18a6-11e2-892e-0800200c9a66"
+			"selectMethod":"hint_text",
+			"hintText":"If you know where to find the Faculty of Humanities and Social Science, you will easily find them.",
+			"next":"4ff0b8f3-18a6-11e2-892e-0800200c9a66"
 		    }
 		},
 		"isEndPoint":"false"
 	    },
 	    "4ff0b8f3-18a6-11e2-892e-0800200c9a66": { 
-		"UUID":"4ff0b8f3-18a6-11e2-892e-0800200c9a66",
+		"tagMode":"nfc;qr";
 		"belongsToTag":"98936354-18a6-11e2-892e-0800200c9a66",
-		"partDesc":"Shared Form\nWhen the building of Faculty of Humanities was new, there were plans for a sculpture on the square. First, in 2005, the sculpture \"Broken form\" by Aase Texmon Rygh (1925) on the square in front of the Faculty of Humanities. The history of this piece began in 1981 when Texmon Rygh with \"Broken form\" won a closed competition for the decoration of the area at Furuset subway station in Oslo. Years passed and the site was changed. \ N \ nA similar story for \"Shared form \" by Ervin Løffler (1922) that was made to Romsås school. The sculpture consists of two main forms. These surrounds and interlocking with an inner dynamic that makes the sculpture changes character as one moves around it. This sculpture stands in front Eilert Sundt building and arrived at the place in summer 2010 in cooperation with Oslo and the Norwegian Sculptor Association.",
+		"desc":"Shared Form\nWhen the building of Faculty of Humanities was new, there were plans for a sculpture on the square. First, in 2005, the sculpture \"Broken form\" by Aase Texmon Rygh (1925) on the square in front of the Faculty of Humanities. The history of this piece began in 1981 when Texmon Rygh with \"Broken form\" won a closed competition for the decoration of the area at Furuset subway station in Oslo. Years passed and the site was changed. \ N \ nA similar story for \"Shared form \" by Ervin Løffler (1922) that was made to Romsås school. The sculpture consists of two main forms. These surrounds and interlocking with an inner dynamic that makes the sculpture changes character as one moves around it. This sculpture stands in front Eilert Sundt building and arrived at the place in summer 2010 in cooperation with Oslo and the Norwegian Sculptor Association.",
 		"choiceDesc":"",
 		"gameMode":"none",
-		"partOptions": {
+		"options": {
 		    "Where can the last clue be?": {
-			"optSelectMethod":"hint_text",
-			"optHintText":"This building is newest building at Blindern. Some say it looks like modern art. Other say it looks like a LEGO-block",
-			"optNext":"4ff0b8f6-18a6-11e2-892e-0800200c9a66"
+			"selectMethod":"hint_text",
+			"hintText":"This building is newest building at Blindern. Some say it looks like modern art. Other say it looks like a LEGO-block",
+			"next":"4ff0b8f6-18a6-11e2-892e-0800200c9a66"
 		    }
 		},
 		"isEndPoint":"false"
 	    },
 	    "4ff0b8f6-18a6-11e2-892e-0800200c9a66": { 
-		"UUID":"4ff0b8f6-18a6-11e2-892e-0800200c9a66",
+		"tagMode":"nfc;qr";
 		"belongsToTag":"98936359-18a6-11e2-892e-0800200c9a66",
-		"partDesc":"Ole-Johan Dahls House\nOle-Johan Dahl House opened the 2th September, 2011, and it was designed to create a campus for the informatics. The project ambitions may be compared with physics building from 1935. The building is an extensive artistic program, with decorations by Bard Breivik, Vibeke Jensen, Tone Myskja, Patrik Entian, Höfflin & Glis Man and Beret Aksnes. There are two work of art here: The sculpture outside, Fractals of Bard, is an artistic interpretation of fractals, as a kind one finds in a snail shell, bacteria and galaxies. The Cube, by Vibeke Jensen, is an interactive eye. \ N \ NYou have now reached the end of the treasure hunt! You may wonder where the treasure is, but you have already found it by finding the clues. Knowledge is the greatest treasure of them all!",
+		"desc":"Ole-Johan Dahls House\nOle-Johan Dahl House opened the 2th September, 2011, and it was designed to create a campus for the informatics. The project ambitions may be compared with physics building from 1935. The building is an extensive artistic program, with decorations by Bard Breivik, Vibeke Jensen, Tone Myskja, Patrik Entian, Höfflin & Glis Man and Beret Aksnes. There are two work of art here: The sculpture outside, Fractals of Bard, is an artistic interpretation of fractals, as a kind one finds in a snail shell, bacteria and galaxies. The Cube, by Vibeke Jensen, is an interactive eye. \ N \ NYou have now reached the end of the treasure hunt! You may wonder where the treasure is, but you have already found it by finding the clues. Knowledge is the greatest treasure of them all!",
 		"gameMode":"none",
 		"isEndPoint":"true"
 	    }

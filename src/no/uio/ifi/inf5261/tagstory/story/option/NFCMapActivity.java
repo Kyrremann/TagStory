@@ -18,6 +18,7 @@ import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -100,8 +101,9 @@ public abstract class NFCMapActivity extends MapActivity {
 	            String contents = intent.getStringExtra("SCAN_RESULT");
 	            String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
 	            // Handle successful scan
-	            System.out.println("Contents: " + contents);
-	            System.out.println("Format: " + format);
+	            Log.d("QR", "Contents: " + contents);
+	            Log.d("QR", "Format: " + format);
+	            checkTagData(contents);
 	        } else if (resultCode == RESULT_CANCELED) {
 	            // Handle cancel
 	        }
@@ -155,10 +157,15 @@ public abstract class NFCMapActivity extends MapActivity {
 			}
 		}
 
-		if (data.split("\n")[0].equals(story.getStoryPart(option.getOptNext())
+		checkTagData(data.split("\n")[0]);
+	}
+	
+	private void checkTagData(String tag) {
+		// TODO: Implement randomized tags
+		if (tag.equals(story.getStoryPart(option.getOptNext())
 				.getBelongsToTag())) {
 			progressDialog.dismiss();
-			intent = new Intent(this, StoryActivity.class);
+			Intent intent = new Intent(this, StoryActivity.class);
 			intent.putExtra(StoryActivity.STORY, story);
 			intent.putExtra(StoryActivity.PARTTAG, option.getOptNext());
 			intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);

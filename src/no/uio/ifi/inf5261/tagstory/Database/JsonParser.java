@@ -2,6 +2,7 @@ package no.uio.ifi.inf5261.tagstory.Database;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -20,17 +21,19 @@ public class JsonParser {
 			AUTHOR = "author", TITLE = "title", AGEGROUP = "agegroup",
 			DATE = "date", GENRE = "genre", DESCRIPTION = "description",
 			START_TAG = "startTag", KEYWORDS = "keywords",
-			TAG_COUNT = "tagCount", PARTS = "parts", GAME_MODE = "gameMode",
-			GAME_BUTTON = "gameButton";
+			TAG_COUNT = "tagCount", PARTS = "parts", COUNTRY = "country",
+			IMAGE = "image", URL = "url", TAG_TYPES = "tagTypes",
+			GAME_MODES = "gameModes", AREA = "area", LANGUAGE = "language";
 	public static final String BELONSG_TO_TAG = "belongsToTag",
-			PART_DESCRIPTION = "partDesc", CHOICE_DESCRIPTION = "choiceDesc",
-			IS_ENDPOINT = "isEndPoint", PART_OPTIONS = "partOptions";
-	public static final String OPT_SELECT_METHOD = "optSelectMethod",
-			OPT_LONG = "optLong", OPT_LAT = "optLat",
-			OPT_HINT_TEXT = "optHintText", OPT_NEXT = "optNext",
-			OPT_IMAGE_SRC = "optImageSrc", OPT_SOUND_SRC = "optSoundSrc",
-			OPT_ARROW_LENGTH = "optArrowLength";
-	public static final String QUIZ = "quiz", QUIZ_Q = "quizQ",
+			TAG_MODE = "tagMode", PART_DESCRIPTION = "desc",
+			CHOICE_DESCRIPTION = "choiceDesc", IS_ENDPOINT = "isEndPoint",
+			PART_OPTIONS = "options";
+	public static final String OPT_SELECT_METHOD = "selectMethod",
+			OPT_LONG = "long", OPT_LAT = "lat", OPT_HINT_TEXT = "hintText",
+			OPT_NEXT = "next", OPT_IMAGE_SRC = "imageSrc",
+			OPT_SOUND_SRC = "soundSrc", OPT_ARROW_LENGTH = "arrowLength";
+	public static final String GAME_MODE = "gameMode",
+			GAME_BUTTON = "gameButton", QUIZ = "quiz", QUIZ_Q = "quizQ",
 			QUIZ_A = "quizA", QUIZ_C = "quizC";
 	public static final String HINT_TEXT = "hint_text",
 			HINT_IMAGE = "hint_image", HINT_MAP = "hint_map",
@@ -48,24 +51,45 @@ public class JsonParser {
 	public static Story parseJsonToStory(Context context, String UUID)
 			throws JSONException, IOException {
 		JSONObject storyObject = parseJson(context, UUID).getJSONObject(STORY);
-		// Log.d(UUID, storyObject.toString(4));
 
+		// Required
 		Story story = new Story(storyObject.getString(JsonParser.UUID),
 				storyObject.getString(AUTHOR), storyObject.getString(TITLE));
 		story.setAgeGroup(storyObject.getString(AGEGROUP));
 		story.setDate(storyObject.getString(DATE));
-		story.setGenre(storyObject.getString(GENRE));
 		story.setDesc(storyObject.getString(DESCRIPTION));
+		story.setImage(storyObject.getString(IMAGE));
 		story.setStartTag(storyObject.getString(START_TAG));
-		story.setKeywords(storyObject.getString(KEYWORDS).split(";"));
 		story.setTagCount(storyObject.getInt(TAG_COUNT));
-		story.setStoryParts(parseJsonParts(storyObject.getJSONObject(PARTS),
-				story.getTagCount()));
+		story.setStoryParts(parseJsonStoryParts(
+				storyObject.getJSONObject(PARTS), story.getTagCount()));
+		story.setLanguage(storyObject.getString(LANGUAGE));
+		story.setTagTypes(Arrays.asList(storyObject.getString(TAG_TYPES).split(
+				";")));
+		story.setGameModes(Arrays.asList(storyObject.getString(GAME_MODES)
+				.split(";")));
+
+		// Optional
+		if (storyObject.has(URL) && !storyObject.isNull(GENRE)) {
+			story.setGenre(storyObject.getString(GENRE));
+		}
+		if (storyObject.has(URL) && !storyObject.isNull(AREA)) {
+			story.setArea(storyObject.getString(AREA));
+		}
+		if (storyObject.has(URL) && !storyObject.isNull(COUNTRY)) {
+			story.setCountry(storyObject.getString(COUNTRY));
+		}
+		if (storyObject.has(URL) && !storyObject.isNull(KEYWORDS)) {
+			story.setKeywords(storyObject.getString(KEYWORDS).split(";"));
+		}
+		if (storyObject.has(URL) && !storyObject.isNull(URL)) {
+			story.setUrl(storyObject.getString(URL));
+		}
 
 		return story;
 	}
 
-	private static HashMap<String, StoryPart> parseJsonParts(
+	private static HashMap<String, StoryPart> parseJsonStoryParts(
 			JSONObject jsonObject, int tagCount) throws JSONException {
 		HashMap<String, StoryPart> map = new HashMap<String, StoryPart>(
 				tagCount);
@@ -80,11 +104,13 @@ public class JsonParser {
 					object.getString(BELONSG_TO_TAG),
 					object.getString(PART_DESCRIPTION),
 					object.getString(GAME_MODE), object.getString(IS_ENDPOINT));
+
 			if (!storyPart.getIsEndpoint()) {
-				if (storyPart.getGameMode() != null && storyPart.getGameMode().equals(QUIZ)) {
+				if (storyPart.getGameMode() != null
+						&& storyPart.getGameMode().equals(QUIZ)) {
 					storyPart.setGameButton(object.getString(GAME_BUTTON));
 					JSONObject quiz = object.getJSONObject(QUIZ);
-					
+
 					@SuppressWarnings("unchecked")
 					Iterator<String> quizKeys = quiz.keys();
 					JSONObject question;
@@ -97,15 +123,16 @@ public class JsonParser {
 						storyPart.addToQuiz(location,
 								question.getString(QUIZ_Q),
 								question.getBoolean(QUIZ_A));
-						if (question.has(QUIZ_C))
+						if (!question.isNull(QUIZ_C))
 							storyPart.addCorrectionToQuiz(location,
 									question.getString(QUIZ_C));
 					}
 				}
 				storyPart.setChoiceDescription(object
 						.getString(CHOICE_DESCRIPTION));
-				storyPart.setOptions(parseJsonOptions(object
+				storyPart.setOptions(parseJsonStoryPartOptions(object
 						.getJSONObject(PART_OPTIONS)));
+				storyPart.setTagMode(object.getString(TAG_MODE));
 			}
 			map.put(key, storyPart);
 		}
@@ -113,7 +140,7 @@ public class JsonParser {
 		return map;
 	}
 
-	private static HashMap<String, StoryPartOption> parseJsonOptions(
+	private static HashMap<String, StoryPartOption> parseJsonStoryPartOptions(
 			JSONObject jsonObject) throws JSONException {
 		HashMap<String, StoryPartOption> map = new HashMap<String, StoryPartOption>(
 				jsonObject.length());

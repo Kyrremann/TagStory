@@ -36,14 +36,11 @@ public class StoryManager {
 		try {
 			return JsonParser.parseJsonToStory(context, id);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
-		// return parseCursorToStory(database.getStory(id));
 	}
 
 	public void getStoriesFromServer() {

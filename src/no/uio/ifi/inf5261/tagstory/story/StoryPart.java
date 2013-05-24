@@ -15,6 +15,7 @@ public class StoryPart implements Serializable {
 	private String choiceDescription;
 	private String gameMode;
 	private String gameButton;
+	private String tagMode;
 	private boolean isEndpoint;
 	private HashMap<String, StoryPartOption> options;
 	private HashMap<Integer, QuizNode> quiz;
@@ -113,6 +114,20 @@ public class StoryPart implements Serializable {
 	 */
 	public String getGameButton() {
 		return gameButton;
+	}
+
+	/**
+	 * @return the tagMode
+	 */
+	public String getTagMode() {
+		return tagMode;
+	}
+
+	/**
+	 * @param tagMode the tagMode to set
+	 */
+	public void setTagMode(String tagMode) {
+		this.tagMode = tagMode;
 	}
 
 	/**

@@ -21,7 +21,13 @@ public class Story implements Serializable {
 	private String genre;
 	private String area;
 	private String startTag;
+	private String image;
+	private String language;
+	private String country;
+	private String url;
 	private HashMap<String, StoryPart> storyParts;
+	private List<String> tagTypes;
+	private List<String> gameModes;
 	
 	public Story(String UUID, String author, String title) {
 		this.UUID = UUID;
@@ -108,6 +114,90 @@ public class Story implements Serializable {
 		return storyParts.get(key);
 	}
 	
+	/**
+	 * @return the image
+	 */
+	public String getImage() {
+		return image;
+	}
+
+	/**
+	 * @return the language
+	 */
+	public String getLanguage() {
+		return language;
+	}
+
+	/**
+	 * @return the country
+	 */
+	public String getCountry() {
+		return country;
+	}
+
+	/**
+	 * @return the url
+	 */
+	public String getUrl() {
+		return url;
+	}
+
+	/**
+	 * @return the tagTypes
+	 */
+	public List<String> getTagTypes() {
+		return tagTypes;
+	}
+
+	/**
+	 * @return the gameModes
+	 */
+	public List<String> getGameModes() {
+		return gameModes;
+	}
+
+	/**
+	 * @param gameModes the gameModes to set
+	 */
+	public void setGameModes(List<String> gameModes) {
+		this.gameModes = gameModes;
+	}
+
+	/**
+	 * @param tagTypes the tagTypes to set
+	 */
+	public void setTagTypes(List<String> tagTypes) {
+		this.tagTypes = tagTypes;
+	}
+
+	/**
+	 * @param url the url to set
+	 */
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	/**
+	 * @param country the country to set
+	 */
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	/**
+	 * @param language the language to set
+	 */
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
+	/**
+	 * @param image the image to set
+	 */
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public void addStoryPart(String key, StoryPart object) {
 		storyParts.put(key, object);
 	}

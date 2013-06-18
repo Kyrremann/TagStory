@@ -30,9 +30,15 @@ public class StoryFinishedActivity extends Activity {
 
 		((TextView) findViewById(R.id.story_finished_text)).setText(part
 				.getDescription());
+		printStatistics();
 	}
 
-	public void endOfStory(View view) {
+	private void printStatistics() {
+		String statistics = getResources().getString(R.string.dummy_statistics);
+		((TextView) findViewById(R.id.story_statistic)).setText(statistics);
+	}
+
+	private void endOfStory(View view) {
 		NavUtils.navigateUpTo(this, new Intent(this, StoryListActivity.class));
 	}
 

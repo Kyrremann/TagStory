@@ -80,6 +80,10 @@
     <string name="map_target">This is your target</string>
     <string name="map_default_snippet">Here can you find the next tag</string>
     
+    <string name="dummy_statistics">Statistics\n
+        Time used: 21:41\n
+        Length walk: 2km</string>
+    
 	<color name="light_tree_green">#739D88</color>
 	<color name="tree_green">#1E5228</color>
 	<color name="distant_hill">#B3C6CF</color>

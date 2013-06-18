@@ -31,7 +31,7 @@ TODO
 
 ### App
 * ~~Get compass to work properly~~
- * To unstable to use
+ * To unstable to use, scapping it
 * User profile and functionality in the application
  * Connect with Google, Facebook, Twitter and other popular services
 * Quiz and story scoring
@@ -47,9 +47,14 @@ TODO
 * Better history of where you are in the story (in case of app failure)
 * Send "help" or messages to people on a Story. Similar to Hunger Games
 * Inform of broken or tag not working/existing
+* A fallback mode if the app suddenly crash or get closed by outside mode
+ * Something in the line of "save and continue" or "save and quit"
+* Dialog for asking users to turn on certain features
+ * Such as NFC or GPS
 
 ### Other
 * Tags can not be hanged on metal
 * Check out what TripAdvisor have done on suggesting routes, maybe we can do something similar
+* Move all features request/TODOs to the "Issues" section
 
 [logo]: http://www.uio.no/studier/emner/matnat/ifi/INF5261/h12/project-groups/tag-story--out/feature-graphic-tag-story.png "Tag Story banner"

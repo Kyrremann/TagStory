@@ -10,26 +10,42 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:textStyle="bold"
         android:background="@color/android_yellow"
         android:onClick="endOfStory"
-        android:text="@string/story_finished" />
+        android:text="@string/story_finished"
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/end_of_story"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/background_border_light_green"
-        android:layout_margin="15dp" >
+        android:layout_alignParentTop="true" >
 
-        <TextView
-            android:id="@+id/story_finished_text"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/story_finished"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/story_finished_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="15dp"
+                android:background="@drawable/background_border_light_green"
+                android:text="@string/story_finished"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/story_statistic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/background_border_light_green"
+                android:padding="15dp"
+                android:text="@string/dummy_statistics"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
     </ScrollView>
 
 </RelativeLayout>

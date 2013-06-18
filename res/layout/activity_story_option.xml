@@ -11,12 +11,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:textStyle="bold"
-        android:background="@android:color/holo_orange_dark"
+        android:background="@color/android_yellow"
         android:onClick="scanTag"
         android:text="@string/story_scan_tag" />
 
     <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/scan_tag"

@@ -12,7 +12,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:textStyle="bold"
-        android:background="@android:color/holo_orange_dark"
+        android:background="@color/android_yellow"
         android:onClick="scanTag"
         android:text="@string/story_scan_tag" />
 
@@ -24,7 +24,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/story_audio_hint"
+            android:id="@+id/story_option_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?android:attr/textAppearanceLarge"

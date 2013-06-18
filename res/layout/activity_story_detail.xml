@@ -11,7 +11,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:textStyle="bold"
-        android:background="@android:color/holo_orange_dark"
+        android:background="@color/android_yellow"
         android:onClick="startStory"
         android:text="Start Story" />
 
@@ -121,19 +121,15 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/background_border_light_green"
                 android:padding="10dp"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <Space
-                android:layout_width="fill_parent"
-                android:layout_height="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/android_light_green" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginBottom="10dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_border_light_green"
-                android:padding="10dp" >
+                android:padding="10dp"
+                android:layout_marginBottom="10dp" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -164,11 +160,6 @@
                     android:layout_alignParentTop="true"
                     android:src="@android:drawable/ic_menu_gallery" />
             </RelativeLayout>
-
-            <Space
-                android:layout_width="fill_parent"
-                android:layout_height="5dp"
-                android:background="@color/android_light_green" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

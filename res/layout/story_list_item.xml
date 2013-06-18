@@ -5,7 +5,7 @@
     android:background="@drawable/background_border_light_green" >
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/story_list_image"
         android:layout_width="150dip"
         android:layout_height="120dip"
         android:layout_alignParentLeft="true"
@@ -20,8 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/storyListItemAuthor"
-        android:layout_alignTop="@+id/imageView1"
-        android:layout_toRightOf="@+id/imageView1"
+        android:layout_alignTop="@+id/story_list_image"
+        android:layout_toRightOf="@+id/story_list_image"
         android:text="Skattejakt på Blindern"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -31,14 +31,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/storyListItemTitle"
         android:layout_toLeftOf="@+id/imageView3"
-        android:layout_toRightOf="@+id/imageView1"
+        android:layout_toRightOf="@+id/story_list_image"
         android:text="Kyrre Havik Eriksen"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView1"
+        android:layout_alignBottom="@+id/story_list_image"
         android:layout_alignLeft="@+id/storyListItemAuthor"
         android:layout_alignParentRight="true" >
 
@@ -55,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:contentDescription="@string/story_list_arrow"
         android:src="@drawable/ic_navigate_right" />
 
 </RelativeLayout>

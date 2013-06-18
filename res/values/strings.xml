@@ -13,10 +13,15 @@
     <string name="email">E-mail</string>
     <string name="email_hint">plus e-mail here&#8230;</string>
     <string name="cancel">Cancel</string>
+    <string name="cheat">Cheat</string>
     <string name="description">Description</string>
     <string name="description_hint">Where is the tag</string>
+    
     <string name="gps">GPS</string>
     <string name="gps_hint">More presicely&#8230;</string>
+    <string name="gps_about_title">About GPS tags</string>
+    <string name="gps_about_content">Description of how GPS tags works.</string>
+    <string name="gps_about_button">This story uses GPS tags</string>
     
     <string name="front_menu_log_in">Log in</string>
     <string name="front_menu_create_user">Create user</string>
@@ -44,9 +49,10 @@
     <string name="new_user_cancel">Never!</string>
     <string name="new_user_info">Please fill in every field.</string>
     
-    <string name="about_title">About</string>
-    <string name="about_info">Tag Story combines text based adventure games with NFC technology for an interactive, outdoor woodland adventure.\n\nMade as part of a project in INF5261 at University of Oslo.</string>
-    <string name="about_cancel">Okay&#8230;</string>
+    <string name="dialog_about_title">About</string>
+    <string name="dialog_about_tagstory">Tag Story combines text based adventure games with NFC technology for an interactive, outdoor woodland adventure.\n\nMade as part of a project in INF5261 at University of Oslo.</string>
+    <string name="dialog_about_klima">Her kan vi informere kort om Klimanettverket.</string>
+    <string name="dialog_cancel">Okay&#8230;</string>
     
     <string name="create_tag_title">Tag-O-Creator</string>
     <string name="create_tag_info">Type in description and gps for the tag.</string>
@@ -65,7 +71,15 @@
     <string name="story_quiz_false">Usant</string>
     <string name="story_quiz_correction">Correction</string>
     <string name="story_quiz_next">Next question</string>
-	
+    
+    <string name="menu_about_app">Om Tag Story</string>
+    <string name="menu_klimanettverket">Om Klimanettverket</string>
+    
+    <string name="story_list_arrow">Click to chose story</string>
+    
+    <string name="map_target">This is your target</string>
+    <string name="map_default_snippet">Here can you find the next tag</string>
+    
 	<color name="light_tree_green">#739D88</color>
 	<color name="tree_green">#1E5228</color>
 	<color name="distant_hill">#B3C6CF</color>

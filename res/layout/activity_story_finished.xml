@@ -11,14 +11,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:textStyle="bold"
-        android:background="@android:color/holo_orange_dark"
+        android:background="@color/android_yellow"
         android:onClick="endOfStory"
         android:text="@string/story_finished" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/story_finished_end"
+        android:layout_above="@+id/end_of_story"
         android:layout_alignParentTop="true"
         android:background="@drawable/background_border_light_green"
         android:layout_margin="15dp" >

@@ -1,0 +1,108 @@
+{
+    "story": {
+	"UUID":"0dd941f0-c943-11e2-8b8b-0800200c9a66",
+	"author":"Klima nettverket",
+	"title":"Oslo klimatur",
+	"genre":"Quiz",
+	"agegroup":"family",
+	"area":"Oslo",
+	"country":"Norway",
+	"date":"29.05.13",
+	"description":"Pending description",
+	"image":"",
+	"keywords":"oslo, quiz, klima",
+	"url":"http://www.norskklimanettverk.no/",
+	"startTag":"0dd941f1-c943-11e2-8b8b-0800200c9a66",
+	"tagCount":"4",
+	"language":"no_bm",
+	"tagTypes":"gps",
+	"gameModes":"none",
+	"parts": { 
+	    "0dd941f1-c943-11e2-8b8b-0800200c9a66": {
+		"belongsToTag":"c80cc860-c94a-11e2-8b8b-0800200c9a66",
+		"tagMode":"gps",
+		"title":"Litteraturhuset",
+		"desc":"Flyktninger er et tema som ofte diskuteres på Litteraturhuset",
+		"choiceDesc":"Hvor mange klimaflyktninger antar FN det vil være i 2050?",
+		"options": {
+		    "20 millioner": {
+			"selectMethod":"hint_map",
+			"hintText":"Feil, det rette antallet er 150 millioner",
+			"long":"10.728243",
+			"lat":"59.919612",
+			"next":"0dd941f2-c943-11e2-8b8b-0800200c9a66"
+		    },
+		    "70 millioner": {
+			"selectMethod":"hint_map",
+			"hintText":"Feil, det rette antallet er 150 millioner",
+			"long":"10.728243",
+			"lat":"59.919612",
+			"next":"0dd941f2-c943-11e2-8b8b-0800200c9a66"
+		    },
+		    "150 millioner": {
+			"selectMethod":"hint_map",
+			"hintText":"Riktig! Det rette antallet er 150 millioner",
+			"long":"10.728243",
+			"lat":"59.919612",
+			"next":"0dd941f3-c943-11e2-8b8b-0800200c9a66"
+		    }
+		},
+		"isEndPoint":"false"
+	    },
+	    "0dd941f2-c943-11e2-8b8b-0800200c9a66": {
+		"belongsToTag":"c80cc861-c94a-11e2-8b8b-0800200c9a66",
+		"tagMode":"gps",
+		"title":"Dronningkjernet",
+		"desc":"Allerede i 2011 anslo FN at det var 42 millioner klimaflyktninger i verden",
+		"options": {
+		    "Gå videre til neste punkt": {
+			"selectMethod":"hint_map",
+			"hintText":"",
+			"lat":"59.918125",
+			"long":"10.727965",
+			"next":"0dd941f3-c943-11e2-8b8b-0800200c9a66"
+		    }
+		},
+		"isEndPoint":"false"
+	    },
+	    "0dd941f3-c943-11e2-8b8b-0800200c9a66": {
+		"belongsToTag":"c80cc862-c94a-11e2-8b8b-0800200c9a66",
+		"tagMode":"gps",
+		"title":"Dronning Mauds statue",
+		"desc":"Dronning Maude er også navnet på et Hurtigruteskip",
+		"choiceDesc":"Hvem har dårligst forutsetninger i møte med klimaendringene?",
+		"options": {
+		    "Nordmenn": {
+			"selectMethod":"hint_map",
+			"hintText":"Feil, det er de fattige i verden som rammes hardest",
+			"lat":"59.918125",
+			"long":"10.727965",
+			"next":"0dd941f4-c943-11e2-8b8b-0800200c9a66"
+		    },
+		    "De fattige i verden": {
+			"selectMethod":"hint_map",
+			"hintText":"Ja, det er de fattige i verden som rammes hardest",
+			"lat":"59.918125",
+			"long":"10.727965",
+			"next":"0dd941f4-c943-11e2-8b8b-0800200c9a66"
+		    },
+		    "150 millioner": {
+			"selectMethod":"hint_map",
+			"hintText":"Feil, det er de fattige i verden som rammes hardest",
+			"lat":"59.919612",
+			"long":"10.728243",
+			"next":"0dd941f4-c943-11e2-8b8b-0800200c9a66"
+		    }
+		},
+		"isEndPoint":"false"
+	    },
+	    "0dd941f4-c943-11e2-8b8b-0800200c9a66": {
+		"belongsToTag":"c80cc862-c94a-11e2-8b8b-0800200c9a66",
+		"tagMode":"gps",
+		"title":"Nationaltheateret",
+		"desc":"Gratulerer! Du er nå i mål.",
+		"isEndPoint":"true"
+	    }
+	}
+    }
+}

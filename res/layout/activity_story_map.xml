@@ -4,6 +4,24 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
+    <TextView
+        android:id="@+id/story_option_hint"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_border_light_green"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:visibility="gone"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <fragment
+        android:id="@+id/story_map_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/scan_tag"
+        android:layout_below="@id/story_option_hint"
+        class="com.google.android.gms.maps.SupportMapFragment" />
+
     <Button
         android:id="@+id/scan_tag"
         android:layout_width="wrap_content"
@@ -11,19 +29,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:textStyle="bold"
-        android:background="@android:color/holo_orange_dark"
+        android:background="@color/android_yellow"
         android:onClick="scanTag"
-        android:text="@string/story_scan_tag" />
-
-    <com.google.android.maps.MapView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/story_map_view"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/scan_tag"
-        android:layout_alignParentTop="true"
-        android:apiKey="0_ZqXk6eXNEWprTM_dhYsrzCA0O4Ov2egdR_Y-g"
-        android:clickable="true" />
+        android:text="@string/story_scan_tag"
+        android:textStyle="bold" />
 
 </RelativeLayout>

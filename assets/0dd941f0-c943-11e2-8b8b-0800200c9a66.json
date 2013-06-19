@@ -8,7 +8,7 @@
 	"area":"Oslo",
 	"country":"Norway",
 	"date":"29.05.13",
-	"description":"Pending description",
+	"description":"Dette er en klimahistorie!\nTrykk på \"Start story\" for å begynne!",
 	"image":"",
 	"keywords":"oslo, quiz, klima",
 	"url":"http://www.norskklimanettverk.no/",
@@ -22,12 +22,14 @@
 		"belongsToTag":"c80cc860-c94a-11e2-8b8b-0800200c9a66",
 		"tagMode":"gps",
 		"title":"Litteraturhuset",
-		"desc":"Flyktninger er et tema som ofte diskuteres på Litteraturhuset",
+		"desc":"Klimaflyktninger er et tema som ofte diskuteres på Litteraturhuset",
 		"choiceDesc":"Hvor mange klimaflyktninger antar FN det vil være i 2050?",
+		"optionsTitle":"Se svaralternativer",
 		"options": {
 		    "20 millioner": {
 			"selectMethod":"hint_map",
-			"hintText":"Feil, det rette antallet er 150 millioner",
+			"propagatingText":"Feil, det rette antallet er 150 millioner",
+			"hintText":"",
 			"long":"10.728243",
 			"lat":"59.919612",
 			"next":"0dd941f2-c943-11e2-8b8b-0800200c9a66"

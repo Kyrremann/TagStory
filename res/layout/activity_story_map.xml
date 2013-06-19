@@ -8,30 +8,47 @@
         android:id="@+id/story_option_hint"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_border_light_green"
         android:layout_margin="10dp"
+        android:background="@drawable/background_border_light_green"
         android:padding="5dp"
-        android:visibility="gone"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="gone" />
 
     <fragment
         android:id="@+id/story_map_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/scan_tag"
+        android:layout_above="@+id/button_bottom"
         android:layout_below="@id/story_option_hint"
         class="com.google.android.gms.maps.SupportMapFragment" />
 
-    <Button
-        android:id="@+id/scan_tag"
+    <LinearLayout
+        android:id="@+id/button_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:background="@color/android_yellow"
-        android:onClick="scanTag"
-        android:text="@string/story_scan_tag"
-        android:textStyle="bold" />
+        android:layout_alignParentRight="true" >
+
+        <Button
+            android:id="@+id/scan_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/android_yellow"
+            android:onClick="scanTag"
+            android:text="@string/story_scan_tag"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/help_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/android_yellow_dark"
+            android:onClick="scanTag"
+            android:text="@string/story_gps_button"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </RelativeLayout>

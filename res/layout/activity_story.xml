@@ -12,7 +12,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:textStyle="bold"
-        android:background="@android:color/holo_orange_dark" />
+        android:background="@color/android_yellow" />
 
     <ScrollView
         android:id="@+id/story_part_scrollview"
@@ -25,7 +25,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
 
             <TextView

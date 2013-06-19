@@ -68,6 +68,7 @@ public class LocationTester extends FragmentActivity implements
 		mLocationRequest.setInterval(UPDATE_INTERVAL);
 		// Set the fastest update interval to 1 second
 		mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
+		servicesConnected();
 	}
 
 	@Override

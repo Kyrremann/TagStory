@@ -16,9 +16,9 @@ import android.widget.TextView;
 
 public class StoryDetailActivity extends Activity {
 
-	private String story_id;
-	private StoryManager storyManager;
-	private Story story;
+	protected String story_id;
+	protected StoryManager storyManager;
+	protected Story story;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

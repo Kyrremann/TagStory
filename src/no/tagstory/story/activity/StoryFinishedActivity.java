@@ -38,7 +38,7 @@ public class StoryFinishedActivity extends Activity {
 		((TextView) findViewById(R.id.story_statistic)).setText(statistics);
 	}
 
-	private void endOfStory(View view) {
+	public void endOfStory(View view) {
 		NavUtils.navigateUpTo(this, new Intent(this, StoryListActivity.class));
 	}
 

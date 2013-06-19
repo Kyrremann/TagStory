@@ -25,6 +25,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+@Deprecated
 public class StoryListActivity extends ListActivity {
 
 	private Dialog loginDialog, newUserDialog, aboutDialog, newTagDialog;

@@ -132,7 +132,11 @@ public class StoryActivity extends Activity {
 
 			final Dialog dialog = builder.create();
 
-			button.setText(R.string.story_find_next);
+			if (part.getOptionsTitle() != null) {
+				button.setText(part.getOptionsTitle());
+			} else {
+				button.setText(R.string.story_find_next);
+			}
 			button.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -143,16 +147,32 @@ public class StoryActivity extends Activity {
 		}
 	}
 
-	// TODO: This is where I need to check for what kind of scanning of tag is
-	// used, either gps, qr or nfc. Or all of them :\
 	public static Intent createTravelIntent(Context context, Story story,
 			StoryPart part, StoryPartOption option, String partTag,
 			String previousTag) {
+		return createTravelIntent(context, story, part, option, partTag, previousTag,
+				false);
+	}
+
+	// TODO: This is where I need to check for what kind of scanning of tag is
+	// used, either gps, qr or nfc. Or all of them :\
+	// TODO: Need to change from travel indent to show answer intent, and after
+	// then I can use the travel intent
+	public static Intent createTravelIntent(Context context, Story story,
+			StoryPart part, StoryPartOption option, String partTag,
+			String previousTag, boolean fromPropagating) {
+
 		Intent intent = new Intent();
 		intent.putExtra(STORY, story);
 		intent.putExtra(StoryTravelActivity.OPTION, option);
 		intent.putExtra(PARTTAG, partTag);
 		intent.putExtra(PREVIOUSTAG, previousTag);
+
+		if (!fromPropagating && option.getOptPropagatingText() != null) {
+			intent.setClass(context, StoryPropagatingActivity.class);
+			return intent;
+		}
+
 		String tagMode = part.getTagMode();
 		String opt = option.getOptSelectMethod();
 

@@ -222,6 +222,9 @@ public class GPSActivity extends StoryTravelActivity implements
 		// goal.setLatitude(59.909959);
 		// goal.setLongitude(10.777679);
 		if (goalLocation != null) {
+			Log.d("GPS",
+					"Distance to goal " + location.distanceTo(goalLocation)
+							+ " meters");
 			if (location.distanceTo(goalLocation) < 50) {
 				Log.d("GPS", "Closer then 50 meters to location");
 				checkTagData(option.getOptNext(), false);

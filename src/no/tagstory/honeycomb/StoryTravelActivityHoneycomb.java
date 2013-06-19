@@ -1,5 +1,7 @@
-package no.tagstory.story.activity;
+package no.tagstory.honeycomb;
 
+import no.tagstory.story.activity.StoryActivity;
+import no.tagstory.story.activity.StoryTravelActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;

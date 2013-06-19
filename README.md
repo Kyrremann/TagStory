@@ -44,6 +44,7 @@ TODO
 * Statistic about where you are on the route, also see where other are
 * ~~Scan tags with QR-code or GPS~~
  * Implemented
+* Google Map: Get location from where you are from you where you should go
 * Refactoring of the NFC and QR scanning, GPS is working best now
 * Better history of where you are in the story (in case of app failure)
 * Send "help" or messages to people on a Story. Similar to Hunger Games
@@ -52,10 +53,17 @@ TODO
  * Something in the line of "save and continue" or "save and quit"
 * Dialog for asking users to turn on certain features
  * Such as NFC or GPS
+* Change text on buttons
+* Tutorials on how to interact with the app
+* An own activity showing the answer for a question
+ * Should probably difference between asnwer and hint
+* XML styling of elements and views used in the app[1][http://developer.android.com/guide/topics/ui/themes.html]
+* Create abstract class which takes care of loading in the story parts for all the different classes, just the basic
 
 ### Other
 * Tags can not be hanged on metal
 * Check out what TripAdvisor have done on suggesting routes, maybe we can do something similar
 * Move all features request/TODOs to the "Issues" section
+* Make a clean version of the framework and fork the others, or branches
 
 [logo]: http://www.uio.no/studier/emner/matnat/ifi/INF5261/h12/project-groups/tag-story--out/feature-graphic-tag-story.png "Tag Story banner"

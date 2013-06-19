@@ -29,12 +29,12 @@ import android.widget.ListView;
 
 public class TagStoryActivity extends FragmentActivity {
 
-	private Dialog tagstoryDialog, klimaDialog;
+	protected Dialog tagstoryDialog, klimaDialog;
 
-	private Cursor storyCursor;
-	private StoryManager storyManager;
+	protected Cursor storyCursor;
+	protected StoryManager storyManager;
 	public final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
-	private ListView listView;
+	protected ListView listView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class TagStoryActivity extends FragmentActivity {
 		servicesConnected();
 	}
 
-	private void initializeListView() {
+	protected void initializeListView() {
 		listView = (ListView) findViewById(R.id.story_list);
 		listView.setAdapter(new StoryAdapter(this, R.layout.story_list_item,
 				storyCursor));

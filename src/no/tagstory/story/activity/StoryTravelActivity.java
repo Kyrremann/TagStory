@@ -52,6 +52,10 @@ public class StoryTravelActivity extends FragmentActivity {
 			((LinearLayout) findViewById(R.id.story_option_layout))
 					.addView(createImageHint(option.getOptImageSrc()));
 		}
+		// if (story.getStoryPart(partTag).getOptionsTitle() != null) {
+		// ((TextView) findViewById(R.id.story_activity_travel)).setText(story
+		// .getStoryPart(partTag).getOptionsTitle());
+		// }
 	}
 
 	private View createImageHint(String optImageSrc) {

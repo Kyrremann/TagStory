@@ -5,6 +5,8 @@
     <string name="title_story_list">Stories</string>
     <string name="no_stories">No stories for you</string>
     <string name="add_more_stories">Click to look for more stories</string>
+    <string name="powered_by">Powered by TagStory</string>
+    <string name="hevstemmen_logo">Logo of a a dancing lion</string>
     
     <string name="username">Username</string>
     <string name="username_hint">Username goes here&#8230;</string>
@@ -37,6 +39,7 @@
     <string name="story_find_next">Click to decide where to go next</string>
     <string name="story_next_part">Go to next part</string>
     <string name="story_ready">I am ready</string>
+    <string name="story_where_to_go">See where to go next</string>
     
     <string name="login_title">Please log in</string>
     <string name="login_login">Log in</string>
@@ -61,6 +64,8 @@
     <string name="story_finished">The End</string>
     <string name="story_new_story">Look for a new story</string>
     <string name="story_scan_tag">Scan tag</string>
+    <string name="story_gps_button">Help?</string>
+    <string name="story_pick_story">Pick a story from the list below</string>
     
     <string name="story_arrow_gps_is_off">Please turn on your GPS</string>
     <string name="story_arrow_turn_on">Turn on</string>
@@ -91,5 +96,6 @@
 	<color name="android_green">#669900</color>
 	<color name="android_light_green">#99CC00</color>
 	<color name="android_yellow">#FFBB33</color>
+	<color name="android_yellow_dark">#FF8800</color>
   
 </resources>

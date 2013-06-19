@@ -23,7 +23,8 @@ public class JsonParser {
 			START_TAG = "startTag", KEYWORDS = "keywords",
 			TAG_COUNT = "tagCount", PARTS = "parts", COUNTRY = "country",
 			IMAGE = "image", URL = "url", TAG_TYPES = "tagTypes",
-			GAME_MODES = "gameModes", AREA = "area", LANGUAGE = "language";
+			GAME_MODES = "gameModes", AREA = "area", LANGUAGE = "language",
+			OPTIONS_TITLE = "optionsTitle";
 	public static final String BELONSG_TO_TAG = "belongsToTag",
 			TAG_MODE = "tagMode", PART_DESCRIPTION = "desc",
 			CHOICE_DESCRIPTION = "choiceDesc", IS_ENDPOINT = "isEndPoint",
@@ -31,7 +32,8 @@ public class JsonParser {
 	public static final String OPT_SELECT_METHOD = "selectMethod",
 			OPT_LONG = "long", OPT_LAT = "lat", OPT_HINT_TEXT = "hintText",
 			OPT_NEXT = "next", OPT_IMAGE_SRC = "imageSrc",
-			OPT_SOUND_SRC = "soundSrc", OPT_ARROW_LENGTH = "arrowLength";
+			OPT_SOUND_SRC = "soundSrc", OPT_ARROW_LENGTH = "arrowLength",
+			PROPAGATING_TEXT = "propagatingText";
 	public static final String GAME_MODE = "gameMode",
 			GAME_BUTTON = "gameButton", QUIZ = "quiz", QUIZ_Q = "quizQ",
 			QUIZ_A = "quizA", QUIZ_C = "quizC";
@@ -133,6 +135,9 @@ public class JsonParser {
 					storyPart.setChoiceDescription(object
 							.getString(CHOICE_DESCRIPTION));
 				}
+				if (object.has(OPTIONS_TITLE)) {
+					storyPart.setOptionsTitle(object.getString(OPTIONS_TITLE));
+				}
 				storyPart.setOptions(parseJsonStoryPartOptions(object
 						.getJSONObject(PART_OPTIONS)));
 				storyPart.setTagMode(object.getString(TAG_MODE));
@@ -154,21 +159,28 @@ public class JsonParser {
 		while (keys.hasNext()) {
 			String key = keys.next();
 			JSONObject object = jsonObject.getJSONObject(key);
-			StoryPartOption option = new StoryPartOption(key,
-					object.getString(OPT_SELECT_METHOD),
+			String selectMethod = object.getString(OPT_SELECT_METHOD);
+			StoryPartOption option = new StoryPartOption(key, selectMethod,
 					object.getString(OPT_HINT_TEXT), object.getString(OPT_NEXT));
 
-			if (object.getString(OPT_SELECT_METHOD).equals(HINT_IMAGE))
+			if (selectMethod.equals(HINT_IMAGE)) {
 				option.setOptImageSrc(object.getString(OPT_IMAGE_SRC));
-			else if (object.getString(OPT_SELECT_METHOD).equals(HINT_MAP)) {
+			}
+			if (selectMethod.equals(HINT_MAP)) {
 				option.setLatitude(object.getDouble(OPT_LAT));
 				option.setLongitude(object.getDouble(OPT_LONG));
-			} else if (object.getString(OPT_SELECT_METHOD).equals(HINT_ARROW)) {
+			}
+			if (selectMethod.equals(HINT_ARROW)) {
 				option.setLatitude(object.getDouble(OPT_LAT));
 				option.setLongitude(object.getDouble(OPT_LONG));
 				option.setOptArrowLength(object.getBoolean(OPT_ARROW_LENGTH));
-			} else if (object.getString(OPT_SELECT_METHOD).equals(HINT_IMAGE))
+			}
+			if (selectMethod.equals(HINT_IMAGE)) {
 				option.setOptImageSrc(object.getString(OPT_IMAGE_SRC));
+			}
+			if (object.has(PROPAGATING_TEXT)) {
+				option.setOptPropagatingText(object.getString(PROPAGATING_TEXT));
+			}
 
 			map.put(key, option);
 		}

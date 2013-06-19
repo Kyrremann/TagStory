@@ -37,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/blindern" />
 
+            <!-- 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView1"
                 android:layout_width="fill_parent"
@@ -113,17 +114,19 @@
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
-
+			-->
+            
             <TextView
                 android:id="@+id/story_detail_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/background_border_light_green"
                 android:padding="10dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginBottom="10dp" />
 
+            <!--
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -160,7 +163,7 @@
                     android:layout_alignParentTop="true"
                     android:src="@android:drawable/ic_menu_gallery" />
             </RelativeLayout>
-
+            
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -196,6 +199,8 @@
                     android:layout_alignParentTop="true"
                     android:src="@android:drawable/ic_menu_gallery" />
             </RelativeLayout>
+			-->
+			
         </LinearLayout>
     </ScrollView>
 

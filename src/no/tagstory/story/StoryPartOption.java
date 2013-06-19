@@ -17,6 +17,7 @@ public class StoryPartOption implements Serializable {
 	private String optNext;
 	private String optImageSrc;
 	private String optSoundSrc;
+	private String optPropagatingText;
 	private double longitude;
 	private double latitude;
 	private boolean optArrowLength;
@@ -88,11 +89,12 @@ public class StoryPartOption implements Serializable {
 		return latitude;
 	}
 
-	/**
-	 * @return the optArrowLength
-	 */
-	public boolean isOptArrowLength() {
-		return optArrowLength;
+	public String getOptPropagatingText() {
+		return optPropagatingText;
+	}
+
+	public void setOptPropagatingText(String optPropagatingText) {
+		this.optPropagatingText = optPropagatingText;
 	}
 
 	/**
@@ -157,6 +159,13 @@ public class StoryPartOption implements Serializable {
 
 	public void setLatitude(double d) {
 		this.latitude = d;
+	}
+
+	/**
+	 * @return the optArrowLength
+	 */
+	public boolean isOptArrowLength() {
+		return optArrowLength;
 	}
 
 }

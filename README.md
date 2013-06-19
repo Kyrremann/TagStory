@@ -57,7 +57,7 @@ TODO
 * Tutorials on how to interact with the app
 * An own activity showing the answer for a question
  * Should probably difference between asnwer and hint
-* XML styling of elements and views used in the app[1][http://developer.android.com/guide/topics/ui/themes.html]
+* XML styling of elements and views used in the app[[1]][xml-style]
 * Create abstract class which takes care of loading in the story parts for all the different classes, just the basic
 
 ### Other
@@ -67,3 +67,4 @@ TODO
 * Make a clean version of the framework and fork the others, or branches
 
 [logo]: http://www.uio.no/studier/emner/matnat/ifi/INF5261/h12/project-groups/tag-story--out/feature-graphic-tag-story.png "Tag Story banner"
+[xml-style]: [http://developer.android.com/guide/topics/ui/themes.html]

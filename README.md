@@ -6,6 +6,9 @@ Tag Story is a project focusing on getting people in all ages out into the woods
 Better description is pending...
 
 --
+26 June 2013
+www.TagStory.no is live!
+--
 24 May 2013
 Tag Story is up and running and is going to be used in a project this summer. In that case we will build a new web page and reorganise the Github project. We will also create wiki pages about the project, how to make stories, and a list of stories to try.
 --

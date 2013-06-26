@@ -3,8 +3,6 @@ package no.tagstory.story.activity.option.nfc;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
-import com.google.android.maps.MapActivity;
-
 import no.tagstory.story.Story;
 import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.story.StoryPartOption;
@@ -20,7 +18,6 @@ import android.nfc.NfcAdapter;
 import android.os.Build;
 import android.os.Parcelable;
 import android.support.v4.app.FragmentActivity;
-import android.text.style.SuperscriptSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;

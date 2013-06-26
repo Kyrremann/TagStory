@@ -7,7 +7,6 @@ import no.tagstory.story.Story;
 import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.story.StoryPartOption;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -18,7 +17,6 @@ import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.os.Build;
 import android.os.Parcelable;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Toast;
 

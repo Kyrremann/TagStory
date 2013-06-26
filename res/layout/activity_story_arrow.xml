@@ -5,11 +5,10 @@
     android:layout_height="match_parent" >
 
     <TextView
+        android:layout_margin="15dp"
         android:id="@+id/story_arrow_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:background="@drawable/background_border_light_green"
+        android:layout_gravity="top|center_horizontal"
+        style="@style/TagStoryView"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView

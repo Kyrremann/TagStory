@@ -13,7 +13,7 @@
         android:textStyle="bold"
         android:background="@color/android_yellow"
         android:onClick="startStory"
-        android:text="Start Story" />
+        android:text="@string/story_start" />
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -35,7 +35,8 @@
                 android:layout_width="fill_parent"
                 android:scaleType="centerInside"
                 android:layout_height="wrap_content"
-                android:src="@drawable/blindern" />
+                android:src="@drawable/blindern"
+                android:contentDescription="@string/cd_story_image" />
 
             <!-- 
             <HorizontalScrollView
@@ -118,12 +119,8 @@
             
             <TextView
                 android:id="@+id/story_detail_desc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/TagStoryView"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/background_border_light_green"
-                android:padding="10dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginBottom="10dp" />
 
             <!--

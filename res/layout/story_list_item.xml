@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
-        android:background="@drawable/border_light_green"
+        android:contentDescription="@string/cd_story_image"
         android:src="@drawable/blindern" />
 
     <TextView
@@ -22,8 +22,8 @@
         android:layout_alignRight="@+id/storyListItemAuthor"
         android:layout_alignTop="@+id/story_list_image"
         android:layout_toRightOf="@+id/story_list_image"
-        android:text="Skattejakt på Blindern"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:text="@string/dummy_title"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/storyListItemAuthor"
@@ -32,10 +32,10 @@
         android:layout_below="@+id/storyListItemTitle"
         android:layout_toLeftOf="@+id/imageView3"
         android:layout_toRightOf="@+id/story_list_image"
-        android:text="Kyrre Havik Eriksen"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:text="@string/dummy_author"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <LinearLayout
+<!--     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/story_list_image"
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_star" />
-    </LinearLayout>
+    </LinearLayout> -->
 
     <ImageView
         android:id="@+id/imageView3"

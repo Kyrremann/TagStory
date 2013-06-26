@@ -96,6 +96,7 @@
         <activity android:name=".honeycomb.StoryTravelActivityHoneycomb" >
         </activity>
         <activity android:name=".story.activity.StoryPropagatingActivity"></activity>
+        <activity android:name="TagStoryActivity"></activity>
     </application>
 
 </manifest>

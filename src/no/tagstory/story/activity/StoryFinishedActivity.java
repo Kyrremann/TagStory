@@ -1,7 +1,7 @@
 package no.tagstory.story.activity;
 
 import no.tagstory.R;
-import no.tagstory.StoryListActivity;
+import no.tagstory.TagStoryActivity;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryPart;
 import android.app.Activity;
@@ -39,7 +39,8 @@ public class StoryFinishedActivity extends Activity {
 	}
 
 	public void endOfStory(View view) {
-		NavUtils.navigateUpTo(this, new Intent(this, StoryListActivity.class));
+		NavUtils.navigateUpTo(this, new Intent(this, TagStoryActivity.class));
+		finish();
 	}
 
 }

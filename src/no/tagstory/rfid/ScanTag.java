@@ -1,5 +1,6 @@
 package no.tagstory.rfid;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -8,8 +9,10 @@ import android.content.IntentFilter;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
+import android.os.Build;
 import android.os.Parcelable;
 
+@TargetApi(Build.VERSION_CODES.GINGERBREAD_MR1)
 public class ScanTag {
 
 	protected NfcAdapter nfcAdapter;
@@ -42,7 +45,7 @@ public class ScanTag {
 				NfcAdapter.ACTION_TAG_DISCOVERED); // filter for all
 		IntentFilter[] writeTagFilters = new IntentFilter[] { tagDetected };
 		nfcAdapter.enableForegroundDispatch((Activity) context,
-				nfcPendingIntent, null, null);
+				nfcPendingIntent, writeTagFilters, null);
 	}
 
 	public void disableForegroundMode() {

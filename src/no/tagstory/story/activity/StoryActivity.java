@@ -8,7 +8,6 @@ import no.tagstory.story.Story;
 import no.tagstory.story.StoryPart;
 import no.tagstory.story.StoryPartOption;
 import no.tagstory.story.game.QuizActivity;
-import no.tagstory.story.activity.option.ArrowNavigationActivity;
 import no.tagstory.story.activity.option.AudioPlayerActivity;
 import no.tagstory.story.activity.option.MapNavigationActivity;
 import no.tagstory.story.activity.option.gps.GPSActivity;

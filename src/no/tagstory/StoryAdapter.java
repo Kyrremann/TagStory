@@ -30,12 +30,11 @@ public class StoryAdapter extends CursorAdapter {
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
 		try {
-			InputStream inputStream = context.getAssets().open(
-					cursor.getString(3));
-			Drawable image = Drawable.createFromStream(inputStream,
-					cursor.getString(3));
+			String imageAsset = cursor.getString(4);
+			InputStream inputStream = context.getAssets().open(imageAsset);
+			Drawable drawable = Drawable.createFromStream(inputStream, imageAsset);
 			((ImageView) view.findViewById(R.id.story_list_image))
-					.setImageDrawable(image);
+					.setImageDrawable(drawable);
 		} catch (Exception e) {
 			((ImageView) view.findViewById(R.id.story_list_image))
 					.setImageResource(R.drawable.flytebrygge);
@@ -43,7 +42,8 @@ public class StoryAdapter extends CursorAdapter {
 		((TextView) view.findViewById(R.id.storyListItemTitle)).setText(cursor
 				.getString(2));
 		((TextView) view.findViewById(R.id.storyListItemAuthor))
-				.setText("Sted: <put here>");
+				.setText("Sted: " + cursor
+						.getString(3));
 	}
 
 	@Override

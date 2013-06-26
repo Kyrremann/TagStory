@@ -33,6 +33,7 @@
         android:id="@+id/new_user_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textPassword"
         android:ems="10"
         android:hint="@string/password_hint" />
 

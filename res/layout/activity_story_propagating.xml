@@ -29,11 +29,7 @@
 
             <TextView
                 android:id="@+id/story_propagating"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background_border_light_green"
-                android:padding="10dp"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                style="@style/TagStoryView" />
         </LinearLayout>
     </ScrollView>
 

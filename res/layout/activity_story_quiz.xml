@@ -24,7 +24,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:textStyle="bold"
-        android:background="@android:color/holo_orange_dark"
+        android:background="@color/android_yellow_dark"
         android:onClick="quizAnswer"
         android:text="@string/story_quiz_true" />
 
@@ -35,7 +35,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:textStyle="bold"
-        android:background="@android:color/holo_orange_dark"
+        android:background="@color/android_yellow_dark"
         android:onClick="quizAnswer"
         android:text="@string/story_quiz_false" />
 

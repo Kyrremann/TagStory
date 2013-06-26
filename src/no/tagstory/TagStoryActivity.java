@@ -39,8 +39,9 @@ public class TagStoryActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_story_list);
-
+		// setContentView(R.layout.activity_story_list);
+		setContentView(R.layout.activity_story_hevstemmen);
+		
 		storyManager = new StoryManager(this);
 		storyCursor = storyManager.getStoryList();
 

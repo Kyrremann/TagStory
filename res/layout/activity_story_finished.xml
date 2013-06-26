@@ -18,7 +18,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentTop="true"
+        android:padding="15dp" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,24 +28,16 @@
 
             <TextView
                 android:id="@+id/story_finished_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/TagStoryView"
                 android:layout_gravity="center_horizontal"
-                android:padding="15dp"
-                android:background="@drawable/background_border_light_green"
-                android:text="@string/story_finished"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:text="@string/story_finished" />
 
             <TextView
                 android:id="@+id/story_statistic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/TagStoryView"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/background_border_light_green"
-                android:padding="15dp"
-                android:text="@string/dummy_statistics"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:text="@string/dummy_statistics" />
         </LinearLayout>
     </ScrollView>
 

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <string name="app_name">Tag Story</string>
     <string name="title_story_detail">Story Detail</string>
@@ -88,6 +88,9 @@
     <string name="dummy_statistics">Statistics\n
         Time used: 21:41\n
         Length walk: 2km</string>
+        
+    <string name="cd_logo">Hev Stemmen logo</string>
+    <string name="cd_story_image">Image representing a story</string>
     
 	<color name="light_tree_green">#739D88</color>
 	<color name="tree_green">#1E5228</color>
@@ -97,5 +100,15 @@
 	<color name="android_light_green">#99CC00</color>
 	<color name="android_yellow">#FFBB33</color>
 	<color name="android_yellow_dark">#FF8800</color>
+	
+	<color name="hs_green">#27a056</color>
+	
+	<string name="dummy_author">Kyrre Havik Eriksen</string>
+	
+	<string name="dummy_title">Skattejakt på Blindern</string>
+	
+	<string name="test_gps">Test GPS</string>
+	
+	<string name="story_start">Start Story</string>
   
 </resources>

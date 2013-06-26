@@ -11,8 +11,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:textStyle="bold"
-        android:background="@color/android_yellow" />
+        android:background="@color/android_yellow"
+        android:textStyle="bold" />
 
     <ScrollView
         android:id="@+id/story_part_scrollview"
@@ -30,19 +30,11 @@
 
             <TextView
                 android:id="@+id/story_part_desc"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/square_textview_green"
-                android:padding="10dp"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                style="@style/TagStoryView" />
 
             <TextView
                 android:id="@+id/story_part_choice"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/square_textview_green"
-                android:padding="10dp"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                style="@style/TagStoryView" />
         </LinearLayout>
     </ScrollView>
 

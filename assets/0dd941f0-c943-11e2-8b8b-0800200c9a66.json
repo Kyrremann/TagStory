@@ -36,14 +36,16 @@
 		    },
 		    "70 millioner": {
 			"selectMethod":"hint_map",
-			"hintText":"Feil, det rette antallet er 150 millioner",
+			"propagatingText":"Feil, det rette antallet er 150 millioner",
+			"hintText":"",
 			"long":"10.728243",
 			"lat":"59.919612",
 			"next":"0dd941f2-c943-11e2-8b8b-0800200c9a66"
 		    },
 		    "150 millioner": {
 			"selectMethod":"hint_map",
-			"hintText":"Riktig! Det rette antallet er 150 millioner",
+			"propagatingText":"Riktig! Det rette antallet er 150 millioner",
+			"hintText":"",
 			"long":"10.728243",
 			"lat":"59.919612",
 			"next":"0dd941f3-c943-11e2-8b8b-0800200c9a66"
@@ -76,21 +78,24 @@
 		"options": {
 		    "Nordmenn": {
 			"selectMethod":"hint_map",
-			"hintText":"Feil, det er de fattige i verden som rammes hardest",
+			"propagatingText":"Feil, det er de fattige i verden som rammes hardest",
+			"hintText":"",
 			"lat":"59.918125",
 			"long":"10.727965",
 			"next":"0dd941f4-c943-11e2-8b8b-0800200c9a66"
 		    },
 		    "De fattige i verden": {
 			"selectMethod":"hint_map",
-			"hintText":"Ja, det er de fattige i verden som rammes hardest",
+			"propagatingText":"Ja, det er de fattige i verden som rammes hardest",
+			"hintText":"",
 			"lat":"59.918125",
 			"long":"10.727965",
 			"next":"0dd941f4-c943-11e2-8b8b-0800200c9a66"
 		    },
 		    "150 millioner": {
 			"selectMethod":"hint_map",
-			"hintText":"Feil, det er de fattige i verden som rammes hardest",
+			"propagatingText":"Feil, det er de fattige i verden som rammes hardest",
+			"hintText":"",
 			"lat":"59.919612",
 			"long":"10.728243",
 			"next":"0dd941f4-c943-11e2-8b8b-0800200c9a66"

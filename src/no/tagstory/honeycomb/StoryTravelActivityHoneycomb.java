@@ -2,11 +2,14 @@ package no.tagstory.honeycomb;
 
 import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.story.activity.StoryTravelActivity;
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class StoryTravelActivityHoneycomb extends StoryTravelActivity {
 	
 	@Override

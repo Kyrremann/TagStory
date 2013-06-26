@@ -2,6 +2,7 @@ package no.tagstory.rfid;
 
 import java.io.IOException;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -13,7 +14,9 @@ import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
+import android.os.Build;
 
+@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class WriteTag {
 
 	private String message;
@@ -56,7 +59,7 @@ public class WriteTag {
 				NdefRecord record = new NdefRecord(NdefRecord.TNF_WELL_KNOWN,
 						NdefRecord.RTD_TEXT, new byte[0], payload);
 
-				NdefMessage tagMessage = null; //new NdefMessage(record);
+				NdefMessage tagMessage = new NdefMessage(record);
 
 				ndef.connect();
 				ndef.writeNdefMessage(tagMessage);

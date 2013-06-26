@@ -1,7 +1,18 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppTheme" parent="android:Theme.Holo.Light" >
-        <item name="android:windowBackground">@color/android_green</item>
-        </style>
+    <style name="AppTheme" parent="android:Theme.Holo.Light">
+
+        <!-- <item name="android:windowBackground">@color/android_green</item> -->
+        <item name="android:windowBackground">@color/hs_green</item>
+    </style>
+
+    <style name="TagStoryView" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/background_border_light_green</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
 
 </resources>

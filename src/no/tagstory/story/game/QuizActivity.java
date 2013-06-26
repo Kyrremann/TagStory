@@ -7,18 +7,14 @@ import no.tagstory.story.Story;
 import no.tagstory.story.StoryPart;
 import no.tagstory.story.StoryPartOption;
 import no.tagstory.story.activity.StoryActivity;
-import no.tagstory.story.activity.StoryTravelActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,7 +23,7 @@ public class QuizActivity extends Activity {
 
 	private Story story;
 	private StoryPart part;
-	private String partTag, previousTag;
+	private String partTag; //, previousTag;
 	private int quizNumber, quizPoint;
 	private LinearLayout layout;
 	private TextView textView;
@@ -40,7 +36,7 @@ public class QuizActivity extends Activity {
 		Bundle bundle = getIntent().getExtras();
 		story = (Story) bundle.getSerializable(StoryActivity.STORY);
 		partTag = bundle.getString(StoryActivity.PARTTAG);
-		previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);
+		// previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);
 		part = story.getStoryPart(partTag);
 
 		layout = (LinearLayout) findViewById(R.id.activity_layout_quiz);

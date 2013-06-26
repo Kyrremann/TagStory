@@ -20,6 +20,7 @@ public class Database {
 	public static final String STORY_ID = "_id";
 	public static final String STORY_AUTHOR = "AUTHOR";
 	public static final String STORY_TITLE = "TITLE";
+	public static final String STORY_PLACE = "PLACE";
 	public static final String STORY_IMAGE = "IMAGE";
 	
 	public static final String USER_TABLE_NAME = "USER";
@@ -34,7 +35,7 @@ public class Database {
 	
 	private static final String STORY_CREATE = "CREATE TABLE "
 			+ STORY_TABLE_NAME + " (" + STORY_ID + " TEXT, " + STORY_AUTHOR
-			+ " TEXT, " + STORY_TITLE + " TEXT, " + STORY_IMAGE + " TEXT);";
+			+ " TEXT, " + STORY_TITLE + " TEXT, " + STORY_PLACE + " TEXT, " + STORY_IMAGE + " TEXT);";
 	
 	private static final String USER_CREATE = "CREATE TABLE "
 			+ USER_TABLE_NAME + " (" + USER_ID + " TEXT, " + USER_PASSWORD
@@ -88,7 +89,7 @@ public class Database {
 			 */
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
-					+ " VALUES ('0dd941f0-c943-11e2-8b8b-0800200c9a66', 'Klima nettverket', 'Oslo klimatur', 'sognsvann.jpg')");
+					+ " VALUES ('0dd941f0-c943-11e2-8b8b-0800200c9a66', 'Klima nettverket', 'Oslo klimatur', 'Oslo', 'sognsvann.jpg')");
 		}
 	}
 
@@ -116,7 +117,7 @@ public class Database {
 		return db.query(STORY_TABLE_NAME, null, null, null, null, null,
 				STORY_TITLE + " DESC");
 	}
-
+	
 	public void setTable(String rowID, String update) {
 		db.execSQL("UPDATE " + STORY_TABLE_NAME + " SET value ='" + update
 				+ "' WHERE _id = '" + rowID + "'");

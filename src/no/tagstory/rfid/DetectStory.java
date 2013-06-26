@@ -1,6 +1,7 @@
 package no.tagstory.rfid;
 
 import no.tagstory.R;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -8,10 +9,12 @@ import android.content.IntentFilter;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.widget.TextView;
 
+@TargetApi(Build.VERSION_CODES.GINGERBREAD_MR1)
 public class DetectStory extends Activity {
 
 	public DetectStory() {

@@ -79,6 +79,7 @@ public class GPSActivity extends StoryTravelActivity implements
 		// hintText.setText(R.string.gps_about_button);
 
 		// TODO: Provider should be set in the json file
+		setTitle(R.string.map_next_tag);
 		goalLocation = new Location("goal");
 		goalLocation.setLatitude(option.getLatitude());
 		goalLocation.setLongitude(option.getLongitude());
@@ -86,12 +87,19 @@ public class GPSActivity extends StoryTravelActivity implements
 
 	@Override
 	public void scanTag(View v) {
-		if (v.getId() == R.id.scan_tag) {
+		if (v.getId() == R.id.help_button) {
 			if (gpsInfoDialog == null) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setTitle(R.string.gps_about_title);
 				builder.setMessage(R.string.gps_about_content);
 				builder.setCancelable(true);
+				builder.setNeutralButton(R.string.dialog_cancel, new OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
 				builder.setNegativeButton(R.string.cheat,
 						new OnClickListener() {
 

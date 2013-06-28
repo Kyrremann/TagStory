@@ -38,7 +38,8 @@
             android:background="@color/android_yellow"
             android:onClick="scanTag"
             android:text="@string/story_scan_tag"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:enabled="false" />
 
         <Button
             android:id="@+id/help_button"

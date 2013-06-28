@@ -10,10 +10,10 @@
         android:orderInCategory="1"
         android:showAsAction="never"
         android:title="@string/menu_about_app"/>
-    <item
+    <!-- <item
         android:id="@+id/menu_gps"
         android:orderInCategory="2"
         android:showAsAction="never"
-        android:title="@string/test_gps"/>
+        android:title="@string/test_gps"/> -->
 
 </menu>

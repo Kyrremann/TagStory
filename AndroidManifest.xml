@@ -87,7 +87,9 @@
 
         <activity android:name="LocationTester" >
         </activity>
-        <activity android:name=".honeycomb.TagStoryActivityHoneyComb" >
+        <activity
+            android:name=".honeycomb.TagStoryActivityHoneyComb"
+            android:label="@string/app_title" >
         </activity>
         <activity android:name=".honeycomb.StoryActivityHoneycomb" >
         </activity>
@@ -95,8 +97,12 @@
         </activity>
         <activity android:name=".honeycomb.StoryTravelActivityHoneycomb" >
         </activity>
-        <activity android:name=".story.activity.StoryPropagatingActivity"></activity>
-        <activity android:name="TagStoryActivity"></activity>
+        <activity android:name=".story.activity.StoryPropagatingActivity" >
+        </activity>
+        <activity
+            android:name="TagStoryActivity"
+            android:label="@string/app_title" >
+        </activity>
     </application>
 
 </manifest>

@@ -112,11 +112,12 @@ public class TagStoryActivity extends FragmentActivity {
 						R.string.dialog_about_klima);
 			}
 			klimaDialog.show();
-		} else if (id == R.id.menu_gps) {
-			// startActivity(new Intent(this, LocationTester.class));
-			ServerCommunication.sendTempStatistic(
-					"" + System.currentTimeMillis(), "1337");
 		}
+		// else if (id == R.id.menu_gps) {
+		// // startActivity(new Intent(this, LocationTester.class));
+		// ServerCommunication.sendTempStatistic(
+		// "" + System.currentTimeMillis(), "1337");
+		// }
 
 		return super.onMenuItemSelected(featureId, item);
 	}
@@ -127,7 +128,7 @@ public class TagStoryActivity extends FragmentActivity {
 		builder.setCancelable(true);
 		builder.setMessage(info);
 
-		builder.setNeutralButton(R.string.dialog_cancel, new OnClickListener() {
+		builder.setNeutralButton(android.R.string.ok, new OnClickListener() {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {

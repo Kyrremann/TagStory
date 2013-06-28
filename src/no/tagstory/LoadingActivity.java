@@ -14,6 +14,7 @@ public class LoadingActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_loading);
+		setTitle(R.string.app_title);
 
 		new Handler().postDelayed(new Runnable() {
 			@Override

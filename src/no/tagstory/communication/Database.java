@@ -89,7 +89,7 @@ public class Database {
 			 */
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
-					+ " VALUES ('0dd941f0-c943-11e2-8b8b-0800200c9a66', 'Klima nettverket', 'Oslo klimatur', 'Oslo', 'sognsvann.jpg')");
+					+ " VALUES ('0dd941f0-c943-11e2-8b8b-0800200c9a66', 'Klima nettverket', 'Oslo klimatur', 'Oslo', 'slottet.jpg')");
 		}
 	}
 

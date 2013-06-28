@@ -10,10 +10,11 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:textStyle="bold"
         android:background="@color/android_yellow"
         android:onClick="startStory"
-        android:text="@string/story_start" />
+        android:padding="15dp"
+        android:text="@string/story_start"
+        android:textStyle="bold" />
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -33,12 +34,12 @@
             <ImageView
                 android:id="@+id/story_detail_image"
                 android:layout_width="fill_parent"
-                android:scaleType="centerInside"
                 android:layout_height="wrap_content"
-                android:src="@drawable/blindern"
-                android:contentDescription="@string/cd_story_image" />
+                android:contentDescription="@string/cd_story_image"
+                android:scaleType="centerInside"
+                android:src="@drawable/blindern" />
 
-            <!-- 
+            <!--
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView1"
                 android:layout_width="fill_parent"
@@ -115,13 +116,13 @@
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
-			-->
-            
+            -->
+
             <TextView
                 android:id="@+id/story_detail_desc"
                 style="@style/TagStoryView"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="15dp" />
 
             <!--
             <RelativeLayout
@@ -196,8 +197,8 @@
                     android:layout_alignParentTop="true"
                     android:src="@android:drawable/ic_menu_gallery" />
             </RelativeLayout>
-			-->
-			
+            -->
+
         </LinearLayout>
     </ScrollView>
 

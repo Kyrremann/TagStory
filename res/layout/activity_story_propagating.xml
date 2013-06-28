@@ -13,6 +13,7 @@
         android:textStyle="bold"
         android:background="@color/android_yellow"
         android:onClick="whereToGo"
+        android:padding="15dp"
         android:text="@string/story_where_to_go" />
 
     <ScrollView

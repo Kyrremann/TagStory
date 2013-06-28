@@ -8,8 +8,8 @@
 	"area":"Oslo",
 	"country":"Norway",
 	"date":"29.05.13",
-	"description":"Dette er en klimahistorie!\nTrykk på \"Start story\" for å begynne!",
-	"image":"",
+	"description":"Dette er en klimahistorie!\nTrykk på \"Start story\" for å begynne!\n\n\nBilde tatt av Marcus Ramberg.",
+	"image":"slottet-big.jpg",
 	"keywords":"oslo, quiz, klima",
 	"url":"http://www.norskklimanettverk.no/",
 	"startTag":"0dd941f1-c943-11e2-8b8b-0800200c9a66",
@@ -46,8 +46,8 @@
 			"selectMethod":"hint_map",
 			"propagatingText":"Riktig! Det rette antallet er 150 millioner",
 			"hintText":"",
-			"long":"10.728243",
-			"lat":"59.919612",
+			"long":"10.727965",
+			"lat":"59.918125",
 			"next":"0dd941f3-c943-11e2-8b8b-0800200c9a66"
 		    }
 		},
@@ -80,24 +80,24 @@
 			"selectMethod":"hint_map",
 			"propagatingText":"Feil, det er de fattige i verden som rammes hardest",
 			"hintText":"",
-			"lat":"59.918125",
-			"long":"10.727965",
+			"lat":"59.915004",
+			"long":"10.733336",
 			"next":"0dd941f4-c943-11e2-8b8b-0800200c9a66"
 		    },
 		    "De fattige i verden": {
 			"selectMethod":"hint_map",
 			"propagatingText":"Ja, det er de fattige i verden som rammes hardest",
 			"hintText":"",
-			"lat":"59.918125",
-			"long":"10.727965",
+			"lat":"59.915004",
+			"long":"10.733336",
 			"next":"0dd941f4-c943-11e2-8b8b-0800200c9a66"
 		    },
-		    "150 millioner": {
+		    "De som har investert i shipping": {
 			"selectMethod":"hint_map",
 			"propagatingText":"Feil, det er de fattige i verden som rammes hardest",
 			"hintText":"",
-			"lat":"59.919612",
-			"long":"10.728243",
+			"lat":"59.915004",
+			"long":"10.733336",
 			"next":"0dd941f4-c943-11e2-8b8b-0800200c9a66"
 		    }
 		},

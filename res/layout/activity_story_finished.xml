@@ -12,6 +12,7 @@
         android:layout_alignParentRight="true"
         android:background="@color/android_yellow"
         android:onClick="endOfStory"
+        android:padding="15dp"
         android:text="@string/story_finished"
         android:textStyle="bold" />
 

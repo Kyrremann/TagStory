@@ -36,10 +36,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/android_yellow"
+            android:enabled="false"
             android:onClick="scanTag"
+            android:padding="15dp"
             android:text="@string/story_scan_tag"
-            android:textStyle="bold"
-            android:enabled="false" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/help_button"
@@ -48,6 +49,7 @@
             android:layout_weight="1"
             android:background="@color/android_yellow_dark"
             android:onClick="scanTag"
+            android:padding="15dp"
             android:text="@string/story_gps_button"
             android:textStyle="bold" />
     </LinearLayout>

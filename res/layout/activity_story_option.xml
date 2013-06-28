@@ -13,6 +13,7 @@
         android:textStyle="bold"
         android:background="@color/android_yellow"
         android:onClick="scanTag"
+        android:padding="15dp"
         android:text="@string/story_scan_tag" />
 
     <ScrollView

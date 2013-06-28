@@ -7,7 +7,6 @@
     <string name="add_more_stories">Click to look for more stories</string>
     <string name="powered_by">Powered by TagStory</string>
     <string name="hevstemmen_logo">Logo of a a dancing lion</string>
-    
     <string name="username">Username</string>
     <string name="username_hint">Username goes here&#8230;</string>
     <string name="password">Password</string>
@@ -18,97 +17,80 @@
     <string name="cheat">Cheat</string>
     <string name="description">Description</string>
     <string name="description_hint">Where is the tag</string>
-    
     <string name="gps">GPS</string>
     <string name="gps_hint">More presicely&#8230;</string>
     <string name="gps_about_title">About GPS tags</string>
     <string name="gps_about_content">Description of how GPS tags works.</string>
     <string name="gps_about_button">This story uses GPS tags</string>
-    
     <string name="front_menu_log_in">Log in</string>
     <string name="front_menu_create_user">Create user</string>
     <string name="front_menu_about">About</string>
     <string name="front_menu_options">Options</string>
     <string name="front_menu_update_stories">Update stories</string>
     <string name="front_menu_create_tag">Create tag</string>
-    
     <string name="detail_menu_start_story">Start story</string>
     <string name="detail_story_description_image">This image is used as an description for the story.</string>
-    
     <string name="story_scan_info">Please scan a tag to see it\'s info, or just do whatever you want!</string>
     <string name="story_find_next">Click to decide where to go next</string>
     <string name="story_next_part">Go to next part</string>
     <string name="story_ready">I am ready</string>
     <string name="story_where_to_go">See where to go next</string>
-    
     <string name="login_title">Please log in</string>
     <string name="login_login">Log in</string>
     <string name="login_cancel">Not now</string>
     <string name="login_error">Wrong username or password</string>
     <string name="login_success">You are successfully logged in</string>
-    
     <string name="new_user_title">Be a part of Tag Story</string>
     <string name="new_user_create">Join us!</string>
     <string name="new_user_cancel">Never!</string>
     <string name="new_user_info">Please fill in every field.</string>
-    
     <string name="dialog_about_title">About</string>
     <string name="dialog_about_tagstory">Tag Story combines text based adventure games with NFC technology for an interactive, outdoor woodland adventure.\n\nMade as part of a project in INF5261 at University of Oslo.</string>
-    <string name="dialog_about_klima">Her kan vi informere kort om Klimanettverket.</string>
-    <string name="dialog_cancel">Okay&#8230;</string>
-    
+    <string name="dialog_about_klima">«Hev stemmen!» er en oppfordring til alle om å sette klima på agendaen i årets Stortingsvalg. Hev stemmen og la den bli hørt, av familie og venner, folkevalgte og velgere, på sosiale medier og i den offentlige debatt. Hev stemmen i gatene over hele landet 24. august – og la 9. september 2013 bli dagen da klimastemmene for alvor gjør sitt inntog i norsk politikk.</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_enable_gps">You need GPS enabled to experience this story. Do you want to enable it?</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
     <string name="create_tag_title">Tag-O-Creator</string>
     <string name="create_tag_info">Type in description and gps for the tag.</string>
     <string name="create_tag_write">Write to tag</string>
-    
     <string name="story_finished">The End</string>
     <string name="story_new_story">Look for a new story</string>
     <string name="story_scan_tag">Scan tag</string>
     <string name="story_gps_button">Help?</string>
     <string name="story_pick_story">Pick a story from the list below</string>
-    
     <string name="story_arrow_gps_is_off">Please turn on your GPS</string>
     <string name="story_arrow_turn_on">Turn on</string>
     <string name="story_arrow_no">No thank you</string>
-	<string name="story_arrow_gps_wait">Waiting for GPS. This may take some time. Please position yourself with clear sight to the sky.</string>
-	
+    <string name="story_arrow_gps_wait">Waiting for GPS. This may take some time. Please position yourself with clear sight to the sky.</string>
     <string name="story_quiz_true">Sant</string>
     <string name="story_quiz_false">Usant</string>
     <string name="story_quiz_correction">Correction</string>
     <string name="story_quiz_next">Next question</string>
-    
     <string name="menu_about_app">Om Tag Story</string>
     <string name="menu_klimanettverket">Om Klimanettverket</string>
-    
     <string name="story_list_arrow">Click to chose story</string>
-    
     <string name="map_target">This is your target</string>
     <string name="map_default_snippet">Here can you find the next tag</string>
-    
     <string name="dummy_statistics">Statistics\n
         Time used: 21:41\n
         Length walk: 2km</string>
-        
     <string name="cd_logo">Hev Stemmen logo</string>
     <string name="cd_story_image">Image representing a story</string>
-    
-	<color name="light_tree_green">#739D88</color>
-	<color name="tree_green">#1E5228</color>
-	<color name="distant_hill">#B3C6CF</color>
-	<color name="gray_sky">#C6D3E5</color>
-	<color name="android_green">#669900</color>
-	<color name="android_light_green">#99CC00</color>
-	<color name="android_yellow">#FFBB33</color>
-	<color name="android_yellow_dark">#FF8800</color>
-	
-	<color name="hs_green">#27a056</color>
-	
-	<string name="dummy_author">Kyrre Havik Eriksen</string>
-	
-	<string name="dummy_title">Skattejakt på Blindern</string>
-	
-	<string name="test_gps">Test GPS</string>
-	
-	<string name="story_start">Start Story</string>
-  
+
+    <color name="light_tree_green">#739D88</color>
+    <color name="tree_green">#1E5228</color>
+    <color name="distant_hill">#B3C6CF</color>
+    <color name="gray_sky">#C6D3E5</color>
+    <color name="android_green">#669900</color>
+    <color name="android_light_green">#99CC00</color>
+    <color name="android_yellow">#FFBB33</color>
+    <color name="android_yellow_dark">#FF8800</color>
+    <color name="hs_green">#27a056</color>
+
+    <string name="dummy_author">Kyrre Havik Eriksen</string>
+    <string name="dummy_title">Skattejakt på Blindern</string>
+    <string name="test_gps">Test GPS</string>
+    <string name="story_start">Start Story</string>
+
 </resources>

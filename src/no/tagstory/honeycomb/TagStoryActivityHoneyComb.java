@@ -3,7 +3,7 @@ package no.tagstory.honeycomb;
 import no.tagstory.R;
 import no.tagstory.StoryAdapter;
 import no.tagstory.TagStoryActivity;
-import no.tagstory.Database.Database;
+import no.tagstory.communication.Database;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;

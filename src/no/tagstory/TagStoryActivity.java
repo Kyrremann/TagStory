@@ -3,7 +3,8 @@ package no.tagstory;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
-import no.tagstory.Database.Database;
+import no.tagstory.communication.Database;
+import no.tagstory.communication.ServerCommunication;
 import no.tagstory.story.StoryManager;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -41,7 +42,7 @@ public class TagStoryActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		// setContentView(R.layout.activity_story_list);
 		setContentView(R.layout.activity_story_hevstemmen);
-		
+
 		storyManager = new StoryManager(this);
 		storyCursor = storyManager.getStoryList();
 
@@ -112,7 +113,9 @@ public class TagStoryActivity extends FragmentActivity {
 			}
 			klimaDialog.show();
 		} else if (id == R.id.menu_gps) {
-			startActivity(new Intent(this, LocationTester.class));
+			// startActivity(new Intent(this, LocationTester.class));
+			ServerCommunication.sendTempStatistic(
+					"" + System.currentTimeMillis(), "1337");
 		}
 
 		return super.onMenuItemSelected(featureId, item);

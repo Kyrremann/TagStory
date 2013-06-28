@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import java.io.Serializable;
 import java.util.HashMap;
 
-import no.tagstory.Database.JsonParser;
+import no.tagstory.communication.JsonParser;
 import no.tagstory.story.StoryPartOption;
 import no.tagstory.story.game.QuizNode;
 

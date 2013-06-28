@@ -11,6 +11,13 @@ public class StoryApplication extends Application {
 	private Location startLocation;
 	private ArrayList<Location> currentLocationHistoryList;
 	private long startTime;
+	
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		currentLocationHistoryList = new ArrayList<Location>();
+		currentTagHistoryList = new ArrayList<String>();
+	}
 
 	public Location getStartLocation() {
 		return startLocation;
@@ -35,12 +42,25 @@ public class StoryApplication extends Application {
 	public float distanceFromStartTo(Location dest) {
 		return startLocation.distanceTo(dest);
 	}
+	
+	public boolean addLocation(Location location) {
+		return currentLocationHistoryList.add(location);
+	}
 
 	public float distanceWalked() {
 		float distance = 0f;
+		Location last = null;
 		for (Location l : currentLocationHistoryList) {
-			distance += l.distanceTo(l);
+			if (last != null) {
+				distance += last.distanceTo(l);
+			}
+			last = l;
 		}
 		return distance;
+	}
+	
+	public void emptyHistory() {
+		currentLocationHistoryList.clear();
+		currentTagHistoryList.clear();
 	}
 }

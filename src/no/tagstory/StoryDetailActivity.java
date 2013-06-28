@@ -2,23 +2,29 @@ package no.tagstory;
 
 import java.io.IOException;
 
-import no.tagstory.Database.Database;
+import no.tagstory.communication.Database;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
 import no.tagstory.story.activity.StoryActivity;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class StoryDetailActivity extends Activity {
 
+	private final static int ENABLE_GPS = 1001;
+
 	protected String story_id;
 	protected StoryManager storyManager;
 	protected Story story;
+	protected AlertDialog enableGPSDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +75,74 @@ public class StoryDetailActivity extends Activity {
 
 	public void startStory(View v) {
 		if (v.getId() == R.id.start_story_button) {
-			Intent intent = new Intent(this, StoryActivity.class);
-			intent.putExtra(StoryActivity.STORY, story);
-			intent.putExtra(StoryActivity.PARTTAG, story.getStartTag());
-			startActivity(intent);
+			startStory();
+		}
+	}
+
+	protected void startStory() {
+		if (isGPSEnabled()) {
+			((StoryApplication) getApplication()).setStartTime(System
+					.currentTimeMillis());
+			((StoryApplication) getApplication()).emptyHistory();
+			startStoryActivity();
+		}
+	}
+
+	protected void startStoryActivity() {
+		Intent intent = new Intent(this, StoryActivity.class);
+		intent.putExtra(StoryActivity.STORY, story);
+		intent.putExtra(StoryActivity.PARTTAG, story.getStartTag());
+		startActivity(intent);
+		finish();
+	}
+
+	protected void buildAlertMessageNoGps() {
+		if (enableGPSDialog == null) {
+			final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(getResources().getString(
+					R.string.dialog_enable_gps));
+			builder.setCancelable(false);
+			builder.setPositiveButton(R.string.dialog_yes,
+					new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog,
+								final int id) {
+
+							startActivityForResult(new Intent(
+									Settings.ACTION_LOCATION_SOURCE_SETTINGS),
+									ENABLE_GPS);
+						}
+					});
+			builder.setNegativeButton(R.string.dialog_no,
+					new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog,
+								final int id) {
+							// TODO User won't turn on GPS
+							dialog.cancel();
+						}
+					});
+			enableGPSDialog = builder.create();
+		}
+		enableGPSDialog.show();
+	}
+
+	protected boolean isGPSEnabled() {
+		String provider = Settings.Secure.getString(getContentResolver(),
+				Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+		if (provider.contains("gps")) {
+			return true;
+		} else {
+			buildAlertMessageNoGps();
+		}
+		return false;
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		System.out
+				.println("returning" + "-" + resultCode + " - " + requestCode);
+		if (resultCode == ENABLE_GPS) {
+			startStory();
 		}
 	}
 

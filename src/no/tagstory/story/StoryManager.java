@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import org.json.JSONException;
 
-import no.tagstory.Database.Database;
-import no.tagstory.Database.JsonParser;
+import no.tagstory.communication.Database;
+import no.tagstory.communication.JsonParser;
 import android.content.Context;
 import android.database.Cursor;
 

@@ -8,6 +8,7 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 
 import no.tagstory.R;
+import no.tagstory.StoryApplication;
 import no.tagstory.story.activity.StoryTravelActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -62,13 +63,15 @@ public class GPSActivity extends StoryTravelActivity implements
 		mEditor = mPrefs.edit();
 		mLocationClient = new LocationClient(this, this, this);
 		// Start with updates turned on
-		mUpdatesRequested = false;
+		mUpdatesRequested = true;
+		mEditor.putBoolean("KEY_UPDATES_ON", mUpdatesRequested);
+		mEditor.commit();
 
 		// Create the LocationRequest object
 		mLocationRequest = LocationRequest.create();
 		// Use high accuracy
 		mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-		// Set the update interval to 5 seconds
+		// Set the update interval to 2 seconds
 		mLocationRequest.setInterval(UPDATE_INTERVAL);
 		// Set the fastest update interval to 1 second
 		mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
@@ -132,7 +135,7 @@ public class GPSActivity extends StoryTravelActivity implements
 		if (mPrefs.contains("KEY_UPDATES_ON")) {
 			mUpdatesRequested = mPrefs.getBoolean("KEY_UPDATES_ON", false);
 		} else {
-			mEditor.putBoolean("KEY_UPDATES_ON", false);
+			mEditor.putBoolean("KEY_UPDATES_ON", true);
 			mEditor.commit();
 		}
 	}
@@ -204,7 +207,9 @@ public class GPSActivity extends StoryTravelActivity implements
 	@Override
 	public void onConnected(Bundle dataBundle) {
 		Log.d("GPS", "Connected");
+		System.out.println("mUR " + mUpdatesRequested);
 		if (mUpdatesRequested) {
+			System.out.println("start peri");
 			startPeriodicUpdates();
 		}
 	}
@@ -221,6 +226,7 @@ public class GPSActivity extends StoryTravelActivity implements
 		// Location goal = new Location("Kjølberggata 1G");
 		// goal.setLatitude(59.909959);
 		// goal.setLongitude(10.777679);
+		((StoryApplication) getApplication()).addLocation(location);
 		if (goalLocation != null) {
 			Log.d("GPS",
 					"Distance to goal " + location.distanceTo(goalLocation)

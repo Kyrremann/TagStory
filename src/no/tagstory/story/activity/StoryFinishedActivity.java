@@ -1,7 +1,9 @@
 package no.tagstory.story.activity;
 
 import no.tagstory.R;
+import no.tagstory.StoryApplication;
 import no.tagstory.TagStoryActivity;
+import no.tagstory.communication.ServerCommunication;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryPart;
 import android.app.Activity;
@@ -34,8 +36,19 @@ public class StoryFinishedActivity extends Activity {
 	}
 
 	private void printStatistics() {
-		String statistics = getResources().getString(R.string.dummy_statistics);
+		// String statistics =
+		// getResources().getString(R.string.dummy_statistics);
+		StoryApplication application = (StoryApplication) getApplication();
+		String distance = "" + application.distanceWalked();
+		String time = ""
+				+ ((System.currentTimeMillis() - application.getStartTime()) / 1000);
+		String statistics = "Statistics:\n";
+		statistics += "Distance: " + distance + "\n";
+		statistics += "Time used: " + time;
+		// statistics += "Now: " + System.currentTimeMillis();
+		// statistics += "Then: " + application.getStartTime();
 		((TextView) findViewById(R.id.story_statistic)).setText(statistics);
+		ServerCommunication.sendTempStatistic(time, distance);
 	}
 
 	public void endOfStory(View view) {

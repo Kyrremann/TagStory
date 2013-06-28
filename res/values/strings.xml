@@ -2,8 +2,10 @@
 
     <string name="app_name">TS: Hev Stemmen</string>
     <string name="app_title">Tag Story: Hev Stemmen</string>
+    
     <string name="title_story_detail">Story Detail</string>
     <string name="title_story_list">Stories</string>
+    
     <string name="no_stories">No stories for you</string>
     <string name="add_more_stories">Click to look for more stories</string>
     <string name="powered_by">Powered by TagStory</string>
@@ -16,12 +18,15 @@
     <string name="email_hint">plus e-mail here&#8230;</string>
     <string name="cancel">Cancel</string>
     <string name="cheat">Cheat</string>
+    
     <string name="description">Description</string>
     <string name="description_hint">Where is the tag</string>
+    
     <string name="gps">GPS</string>
     <string name="gps_hint">More presicely&#8230;</string>
     <string name="gps_about_title">About GPS tags</string>
     <string name="gps_about_content">Description of how GPS tags works.</string>
+    
     <string name="gps_about_button">This story uses GPS tags</string>
     <string name="front_menu_log_in">Log in</string>
     <string name="front_menu_create_user">Create user</string>
@@ -29,18 +34,17 @@
     <string name="front_menu_options">Options</string>
     <string name="front_menu_update_stories">Update stories</string>
     <string name="front_menu_create_tag">Create tag</string>
+    
     <string name="detail_menu_start_story">Start story</string>
     <string name="detail_story_description_image">This image is used as an description for the story.</string>
-    <string name="story_scan_info">Please scan a tag to see it\'s info, or just do whatever you want!</string>
-    <string name="story_find_next">Click to decide where to go next</string>
-    <string name="story_next_part">Go to next part</string>
-    <string name="story_ready">I am ready</string>
+    
     <string name="story_where_to_go">See where to go next</string>
     <string name="login_title">Please log in</string>
     <string name="login_login">Log in</string>
     <string name="login_cancel">Not now</string>
     <string name="login_error">Wrong username or password</string>
     <string name="login_success">You are successfully logged in</string>
+    
     <string name="new_user_title">Be a part of Tag Story</string>
     <string name="new_user_create">Join us!</string>
     <string name="new_user_cancel">Never!</string>
@@ -72,9 +76,14 @@
     <string name="story_quiz_correction">Correction</string>
     <string name="story_quiz_next">Next question</string>
     <string name="story_list_arrow">Click to chose story</string>
+    <string name="story_scan_info">Please scan a tag to see it\'s info, or just do whatever you want!</string>
+    <string name="story_find_next">Click to decide where to go next</string>
+    <string name="story_next_part">Go to next part</string>
+    <string name="story_ready">I am ready</string>
     
     <string name="menu_about_app">Om Tag Story</string>
     <string name="menu_klimanettverket">Om Klimanettverket</string>
+    
     <string name="map_target">This is your target</string>
     <string name="map_default_snippet">Here can you find the next tag</string>
     <string name="map_next_tag">Next tag</string>

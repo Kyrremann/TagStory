@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/button_bottom"
         android:layout_below="@id/story_option_hint"
-        class="com.google.android.gms.maps.SupportMapFragment" />
+        android:name="com.google.android.gms.maps.SupportMapFragment" />
 
     <LinearLayout
         android:id="@+id/button_bottom"

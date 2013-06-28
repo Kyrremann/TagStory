@@ -1,6 +1,6 @@
 package no.tagstory.story.activity.option;
 
-import no.tagstory.R;
+import no.tagstory.hev_stemmen.R;
 import no.tagstory.story.activity.StoryTravelActivity;
 import android.os.Bundle;
 import android.view.View;

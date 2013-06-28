@@ -2,7 +2,7 @@ package no.tagstory.story.activity;
 
 import java.util.HashMap;
 
-import no.tagstory.R;
+import no.tagstory.hev_stemmen.R;
 import no.tagstory.communication.JsonParser;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryPart;

@@ -7,7 +7,7 @@ import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 
-import no.tagstory.R;
+import no.tagstory.hev_stemmen.R;
 import no.tagstory.StoryApplication;
 import no.tagstory.story.activity.StoryTravelActivity;
 import android.app.Activity;
@@ -93,13 +93,15 @@ public class GPSActivity extends StoryTravelActivity implements
 				builder.setTitle(R.string.gps_about_title);
 				builder.setMessage(R.string.gps_about_content);
 				builder.setCancelable(true);
-				builder.setNeutralButton(R.string.dialog_cancel, new OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();
-					}
-				});
+				builder.setNeutralButton(R.string.dialog_cancel,
+						new OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								dialog.cancel();
+							}
+						});
 				builder.setNegativeButton(R.string.cheat,
 						new OnClickListener() {
 
@@ -215,9 +217,7 @@ public class GPSActivity extends StoryTravelActivity implements
 	@Override
 	public void onConnected(Bundle dataBundle) {
 		Log.d("GPS", "Connected");
-		System.out.println("mUR " + mUpdatesRequested);
 		if (mUpdatesRequested) {
-			System.out.println("start peri");
 			startPeriodicUpdates();
 		}
 	}
@@ -241,7 +241,8 @@ public class GPSActivity extends StoryTravelActivity implements
 							+ " meters");
 			if (location.distanceTo(goalLocation) < 50) {
 				Log.d("GPS", "Closer then 50 meters to location");
-				checkTagData(option.getOptNext(), false);
+				checkTagData(story.getStoryPart(option.getOptNext())
+						.getBelongsToTag(), false);
 			}
 			// Toast.makeText(this,
 			// "Distance: " + location.distanceTo(goalLocation),

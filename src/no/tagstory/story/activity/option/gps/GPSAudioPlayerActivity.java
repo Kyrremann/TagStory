@@ -2,7 +2,7 @@ package no.tagstory.story.activity.option.gps;
 
 import java.io.IOException;
 
-import no.tagstory.R;
+import no.tagstory.hev_stemmen.R;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Bundle;

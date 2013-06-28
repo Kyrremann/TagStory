@@ -1,6 +1,6 @@
 package no.tagstory.story.activity.option.gps;
 
-import no.tagstory.R;
+import no.tagstory.hev_stemmen.R;
 import no.tagstory.story.Story;
 import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.story.StoryPartOption;

@@ -1,5 +1,6 @@
 package no.tagstory;
 
+import no.tagstory.hev_stemmen.R;
 import no.tagstory.honeycomb.TagStoryActivityHoneyComb;
 
 import android.app.Activity;

@@ -1,6 +1,6 @@
 package no.tagstory.story.activity;
 
-import no.tagstory.R;
+import no.tagstory.hev_stemmen.R;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryPart;
 import no.tagstory.story.StoryPartOption;

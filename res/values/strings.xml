@@ -25,7 +25,9 @@
     <string name="gps">GPS</string>
     <string name="gps_hint">More presicely&#8230;</string>
     <string name="gps_about_title">About GPS tags</string>
-    <string name="gps_about_content">Description of how GPS tags works.</string>
+    <string name="gps_about_content">A GPS tag uses the phone to see where you are. So that it magically can notifie
+        the app and tell you when you are at the goal. So that all you have to do is walk!
+        \n\nAre you a bit tired, or just don\'t find the tag? Then you can use the \"cheat\"-button to advance to the next tag.</string>
     
     <string name="gps_about_button">This story uses GPS tags</string>
     <string name="front_menu_log_in">Log in</string>

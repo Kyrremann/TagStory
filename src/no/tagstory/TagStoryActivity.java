@@ -5,6 +5,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import no.tagstory.communication.Database;
 import no.tagstory.communication.ServerCommunication;
+import no.tagstory.hev_stemmen.R;
 import no.tagstory.story.StoryManager;
 import android.app.Activity;
 import android.app.AlertDialog;

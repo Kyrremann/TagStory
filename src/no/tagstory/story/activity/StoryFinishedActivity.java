@@ -39,12 +39,12 @@ public class StoryFinishedActivity extends Activity {
 		// String statistics =
 		// getResources().getString(R.string.dummy_statistics);
 		StoryApplication application = (StoryApplication) getApplication();
-		String distance = "" + application.distanceWalked();
+		String distance = "" + (int) application.distanceWalked();
 		String time = ""
-				+ ((System.currentTimeMillis() - application.getStartTime()) / 1000);
+				+ (int) (((System.currentTimeMillis() - application.getStartTime()) / 1000) / 60);
 		String statistics = "Statistics:\n";
-		statistics += "Distance: " + distance + "\n";
-		statistics += "Time used: " + time;
+		statistics += "Distance: " + distance + "meter\n";
+		statistics += "Time used: " + time + "minutter";
 		// statistics += "Now: " + System.currentTimeMillis();
 		// statistics += "Then: " + application.getStartTime();
 		((TextView) findViewById(R.id.story_statistic)).setText(statistics);

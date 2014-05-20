@@ -6,11 +6,10 @@ Tag Story is a project focusing on getting people in all ages out into the woods
 Better description is pending...
 
 --
-26 June 2013
-www.TagStory.no is live!
---
-24 May 2013
-Tag Story is up and running and is going to be used in a project this summer. In that case we will build a new web page and reorganise the Github project. We will also create wiki pages about the project, how to make stories, and a list of stories to try.
+
+We have started working on a side project for writing stories for TagStory, called TagStory - Story Creator.
+See [github repo](https://github.com/Kyrremann/TagStory-StoryCreator)
+
 --
 
 TODO
@@ -18,25 +17,28 @@ TODO
 ~~Line~~ means that it is implemented
 ### Back-end
 * Need a back-end to support hosting and sharing stories
+ * Heroku
 * A place to store profiles
+ * CloudAnt
 
 ### Online
 * ~~Create a web site~~
  * Inform about the Tag Story project/framework
 * Later
  * Let the user make a profile
- * Let the user create stories
+ * ~~Let the user create stories~~
+  * Working on a site for creating stories in the side project TagStory - Story Creator, see [github repo](https://github.com/Kyrremann/TagStory-StoryCreator)
 
 ### Wiki
 * A wiki-page explaining the project in more depth (at least compared to the web-page)
 * A page with all the current stories
 * How-to create a story
 * How-to use the app
-* Create a list of what is implemented
+* Create a list of what is implemented/changelog
 
 ### App
 * ~~Get compass to work properly~~
- * To unstable to use, scrapping it
+ * To unstable to use, scrapping it, need to be deleted from the codebase
 * User profile and functionality in the application
  * Connect with Google, Facebook, Twitter and other popular services
 * Quiz and story scoring
@@ -49,6 +51,7 @@ TODO
   * Send statistics anonymous to server
 * ~~Scan tags with QR-code or GPS~~
 * Google Map: Get direction from where you are from you where you should go
+ * Maybe switch to OpenStreetMap
 * Refactoring of the NFC and QR scanning, GPS is working best now
 * Better history of where you are in the story (in case of app failure)
 * Send "help" or messages to people on a Story. Similar to Hunger Games
@@ -65,9 +68,10 @@ TODO
 * ~~XML styling of elements and views used in the app[[1]][xml-style]~~
 * Create abstract class which takes care of loading in the story parts for all the different classes, just the basic
 * Add code to allow custom fonts
- * Different way to be solved, but either with a reflection class and a application class that checks to see if there are textviews
- that don't have their typeface set
+ * Different way to be solved, but either with a reflection class and a application class that checks to see if there are textviews that don't have their typeface set
+ * Use only Google Fonts
 * Ensure black text on older phones
+* Rewrite the JSON Story hierarchy
 * Contact us dialog
  * help@tagstory.no
 

@@ -49,8 +49,9 @@ public class TagStoryActivity extends FragmentActivity {
 
 		// TODO Make list adapter that works with the image in the database/json
 		initializeListView();
-		servicesConnected();
-		listView.performItemClick(null, 0, -1);
+		if (servicesConnected()) {
+			listView.performItemClick(null, 0, -1);
+		}
 	}
 
 	protected void initializeListView() {

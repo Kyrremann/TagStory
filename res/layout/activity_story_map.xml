@@ -12,7 +12,8 @@
         android:background="@drawable/background_border_light_green"
         android:padding="5dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:visibility="gone" />
+        android:visibility="gone"
+        style="@style/TagStoryView"/>
 
     <fragment
         android:id="@+id/story_map_view"

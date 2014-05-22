@@ -52,8 +52,11 @@ public class StoryFinishedActivity extends Activity {
 	}
 
 	public void endOfStory(View view) {
-		NavUtils.navigateUpTo(this, new Intent(this, TagStoryActivity.class));
-		finish();
+		// NavUtils.navigateUpTo(this, new Intent(this, TagStoryActivity.class));
+		// finish();
+		Intent intent = new Intent(this, TagStoryActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
 	}
 
 }

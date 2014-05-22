@@ -60,7 +60,11 @@ public class StoryActivity extends Activity {
 			if (part.getChoiceImage() != null && !part.getChoiceImage().equals("")) {
 				ImageView imageView = (ImageView) findViewById(R.id.story_tag_image);
 				imageView.setVisibility(View.VISIBLE);
-				imageView.setImageDrawable(getResources().getDrawable(R.drawable.mjaowl));
+				if (part.getChoiceImage().equals("ledere")) {
+					imageView.setImageDrawable(getResources().getDrawable(R.drawable.ledere));
+				} else if (part.getChoiceImage().equals("mjaowl.jpg")) {
+					imageView.setImageDrawable(getResources().getDrawable(R.drawable.majowl));
+				}
 			}
 		} else {
 			((TextView) findViewById(R.id.story_part_choice))

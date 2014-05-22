@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/cd_story_image"
                 android:scaleType="centerInside"
-                android:src="@drawable/blindern" />
+                android:src="@drawable/kine_reggis" />
 
             <!--
             <HorizontalScrollView

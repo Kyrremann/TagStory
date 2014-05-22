@@ -1,10 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
+    <!-- <item
         android:id="@+id/menu_klimanettverk"
         android:orderInCategory="0"
         android:showAsAction="never"
-        android:title="@string/menu_klimanettverket"/>
+        android:title="@string/menu_klimanettverket"/>-->
     <item
         android:id="@+id/menu_about"
         android:orderInCategory="1"

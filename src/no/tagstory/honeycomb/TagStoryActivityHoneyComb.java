@@ -1,6 +1,6 @@
 package no.tagstory.honeycomb;
 
-import no.tagstory.hev_stemmen.R;
+import no.tagstory.kines_bursdag.R;
 import no.tagstory.StoryAdapter;
 import no.tagstory.TagStoryActivity;
 import no.tagstory.communication.Database;

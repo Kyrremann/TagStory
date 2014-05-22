@@ -17,3 +17,6 @@ local.properties
 
 # Emacs backup
 *~
+
+# IDEA
+.idea/

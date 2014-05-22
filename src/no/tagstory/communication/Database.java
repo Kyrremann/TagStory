@@ -86,10 +86,13 @@ public class Database {
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
 					+ " VALUES ('4ef0b8f0-18a6-11e2-892e-0800200c9a66', 'Bao Marianna Nguyen', 'Treasure hunt at Blindern', 'sognsvann.jpg')");
-			 */
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
 					+ " VALUES ('0dd941f0-c943-11e2-8b8b-0800200c9a66', 'Klima nettverket', 'Oslo klimatur', 'Oslo', 'slottet.jpg')");
+					*/
+			db.execSQL("INSERT INTO "
+					+ STORY_TABLE_NAME
+					+ " VALUES ('5fee5ee0-e11f-11e3-8b68-0800200c9a66', 'Kine Gjerstad Eide', 'Kiness bursdagsløp', 'Oslo', 'kine_gevaer.jpg')");
 		}
 	}
 

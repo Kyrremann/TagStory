@@ -1,7 +1,7 @@
 package no.tagstory;
 
 import java.io.InputStream;
-import no.tagstory.hev_stemmen.R;
+import no.tagstory.kines_bursdag.R;
 
 import android.content.Context;
 import android.database.Cursor;

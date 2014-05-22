@@ -2,7 +2,7 @@ package no.tagstory.story.activity.option;
 
 import java.io.IOException;
 
-import no.tagstory.hev_stemmen.R;
+import no.tagstory.kines_bursdag.R;
 import no.tagstory.story.activity.StoryTravelActivity;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
@@ -121,6 +121,11 @@ public class AudioPlayerActivity extends StoryTravelActivity implements
 	@Override
 	public boolean canSeekForward() {
 		return true;
+	}
+
+	@Override
+	public int getAudioSessionId() {
+		return 0;
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 
-import no.tagstory.hev_stemmen.R;
+import no.tagstory.kines_bursdag.R;
 import no.tagstory.StoryApplication;
 import no.tagstory.story.activity.StoryTravelActivity;
 import android.app.Activity;
@@ -239,8 +239,8 @@ public class GPSActivity extends StoryTravelActivity implements
 			Log.d("GPS",
 					"Distance to goal " + location.distanceTo(goalLocation)
 							+ " meters");
-			if (location.distanceTo(goalLocation) < 50) {
-				Log.d("GPS", "Closer then 50 meters to location");
+			if (location.distanceTo(goalLocation) < 20) {
+				Log.d("GPS", "Closer then 20 meters to location");
 				checkTagData(story.getStoryPart(option.getOptNext())
 						.getBelongsToTag(), false);
 			}

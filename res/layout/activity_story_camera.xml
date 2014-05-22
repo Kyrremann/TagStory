@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_map_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+        <Button
+            android:id="@+id/camera_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/android_yellow_dark"
+            android:onClick="done"
+            android:padding="15dp"
+            android:text="@string/story_camera_button"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+    <Button
+            android:id="@+id/camera_button_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/android_yellow_dark"
+            android:onClick="done"
+            android:padding="15dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/story_camera_button_retry"
+            android:textStyle="bold"
+            android:layout_below="@+id/camera_button"
+            android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

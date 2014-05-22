@@ -20,23 +20,23 @@ public class JsonParser {
 	public static final String STORY = "story", UUID = "UUID",
 			AUTHOR = "author", TITLE = "title", AGEGROUP = "agegroup",
 			DATE = "date", GENRE = "genre", DESCRIPTION = "description",
-			START_TAG = "startTag", KEYWORDS = "keywords",
-			TAG_COUNT = "tagCount", PARTS = "parts", COUNTRY = "country",
-			IMAGE = "image", URL = "url", TAG_TYPES = "tagTypes",
-			GAME_MODES = "gameModes", AREA = "area", LANGUAGE = "language",
-			OPTIONS_TITLE = "optionsTitle";
-	public static final String BELONSG_TO_TAG = "belongsToTag",
-			TAG_MODE = "tagMode", PART_DESCRIPTION = "desc",
-			CHOICE_DESCRIPTION = "choiceDesc", IS_ENDPOINT = "isEndPoint",
+			START_TAG = "start_tag", KEYWORDS = "keywords",
+			TAG_COUNT = "tag_count", PARTS = "tags", COUNTRY = "country",
+			IMAGE = "image", URL = "url", TAG_TYPES = "tag_types",
+			GAME_MODES = "game_modes", AREA = "area", LANGUAGE = "language",
+			OPTIONS_TITLE = "options_title";
+	public static final String BELONSG_TO_TAG = "belongs_to_tag",
+			TAG_MODE = "tag_mode", PART_DESCRIPTION = "description",
+			CHOICE_DESCRIPTION = "choice_description",CHOICE_IMAGE = "choice_image", IS_ENDPOINT = "isEndPoint",
 			PART_OPTIONS = "options";
-	public static final String OPT_SELECT_METHOD = "selectMethod",
-			OPT_LONG = "long", OPT_LAT = "lat", OPT_HINT_TEXT = "hintText",
-			OPT_NEXT = "next", OPT_IMAGE_SRC = "imageSrc",
-			OPT_SOUND_SRC = "soundSrc", OPT_ARROW_LENGTH = "arrowLength",
+	public static final String OPT_SELECT_METHOD = "hint_method",
+			OPT_LONG = "long", OPT_LAT = "lat", OPT_HINT_TEXT = "hint_text",
+			OPT_NEXT = "next", OPT_IMAGE_SRC = "image_source",
+			OPT_SOUND_SRC = "sound_source", OPT_ARROW_LENGTH = "arrow_length",
 			PROPAGATING_TEXT = "propagatingText";
-	public static final String GAME_MODE = "gameMode",
-			GAME_BUTTON = "gameButton", QUIZ = "quiz", QUIZ_Q = "quizQ",
-			QUIZ_A = "quizA", QUIZ_C = "quizC";
+	public static final String GAME_MODE = "game_mode",
+			GAME_BUTTON = "game_button", QUIZ = "quiz", QUIZ_Q = "quizQ",
+			QUIZ_A = "quizA", QUIZ_C = "quizC", CAMERA = "camera";
 	public static final String HINT_TEXT = "hint_text",
 			HINT_IMAGE = "hint_image", HINT_MAP = "hint_map",
 			HINT_ARROW = "hint_arrow", HINT_SOUD = "hint_sound";
@@ -106,10 +106,13 @@ public class JsonParser {
 					object.getString(BELONSG_TO_TAG),
 					object.getString(PART_DESCRIPTION),
 					object.getString(IS_ENDPOINT));
+			if (object.has(GAME_MODE)) {
+				storyPart.setGameMode(object.getString(GAME_MODE));
+			}
 
 			if (!storyPart.isEndpoint()) { // Not the last tag
-				if (storyPart.getGameMode() != null
-						&& storyPart.getGameMode().equals(QUIZ)) { // Tag is a
+				if (storyPart.getGameMode() != null) {
+					if (storyPart.getGameMode().equals(QUIZ)) { // Tag is a
 																	// quiz
 					storyPart.setGameButton(object.getString(GAME_BUTTON));
 					JSONObject quiz = object.getJSONObject(QUIZ);
@@ -131,9 +134,14 @@ public class JsonParser {
 									question.getString(QUIZ_C));
 					}
 				} // End of tag quiz
+				} // End of Game Mode
 				if (object.has(CHOICE_DESCRIPTION)) {
 					storyPart.setChoiceDescription(object
 							.getString(CHOICE_DESCRIPTION));
+					storyPart.setGameButton(object.getString(GAME_BUTTON));
+				}
+				if (object.has(CHOICE_IMAGE)) {
+					storyPart.setChoiceImage(object.getString(CHOICE_IMAGE));
 				}
 				if (object.has(OPTIONS_TITLE)) {
 					storyPart.setOptionsTitle(object.getString(OPTIONS_TITLE));

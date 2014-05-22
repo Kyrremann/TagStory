@@ -6,7 +6,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
-import no.tagstory.hev_stemmen.R;
+import no.tagstory.kines_bursdag.R;
 
 import android.app.Activity;
 import android.app.Dialog;

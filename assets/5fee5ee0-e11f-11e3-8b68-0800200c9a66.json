@@ -1,0 +1,400 @@
+{
+  "story": {
+    "UUID": "5fee5ee0-e11f-11e3-8b68-0800200c9a66",
+    "author": "Kine Gjerstad Eide", 
+    "title": "Kiness bursdagsløp",
+    "genre": "Rebusløp",
+    "agegroup": "0-99",
+    "area": "Oslo",
+    "country": "Norway",
+    "date": "25.05.2014",
+    "description": "Kines bursdags rebusløp",
+    "image": "",
+    "keywords": "rebus, bursdag",
+    "language": "no_bm",
+    "url": "",
+    "start_tag": "5fee5eeb-e11f-11e3-8b68-0800200c9a66",
+    "tag_count": "11",
+    "tag_types": "gps",
+    "game_modes": "camera",
+    "tags": {
+      "5fee5eeb-e11f-11e3-8b68-0800200c9a66": {
+        "belongs_to_tag": "",
+        "tag_mode": "gps",
+        "title": "",
+        "description": "Velkommen til Kines bursdagsrebusløp! No kjem ein del spørsmål som eg likar og bryr meg om. Så ja, det hadde vore lurt å lese seg opp på klima og sånt på førehand. Lukke til!",
+        "choice_description": "Bestemm gruppenavn, ta snapchat av namnet og send det til XXX",
+        "options_title": "",
+        "game_mode": "camera",
+        "game_button": "Ta bilde!",
+        "options": {
+          "Ta bilde": {
+            "hint_method": "hint_map",
+            "hint_text": "Bra jobba! Dersom dykk på eit senare tidspunkt greiar å ta ein flottare snapchat av namnet, så er det opent for å sende inn på nytt.",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.714985",
+            "lat": "59.944029",
+            "next": "5fee5eea-e11f-11e3-8b68-0800200c9a66"
+          }
+        },
+        "isEndPoint": "false"
+      },
+      "5fee5eea-e11f-11e3-8b68-0800200c9a66": {
+        "belongs_to_tag": "",
+        "tag_mode": "gps",
+        "title": "",
+        "description": "Puh, då har dykk kome til til andre post I rebusløpet, så då er det på tide å sjå kor gode venner me er.",
+        "choice_description": "Kva dag har eg eigentleg bursdag?",
+        "options_title": "Se svaralternativer",
+        "game_mode": "",
+        "game_button": "",
+        "options": {
+          "23. mai": {
+            "hint_method": "hint_map",
+            "hint_text": "Nja, det var I alle fall mai :) ",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.714985",
+            "lat": "59.944029",
+            "next": "5fee5ee9-e11f-11e3-8b68-0800200c9a66"
+          },
+          "25. mai": {
+            "hint_method": "hint_map",
+            "hint_text": "Nja, no det er vel I dag, så nei ",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.713976",
+            "lat": "59.943078",
+            "next": "5fee5ee9-e11f-11e3-8b68-0800200c9a66"
+          },
+          "27. mai": {
+            "hint_method": "hint_map",
+            "hint_text": "Ja, godt jobba! ",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.715875",
+            "lat": "59.945353",
+            "next": "5fee5ee9-e11f-11e3-8b68-0800200c9a66"
+          }
+        },
+        "isEndPoint": "false"
+      },
+      "5fee5ee9-e11f-11e3-8b68-0800200c9a66": {
+        "belongs_to_tag": "",
+        "tag_mode": "gps",
+        "title": "",
+        "description": "",
+        "choice_description": "Kor gamal blir eg?",
+        "options_title": "Se svaralternativer",
+        "game_mode": "",
+        "game_button": "",
+        "options": {
+          "22": {
+            "hint_method": "hint_map",
+            "hint_text": "Haha, dykk er forløpig mi favorittgruppe! Og jada, 22 kunne stem like godt som noko som helst anna. 3 poeng! Her er eit hint: Grøn ",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.707224",
+            "lat": "59.946300",
+            "next": "5fee5ee8-e11f-11e3-8b68-0800200c9a66"
+          },
+          "26": {
+            "hint_method": "hint_map",
+            "hint_text": "Jau, her har dykk fulgt med i timen, (eller på facebook) 26 er talet, heldigvis! To poeng :D Her er eit hint: Gul",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.707224",
+            "lat": "59.946300",
+            "next": "5fee5ee8-e11f-11e3-8b68-0800200c9a66"
+          },
+          "27": {
+            "hint_method": "hint_map",
+            "hint_text": "Nei, det er ikkje heilt innafor, men nesten, 1 poeng! Her er eit hint: Lilla ",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.707224",
+            "lat": "59.946300",
+            "next": "5fee5ee8-e11f-11e3-8b68-0800200c9a66"
+          }
+        },
+        "isEndPoint": "false"
+      },
+      "5fee5ee8-e11f-11e3-8b68-0800200c9a66": {
+        "belongs_to_tag": "",
+        "tag_mode": "gps",
+        "title": "",
+        "description": "Så flott at dykk har kome til post tre. Her kjem litt om klima. ",
+        "choice_description": "Kven av desse er ledaren for den norske delegasjonen i FNs klimaforhandlinger? ",
+        "options_title": "Se svaralternativer",
+        "game_mode": "",
+        "game_button": "",
+        "options": {
+          "Erna Solberg": {
+            "hint_method": "hint_map",
+            "hint_text": "Nei, det er han her karen, Aslak Brun. Null poeng.",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.716681",
+            "lat": "59.929066",
+            "next" : "5fee5ee7-e11f-11e3-8b68-0800200c9a66"
+          },
+          "Tine": {
+            "hint_method": "hint_map",
+            "hint_text": "Nei, det er han her karen, Aslak Brun. Null poeng.",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.716681",
+            "lat": "59.929066",
+            "next" : "5fee5ee7-e11f-11e3-8b68-0800200c9a66"
+          },
+          "Aslak Brun": {
+            "hint_method": "hint_map",
+            "hint_text": "Ja! Stemmer, det er Aslaken som leiar delegasjonen. 3 poeng",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.716681",
+            "lat": "59.929066",
+            "next" : "5fee5ee7-e11f-11e3-8b68-0800200c9a66"
+          }
+        },
+        "isEndPoint": "false"
+      },
+      "5fee5ee7-e11f-11e3-8b68-0800200c9a66": {
+        "belongs_to_tag": "",
+        "tag_mode": "gps",
+        "title": "",
+        "description": "Vi brukar beina til så mangt og mange av oss skulle kanskje nytta dei endå meir enn kva vi gjer. Her skal dykk få ei oppgåve for føtene. ",
+        "choice_description": "Ta ein snapchat av alle føtene dykkar, samt eit kummelokk og send det til XXX. Hint: Fine kummelokk skal ikkje undervurderast! ",
+        "options_title": "",
+        "game_mode": "camera",
+        "game_button": "Ta bilde!",
+        "options": {
+          "Ta bilde": {
+            "hint_method": "hint_map",
+            "hint_text": "",
+            "image_source": "",
+            "sound_source": "",
+            "long": "0",
+            "lat": "0",
+            "next": "5fee5ee6-e11f-11e3-8b68-0800200c9a66"
+          }
+        },
+        "isEndPoint": "false"
+      },
+      "5fee5ee6-e11f-11e3-8b68-0800200c9a66": {
+        "belongs_to_tag": "",
+        "tag_mode": "gps",
+        "title": "",
+        "description": "Eg bryr meg sjølvsagt om den norske naturen og elskar skogar i tur og mark. ",
+        "choice_description": "Kva fantastisk skapning er dette? ",
+        "choice_image": "mjaowl.jpg",
+        "options_title": "Se svaralternativer",
+        "game_mode": "",
+        "game_button": "",
+        "options": {
+          "Mjaowl": {
+            "hint_method": "hint_map",
+            "hint_text": "Yeah! Sjølvsagt er dette ein mjaowl! 3 poeng. Hint: mjuk",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.704162",
+            "lat": "59.930104",
+            "next" : "5fee5ee5-e11f-11e3-8b68-0800200c9a66"
+          },
+          "Katteugle": {
+            "hint_method": "hint_map",
+            "hint_text": "Nope, dette er ein mjaowl. Hint: blubben",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.706319",
+            "lat": "59.928868",
+            "next" : "5fee5ee5-e11f-11e3-8b68-0800200c9a66"
+          },
+          "Huslune": {
+            "hint_method": "hint_map",
+            "hint_text": "Nope, dette er ein mjaowl. Hint: hard",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.711306",
+            "lat": "59.927082",
+            "next" : "5fee5ee5-e11f-11e3-8b68-0800200c9a66"
+          }
+        },
+        "isEndPoint": "false"
+      },
+      "5fee5ee5-e11f-11e3-8b68-0800200c9a66": {
+        "belongs_to_tag": "",
+        "tag_mode": "gps",
+        "title": "",
+        "description": "Finans innen klimaforhandlingene, og da spesielt med fokus på innovative finansieringskilder er noko eg har jobba med I Spire. Sjukt spannande og dersom du er litt interessert I det eg bryr meg om, så kan du dette. ",
+        "choice_description": "Kva av desse er ikkje ei innovativ finansieringskilde? ",
+        "options_title": "se svaralternativer",
+        "game_mode": "",
+        "game_button": "",
+        "options": {
+          "FTT (Robin Hood skatten)": {
+            "hint_method": "hint_map",
+            "hint_text": "Feil, dette er ei innovativ finansieringskjelde. Sjekk ut theclimatehero.com for å lære om denne og dei andre.",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.696875",
+            "lat": "59.927458",
+            "next": "5fee5ee4-e11f-11e3-8b68-0800200c9a66"
+          },
+          "Skatt på skipps og flyfart": {
+            "hint_method": "hint_map",
+            "hint_text": "Feil, dette er ei innovativ finansieringskjelde. Sjekk ut theclimatehero.com for å lære om denne og dei andre.",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.698516",
+            "lat": "59.928689",
+            "next": "5fee5ee4-e11f-11e3-8b68-0800200c9a66"
+          },
+          "Karbon skatt": {
+            "hint_method": "hint_map",
+            "hint_text": "Feil, dette er ei innovativ finansieringskjelde. Sjekk ut theclimatehero.com for å lære om denne og dei andre.",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.701531",
+            "lat": "59.928394",
+            "next": "5fee5ee4-e11f-11e3-8b68-0800200c9a66"
+          },
+          "Utvinningsskatt": {
+            "hint_method": "hint_map",
+            "hint_text": "Riktig! Utvinningsskatt er ikkje ei innovativ finansieringkjelde, men kanskje det kunne blitt? 2 poeng ",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.696363",
+            "lat": "59.928531",
+            "next": "5fee5ee4-e11f-11e3-8b68-0800200c9a66"
+          }
+        },
+        "isEndPoint": "false"
+      },
+      "5fee5ee4-e11f-11e3-8b68-0800200c9a66": {
+        "belongs_to_tag": "",
+        "tag_mode": "gps",
+        "title": "",
+        "description": "Gruppenamnet ",
+        "choice_description": "Kva kategori passar best gruppenamnet inn under? ",
+        "options_title": "Se svaralternativer",
+        "game_mode": "",
+        "game_button": "",
+        "options": {
+          "Mjukt og kosete": {
+            "hint_method": "hint_map",
+            "hint_text": "\"Kva trur du folk tenkjer om deg når du forsynar deg så mange gongar av koldtbordet?\" \"Anar ikkje, eg seier at eg hentar mat til deg.\"",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.693203",
+            "lat": "59.934170",
+            "next": "5fee5ee3-e11f-11e3-8b68-0800200c9a66"
+          },
+          "Utspekulert og lunefult": {
+            "hint_method": "hint_map",
+            "hint_text": "\"Har du hørt at Olaf har fått gebiss?\" \"Ja, det kom frem under samtalen.\"",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.693837",
+            "lat": "59.930297",
+            "next": "5fee5ee3-e11f-11e3-8b68-0800200c9a66"
+          },
+          "Krøllete og uforma": {
+            "hint_method": "hint_map",
+            "hint_text": "På skulen: lærer: \"Kva heiter denne linja som går midt på ein globus?\" elev: \"Ekvator\" Lærar: \"bra! Og kva kallast dei som går frå pol til pol?\" elev: \"alkoholikere!\"",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.691295",
+            "lat": "59.932077",
+            "next": "5fee5ee3-e11f-11e3-8b68-0800200c9a66"
+          }
+        },
+        "isEndPoint": "false"
+      },
+      "5fee5ee3-e11f-11e3-8b68-0800200c9a66": {
+        "belongs_to_tag": "",
+        "tag_mode": "gps",
+        "title": "",
+        "description": "Sør Sudan står ovenfor en hungersnød, det er veldig varierende tall på kor mange som kankome til å døy dersom det ikkje blir samla inn nok pengar til å setje I gang tiltak. ",
+        "choice_description": "Sør Sudan er ein relativ ung nasjon, kva år og månad blei Sør Sudan eigentleg ein sjølvstendig stat? ",
+        "options_title": "Se svaralternativer",
+        "game_mode": "",
+        "game_button": "",
+        "options": {
+          "juni 2010": {
+            "hint_method": "hint_map",
+            "hint_text": "nei",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.675162",
+            "lat": "59.942507",
+            "next": "5fee5ee2-e11f-11e3-8b68-0800200c9a66"
+          },
+          "juli 2011": {
+            "hint_method": "hint_map",
+            "hint_text": "ja",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.675162",
+            "lat": "59.942507",
+            "next": "5fee5ee2-e11f-11e3-8b68-0800200c9a66"
+          },
+          "mai 2012": {
+            "hint_method": "hint_map",
+            "hint_text": "ja",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.675162",
+            "lat": "59.942507",
+            "next": "5fee5ee2-e11f-11e3-8b68-0800200c9a66"
+          }
+        },
+        "isEndPoint": "false"
+      },
+      "5fee5ee2-e11f-11e3-8b68-0800200c9a66": {
+        "belongs_to_tag": "",
+        "tag_mode": "gps",
+        "title": "",
+        "description": "Kreativitet er fantastisk, no skal dykk få teste eigne egenskapar.",
+        "choice_description": "Lag eit bursdasgskort til meg, og hugs på dei tipsa som er gitt tidlegare I rebusløpet. Ta ein snapchat av baksida av kortet når det er ferdig og send det til",
+        "options_title": "",
+        "game_mode": "camera",
+        "game_button": "Ta bilde!",
+        "options": {
+          "Ta bilde": {
+            "hint_method": "hint_map",
+            "hint_text": "",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.680829",
+            "lat": "59.947627",
+            "next": "5fee5ee1-e11f-11e3-8b68-0800200c9a66"
+          }
+        },
+        "isEndPoint": "false"
+      },
+      "5fee5ee1-e11f-11e3-8b68-0800200c9a66": {
+        "belongs_to_tag": "",
+        "tag_mode": "gps",
+        "title": "",
+        "description": "Velkommen til grilling",
+        "choice_description": "",
+        "options_title": "",
+        "game_mode": "",
+        "game_button": "",
+        "options": {
+          "": {
+            "hint_method": "hint_map",
+            "hint_text": "",
+            "image_source": "",
+            "sound_source": "",
+            "long": "10.680829",
+            "lat": "59.947627"
+          }
+        },
+        "isEndPoint": "true"
+      }
+    }
+  }
+}

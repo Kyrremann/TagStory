@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="no.tagstory.hev_stemmen"
+    package="no.tagstory.kines_bursdag"
     android:versionCode="2"
     android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="19" />
 
     <permission
         android:name="no.tagstory.permission.MAPS_RECEIVE"
@@ -25,6 +25,8 @@
     <uses-feature
         android:name="android.hardware.nfc"
         android:required="false" />
+    <uses-feature android:name="android.hardware.camera"
+                  android:required="true" />
 
     <application
         android:name="no.tagstory.StoryApplication"
@@ -86,7 +88,9 @@
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyC629eYH1QMN_u4Ridq8BBUmdVBDWST3eA" />
+            android:value="AIzaSyBLjzy8aQNW69tDSnWVKjDy-5lLyhI1hh8" />
+        <meta-data android:name="com.google.android.gms.version"
+                   android:value="@integer/google_play_services_version" />
 
         <activity android:name="no.tagstory.LocationTester" >
         </activity>
@@ -101,6 +105,8 @@
         <activity android:name="no.tagstory.honeycomb.StoryTravelActivityHoneycomb" >
         </activity>
         <activity android:name="no.tagstory.story.activity.StoryPropagatingActivity" >
+        </activity>
+        <activity android:name="no.tagstory.story.game.CameraActivity" >
         </activity>
         <activity
             android:name="no.tagstory.TagStoryActivity"

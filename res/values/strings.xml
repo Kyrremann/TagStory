@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
-    <string name="app_name">TS: Hev Stemmen</string>
-    <string name="app_title">Tag Story: Hev Stemmen</string>
+    <string name="app_name">TS: Kines bursdag</string>
+    <string name="app_title">Tag Story: Kines bursdag</string>
     
     <string name="title_story_detail">Story Detail</string>
     <string name="title_story_list">Stories</string>
@@ -10,6 +10,7 @@
     <string name="add_more_stories">Click to look for more stories</string>
     <string name="powered_by">Powered by TagStory</string>
     <string name="hevstemmen_logo">Logo of a a dancing lion</string>
+    <string name="kine_logo">A smiling Kine</string>
     <string name="username">Username</string>
     <string name="username_hint">Username goes here&#8230;</string>
     <string name="password">Password</string>
@@ -68,6 +69,8 @@
     <string name="story_new_story">Look for a new story</string>
     <string name="story_scan_tag">Scan tag</string>
     <string name="story_gps_button">Help?</string>
+    <string name="story_camera_button">Picture taken and sent</string>
+    <string name="story_camera_button_retry">Take a new picture</string>
     <string name="story_pick_story">Pick a story from the list below</string>
     <string name="story_arrow_gps_is_off">Please turn on your GPS</string>
     <string name="story_arrow_turn_on">Turn on</string>

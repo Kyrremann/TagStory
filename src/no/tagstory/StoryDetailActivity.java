@@ -3,7 +3,7 @@ package no.tagstory;
 import java.io.IOException;
 
 import no.tagstory.communication.Database;
-import no.tagstory.hev_stemmen.R;
+import no.tagstory.kines_bursdag.R;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
 import no.tagstory.story.activity.StoryActivity;

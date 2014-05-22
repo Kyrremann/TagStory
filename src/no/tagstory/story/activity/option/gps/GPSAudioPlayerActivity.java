@@ -2,7 +2,7 @@ package no.tagstory.story.activity.option.gps;
 
 import java.io.IOException;
 
-import no.tagstory.hev_stemmen.R;
+import no.tagstory.kines_bursdag.R;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Bundle;
@@ -13,8 +13,7 @@ import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class GPSAudioPlayerActivity extends GPSActivity implements
-		OnPreparedListener, MediaController.MediaPlayerControl {
+public class GPSAudioPlayerActivity extends GPSActivity implements	OnPreparedListener, MediaController.MediaPlayerControl {
 
 	private static final String TAG = "AudioPlayer";
 	private static String AUDIO_FILE_NAME;
@@ -120,6 +119,11 @@ public class GPSAudioPlayerActivity extends GPSActivity implements
 	@Override
 	public boolean canSeekForward() {
 		return true;
+	}
+
+	@Override
+	public int getAudioSessionId() {
+		return 0;
 	}
 
 	@Override

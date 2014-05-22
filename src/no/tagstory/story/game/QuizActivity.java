@@ -2,7 +2,7 @@ package no.tagstory.story.game;
 
 import java.util.HashMap;
 
-import no.tagstory.hev_stemmen.R;
+import no.tagstory.kines_bursdag.R;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryPart;
 import no.tagstory.story.StoryPartOption;

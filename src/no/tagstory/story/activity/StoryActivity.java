@@ -2,11 +2,14 @@ package no.tagstory.story.activity;
 
 import java.util.HashMap;
 
-import no.tagstory.hev_stemmen.R;
+import android.util.Log;
+import android.widget.ImageView;
+import no.tagstory.kines_bursdag.R;
 import no.tagstory.communication.JsonParser;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryPart;
 import no.tagstory.story.StoryPartOption;
+import no.tagstory.story.game.CameraActivity;
 import no.tagstory.story.game.QuizActivity;
 import no.tagstory.story.activity.option.AudioPlayerActivity;
 import no.tagstory.story.activity.option.MapNavigationActivity;
@@ -54,6 +57,11 @@ public class StoryActivity extends Activity {
 				&& part.getChoiceDescription().length() != 0) {
 			((TextView) findViewById(R.id.story_part_choice)).setText(part
 					.getChoiceDescription());
+			if (part.getChoiceImage() != null && !part.getChoiceImage().equals("")) {
+				ImageView imageView = (ImageView) findViewById(R.id.story_tag_image);
+				imageView.setVisibility(View.VISIBLE);
+				imageView.setImageDrawable(getResources().getDrawable(R.drawable.mjaowl));
+			}
 		} else {
 			((TextView) findViewById(R.id.story_part_choice))
 					.setVisibility(View.GONE);
@@ -77,14 +85,17 @@ public class StoryActivity extends Activity {
 			final HashMap<String, StoryPartOption> options) {
 		Button button = (Button) findViewById(R.id.story_activity_travel);
 
+		System.out.println(part.getGameMode());
 		if (options.size() == 1) {
 			final StoryPartOption option = options.values().iterator().next();
 
 			if (part.getGameMode() != null
-					&& part.getGameMode().equals(JsonParser.QUIZ))
+					&& (part.getGameMode().equals(JsonParser.QUIZ)
+					|| part.getGameMode().equals(JsonParser.CAMERA))) {
 				button.setText(part.getGameButton());
-			else
+			} else {
 				button.setText(option.getUUID());
+			}
 
 			button.setOnClickListener(new OnClickListener() {
 
@@ -94,6 +105,11 @@ public class StoryActivity extends Activity {
 					if (part.getGameMode().equals(JsonParser.QUIZ)) {
 						intent = new Intent(getApplicationContext(),
 								QuizActivity.class);
+						intent.putExtra(StoryActivity.STORY, story);
+						intent.putExtra(StoryActivity.PARTTAG, partTag);
+						intent.putExtra(StoryActivity.PREVIOUSTAG, previousTag);
+					} else if (part.getGameMode().equals(JsonParser.CAMERA)) {
+						intent = new Intent(getApplicationContext(), CameraActivity.class);
 						intent.putExtra(StoryActivity.STORY, story);
 						intent.putExtra(StoryActivity.PARTTAG, partTag);
 						intent.putExtra(StoryActivity.PREVIOUSTAG, previousTag);

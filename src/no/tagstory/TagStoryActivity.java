@@ -5,7 +5,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import no.tagstory.communication.Database;
 import no.tagstory.communication.ServerCommunication;
-import no.tagstory.hev_stemmen.R;
+import no.tagstory.kines_bursdag.R;
 import no.tagstory.story.StoryManager;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -41,8 +41,8 @@ public class TagStoryActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// setContentView(R.layout.activity_story_list);
-		setContentView(R.layout.activity_story_hevstemmen);
+		setContentView(R.layout.activity_story_list);
+		// setContentView(R.layout.activity_story_hevstemmen);
 
 		storyManager = new StoryManager(this);
 		storyCursor = storyManager.getStoryList();
@@ -50,6 +50,7 @@ public class TagStoryActivity extends FragmentActivity {
 		// TODO Make list adapter that works with the image in the database/json
 		initializeListView();
 		servicesConnected();
+		listView.performItemClick(null, 0, -1);
 	}
 
 	protected void initializeListView() {
@@ -107,13 +108,14 @@ public class TagStoryActivity extends FragmentActivity {
 						R.string.dialog_about_tagstory);
 			}
 			tagstoryDialog.show();
-		} else if (id == R.id.menu_klimanettverk) {
-			if (klimaDialog == null) {
-				klimaDialog = createInfoDialog(R.string.dialog_about_title,
-						R.string.dialog_about_klima);
-			}
-			klimaDialog.show();
 		}
+//		else if (id == R.id.menu_klimanettverk) {
+//			if (klimaDialog == null) {
+//				klimaDialog = createInfoDialog(R.string.dialog_about_title,
+//						R.string.dialog_about_klima);
+//			}
+//			klimaDialog.show();
+//		}
 		// else if (id == R.id.menu_gps) {
 		// // startActivity(new Intent(this, LocationTester.class));
 		// ServerCommunication.sendTempStatistic(

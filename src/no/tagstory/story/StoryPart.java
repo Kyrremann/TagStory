@@ -20,6 +20,7 @@ public class StoryPart implements Serializable {
 	private String belongsToTag;
 	private String description;
 	private String choiceDescription;
+	private String choiceImage;
 	private String gameMode;
 	private String gameButton;
 	private String tagMode;
@@ -179,8 +180,7 @@ public class StoryPart implements Serializable {
 	}
 
 	/**
-	 * @param endpoint
-	 *            the endpoint to set
+	 * @param endpoint the endpoint to set
 	 */
 	public void setIsEndpoint(boolean isEndpoint) {
 		this.endpoint = isEndpoint;
@@ -234,4 +234,11 @@ public class StoryPart implements Serializable {
 		quiz.get(location).setCorrection(correction);
 	}
 
+	public String getChoiceImage() {
+		return choiceImage;
+	}
+
+	public void setChoiceImage(String choiceImage) {
+		this.choiceImage = choiceImage;
+	}
 }

@@ -1,13 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
-    <string name="app_name">TS: Hev Stemmen</string>
-    <string name="app_title">Tag Story: Hev Stemmen</string>
+    <string name="app_name">TS: Kines bursdag</string>
+    <string name="app_title">Tag Story: Kines bursdag</string>
     <string name="title_story_detail">Story detail</string>
     <string name="title_story_list">Historier</string>
     <string name="no_stories">Ingen historier tilgjengelig</string>
     <string name="add_more_stories">Klikk her for å se etter flere historier</string>
     <string name="powered_by">Powered by TagStory</string>
     <string name="hevstemmen_logo">Logo av en dansende løve</string>
+    <string name="kine_logo">Bilde av en smilende Kine</string>
     <string name="username">Brukernavn</string>
     <string name="username_hint">Brukernavn skrives her&#8230;</string>
     <string name="password">Passord</string>
@@ -25,6 +26,8 @@
         automagisk si i fra. Slik at du ikke trenger å gjøre noe mer enn å gå.
         \n\nEr du litt sliten, eller finner du ikke fram? Da kan du bruke \"jukse\"-knappen for å komme videre.</string>
     <string name="gps_about_button">Denne historien bruker GPS tags</string>
+    <string name="story_camera_button">Bilde tatt og sendt</string>
+    <string name="story_camera_button_retry">Ta et nytt bilde</string>
     <string name="front_menu_log_in">Pålogging</string>
     <string name="front_menu_create_user">Opprett en bruker</string>
     <string name="front_menu_about">Om</string>

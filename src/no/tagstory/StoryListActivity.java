@@ -2,7 +2,7 @@ package no.tagstory;
 
 import no.tagstory.communication.CommunicationManager;
 import no.tagstory.communication.Database;
-import no.tagstory.hev_stemmen.R;
+import no.tagstory.kines_bursdag.R;
 import no.tagstory.rfid.WriteTag;
 import no.tagstory.story.StoryManager;
 import android.app.AlertDialog;

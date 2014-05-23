@@ -22,7 +22,7 @@
         "belongs_to_tag": "",
         "tag_mode": "gps",
         "title": "",
-        "description": "Velkommen til Kines bursdagsrebusløp! No kjem ein del spørsmål som eg likar og bryr meg om. Så ja, det hadde vore lurt å lese seg opp på klima og sånt på førehand. Lukke til!",
+        "description": "Velkommen til Kines bursdagsrebusløp! No kjem ein del spørsmål som eg likar og bryr meg om. Så ja, det hadde vore lurt å lese seg opp på klima og sånt på førehand. Det blir utdelt nokre poeng gjennom rebusen, desse er det viktig at dykk hugsar på og legg saman sjølv. Lukke til!",
         "choice_description": "Kor gamal blir eg?",
         "options_title": "Se svaralternativer",
         "game_mode": "",
@@ -70,7 +70,7 @@
         "options": {
           "Ta bilde": {
             "hint_method": "hint_map",
-            "hint_text": "Bra jobba! Dersom dykk på eit senare tidspunkt greiar å ta ein flottare bilde av namnet, så er det opent for å sende inn på nytt.",
+            "hint_text": "Bra jobba! Dersom dykk på eit senare tidspunkt greiar å ta ein flottare bilde av namnet, så er det opent for å sende inn på nytt. Her er eit hint: ",
             "image_source": "",
             "sound_source": "",
             "long": "10.707224",
@@ -84,7 +84,7 @@
         "belongs_to_tag": "",
         "tag_mode": "gps",
         "title": "",
-        "description": "Puh, då har dykk kome til til andre post I rebusløpet, så då er det på tide å sjå kor gode venner me er.",
+        "description": "Puh, då har dykk hit, godt jobba! Då er det på tide å sjå kor gode venner me er.",
         "choice_description": "Kva dag har eg eigentleg bursdag?",
         "options_title": "Se svaralternativer",
         "game_mode": "",
@@ -92,7 +92,7 @@
         "options": {
           "23. mai": {
             "hint_method": "hint_map",
-            "hint_text": "Nja, det var I alle fall mai :) ",
+            "hint_text": "Nja, det var i alle fall mai :) ",
             "image_source": "",
             "sound_source": "",
             "long": "10.716706",
@@ -101,7 +101,7 @@
           },
           "25. mai": {
             "hint_method": "hint_map",
-            "hint_text": "Nja, no det er vel I dag, så nei ",
+            "hint_text": "Nja, den 25. er vel i dag, så nei ",
             "image_source": "",
             "sound_source": "",
             "long": "10.716706",
@@ -146,8 +146,8 @@
         "belongs_to_tag": "",
         "tag_mode": "gps",
         "title": "",
-        "description": "Så flott at dykk har kome til post tre. Her kjem litt om klima. ",
-        "choice_description": "Kven av desse er ledaren for den norske delegasjonen i FNs klimaforhandlinger? ",
+        "description": "Så flott at dykk har kome til hit! Her kjem endelig eit spørsmål som omhandlar litt klima greier. ",
+        "choice_description": "Kven av desse er leiaren for den norske delegasjonen i FNs klimaforhandlinger? ",
         "choice_image": "ledere",
         "options_title": "Se svaralternativer",
         "game_mode": "",
@@ -155,7 +155,7 @@
         "options": {
           "Erna Solberg": {
             "hint_method": "hint_map",
-            "hint_text": "Nei, det er han her karen, Aslak Brun. Null poeng.",
+            "hint_text": "Nei, det er Aslak Brun. Null poeng.",
             "image_source": "",
             "sound_source": "",
             "long": "10.704162",
@@ -164,7 +164,7 @@
           },
           "Tine Sundtoft": {
             "hint_method": "hint_map",
-            "hint_text": "Nei, det er han her karen, Aslak Brun. Null poeng.",
+            "hint_text": "Nei, det er Aslak Brun. Null poeng.",
             "image_source": "",
             "sound_source": "",
             "long": "10.706319",
@@ -228,8 +228,8 @@
         "belongs_to_tag": "",
         "tag_mode": "gps",
         "title": "",
-        "description": "Finans innen klimaforhandlingene, og da spesielt med fokus på innovative finansieringskilder er noko eg har jobba med I Spire. Sjukt spannande og dersom du er litt interessert I det eg bryr meg om, så kan du dette. ",
-        "choice_description": "Kva av desse er ikkje ei innovativ finansieringskilde? ",
+        "description": "Finans innen klimaforhandlingene, og då spesielt med fokus på innovative finansieringskilder er noko eg har jobba med I Spire. Sjukt spannande og dersom du er litt interessert I det eg bryr meg om, så kan du dette. ",
+        "choice_description": "Kva av desse er ikkje ei innovativ finansieringskjelde? ",
         "options_title": "se svaralternativer",
         "game_mode": "",
         "game_button": "",
@@ -277,7 +277,7 @@
         "belongs_to_tag": "",
         "tag_mode": "gps",
         "title": "",
-        "description": "Gruppenamnet",
+        "description": "Dette er ein todelt post: 1. Finn ein bra vits som skal framførast under grillinga. 2. Svare på spørsmålet.",
         "choice_description": "Kva kategori passar best gruppenamnet inn under? ",
         "options_title": "Se svaralternativer",
         "game_mode": "",
@@ -285,7 +285,7 @@
         "options": {
           "Mjukt og kosete": {
             "hint_method": "hint_map",
-            "hint_text": "\"Kva trur du folk tenkjer om deg når du forsynar deg så mange gongar av koldtbordet?\" \"Anar ikkje, eg seier at eg hentar mat til deg.\"",
+            "hint_text": "Her er ein vits eg fant på nettet: \"Kva trur du folk tenkjer om deg når du forsynar deg så mange gongar av koldtbordet?\" \"Anar ikkje, eg seier at eg hentar mat til deg.\"",
             "image_source": "",
             "sound_source": "",
             "long": "10.675162",
@@ -294,7 +294,7 @@
           },
           "Utspekulert og lunefult": {
             "hint_method": "hint_map",
-            "hint_text": "\"Har du hørt at Olaf har fått gebiss?\" \"Ja, det kom frem under samtalen.\"",
+            "hint_text": "Her er ein vits:\"Har du hørt at Olaf har fått gebiss?\" \"Ja, det kom frem under samtalen.\"",
             "image_source": "",
             "sound_source": "",
             "long": "10.675162",
@@ -303,7 +303,7 @@
           },
           "Krøllete og uforma": {
             "hint_method": "hint_map",
-            "hint_text": "På skulen: lærer: \"Kva heiter denne linja som går midt på ein globus?\" elev: \"Ekvator\" Lærar: \"bra! Og kva kallast dei som går frå pol til pol?\" elev: \"alkoholikere!\"",
+            "hint_text": "Her er ein vits: På skulen: lærer: \"Kva heiter denne linja som går midt på ein globus?\" elev: \"Ekvator\" Lærar: \"bra! Og kva kallast dei som går frå pol til pol?\" elev: \"alkoholikere!\"",
             "image_source": "",
             "sound_source": "",
             "long": "10.675162",
@@ -317,7 +317,7 @@
         "belongs_to_tag": "",
         "tag_mode": "gps",
         "title": "",
-        "description": "Sør Sudan står ovenfor en hungersnød, det er veldig varierende tall på kor mange som kankome til å døy dersom det ikkje blir samla inn nok pengar til å setje I gang tiltak. ",
+        "description": "Sør Sudan står ovenfor hungersnød, det er veldig varierande tal på kor mange som kan kome til å døy dersom det ikkje blir samla inn nok pengar til å setje i gang tiltak. ",
         "choice_description": "Sør Sudan er ein relativ ung nasjon, kva år og månad blei Sør Sudan eigentleg ein sjølvstendig stat? ",
         "options_title": "Se svaralternativer",
         "game_mode": "",
@@ -325,7 +325,7 @@
         "options": {
           "juni 2010": {
             "hint_method": "hint_map",
-            "hint_text": "nei",
+            "hint_text": "nei, det er feil, det var juli 2011. Her er eit hint: snigle",
             "image_source": "",
             "sound_source": "",
             "long": "10.680531",
@@ -334,7 +334,7 @@
           },
           "juli 2011": {
             "hint_method": "hint_map",
-            "hint_text": "ja",
+            "hint_text": "ja, og her har dykk eit hint: Ugle",
             "image_source": "",
             "sound_source": "",
             "long": "10.680531",
@@ -343,7 +343,7 @@
           },
           "mai 2012": {
             "hint_method": "hint_map",
-            "hint_text": "ja",
+            "hint_text": "nei, det er feil, det var juli 2011. Her har dykk eit hint: Kråkebolle",
             "image_source": "",
             "sound_source": "",
             "long": "10.680531",
@@ -357,8 +357,8 @@
         "belongs_to_tag": "",
         "tag_mode": "gps",
         "title": "",
-        "description": "Dette er nest siste post før dykk er ferdig, no må det konsast! Soya er temaet i Spires neste kampanje. Norske husdyr spiser som dere vet kraft for. En etterhvert viktigere ingrediens I kraftforet er soyamel.",
-        "choice_description": "Kor mykje soyamel importerte Norge frå Brazil I 2012 til bruk I nettopp kraftfor?",
+        "description": "Dette er nest siste post før dykk er ferdig, no må det konsast! Soya er temaet i Spires neste kampanje. Norske husdyr spis som dykk veit kraftfor. En etterhvert viktigere ingrediens I kraftforet er soyamel.",
+        "choice_description": "Kor mykje soyamel importerte Norge frå Brazil i 2012 til bruk i nettopp kraftfor?",
         "options_title": "Se svaralternativer",
         "game_mode": "",
         "game_button": "",
@@ -374,7 +374,7 @@
           },
           "21 000 tonn": {
             "hint_method": "hint_map",
-            "hint_text": "Nei",
+            "hint_text": "Nei, det vart importert heile 210 000 tonn. Det er ein del regnskog, for å sei det slik. God grunn til å støtte Spires kampanje som er i oppmarsj no.",
             "image_source": "",
             "sound_source": "",
             "long": "10.682095",
@@ -383,7 +383,7 @@
           },
           "2 100 tonn": {
             "hint_method": "hint_map",
-            "hint_text": "Nei",
+            "hint_text": "Nei, det vart importert heile 210 000 tonn. Det er ein del regnskog, for å sei det slik. God grunn til å støtte Spires kampanje som er i oppmarsj no.",
             "image_source": "",
             "sound_source": "",
             "long": "10.681259",
@@ -398,7 +398,7 @@
         "tag_mode": "gps",
         "title": "",
         "description": "Kreativitet er fantastisk, no skal dykk få teste eigne egenskapar.",
-        "choice_description": "Lag eit bursdasgskort til meg, og hugs på dei tipsa som er gitt tidlegare I rebusløpet. Ta ein snapchat av baksida av kortet når det er ferdig og send det til",
+        "choice_description": "Lag eit bursdasgskort til meg, og hugs på dei tipsa som er gitt tidlegare i rebusløpet. Ta ein snapchat av baksida av kortet når det er ferdig og send det til",
         "options_title": "",
         "game_mode": "camera",
         "game_button": "Ta bilde!",

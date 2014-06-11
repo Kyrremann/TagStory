@@ -6,6 +6,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import no.tagstory.communication.Database;
 import no.tagstory.communication.ServerCommunication;
 import no.tagstory.kines_bursdag.R;
+import no.tagstory.marked.StoryMarkedActivity;
 import no.tagstory.story.StoryManager;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -101,29 +102,26 @@ public class TagStoryActivity extends FragmentActivity {
 
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
-		// TODO Add menu interaction
-		int id = item.getItemId();
-		if (id == R.id.menu_about) {
-			if (tagstoryDialog == null) {
-				tagstoryDialog = createInfoDialog(R.string.dialog_about_title,
-						R.string.dialog_about_tagstory);
-			}
-			tagstoryDialog.show();
-		}
-//		else if (id == R.id.menu_klimanettverk) {
-//			if (klimaDialog == null) {
+		switch (item.getItemId()) {
+			case R.id.menu_about:
+				if (tagstoryDialog == null) {
+					tagstoryDialog = createInfoDialog(R.string.dialog_about_title,
+							R.string.dialog_about_tagstory);
+				}
+				tagstoryDialog.show();
+				break;
+			case R.id.menu_story_marked:
+				startActivity(new Intent(this, StoryMarkedActivity.class));
+				break;
+//			case R.id.menu_klimanettverk:
+//				if (klimaDialog == null) {
 //				klimaDialog = createInfoDialog(R.string.dialog_about_title,
 //						R.string.dialog_about_klima);
-//			}
-//			klimaDialog.show();
-//		}
-		// else if (id == R.id.menu_gps) {
-		// // startActivity(new Intent(this, LocationTester.class));
-		// ServerCommunication.sendTempStatistic(
-		// "" + System.currentTimeMillis(), "1337");
-		// }
-
-		return super.onMenuItemSelected(featureId, item);
+//				}
+//				klimaDialog.show();
+//				break;
+		}
+		return true;
 	}
 
 	private Dialog createInfoDialog(int title, int info) {

@@ -75,6 +75,7 @@
     <string name="story_ready">Jeg er klar</string>
     <string name="story_where_to_go">Se hvor jeg skal gå videre</string>
     <string name="menu_about_app">Om Tag Story</string>
+	<string name="menu_story_marked">Story marked</string>
     <string name="menu_klimanettverket">Om Klimanettverket</string>
     <string name="map_target">Dette er målet ditt</string>
     <string name="map_default_snippet">Her finner du den neste taggen</string>
@@ -99,5 +100,9 @@
     <string name="dummy_title">Skattejakt på Blindern</string>
     <string name="test_gps">Test GPS</string>
     <string name="story_start">Start Story</string>
+
+	<string name="dummy_section_text">Section %1d is just a dummy section.</string>
+	<string name="demo_external_activity">Demo External Activity</string>
+	<string name="demo_collection">Demo Collection</string>
 
 </resources>

@@ -1,6 +1,6 @@
 package no.tagstory.story.activity.option.gps;
 
-import no.tagstory.kines_bursdag.R;
+import no.tagstory.R;
 import no.tagstory.story.Story;
 import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.story.StoryPartOption;
@@ -28,8 +28,8 @@ public class GPSMapNavigationActivity extends GPSActivity {
 		Bundle bundle = getIntent().getExtras();
 		option = (StoryPartOption) bundle
 				.getSerializable(StoryTravelActivity.OPTION);
-		story = (Story) bundle.getSerializable(StoryActivity.STORY);
-		partTag = bundle.getString(StoryActivity.PARTTAG);
+		story = (Story) bundle.getSerializable(StoryActivity.EXTRA_STORY);
+		tagId = bundle.getString(StoryActivity.EXTRA_TAG);
 		previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);*/
 
 		if (option.getOptHintText().length() > 0) {

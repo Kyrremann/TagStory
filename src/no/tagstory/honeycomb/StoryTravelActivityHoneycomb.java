@@ -22,9 +22,8 @@ public class StoryTravelActivityHoneycomb extends StoryTravelActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == android.R.id.home) {
 			Intent intent = new Intent(this, StoryActivity.class);
-			intent.putExtra(StoryActivity.STORY, story);
-			intent.putExtra(StoryActivity.PARTTAG, partTag);
-			intent.putExtra(StoryActivity.PREVIOUSTAG, previousTag);
+			intent.putExtra(StoryActivity.EXTRA_STORY, story);
+			intent.putExtra(StoryActivity.EXTRA_TAG, tagId);
 			NavUtils.navigateUpTo(this, intent);
 			return true;
 		}

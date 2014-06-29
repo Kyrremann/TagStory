@@ -1,20 +1,19 @@
 package no.tagstory.story;
 
 import android.annotation.SuppressLint;
+import no.tagstory.story.game.QuizNode;
+import no.tagstory.utils.JsonParser;
+
 import java.io.Serializable;
 import java.util.HashMap;
 
-import no.tagstory.communication.JsonParser;
-import no.tagstory.story.StoryPartOption;
-import no.tagstory.story.game.QuizNode;
-
-public class StoryPart implements Serializable {
+public class StoryTag implements Serializable {
 
 	public static final String TAG_GPS = "gps";
 	public static final String TAG_QR = "qr";
 	public static final String TAG_NFC = "nfc";
 	public static final String TAG_QR_NFC = "qr_nfc";
-	
+
 	private static final long serialVersionUID = -8334768426662100348L;
 	private String UUID;
 	private String belongsToTag;
@@ -29,20 +28,20 @@ public class StoryPart implements Serializable {
 	private HashMap<String, StoryPartOption> options;
 	private HashMap<Integer, QuizNode> quiz;
 
-	public StoryPart(String UUID, String belongsToTag, String description,
-			String isEndpoint) {
+	public StoryTag(String UUID, String belongsToTag, String description,
+	                String isEndpoint) {
 		this(UUID, belongsToTag, description, null, null, null, isEndpoint);
 	}
 
-	public StoryPart(String UUID, String belongsToTag, String description,
-			String gameMode, String isEndpoint) {
+	public StoryTag(String UUID, String belongsToTag, String description,
+	                String gameMode, String isEndpoint) {
 		this(UUID, belongsToTag, description, null, gameMode, null, isEndpoint);
 	}
 
 	@SuppressLint("UseSparseArrays")
-	public StoryPart(String UUID, String belongsToTag, String description,
-			String choiceDescription, String gameMode,
-			HashMap<String, StoryPartOption> options, String isEndpoint) {
+	public StoryTag(String UUID, String belongsToTag, String description,
+	                String choiceDescription, String gameMode,
+	                HashMap<String, StoryPartOption> options, String isEndpoint) {
 		this.setUUID(UUID);
 		this.setBelongsToTag(belongsToTag);
 		this.setDescription(description);
@@ -89,7 +88,7 @@ public class StoryPart implements Serializable {
 	public HashMap<String, StoryPartOption> getOptions() {
 		return options;
 	}
-	
+
 	public String getOptionsTitle() {
 		return optionsTitle;
 	}
@@ -145,32 +144,28 @@ public class StoryPart implements Serializable {
 	}
 
 	/**
-	 * @param tagMode
-	 *            the tagMode to set
+	 * @param tagMode the tagMode to set
 	 */
 	public void setTagMode(String tagMode) {
 		this.tagMode = tagMode;
 	}
 
 	/**
-	 * @param gameButton
-	 *            the gameButton to set
+	 * @param gameButton the gameButton to set
 	 */
 	public void setGameButton(String gameButton) {
 		this.gameButton = gameButton;
 	}
 
 	/**
-	 * @param gameMode
-	 *            the gameMode to set
+	 * @param gameMode the gameMode to set
 	 */
 	public void setGameMode(String gameMode) {
 		this.gameMode = gameMode;
 	}
 
 	/**
-	 * @param endpoint
-	 *            the endpoint to set
+	 * @param isEndpoint the endpoint to set
 	 */
 	public void setIsEndpoint(String isEndpoint) {
 		if (isEndpoint.equalsIgnoreCase("true"))
@@ -180,47 +175,42 @@ public class StoryPart implements Serializable {
 	}
 
 	/**
-	 * @param endpoint the endpoint to set
+	 * @param isEndpoint the endpoint to set
 	 */
 	public void setIsEndpoint(boolean isEndpoint) {
 		this.endpoint = isEndpoint;
 	}
 
 	/**
-	 * @param options
-	 *            the options to set
+	 * @param options the options to set
 	 */
 	public void setOptions(HashMap<String, StoryPartOption> options) {
 		this.options = options;
 	}
 
 	/**
-	 * @param choiceDescription
-	 *            the choiceDescription to set
+	 * @param choiceDescription the choiceDescription to set
 	 */
 	public void setChoiceDescription(String choiceDescription) {
 		this.choiceDescription = choiceDescription;
 	}
 
 	/**
-	 * @param description
-	 *            the description to set
+	 * @param description the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
 	/**
-	 * @param belongsToTag
-	 *            the belongsToTag to set
+	 * @param belongsToTag the belongsToTag to set
 	 */
 	public void setBelongsToTag(String belongsToTag) {
 		this.belongsToTag = belongsToTag;
 	}
 
 	/**
-	 * @param uUID
-	 *            the uUID to set
+	 * @param uUID the uUID to set
 	 */
 	public void setUUID(String uUID) {
 		UUID = uUID;
@@ -240,5 +230,49 @@ public class StoryPart implements Serializable {
 
 	public void setChoiceImage(String choiceImage) {
 		this.choiceImage = choiceImage;
+	}
+
+	public boolean hasSingleQuestion() {
+		return getChoiceDescription() != null
+				&& getChoiceDescription().length() != 0;
+	}
+
+	public boolean hasSingleQuestionImage() {
+		return getChoiceImage() != null && !getChoiceImage().equals("");
+	}
+
+	public boolean hasGameMode() {
+		return getGameMode() != null
+				&& (getGameMode().equals(JsonParser.QUIZ)
+				|| getGameMode().equals(JsonParser.CAMERA));
+	}
+
+	public boolean isQuizGameMode() {
+		return getGameMode().equals(JsonParser.QUIZ);
+	}
+
+	public boolean isCameraGameMode() {
+		return getGameMode().equals(JsonParser.CAMERA);
+	}
+
+	public boolean hasOnlyOneOption() {
+		return getOptions().size() == 1;
+	}
+
+	public String[] getOptionsTitles() {
+		return getOptions().keySet().toArray(
+				new String[getOptions().size()]);
+	}
+
+	public StoryPartOption getOption(String key) {
+		return getOptions().get(key);
+	}
+
+	public StoryPartOption getFirstOption() {
+		return getOptions().values().iterator().next();
+	}
+
+	public boolean isQrMode() {
+		return tagMode.equals(StoryTag.TAG_QR);
 	}
 }

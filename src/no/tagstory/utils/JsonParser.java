@@ -1,4 +1,4 @@
-package no.tagstory.communication;
+package no.tagstory.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import no.tagstory.story.Story;
-import no.tagstory.story.StoryPart;
+import no.tagstory.story.StoryTag;
 import no.tagstory.story.StoryPartOption;
 
 import org.json.JSONException;
@@ -91,9 +91,9 @@ public class JsonParser {
 		return story;
 	}
 
-	private static HashMap<String, StoryPart> parseJsonStoryParts(
+	private static HashMap<String, StoryTag> parseJsonStoryParts(
 			JSONObject jsonObject, int tagCount) throws JSONException {
-		HashMap<String, StoryPart> map = new HashMap<String, StoryPart>(
+		HashMap<String, StoryTag> map = new HashMap<String, StoryTag>(
 				tagCount);
 
 		@SuppressWarnings("unchecked")
@@ -102,19 +102,19 @@ public class JsonParser {
 		while (keys.hasNext()) {
 			String key = keys.next();
 			JSONObject object = jsonObject.getJSONObject(key);
-			StoryPart storyPart = new StoryPart(key,
+			StoryTag storyTag = new StoryTag(key,
 					object.getString(BELONSG_TO_TAG),
 					object.getString(PART_DESCRIPTION),
 					object.getString(IS_ENDPOINT));
 			if (object.has(GAME_MODE)) {
-				storyPart.setGameMode(object.getString(GAME_MODE));
+				storyTag.setGameMode(object.getString(GAME_MODE));
 			}
 
-			if (!storyPart.isEndpoint()) { // Not the last tag
-				if (storyPart.getGameMode() != null) {
-					if (storyPart.getGameMode().equals(QUIZ)) { // Tag is a
+			if (!storyTag.isEndpoint()) { // Not the last tag
+				if (storyTag.getGameMode() != null) {
+					if (storyTag.getGameMode().equals(QUIZ)) { // Tag is a
 																	// quiz
-					storyPart.setGameButton(object.getString(GAME_BUTTON));
+					storyTag.setGameButton(object.getString(GAME_BUTTON));
 					JSONObject quiz = object.getJSONObject(QUIZ);
 
 					@SuppressWarnings("unchecked")
@@ -126,31 +126,31 @@ public class JsonParser {
 						quizKey = quizKeys.next();
 						question = quiz.getJSONObject(quizKey);
 						location = Integer.parseInt(quizKey);
-						storyPart.addToQuiz(location,
+						storyTag.addToQuiz(location,
 								question.getString(QUIZ_Q),
 								question.getBoolean(QUIZ_A));
 						if (!question.isNull(QUIZ_C))
-							storyPart.addCorrectionToQuiz(location,
+							storyTag.addCorrectionToQuiz(location,
 									question.getString(QUIZ_C));
 					}
 				} // End of tag quiz
 				} // End of Game Mode
 				if (object.has(CHOICE_DESCRIPTION)) {
-					storyPart.setChoiceDescription(object
+					storyTag.setChoiceDescription(object
 							.getString(CHOICE_DESCRIPTION));
-					storyPart.setGameButton(object.getString(GAME_BUTTON));
+					storyTag.setGameButton(object.getString(GAME_BUTTON));
 				}
 				if (object.has(CHOICE_IMAGE)) {
-					storyPart.setChoiceImage(object.getString(CHOICE_IMAGE));
+					storyTag.setChoiceImage(object.getString(CHOICE_IMAGE));
 				}
 				if (object.has(OPTIONS_TITLE)) {
-					storyPart.setOptionsTitle(object.getString(OPTIONS_TITLE));
+					storyTag.setOptionsTitle(object.getString(OPTIONS_TITLE));
 				}
-				storyPart.setOptions(parseJsonStoryPartOptions(object
+				storyTag.setOptions(parseJsonStoryPartOptions(object
 						.getJSONObject(PART_OPTIONS)));
-				storyPart.setTagMode(object.getString(TAG_MODE));
+				storyTag.setTagMode(object.getString(TAG_MODE));
 			}
-			map.put(key, storyPart);
+			map.put(key, storyTag);
 		}
 
 		return map;

@@ -1,4 +1,4 @@
-package no.tagstory.communication;
+package no.tagstory.utils;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -23,10 +23,6 @@ public class Database {
 	public static final String STORY_PLACE = "PLACE";
 	public static final String STORY_IMAGE = "IMAGE";
 	
-	public static final String USER_TABLE_NAME = "USER";
-	public static final String USER_ID = "_id";
-	public static final String USER_PASSWORD = "PASSWORD";
-	
 	public static final String POINTS_TABLE_NAME = "POINTS";
 	public static final String POINTS_USERNAME = "_id";
 	public static final String POINTS_STORY = "PASSWORD";
@@ -36,10 +32,6 @@ public class Database {
 	private static final String STORY_CREATE = "CREATE TABLE "
 			+ STORY_TABLE_NAME + " (" + STORY_ID + " TEXT, " + STORY_AUTHOR
 			+ " TEXT, " + STORY_TITLE + " TEXT, " + STORY_PLACE + " TEXT, " + STORY_IMAGE + " TEXT);";
-	
-	private static final String USER_CREATE = "CREATE TABLE "
-			+ USER_TABLE_NAME + " (" + USER_ID + " TEXT, " + USER_PASSWORD
-			+ " TEXT);";
 	
 	private static final String POINTS_CREATE = "CREATE TABLE "
 			+ POINTS_TABLE_NAME + " (" + POINTS_USERNAME + " TEXT, " + POINTS_STORY
@@ -54,7 +46,6 @@ public class Database {
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			db.execSQL(STORY_CREATE);
-			db.execSQL(USER_CREATE);
 			db.execSQL(POINTS_CREATE);
 			populate(db);
 		}
@@ -119,35 +110,5 @@ public class Database {
 	public Cursor getStoryList() {
 		return db.query(STORY_TABLE_NAME, null, null, null, null, null,
 				STORY_TITLE + " DESC");
-	}
-	
-	public void setTable(String rowID, String update) {
-		db.execSQL("UPDATE " + STORY_TABLE_NAME + " SET value ='" + update
-				+ "' WHERE _id = '" + rowID + "'");
-	}
-	
-
-	public long setUsernameAndPassword(String username, String password) {
-		ContentValues values = new ContentValues(2);
-		values.put(USER_ID, username);
-		values.put(USER_PASSWORD, password);
-		int rows = db.update(USER_TABLE_NAME, values, USER_ID + " =?", new String[] { username });
-		if (rows == 0)
-			return db.insert(USER_TABLE_NAME, null, values);
-		
-		return rows;
-	}
-	
-	public boolean isCorrectPassword(String username, String password) {
-		Cursor cursor = db.query(USER_TABLE_NAME, new String[] { USER_PASSWORD }, USER_ID + " =?", new String[] { USER_ID }, null, null, null);
-		cursor.moveToFirst();
-		if (cursor.getCount() == 0)
-			return false;
-		return cursor.getString(0).equals(password);
-	}
-	
-	public boolean isExistsUser(String username) {
-		Cursor cursor = db.query(USER_TABLE_NAME, new String[] { USER_PASSWORD }, USER_ID + " =?", new String[] { USER_ID }, null, null, null);
-		return cursor.getCount() != 0;
 	}
 }

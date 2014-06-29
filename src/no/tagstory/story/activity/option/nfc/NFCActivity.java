@@ -19,9 +19,10 @@ import android.os.Build;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.Toast;
+import no.tagstory.story.activity.option.gps.GPSActivity;
 
 @TargetApi(Build.VERSION_CODES.GINGERBREAD_MR1)
-public abstract class NFCActivity extends no.tagstory.story.activity.option.gps.GPSActivity {
+public abstract class NFCActivity extends GPSActivity {
 
 	protected Story story;
 	protected StoryPartOption option;
@@ -66,10 +67,9 @@ public abstract class NFCActivity extends no.tagstory.story.activity.option.gps.
 						progressDialog.dismiss();
 						Intent intent = new Intent(getApplicationContext(),
 								StoryActivity.class);
-						intent.putExtra(StoryActivity.STORY, story);
-						intent.putExtra(StoryActivity.PARTTAG,
+						intent.putExtra(StoryActivity.EXTRA_STORY, story);
+						intent.putExtra(StoryActivity.EXTRA_TAG,
 								option.getOptNext());
-						intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
 						startActivity(intent);
 					}
 				});
@@ -122,9 +122,8 @@ public abstract class NFCActivity extends no.tagstory.story.activity.option.gps.
 				.getBelongsToTag())) {
 			progressDialog.dismiss();
 			intent = new Intent(this, StoryActivity.class);
-			intent.putExtra(StoryActivity.STORY, story);
-			intent.putExtra(StoryActivity.PARTTAG, option.getOptNext());
-			intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
+			intent.putExtra(StoryActivity.EXTRA_STORY, story);
+			intent.putExtra(StoryActivity.EXTRA_TAG, option.getOptNext());
 			startActivity(intent);
 		} else {
 			// TODO: What do to when user scan wrong tag?

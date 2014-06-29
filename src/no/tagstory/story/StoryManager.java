@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import org.json.JSONException;
 
-import no.tagstory.communication.Database;
-import no.tagstory.communication.JsonParser;
+import no.tagstory.utils.Database;
+import no.tagstory.utils.JsonParser;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -29,6 +29,7 @@ public class StoryManager {
 	 * @return
 	 */
 	public Cursor getStoryList() {
+		// TODO Convert cursor to a StoryList-object and return a list
 		return database.getStoryList();
 	}
 

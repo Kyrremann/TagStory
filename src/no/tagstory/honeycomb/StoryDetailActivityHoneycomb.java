@@ -27,12 +27,4 @@ public class StoryDetailActivityHoneycomb extends StoryDetailActivity {
 
 		return super.onOptionsItemSelected(item);
 	}
-
-	@Override
-	protected void startStoryActivity() {
-		Intent intent = new Intent(this, StoryActivity.class);
-		intent.putExtra(StoryActivityHoneycomb.STORY, story);
-		intent.putExtra(StoryActivityHoneycomb.PARTTAG, story.getStartTag());
-		startActivity(intent);
-	}
 }

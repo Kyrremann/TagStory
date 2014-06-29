@@ -1,4 +1,4 @@
-package no.tagstory.communication;
+package no.tagstory.utils;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -23,8 +23,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 
 import android.annotation.SuppressLint;
-import android.os.NetworkOnMainThreadException;
-import android.util.Log;
 
 public class ServerCommunication {
 

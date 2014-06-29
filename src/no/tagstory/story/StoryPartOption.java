@@ -48,6 +48,15 @@ public class StoryPartOption implements Serializable {
 	}
 
 	/**
+	 * Placeholder method to the title of the tag.
+	 * The title is the same as the UUID, but title sounds more sane.
+	 * @return The value of the UUID
+	 */
+	public String getTitle() {
+		return getUUID();
+	}
+
+	/**
 	 * @return the optHintText
 	 */
 	public String getOptHintText() {
@@ -168,4 +177,11 @@ public class StoryPartOption implements Serializable {
 		return optArrowLength;
 	}
 
+	public boolean hasHintText() {
+		return getOptHintText().length() > 0;
+	}
+
+	public boolean hasHintImage() {
+		return getOptSelectMethod().equals(StoryPartOption.HINT_IMAGE);
+	}
 }

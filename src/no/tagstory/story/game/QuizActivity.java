@@ -1,12 +1,5 @@
 package no.tagstory.story.game;
 
-import java.util.HashMap;
-
-import no.tagstory.kines_bursdag.R;
-import no.tagstory.story.Story;
-import no.tagstory.story.StoryPart;
-import no.tagstory.story.StoryPartOption;
-import no.tagstory.story.activity.StoryActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -18,11 +11,20 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import no.tagstory.R;
+import no.tagstory.story.Story;
+import no.tagstory.story.StoryPartOption;
+import no.tagstory.story.StoryTag;
+import no.tagstory.story.activity.StoryActivity;
+
+import java.util.HashMap;
+
+import static no.tagstory.story.activity.utils.TravelIntentFactory.createTravelIntent;
 
 public class QuizActivity extends Activity {
 
 	private Story story;
-	private StoryPart part;
+	private StoryTag part;
 	private String partTag; //, previousTag;
 	private int quizNumber, quizPoint;
 	private LinearLayout layout;
@@ -34,9 +36,8 @@ public class QuizActivity extends Activity {
 		setContentView(R.layout.activity_story_quiz);
 
 		Bundle bundle = getIntent().getExtras();
-		story = (Story) bundle.getSerializable(StoryActivity.STORY);
-		partTag = bundle.getString(StoryActivity.PARTTAG);
-		// previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);
+		story = (Story) bundle.getSerializable(StoryActivity.EXTRA_STORY);
+		partTag = bundle.getString(StoryActivity.EXTRA_TAG);
 		part = story.getStoryPart(partTag);
 
 		layout = (LinearLayout) findViewById(R.id.activity_layout_quiz);
@@ -72,52 +73,52 @@ public class QuizActivity extends Activity {
 		// TODO: Add points to the story/user if the user answer correct
 		QuizNode node = part.getQuizNode(quizNumber);
 		switch (view.getId()) {
-		case R.id.story_part_quiz_yes:
-			if (node.isAnswer())
-				quizPoint++;
-			else {
-				AlertDialog.Builder builder = new Builder(this);
-				builder.setTitle(R.string.story_quiz_correction);
-				if (node.getCorrection() != null)
-					builder.setMessage(node.getCorrection());
-				else
-					builder.setMessage("Du svarte feil");
-				builder.setNeutralButton(R.string.story_quiz_next,
-						new OnClickListener() {
+			case R.id.story_part_quiz_yes:
+				if (node.isAnswer())
+					quizPoint++;
+				else {
+					AlertDialog.Builder builder = new Builder(this);
+					builder.setTitle(R.string.story_quiz_correction);
+					if (node.getCorrection() != null)
+						builder.setMessage(node.getCorrection());
+					else
+						builder.setMessage("Du svarte feil");
+					builder.setNeutralButton(R.string.story_quiz_next,
+							new OnClickListener() {
 
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.dismiss();
-								// addQuestion(++quizNumber);
-							}
-						});
-				builder.create().show();
-			}
-			break;
-		case R.id.story_part_quiz_no:
-			if (!node.isAnswer())
-				quizPoint++;
-			else {
-				AlertDialog.Builder builder = new Builder(this);
-				builder.setTitle(R.string.story_quiz_correction);
-				if (node.getCorrection() != null)
-					builder.setMessage(node.getCorrection());
-				else
-					builder.setMessage("Du svarte feil");
-				builder.setNeutralButton(R.string.story_quiz_next,
-						new OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog,
+								                    int which) {
+									dialog.dismiss();
+									// addQuestion(++quizNumber);
+								}
+							});
+					builder.create().show();
+				}
+				break;
+			case R.id.story_part_quiz_no:
+				if (!node.isAnswer())
+					quizPoint++;
+				else {
+					AlertDialog.Builder builder = new Builder(this);
+					builder.setTitle(R.string.story_quiz_correction);
+					if (node.getCorrection() != null)
+						builder.setMessage(node.getCorrection());
+					else
+						builder.setMessage("Du svarte feil");
+					builder.setNeutralButton(R.string.story_quiz_next,
+							new OnClickListener() {
 
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.dismiss();
-								// addQuestion(++quizNumber);
-							}
-						});
-				builder.create().show();
-			}
-			break;
+								@Override
+								public void onClick(DialogInterface dialog,
+								                    int which) {
+									dialog.dismiss();
+									// addQuestion(++quizNumber);
+								}
+							});
+					builder.create().show();
+				}
+				break;
 		}
 
 		// TODO textView.setAlpha(.5f);
@@ -139,9 +140,9 @@ public class QuizActivity extends Activity {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							Intent intent = StoryActivity.createTravelIntent(
-									getApplicationContext(), story, story.getStoryPart(partTag),option,
-									option.getOptNext(), partTag);
+							Intent intent = createTravelIntent(
+									getApplicationContext(), story, story.getStoryPart(partTag), option,
+									option.getOptNext());
 							startActivity(intent);
 						}
 					});
@@ -161,9 +162,9 @@ public class QuizActivity extends Activity {
 							StoryPartOption option = options
 									.get(((AlertDialog) dialog).getListView()
 											.getItemAtPosition(which));
-							startActivity(StoryActivity.createTravelIntent(
-									getApplicationContext(), story, story.getStoryPart(partTag),option,
-									option.getOptNext(), partTag));
+							startActivity(createTravelIntent(
+									getApplicationContext(), story, story.getStoryPart(partTag), option,
+									option.getOptNext()));
 						}
 					});
 
@@ -181,8 +182,8 @@ public class QuizActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == android.R.id.home) {
 			Intent intent = new Intent(this, StoryActivity.class);
-			intent.putExtra(StoryActivity.STORY, story);
-			intent.putExtra(StoryActivity.PARTTAG, partTag);
+			intent.putExtra(StoryActivity.EXTRA_STORY, story);
+			intent.putExtra(StoryActivity.EXTRA_TAG, tagId);
 			intent.putExtra(StoryActivity.PREVIOUSTAG, previousTag);
 			NavUtils.navigateUpTo(this, intent);
 			return true;

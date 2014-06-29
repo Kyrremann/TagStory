@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
-    <string name="app_name">TS: Kines bursdag</string>
-    <string name="app_title">Tag Story: Kines bursdag</string>
+    <string name="app_name">Tag Story</string>
+    <string name="app_title">Tag Story</string>
     
     <string name="title_story_detail">Story Detail</string>
     <string name="title_story_list">Stories</string>
@@ -18,7 +18,7 @@
     <string name="email">E-mail</string>
     <string name="email_hint">plus e-mail here&#8230;</string>
     <string name="cancel">Cancel</string>
-    <string name="cheat">Cheat</string>
+    <string name="gps_about_skip">Skip</string>
     
     <string name="description">Description</string>
     <string name="description_hint">Where is the tag</string>
@@ -57,7 +57,7 @@
     <string name="dialog_about_tagstory">Tag Story combines text based adventure games with NFC technology for an interactive, outdoor woodland adventure.\n\nMade as part of a project in INF5261 at University of Oslo.</string>
     <string name="dialog_about_klima">«Hev stemmen!» er en oppfordring til alle om å sette klima på agendaen i årets Stortingsvalg. Hev stemmen og la den bli hørt, av familie og venner, folkevalgte og velgere, på sosiale medier og i den offentlige debatt. Hev stemmen i gatene over hele landet 24. august – og la 9. september 2013 bli dagen da klimastemmene for alvor gjør sitt inntog i norsk politikk.</string>
     <string name="dialog_cancel">Cancel</string>
-    <string name="dialog_enable_gps">You need GPS enabled to experience this story. Do you want to enable it?</string>
+    <string name="dialog_enable_gps">You need GPS enabled to experience this story. Do you want to enable it?\n\nPS: You can not continue without GPS.</string>
     <string name="dialog_yes">Yes</string>
     <string name="dialog_no">No</string>
     
@@ -98,6 +98,7 @@
         Time used: 21:41\n
         Length walk: 2km</string>
     <string name="cd_logo">Hev Stemmen logo</string>
+	<string name="cd_ts_logo">Tag Story logo</string>
     <string name="cd_story_image">Image representing a story</string>
 
     <color name="light_tree_green">#739D88</color>
@@ -118,5 +119,6 @@
 	<string name="dummy_section_text">Section %1d is just a dummy section.</string>
 	<string name="demo_external_activity">Demo External Activity</string>
 	<string name="demo_collection">Demo Collection</string>
+	<string name="next_tag">Go to next tag</string>
 
 </resources>

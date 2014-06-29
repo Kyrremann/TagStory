@@ -2,7 +2,7 @@ package no.tagstory.story.activity.option.gps;
 
 import java.io.IOException;
 
-import no.tagstory.kines_bursdag.R;
+import no.tagstory.R;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Bundle;
@@ -32,8 +32,8 @@ public class GPSAudioPlayerActivity extends GPSActivity implements	OnPreparedLis
 		Bundle bundle = getIntent().getExtras();
 		option = (StoryPartOption) bundle
 				.getSerializable(StoryTravelActivity.OPTION);
-		story = (Story) bundle.getSerializable(StoryActivity.STORY);
-		partTag = bundle.getString(StoryActivity.PARTTAG);
+		story = (Story) bundle.getSerializable(StoryActivity.EXTRA_STORY);
+		tagId = bundle.getString(StoryActivity.EXTRA_TAG);
 		previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);*/
 
 		AUDIO_FILE_NAME = option.getOptSoundSrc();

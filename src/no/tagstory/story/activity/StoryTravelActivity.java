@@ -1,10 +1,5 @@
 package no.tagstory.story.activity;
 
-import no.tagstory.kines_bursdag.R;
-import no.tagstory.story.Story;
-import no.tagstory.story.StoryPart;
-import no.tagstory.story.StoryPartOption;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -14,16 +9,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import no.tagstory.StoryApplication;
+import no.tagstory.R;
+import no.tagstory.honeycomb.StoryActivityHoneycomb;
+import no.tagstory.story.Story;
+import no.tagstory.story.StoryPartOption;
+import no.tagstory.utils.ClassVersionFactory;
 
 public class StoryTravelActivity extends FragmentActivity {
 
-	protected static final String OPTION = "OPTION";
-	protected String previousTag;
+	public static final String OPTION = "OPTION";
+	private static final int QR_REQUEST_CODE = 0;
 	protected Story story;
 	protected StoryPartOption option;
-	protected String partTag;
+	protected String tagId;
 	protected TextView hintText;
-	protected ProgressDialog progressDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,25 +32,29 @@ public class StoryTravelActivity extends FragmentActivity {
 
 		Bundle bundle = getIntent().getExtras();
 		option = (StoryPartOption) bundle.getSerializable(OPTION);
-		story = (Story) bundle.getSerializable(StoryActivity.STORY);
-		partTag = bundle.getString(StoryActivity.PARTTAG);
-		previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);
+		story = (Story) bundle.getSerializable(StoryActivity.EXTRA_STORY);
+		tagId = bundle.getString(StoryActivity.EXTRA_TAG);
 
-		setTitle(option.getUUID());
-		if (option.getOptHintText().length() > 0) {
-			hintText = (TextView) findViewById(R.id.story_option_hint);
-			hintText.setText(option.getOptHintText());
-			hintText.setVisibility(View.VISIBLE);
+		setTitle(option.getTitle());
+
+		if (option.hasHintText()) {
+			setHintText();
 		}
 
-		if (option.getOptSelectMethod().equals(StoryPartOption.HINT_IMAGE)) {
-			((LinearLayout) findViewById(R.id.story_option_layout))
-					.addView(createImageHint(option.getOptImageSrc()));
+		if (option.hasHintImage()) {
+			setHintImage();
 		}
-		// if (story.getStoryPart(partTag).getOptionsTitle() != null) {
-		// ((TextView) findViewById(R.id.story_activity_travel)).setText(story
-		// .getStoryPart(partTag).getOptionsTitle());
-		// }
+	}
+
+	private void setHintImage() {
+		((LinearLayout) findViewById(R.id.story_option_layout))
+				.addView(createImageHint(option.getOptImageSrc()));
+	}
+
+	private void setHintText() {
+		hintText = (TextView) findViewById(R.id.story_option_hint);
+		hintText.setText(option.getOptHintText());
+		hintText.setVisibility(View.VISIBLE);
 	}
 
 	private View createImageHint(String optImageSrc) {
@@ -63,55 +67,56 @@ public class StoryTravelActivity extends FragmentActivity {
 	public void scanTag(View v) {
 		if (v.getId() == R.id.scan_tag) {
 			System.out.println("pressing scan");
-			String tagMode = story.getStoryPart(partTag).getTagMode();
-			if (tagMode.equals(StoryPart.TAG_QR)) {
+			if (story.getStoryPart(tagId).isQrMode()) {
 				Intent intent = new Intent(
 						"com.google.zxing.client.android.SCAN");
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-
 				intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
-				startActivityForResult(intent, 0);
+				startActivityForResult(intent, QR_REQUEST_CODE);
 			}
 		}
 	}
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		if (requestCode == 0) {
+		if (requestCode == QR_REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
-				// The Intents Fairy has delivered us some data!
 				String contents = intent.getStringExtra("SCAN_RESULT");
 				String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
-				// Handle successful scan
 				Log.d("QR", "Contents: " + contents);
 				Log.d("QR", "Format: " + format);
 				// TODO: What to do when user scanning the wrong QR code?
-				checkTagData(contents, false);
+				checkTagData(contents);
 			} else if (resultCode == RESULT_CANCELED) {
 				// Handle cancel
 			}
 		}
 	}
 
-	protected void checkTagData(String tag, boolean debug) {
+	protected void checkTagData(String tagId) {
 		// TODO: Implement randomized tags
-		if (tag.equals(story.getStoryPart(option.getOptNext())
-				.getBelongsToTag()) || debug) {
-			// progressDialog.dismiss();
-			if (!debug) {
-				Log.d("TAG", "Correct tag: " + tag);
-			} else {
-				Log.d("TAG", "Someone is cheating");
-			}
-			Intent intent = new Intent(this, StoryActivity.class);
-			intent.putExtra(StoryActivity.STORY, story);
-			intent.putExtra(StoryActivity.PARTTAG, option.getOptNext());
-			intent.putExtra(StoryActivity.PREVIOUSTAG, partTag);
-			startActivity(intent);
+		if (tagId.equals(story.getStoryPart(option.getOptNext())
+				.getBelongsToTag())) {
+			goToNextActivity();
 		} else {
 			// TODO: What do to when user scan wrong tag?
 			Toast.makeText(this, "Sorry, you're scanning the wrong tag",
 					Toast.LENGTH_SHORT).show();
 		}
+	}
+
+	protected void skipTag() {
+		Log.d("SKIP", "User skipped tag");
+		goToNextActivity();
+	}
+
+	private void goToNextActivity() {
+		Intent intent = ClassVersionFactory.createIntent(getApplicationContext(),
+				StoryActivityHoneycomb.class, StoryActivity.class);
+		intent.putExtra(StoryActivity.EXTRA_STORY, story);
+		intent.putExtra(StoryActivity.EXTRA_TAG, option.getOptNext());
+		((StoryApplication) getApplication()).addTagTohistory(tagId, option.getOptNext());
+		startActivity(intent);
+		finish();
 	}
 }

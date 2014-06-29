@@ -1,7 +1,7 @@
-package no.tagstory;
+package no.tagstory.adapters;
 
 import java.io.InputStream;
-import no.tagstory.kines_bursdag.R;
+import no.tagstory.R;
 
 import android.content.Context;
 import android.database.Cursor;

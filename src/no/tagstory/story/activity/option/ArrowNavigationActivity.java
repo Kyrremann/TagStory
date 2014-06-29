@@ -1,20 +1,11 @@
 package no.tagstory.story.activity.option;
 
-import no.tagstory.kines_bursdag.R;
-import no.tagstory.story.Story;
-import no.tagstory.story.activity.StoryActivity;
-import no.tagstory.story.StoryPartOption;
-import no.tagstory.story.activity.StoryTravelActivity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
+import android.graphics.*;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -28,6 +19,11 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import no.tagstory.R;
+import no.tagstory.story.Story;
+import no.tagstory.story.StoryPartOption;
+import no.tagstory.story.activity.StoryActivity;
+import no.tagstory.story.activity.StoryTravelActivity;
 
 public class ArrowNavigationActivity extends StoryTravelActivity {
 
@@ -39,7 +35,7 @@ public class ArrowNavigationActivity extends StoryTravelActivity {
 	private Sensor mSensor;
 	private CompassView mView;
 	private float dir = 0.0f;
-	private float[] compassValues = { 0 };
+	private float[] compassValues = {0};
 	private MediaPlayer player;
 	private long dist = 100;
 	private LocationManager locationManager;
@@ -52,8 +48,6 @@ public class ArrowNavigationActivity extends StoryTravelActivity {
 
 	private Bitmap compassCircle;
 	private Bitmap compassHand;
-
-	private String previousTag;
 
 	Runnable onEverySecond = null;
 
@@ -68,9 +62,8 @@ public class ArrowNavigationActivity extends StoryTravelActivity {
 		Bundle bundle = getIntent().getExtras();
 		option = (StoryPartOption) bundle
 				.getSerializable(StoryTravelActivity.OPTION);
-		story = (Story) bundle.getSerializable(StoryActivity.STORY);
-		partTag = bundle.getString(StoryActivity.PARTTAG);
-		previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);
+		story = (Story) bundle.getSerializable(StoryActivity.EXTRA_STORY);
+		tagId = bundle.getString(StoryActivity.EXTRA_TAG);
 
 		((TextView) findViewById(R.id.story_arrow_hint)).setText(option
 				.getOptHintText());
@@ -174,8 +167,8 @@ public class ArrowNavigationActivity extends StoryTravelActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == android.R.id.home) {
 			Intent intent = new Intent(this, StoryActivity.class);
-			intent.putExtra(StoryActivity.STORY, story);
-			intent.putExtra(StoryActivity.PARTTAG, partTag);
+			intent.putExtra(StoryActivity.EXTRA_STORY, story);
+			intent.putExtra(StoryActivity.EXTRA_TAG, tagId);
 			intent.putExtra(StoryActivity.PREVIOUSTAG, previousTag);
 			NavUtils.navigateUpTo(this, intent);
 			return true;
@@ -254,7 +247,7 @@ public class ArrowNavigationActivity extends StoryTravelActivity {
 			if (location != null) {
 				loc = location;
 				Location target = new Location("TEST"); // TODO: Set the
-														// location here
+				// location here
 				target.setLatitude(option.getLatitude());
 				target.setLongitude(option.getLongitude());
 				dist = (long) loc.distanceTo(target);

@@ -1,231 +1,199 @@
 package no.tagstory.story.activity;
 
-import java.util.HashMap;
-
-import android.util.Log;
-import android.widget.ImageView;
-import no.tagstory.kines_bursdag.R;
-import no.tagstory.communication.JsonParser;
-import no.tagstory.story.Story;
-import no.tagstory.story.StoryPart;
-import no.tagstory.story.StoryPartOption;
-import no.tagstory.story.game.CameraActivity;
-import no.tagstory.story.game.QuizActivity;
-import no.tagstory.story.activity.option.AudioPlayerActivity;
-import no.tagstory.story.activity.option.MapNavigationActivity;
-import no.tagstory.story.activity.option.gps.GPSActivity;
-import no.tagstory.story.activity.option.gps.GPSMapNavigationActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import no.tagstory.StoryApplication;
+import no.tagstory.R;
+import no.tagstory.honeycomb.StoryActivityHoneycomb;
+import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
+import no.tagstory.story.Story;
+import no.tagstory.story.StoryPartOption;
+import no.tagstory.story.StoryTag;
+import no.tagstory.utils.ClassVersionFactory;
+
+import static no.tagstory.story.activity.utils.TravelIntentFactory.*;
 
 public class StoryActivity extends Activity {
 
-	public static final String STORY = "STORY";
-	public static final String PARTTAG = "TAG";
-	public static final String PREVIOUSTAG = "PREVIOUS";
+	public static final String EXTRA_STORY = "EXTRA_STORY";
+	public static final String EXTRA_TAG = "TAG";
 
 	protected Story story;
-	private StoryPart part;
-	protected String partTag;
-	protected String previousTag;
+	private StoryTag tag;
+	protected String tagId;
+	protected StoryApplication storyApplication;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_story);
 
-		story = (Story) getIntent().getSerializableExtra(STORY);
-		setTitle(story.getTitle()); // TODO: Should be part title
-		partTag = getIntent().getStringExtra(PARTTAG);
-		part = story.getStoryPart(partTag);
-		// TODO: previous tag not working properly, should be a list
-		previousTag = getIntent().getStringExtra(PREVIOUSTAG);
+		storyApplication = (StoryApplication) getApplication();
+		story = (Story) getIntent().getSerializableExtra(EXTRA_STORY);
+		tagId = getIntent().getStringExtra(EXTRA_TAG);
+		tag = story.getStoryPart(tagId);
 
-		((TextView) findViewById(R.id.story_part_desc)).setText(part
+		setTitle(story.getTitle()); // TODO: Should be tag title
+		setTagDescription();
+
+		if (tag.hasSingleQuestion()) {
+			initializeSingleQuestion();
+		}
+
+		if (tag.isEndpoint()) {
+			switchToEndpointActivity();
+		} else {
+			setTravelButton(tag);
+		}
+	}
+
+	private void setTagDescription() {
+		((TextView) findViewById(R.id.story_part_desc)).setText(tag
 				.getDescription());
-		if (part.getChoiceDescription() != null
-				&& part.getChoiceDescription().length() != 0) {
-			((TextView) findViewById(R.id.story_part_choice)).setText(part
-					.getChoiceDescription());
-			if (part.getChoiceImage() != null && !part.getChoiceImage().equals("")) {
-				ImageView imageView = (ImageView) findViewById(R.id.story_tag_image);
-				imageView.setVisibility(View.VISIBLE);
-				if (part.getChoiceImage().equals("ledere")) {
-					imageView.setImageDrawable(getResources().getDrawable(R.drawable.ledere));
-				} else if (part.getChoiceImage().equals("mjaowl.jpg")) {
-					imageView.setImageDrawable(getResources().getDrawable(R.drawable.majowl));
-				}
+	}
+
+	// TODO: Should be handled by the travel activity
+	private void switchToEndpointActivity() {
+		Intent intent = new Intent(this, StoryFinishedActivity.class);
+		intent.putExtra(EXTRA_STORY, story);
+		intent.putExtra(EXTRA_TAG, tagId);
+		startActivity(intent);
+		finish();
+	}
+
+	private void initializeSingleQuestion() {
+		((TextView) findViewById(R.id.story_part_choice)).setText(tag
+				.getChoiceDescription());
+		if (tag.hasSingleQuestionImage()) {
+			ImageView imageView = (ImageView) findViewById(R.id.story_tag_image);
+			imageView.setVisibility(View.VISIBLE);
+			// TODO Implement image parser for choice image
+			if (tag.getChoiceImage().equals("ledere")) {
+				imageView.setImageDrawable(getResources().getDrawable(R.drawable.ledere));
+			} else if (tag.getChoiceImage().equals("mjaowl.jpg")) {
+				imageView.setImageDrawable(getResources().getDrawable(R.drawable.majowl));
 			}
-		} else {
-			((TextView) findViewById(R.id.story_part_choice))
-					.setVisibility(View.GONE);
-			// .setBackgroundResource(0);
 		}
 
-		if (!part.isEndpoint()) {
-			generateOptionFunction(part.getOptions());
+	}
+
+	private void setTravelButton(
+			final StoryTag tag) {
+		Button travelButton = (Button) findViewById(R.id.story_activity_travel);
+
+		if (hasUserAlreadyVisitedTag()) {
+			goDirectlyToNextTag(tag, travelButton);
+		} else if (tag.hasOnlyOneOption()) {
+			onlyOneOption(tag, travelButton);
 		} else {
-			// TODO: Should be handled by the travel activity
-			Intent intent = new Intent(this, StoryFinishedActivity.class);
-			intent.putExtra(STORY, story);
-			intent.putExtra(PARTTAG, partTag);
-			intent.putExtra(PREVIOUSTAG, previousTag);
-			startActivity(intent);
-			finish();
+			severalOptions(tag, travelButton);
 		}
 	}
 
-	private void generateOptionFunction(
-			final HashMap<String, StoryPartOption> options) {
-		Button button = (Button) findViewById(R.id.story_activity_travel);
-
-		System.out.println(part.getGameMode());
-		if (options.size() == 1) {
-			final StoryPartOption option = options.values().iterator().next();
-
-			if (part.getGameMode() != null
-					&& (part.getGameMode().equals(JsonParser.QUIZ)
-					|| part.getGameMode().equals(JsonParser.CAMERA))) {
-				button.setText(part.getGameButton());
-			} else {
-				button.setText(option.getUUID());
+	private void goDirectlyToNextTag(StoryTag tag, Button travelButton) {
+		travelButton.setText(R.string.next_tag);
+		travelButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = ClassVersionFactory.createIntent(getApplicationContext(),
+						StoryActivityHoneycomb.class, StoryActivity.class);
+				intent.putExtra(StoryActivity.EXTRA_STORY, story);
+				intent.putExtra(StoryActivity.EXTRA_TAG, storyApplication.getNextTagFor(tagId));
+				startActivity(intent);
 			}
+		});
+	}
 
-			button.setOnClickListener(new OnClickListener() {
+	private boolean hasUserAlreadyVisitedTag() {
+		return storyApplication.hasUserVisited(tagId);
+	}
 
-				@Override
-				public void onClick(View view) {
-					Intent intent;
-					if (part.getGameMode().equals(JsonParser.QUIZ)) {
-						intent = new Intent(getApplicationContext(),
-								QuizActivity.class);
-						intent.putExtra(StoryActivity.STORY, story);
-						intent.putExtra(StoryActivity.PARTTAG, partTag);
-						intent.putExtra(StoryActivity.PREVIOUSTAG, previousTag);
-					} else if (part.getGameMode().equals(JsonParser.CAMERA)) {
-						intent = new Intent(getApplicationContext(), CameraActivity.class);
-						intent.putExtra(StoryActivity.STORY, story);
-						intent.putExtra(StoryActivity.PARTTAG, partTag);
-						intent.putExtra(StoryActivity.PREVIOUSTAG, previousTag);
-					} else {
-						intent = createTravelIntent(getApplicationContext(),
-								story, part, option, partTag, previousTag);
+	private void severalOptions(final StoryTag tag, Button button) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		// builder.setTitle("Choose you future");
+		// TODO: Set max length on choice description, or find an new way to
+		// show it
+		// builder.setTitle(tag.getChoiceDescription());
+
+		final String[] keys = tag.getOptionsTitles();
+
+		builder.setSingleChoiceItems(keys, -1,
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						String selectedValue = (String) ((AlertDialog) dialog).
+								getListView().getItemAtPosition(which);
+						StoryPartOption option = tag.getOption(selectedValue);
+						startActivity(createTravelIntent(
+								getApplicationContext(), story, tag,
+								option, tagId));
+						dialog.cancel();
 					}
-					startActivity(intent);
-				}
-			});
+				});
+
+		final Dialog dialog = builder.create();
+
+		if (this.tag.getOptionsTitle() != null) {
+			button.setText(this.tag.getOptionsTitle());
 		} else {
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			// builder.setTitle("Choose you future");
-			// TODO: Set max length on choice description, or find an new way to
-			// show it
-			// builder.setTitle(part.getChoiceDescription());
+			button.setText(R.string.story_find_next);
+		}
+		button.setOnClickListener(new OnClickListener() {
 
-			final String[] keys = options.keySet().toArray(
-					new String[options.size()]);
-
-			builder.setSingleChoiceItems(keys, -1,
-					new DialogInterface.OnClickListener() {
-
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							// System.out.println(((AlertDialog)
-							// dialog).getListView().getItemAtPosition(which));
-							startActivity(createTravelIntent(
-									getApplicationContext(), story, part,
-									options.get(((AlertDialog) dialog)
-											.getListView().getItemAtPosition(
-													which)), partTag,
-									previousTag));
-						}
-					});
-
-			final Dialog dialog = builder.create();
-
-			if (part.getOptionsTitle() != null) {
-				button.setText(part.getOptionsTitle());
-			} else {
-				button.setText(R.string.story_find_next);
+			@Override
+			public void onClick(View view) {
+				dialog.show();
 			}
-			button.setOnClickListener(new OnClickListener() {
+		});
+	}
 
-				@Override
-				public void onClick(View view) {
-					dialog.show();
+	private void onlyOneOption(final StoryTag tag, Button button) {
+		final StoryPartOption option = tag.getFirstOption();
+
+		if (tag.hasGameMode()) {
+			button.setText(tag.getGameButton());
+		} else {
+			button.setText(option.getTitle());
+		}
+
+		button.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				Intent intent;
+				if (tag.isQuizGameMode()) {
+					intent = createQuizActivity(getApplicationContext(), story, tagId);
+				} else if (tag.isCameraGameMode()) {
+					intent = createCameraActivity(getApplicationContext(), story, tagId);
+				} else {
+					intent = createTravelIntent(getApplicationContext(),
+							story, tag, option, tagId);
 				}
-			});
+				startActivity(intent);
+			}
+		});
+	}
+
+	@Override
+	public void onBackPressed() {
+		if (storyApplication.hasPreviousTag(tagId)) {
+			Intent intent = ClassVersionFactory.createIntent(getApplicationContext(),
+					StoryActivityHoneycomb.class, StoryActivity.class);
+			intent.putExtra(EXTRA_STORY, story);
+			intent.putExtra(EXTRA_TAG, storyApplication.getPreviousTag(tagId));
+			startActivity(intent);
+		} else {
+			super.onBackPressed();
 		}
-	}
-
-	public static Intent createTravelIntent(Context context, Story story,
-			StoryPart part, StoryPartOption option, String partTag,
-			String previousTag) {
-		return createTravelIntent(context, story, part, option, partTag, previousTag,
-				false);
-	}
-
-	// TODO: This is where I need to check for what kind of scanning of tag is
-	// used, either gps, qr or nfc. Or all of them :\
-	// TODO: Need to change from travel indent to show answer intent, and after
-	// then I can use the travel intent
-	public static Intent createTravelIntent(Context context, Story story,
-			StoryPart part, StoryPartOption option, String partTag,
-			String previousTag, boolean fromPropagating) {
-
-		Intent intent = new Intent();
-		intent.putExtra(STORY, story);
-		intent.putExtra(StoryTravelActivity.OPTION, option);
-		intent.putExtra(PARTTAG, partTag);
-		intent.putExtra(PREVIOUSTAG, previousTag);
-
-		if (!fromPropagating && option.getOptPropagatingText() != null) {
-			intent.setClass(context, StoryPropagatingActivity.class);
-			return intent;
-		}
-
-		String tagMode = part.getTagMode();
-		String opt = option.getOptSelectMethod();
-
-		if (tagMode.equals(StoryPart.TAG_GPS)) {
-			intent.setClass(context, getGPSHintClass(opt));
-		} else if (tagMode.equals(StoryPart.TAG_QR)) {
-			intent.setClass(context, getQRHintClass(opt));
-		} else if (context.getPackageManager().hasSystemFeature(
-				PackageManager.FEATURE_NFC)) { // Device has NFC
-		}
-
-		return intent;
-	}
-
-	private static Class<?> getGPSHintClass(String optionHint) {
-		if (optionHint.equals(StoryPartOption.HINT_SOUND))
-			return AudioPlayerActivity.class;
-		// else if (optionHint.equals(StoryPartOption.HINT_ARROW))
-		// return ArrowNavigationActivity.class;
-		else if (optionHint.equals(StoryPartOption.HINT_MAP))
-			return GPSMapNavigationActivity.class;
-		else
-			return GPSActivity.class;
-	}
-
-	private static Class<?> getQRHintClass(String optionHint) {
-		if (optionHint.equals(StoryPartOption.HINT_SOUND))
-			return AudioPlayerActivity.class;
-		// else if (optionHint.equals(StoryPartOption.HINT_ARROW))
-		// return ArrowNavigationActivity.class;
-		else if (optionHint.equals(StoryPartOption.HINT_MAP))
-			return MapNavigationActivity.class;
-		else
-			return StoryTravelActivity.class;
 	}
 }

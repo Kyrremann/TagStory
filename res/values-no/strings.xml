@@ -16,7 +16,7 @@
     <string name="email">E-post</string>
     <string name="email_hint">E-mail skrives her&#8230;</string>
     <string name="cancel">Avbryt</string>
-    <string name="cheat">Juks</string>
+    <string name="gps_about_skip">Juks</string>
     <string name="description">Beskrivelse</string>
     <string name="description_hint">Hvor er taggen</string>
     <string name="gps">GPS</string>

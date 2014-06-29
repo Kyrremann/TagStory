@@ -1,48 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/story_part_option"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+                android:id="@+id/story_part_option"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
 
-    <Button
-        android:id="@+id/story_activity_travel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:padding="15dp"
-        android:background="@color/android_yellow"
-        android:textStyle="bold" />
+	<Button
+			android:id="@+id/story_activity_travel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentRight="true"
+			android:padding="15dp"
+			android:background="@color/android_yellow"
+			android:textStyle="bold"/>
 
-    <ScrollView
-        android:id="@+id/story_part_scrollview"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/story_activity_travel"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="15dp" >
+	<ScrollView
+			android:id="@+id/story_part_scrollview"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_above="@+id/story_activity_travel"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentTop="true"
+			android:layout_margin="15dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/story_part_desc"
-                style="@style/TagStoryView" />
+			<TextView
+					android:id="@+id/story_part_desc"
+					style="@style/TagStoryView"/>
 
-            <TextView
-                android:id="@+id/story_part_choice"
-                style="@style/TagStoryView" />
+			<TextView
+					android:id="@+id/story_part_choice"
+					style="@style/TagStoryView"
+					android:visibility="gone"/>
 
-            <ImageView
-                    android:id="@+id/story_tag_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"/>
-        </LinearLayout>
-    </ScrollView>
+			<ImageView
+					android:id="@+id/story_tag_image"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:visibility="gone"/>
+		</LinearLayout>
+	</ScrollView>
 
 </RelativeLayout>

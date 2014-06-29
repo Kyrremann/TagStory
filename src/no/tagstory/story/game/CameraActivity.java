@@ -2,24 +2,24 @@ package no.tagstory.story.game;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.webkit.WebView;
-import no.tagstory.kines_bursdag.R;
+import no.tagstory.R;
 import no.tagstory.story.Story;
-import no.tagstory.story.StoryPart;
+import no.tagstory.story.StoryTag;
 import no.tagstory.story.StoryPartOption;
 import no.tagstory.story.activity.StoryActivity;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 import java.util.UUID;
+
+import static no.tagstory.story.activity.utils.TravelIntentFactory.createTravelIntent;
 
 public class CameraActivity extends Activity {
 
@@ -33,7 +33,7 @@ public class CameraActivity extends Activity {
 	String newimagename, mCurrentPhotoPath;
 
 	private Story story;
-	private StoryPart part;
+	private StoryTag part;
 	private String partTag; //, previousTag;
 
 	@Override
@@ -43,9 +43,8 @@ public class CameraActivity extends Activity {
 		setContentView(R.layout.activity_story_camera);
 
 		Bundle bundle = getIntent().getExtras();
-		story = (Story) bundle.getSerializable(StoryActivity.STORY);
-		partTag = bundle.getString(StoryActivity.PARTTAG);
-		// previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);
+		story = (Story) bundle.getSerializable(StoryActivity.EXTRA_STORY);
+		partTag = bundle.getString(StoryActivity.EXTRA_TAG);
 		part = story.getStoryPart(partTag);
 		newimagename = UUID.randomUUID() + ".jpg";
 		dispatchTakePictureIntent();
@@ -98,9 +97,9 @@ public class CameraActivity extends Activity {
 		if (v.getId() == R.id.camera_button) {
 			final StoryPartOption option = part.getOptions().values()
 					.iterator().next();
-			Intent intent = StoryActivity.createTravelIntent(
+			Intent intent = createTravelIntent(
 					getApplicationContext(), story, story.getStoryPart(partTag), option,
-					option.getOptNext(), partTag);
+					option.getOptNext());
 			startActivity(intent);
 		} else if (v.getId() == R.id.camera_button_retry) {
 			dispatchTakePictureIntent();

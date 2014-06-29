@@ -1,31 +1,28 @@
 package no.tagstory.story.activity.option.gps;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.*;
+import android.content.DialogInterface.OnClickListener;
+import android.content.SharedPreferences.Editor;
+import android.location.Location;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
-
-import no.tagstory.kines_bursdag.R;
 import no.tagstory.StoryApplication;
+import no.tagstory.R;
 import no.tagstory.story.activity.StoryTravelActivity;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
-import android.content.IntentSender;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.location.Location;
-import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
+
+import static no.tagstory.utils.GooglePlayServiceUtils.ErrorDialogFragment;
+import static no.tagstory.utils.GooglePlayServiceUtils.servicesConnected;
 
 public class GPSActivity extends StoryTravelActivity implements
 		LocationListener, GooglePlayServicesClient.ConnectionCallbacks,
@@ -75,12 +72,12 @@ public class GPSActivity extends StoryTravelActivity implements
 		mLocationRequest.setInterval(UPDATE_INTERVAL);
 		// Set the fastest update interval to 1 second
 		mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
-		servicesConnected();
+		servicesConnected(this);
 		// hintText.setText(R.string.gps_about_button);
 
 		// TODO: Provider should be set in the json file
 		setTitle(R.string.map_next_tag);
-		goalLocation = new Location("goal");
+		goalLocation = new Location("goal"); // <-- provider
 		goalLocation.setLatitude(option.getLatitude());
 		goalLocation.setLongitude(option.getLongitude());
 	}
@@ -88,33 +85,41 @@ public class GPSActivity extends StoryTravelActivity implements
 	@Override
 	public void scanTag(View v) {
 		if (v.getId() == R.id.help_button) {
-			if (gpsInfoDialog == null) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle(R.string.gps_about_title);
-				builder.setMessage(R.string.gps_about_content);
-				builder.setCancelable(true);
-				builder.setNeutralButton(R.string.dialog_cancel,
-						new OnClickListener() {
-
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-				builder.setNegativeButton(R.string.cheat,
-						new OnClickListener() {
-
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								checkTagData("", true);
-							}
-						});
-				gpsInfoDialog = builder.create();
-			}
-			gpsInfoDialog.show();
+			showGpsDialog();
 		}
+	}
+
+	private void showGpsDialog() {
+		if (gpsInfoDialog == null) {
+			gpsInfoDialog = createGpsDialog();
+		}
+		gpsInfoDialog.show();
+	}
+
+	private AlertDialog createGpsDialog() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle(R.string.gps_about_title);
+		builder.setMessage(R.string.gps_about_content);
+		builder.setCancelable(true);
+		builder.setNeutralButton(R.string.dialog_cancel,
+				new OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog,
+					                    int which) {
+						dialog.cancel();
+					}
+				});
+		builder.setNegativeButton(R.string.gps_about_skip,
+				new OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog,
+					                    int which) {
+						skipTag();
+					}
+				});
+		return builder.create();
 	}
 
 	@Override
@@ -169,34 +174,43 @@ public class GPSActivity extends StoryTravelActivity implements
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (requestCode) {
-		case CONNECTION_FAILURE_RESOLUTION_REQUEST:
-			switch (resultCode) {
-			case Activity.RESULT_OK:
+			case CONNECTION_FAILURE_RESOLUTION_REQUEST:
+				switch (resultCode) {
+					case Activity.RESULT_OK:
 				/*
 				 * Try the request again
 				 */
-				break;
-			}
+						break;
+				}
 		}
 	}
 
-	private boolean servicesConnected() {
-		int resultCode = GooglePlayServicesUtil
-				.isGooglePlayServicesAvailable(this);
-		if (ConnectionResult.SUCCESS == resultCode) {
-			Log.d("Location Updates", "Google Play services is available.");
-			return true;
-		} else {
-			Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(
-					resultCode, this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
+	@Override
+	public void onConnected(Bundle dataBundle) {
+		Log.d("GPS", "Connected");
+		if (mUpdatesRequested) {
+			startPeriodicUpdates();
+		}
+	}
 
-			if (errorDialog != null) {
-				ErrorDialogFragment errorFragment = new ErrorDialogFragment();
-				errorFragment.setDialog(errorDialog);
-				errorFragment.show(getSupportFragmentManager(),
-						"Location Updates");
+	@Override
+	public void onDisconnected() {
+		Toast.makeText(this, "Disconnected. Please re-connect GPS to continue.",
+				Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+		((StoryApplication) getApplication()).addLocation(location);
+		if (goalLocation != null) {
+			Log.d("GPS",
+					"Distance to goal " + location.distanceTo(goalLocation)
+							+ " meters");
+			if (location.distanceTo(goalLocation) < 20) {
+				Log.d("GPS", "Closer then 20 meters to location");
+				checkTagData(story.getStoryPart(option.getOptNext())
+						.getBelongsToTag());
 			}
-			return false;
 		}
 	}
 
@@ -214,48 +228,11 @@ public class GPSActivity extends StoryTravelActivity implements
 		}
 	}
 
-	@Override
-	public void onConnected(Bundle dataBundle) {
-		Log.d("GPS", "Connected");
-		if (mUpdatesRequested) {
-			startPeriodicUpdates();
-		}
-	}
-
-	@Override
-	public void onDisconnected() {
-		Toast.makeText(this, "Disconnected. Please re-connect.",
-				Toast.LENGTH_SHORT).show();
-	}
-
-	@Override
-	public void onLocationChanged(Location location) {
-		// Calculate the distance from the goal
-		// Location goal = new Location("Kjølberggata 1G");
-		// goal.setLatitude(59.909959);
-		// goal.setLongitude(10.777679);
-		((StoryApplication) getApplication()).addLocation(location);
-		if (goalLocation != null) {
-			Log.d("GPS",
-					"Distance to goal " + location.distanceTo(goalLocation)
-							+ " meters");
-			if (location.distanceTo(goalLocation) < 20) {
-				Log.d("GPS", "Closer then 20 meters to location");
-				checkTagData(story.getStoryPart(option.getOptNext())
-						.getBelongsToTag(), false);
-			}
-			// Toast.makeText(this,
-			// "Distance: " + location.distanceTo(goalLocation),
-			// Toast.LENGTH_SHORT).show();
-		}
-	}
-
 	/**
 	 * Show a dialog returned by Google Play services for the connection error
 	 * code
-	 * 
-	 * @param errorCode
-	 *            An error code returned from onConnectionFailed
+	 *
+	 * @param errorCode An error code returned from onConnectionFailed
 	 */
 	private void showErrorDialog(int errorCode) {
 		Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(errorCode,
@@ -265,24 +242,6 @@ public class GPSActivity extends StoryTravelActivity implements
 			ErrorDialogFragment errorFragment = new ErrorDialogFragment();
 			errorFragment.setDialog(errorDialog);
 			errorFragment.show(getSupportFragmentManager(), "LocationTester");
-		}
-	}
-
-	public static class ErrorDialogFragment extends DialogFragment {
-		private Dialog mDialog;
-
-		public ErrorDialogFragment() {
-			super();
-			mDialog = null;
-		}
-
-		public void setDialog(Dialog dialog) {
-			mDialog = dialog;
-		}
-
-		@Override
-		public Dialog onCreateDialog(Bundle savedInstanceState) {
-			return mDialog;
 		}
 	}
 }

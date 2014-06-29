@@ -25,7 +25,7 @@ public class Story implements Serializable {
 	private String language;
 	private String country;
 	private String url;
-	private HashMap<String, StoryPart> storyParts;
+	private HashMap<String, StoryTag> storyParts;
 	private List<String> tagTypes;
 	private List<String> gameModes;
 	
@@ -106,11 +106,11 @@ public class Story implements Serializable {
 	/**
 	 * @return the parts
 	 */
-	public HashMap<String,StoryPart> getStoryParts() {
+	public HashMap<String,StoryTag> getStoryParts() {
 		return storyParts;
 	}
 	
-	public StoryPart getStoryPart(String key) {
+	public StoryTag getStoryPart(String key) {
 		return storyParts.get(key);
 	}
 	
@@ -198,14 +198,14 @@ public class Story implements Serializable {
 		this.image = image;
 	}
 
-	public void addStoryPart(String key, StoryPart object) {
+	public void addStoryPart(String key, StoryTag object) {
 		storyParts.put(key, object);
 	}
 
 	/**
 	 * @param storyParts the parts to set
 	 */
-	public void setStoryParts(HashMap<String, StoryPart> storyParts) {
+	public void setStoryParts(HashMap<String, StoryTag> storyParts) {
 		this.storyParts = storyParts;
 	}
 
@@ -283,5 +283,9 @@ public class Story implements Serializable {
 	 */
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public boolean requireGPS() {
+		return getTagTypes().contains("GPS");
 	}
 }

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
+import static no.tagstory.story.activity.StoryActivity.EXTRA_TAG;
+
 @SuppressLint("NewApi")
 public class StoryActivityHoneycomb extends StoryActivity {
 	
@@ -20,13 +22,14 @@ public class StoryActivityHoneycomb extends StoryActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == android.R.id.home) {
 			Intent intent;
-			if (previousTag == null) {
+			if (storyApplication.hasPreviousTag(tagId)) {
 				intent = new Intent(this, StoryDetailActivityHoneycomb.class);
-				intent.putExtra(STORY, story);
+				intent.putExtra(EXTRA_STORY, story);
+				intent.putExtra(EXTRA_TAG, storyApplication.getPreviousTag(tagId));
 			} else {
 				intent = new Intent(this, StoryActivityHoneycomb.class);
-				intent.putExtra(STORY, story);
-				intent.putExtra(StoryActivity.PARTTAG, partTag);
+				intent.putExtra(EXTRA_STORY, story);
+				intent.putExtra(StoryActivity.EXTRA_TAG, tagId);
 			}
 			NavUtils.navigateUpTo(this, intent);
 			return true;

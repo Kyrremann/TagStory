@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="no.tagstory.kines_bursdag"
+    package="no.tagstory"
     android:versionCode="2"
     android:versionName="1.0" >
 
@@ -42,8 +42,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name="no.tagstory.StoryListActivity" >
         </activity>
         <activity
             android:name="no.tagstory.StoryDetailActivity"
@@ -92,8 +90,6 @@
         <meta-data android:name="com.google.android.gms.version"
                    android:value="@integer/google_play_services_version" />
 
-        <activity android:name="no.tagstory.LocationTester" >
-        </activity>
         <activity
             android:name="no.tagstory.honeycomb.TagStoryActivityHoneyComb"
             android:label="@string/app_title" >

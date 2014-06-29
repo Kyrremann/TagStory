@@ -2,7 +2,7 @@ package no.tagstory.story.activity.option;
 
 import java.io.IOException;
 
-import no.tagstory.kines_bursdag.R;
+import no.tagstory.R;
 import no.tagstory.story.activity.StoryTravelActivity;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
@@ -34,8 +34,8 @@ public class AudioPlayerActivity extends StoryTravelActivity implements
 		Bundle bundle = getIntent().getExtras();
 		option = (StoryPartOption) bundle
 				.getSerializable(StoryTravelActivity.OPTION);
-		story = (Story) bundle.getSerializable(StoryActivity.STORY);
-		partTag = bundle.getString(StoryActivity.PARTTAG);
+		story = (Story) bundle.getSerializable(StoryActivity.EXTRA_STORY);
+		tagId = bundle.getString(StoryActivity.EXTRA_TAG);
 		previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);*/
 
 		AUDIO_FILE_NAME = option.getOptSoundSrc();

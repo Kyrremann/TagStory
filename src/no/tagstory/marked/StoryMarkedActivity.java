@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import no.tagstory.kines_bursdag.R;
+import no.tagstory.R;
 import no.tagstory.marked.listeners.StoryMarkedTabListener;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)

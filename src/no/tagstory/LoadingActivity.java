@@ -1,13 +1,13 @@
 package no.tagstory;
 
-import no.tagstory.kines_bursdag.R;
-import no.tagstory.honeycomb.TagStoryActivityHoneyComb;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import no.tagstory.honeycomb.TagStoryActivityHoneyComb;
+import no.tagstory.utils.ClassVersionFactory;
+
+import static no.tagstory.utils.ClassVersionFactory.createIntent;
 
 public class LoadingActivity extends Activity {
 
@@ -20,12 +20,8 @@ public class LoadingActivity extends Activity {
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				Intent intent = null;
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-					intent = new Intent(LoadingActivity.this, TagStoryActivityHoneyComb.class);
-				} else {
-					intent = new Intent(LoadingActivity.this, TagStoryActivity.class);
-				}
+				Intent intent = createIntent(getApplicationContext(),
+						TagStoryActivityHoneyComb.class, TagStoryActivity.class);
 				startActivity(intent);
 				finish();
 			}

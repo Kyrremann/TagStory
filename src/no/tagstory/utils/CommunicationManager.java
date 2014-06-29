@@ -1,4 +1,4 @@
-package no.tagstory.communication;
+package no.tagstory.utils;
 
 import java.util.ArrayList;
 

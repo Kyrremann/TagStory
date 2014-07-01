@@ -34,7 +34,7 @@ public class CameraActivity extends Activity {
 
 	private Story story;
 	private StoryTag part;
-	private String partTag; //, previousTag;
+	private String tagId; //, previousTag;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -44,8 +44,8 @@ public class CameraActivity extends Activity {
 
 		Bundle bundle = getIntent().getExtras();
 		story = (Story) bundle.getSerializable(StoryActivity.EXTRA_STORY);
-		partTag = bundle.getString(StoryActivity.EXTRA_TAG);
-		part = story.getStoryPart(partTag);
+		tagId = bundle.getString(StoryActivity.EXTRA_TAG);
+		part = story.getTag(tagId);
 		newimagename = UUID.randomUUID() + ".jpg";
 		dispatchTakePictureIntent();
 	}
@@ -98,9 +98,10 @@ public class CameraActivity extends Activity {
 			final StoryPartOption option = part.getOptions().values()
 					.iterator().next();
 			Intent intent = createTravelIntent(
-					getApplicationContext(), story, story.getStoryPart(partTag), option,
-					option.getOptNext());
+					getApplicationContext(), story, story.getTag(tagId), option
+			);
 			startActivity(intent);
+			finish();
 		} else if (v.getId() == R.id.camera_button_retry) {
 			dispatchTakePictureIntent();
 		}

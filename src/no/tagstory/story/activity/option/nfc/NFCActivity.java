@@ -118,7 +118,7 @@ public abstract class NFCActivity extends GPSActivity {
 			}
 		}
 
-		if (data.split("\n")[0].equals(story.getStoryPart(option.getOptNext())
+		if (data.split("\n")[0].equals(story.getTag(option.getOptNext())
 				.getBelongsToTag())) {
 			progressDialog.dismiss();
 			intent = new Intent(this, StoryActivity.class);

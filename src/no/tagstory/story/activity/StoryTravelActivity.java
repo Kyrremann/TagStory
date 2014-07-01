@@ -67,7 +67,7 @@ public class StoryTravelActivity extends FragmentActivity {
 	public void scanTag(View v) {
 		if (v.getId() == R.id.scan_tag) {
 			System.out.println("pressing scan");
-			if (story.getStoryPart(tagId).isQrMode()) {
+			if (story.getTag(tagId).isQrMode()) {
 				Intent intent = new Intent(
 						"com.google.zxing.client.android.SCAN");
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
@@ -95,7 +95,7 @@ public class StoryTravelActivity extends FragmentActivity {
 
 	protected void checkTagData(String tagId) {
 		// TODO: Implement randomized tags
-		if (tagId.equals(story.getStoryPart(option.getOptNext())
+		if (tagId.equals(story.getTag(option.getOptNext())
 				.getBelongsToTag())) {
 			goToNextActivity();
 		} else {

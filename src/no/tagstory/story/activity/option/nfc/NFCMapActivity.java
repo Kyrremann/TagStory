@@ -164,7 +164,7 @@ public abstract class NFCMapActivity extends FragmentActivity {
 	
 	private void checkTagData(String tag) {
 		// TODO: Implement randomized tags
-		if (tag.equals(story.getStoryPart(option.getOptNext())
+		if (tag.equals(story.getTag(option.getOptNext())
 				.getBelongsToTag())) {
 			progressDialog.dismiss();
 			Intent intent = new Intent(this, StoryActivity.class);

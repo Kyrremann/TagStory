@@ -52,34 +52,4 @@ public class StoryAdapter extends CursorAdapter {
 		final View view = inflater.inflate(viewId, parent, false);
 		return view;
 	}
-
-	// @Override
-	// public View getView(int position, View convertView, ViewGroup parent) {
-	// ViewHolder holder;
-	//
-	// if (convertView == null) {
-	// holder = new ViewHolder();
-	// convertView = View.inflate(context, viewId, null);
-	// holder.title = (TextView) convertView
-	// .findViewById(R.id.storyListItemTitle);
-	// convertView.setTag(holder);
-	// } else {
-	// holder = (ViewHolder) convertView.getTag();
-	// }
-	//
-	// storyCursor.move(position);
-	// holder.title.setText(storyCursor.getString(2));
-	// System.out.println("okay");
-	//
-	// // TODO Auto-generated method stub
-	// return convertView;
-	// }
-	//
-	// private class ViewHolder {
-	// TextView title;
-	// TextView author;
-	// TextView length;
-	// ImageView image;
-	// // TextView rating;
-	// }
 }

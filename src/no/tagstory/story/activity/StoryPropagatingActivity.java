@@ -26,7 +26,7 @@ public class StoryPropagatingActivity extends Activity {
 		story = (Story) getIntent().getSerializableExtra(StoryActivity.EXTRA_STORY);
 		setTitle(story.getTitle()); // TODO: Should be part title
 		partTag = getIntent().getStringExtra(StoryActivity.EXTRA_TAG);
-		part = story.getStoryPart(partTag);
+		part = story.getTag(partTag);
 		option = (StoryPartOption) getIntent().getSerializableExtra(
 				StoryTravelActivity.OPTION);
 
@@ -36,7 +36,7 @@ public class StoryPropagatingActivity extends Activity {
 	public void whereToGo(View v) {
 		if (v.getId() == R.id.where_to_go) {
 			startActivity(createTravelIntent(this, story, part,
-					option, partTag, true));
+					option, true));
 		}
 	}
 }

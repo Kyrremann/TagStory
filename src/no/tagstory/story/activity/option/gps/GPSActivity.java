@@ -208,7 +208,7 @@ public class GPSActivity extends StoryTravelActivity implements
 							+ " meters");
 			if (location.distanceTo(goalLocation) < 20) {
 				Log.d("GPS", "Closer then 20 meters to location");
-				checkTagData(story.getStoryPart(option.getOptNext())
+				checkTagData(story.getTag(option.getOptNext())
 						.getBelongsToTag());
 			}
 		}

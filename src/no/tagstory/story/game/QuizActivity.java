@@ -38,7 +38,7 @@ public class QuizActivity extends Activity {
 		Bundle bundle = getIntent().getExtras();
 		story = (Story) bundle.getSerializable(StoryActivity.EXTRA_STORY);
 		partTag = bundle.getString(StoryActivity.EXTRA_TAG);
-		part = story.getStoryPart(partTag);
+		part = story.getTag(partTag);
 
 		layout = (LinearLayout) findViewById(R.id.activity_layout_quiz);
 
@@ -141,8 +141,8 @@ public class QuizActivity extends Activity {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							Intent intent = createTravelIntent(
-									getApplicationContext(), story, story.getStoryPart(partTag), option,
-									option.getOptNext());
+									getApplicationContext(), story, story.getTag(partTag), option
+							);
 							startActivity(intent);
 						}
 					});
@@ -163,8 +163,8 @@ public class QuizActivity extends Activity {
 									.get(((AlertDialog) dialog).getListView()
 											.getItemAtPosition(which));
 							startActivity(createTravelIntent(
-									getApplicationContext(), story, story.getStoryPart(partTag), option,
-									option.getOptNext()));
+									getApplicationContext(), story, story.getTag(partTag), option
+							));
 						}
 					});
 

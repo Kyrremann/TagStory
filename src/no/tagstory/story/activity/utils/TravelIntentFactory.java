@@ -15,7 +15,8 @@ import no.tagstory.story.activity.option.gps.GPSMapNavigationActivity;
 import no.tagstory.story.game.CameraActivity;
 import no.tagstory.story.game.QuizActivity;
 
-import static no.tagstory.story.activity.StoryActivity.*;
+import static no.tagstory.story.activity.StoryActivity.EXTRA_STORY;
+import static no.tagstory.story.activity.StoryActivity.EXTRA_TAG;
 import static no.tagstory.story.activity.StoryTravelActivity.OPTION;
 
 public class TravelIntentFactory {
@@ -39,8 +40,8 @@ public class TravelIntentFactory {
 
 	// TODO Below are just static methods... :\
 	public static Intent createTravelIntent(Context context, Story story,
-	                                        StoryTag tag, StoryPartOption option, String tagId) {
-		return createTravelIntent(context, story, tag, option, tagId,
+	                                        StoryTag tag, StoryPartOption option) {
+		return createTravelIntent(context, story, tag, option,
 				false);
 	}
 
@@ -49,13 +50,13 @@ public class TravelIntentFactory {
 	// TODO: Need to change from travel indent to show answer intent, and after
 	// then I can use the travel intent
 	public static Intent createTravelIntent(Context context, Story story,
-	                                        StoryTag tag, StoryPartOption option, String tagId,
+	                                        StoryTag tag, StoryPartOption option,
 	                                        boolean fromPropagating) {
 
 		Intent intent = new Intent();
 		intent.putExtra(EXTRA_STORY, story);
 		intent.putExtra(OPTION, option);
-		intent.putExtra(EXTRA_TAG, tagId);
+		intent.putExtra(EXTRA_TAG, tag.getUUID());
 
 		if (!fromPropagating && option.getOptPropagatingText() != null) {
 			intent.setClass(context, StoryPropagatingActivity.class);
@@ -71,7 +72,7 @@ public class TravelIntentFactory {
 			intent.setClass(context, getQRHintClass(opt));
 		} else if (context.getPackageManager().hasSystemFeature(
 				PackageManager.FEATURE_NFC)) {
-				// TODO Device has NFC
+			// TODO Device has NFC
 		}
 
 		return intent;

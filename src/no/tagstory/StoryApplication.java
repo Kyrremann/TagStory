@@ -5,6 +5,8 @@ import java.util.LinkedList;
 
 import android.app.Application;
 import android.location.Location;
+import android.nfc.Tag;
+import android.util.Log;
 
 public class StoryApplication extends Application {
 
@@ -70,19 +72,30 @@ public class StoryApplication extends Application {
 	}
 
 	public boolean hasUserVisited(String tagId) {
-		return tagHistory.contains(tagId);
+		return tagHistory.contains(new TagHistory(tagId, null));
 	}
 
 	public String getNextTagFor(String tagId) {
-		return tagHistory.get(tagHistory.lastIndexOf(tagId)).getNextTag();
+		return tagHistory.get(tagHistory.indexOf(new TagHistory(tagId, null))).getNextTag();
 	}
 
 	public boolean hasPreviousTag(String tagId) {
-		return tagHistory.lastIndexOf(tagId) > 0;
+		if (tagHistory.isEmpty()) {
+			return false;
+		}
+
+		for (int i = tagHistory.size() - 1; i >= 0; i--) {
+			TagHistory tag = tagHistory.get(i);
+			if (tag.getTagId().equals(tagId)) {
+				return i > 0;
+			}
+		}
+
+		return false;
 	}
 
 	public String getPreviousTag(String tagId) {
-		return tagHistory.get(tagHistory.lastIndexOf(tagId) - 1).getTagId();
+		return tagHistory.get(tagHistory.indexOf(new TagHistory(tagId, null)) - 1).getTagId();
 	}
 
 	private class TagHistory {
@@ -105,16 +118,19 @@ public class StoryApplication extends Application {
 
 		@Override
 		public boolean equals(Object o) {
-			if (o instanceof String) {
-				return tag.equals(o);
-			}
+			if (this == o) return true;
+			if (o == null || getClass() != o.getClass()) return false;
 
-			return super.equals(o);
+			TagHistory that = (TagHistory) o;
+
+			if (!tag.equals(that.tag)) return false;
+
+			return true;
 		}
 
 		@Override
 		public int hashCode() {
-			return super.hashCode();
+			return tag.hashCode();
 		}
 	}
 }

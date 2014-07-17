@@ -39,7 +39,7 @@ public class StoryActivity extends Activity {
 		storyApplication = (StoryApplication) getApplication();
 		story = (Story) getIntent().getSerializableExtra(EXTRA_STORY);
 		tagId = getIntent().getStringExtra(EXTRA_TAG);
-		tag = story.getStoryPart(tagId);
+		tag = story.getTag(tagId);
 
 		setTitle(story.getTitle()); // TODO: Should be tag title
 		setTagDescription();
@@ -47,7 +47,11 @@ public class StoryActivity extends Activity {
 		if (tag.hasSingleQuestion()) {
 			initializeSingleQuestion();
 		}
+	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
 		if (tag.isEndpoint()) {
 			switchToEndpointActivity();
 		} else {
@@ -135,7 +139,7 @@ public class StoryActivity extends Activity {
 						StoryPartOption option = tag.getOption(selectedValue);
 						startActivity(createTravelIntent(
 								getApplicationContext(), story, tag,
-								option, tagId));
+								option));
 						dialog.cancel();
 					}
 				});
@@ -176,23 +180,10 @@ public class StoryActivity extends Activity {
 					intent = createCameraActivity(getApplicationContext(), story, tagId);
 				} else {
 					intent = createTravelIntent(getApplicationContext(),
-							story, tag, option, tagId);
+							story, tag, option);
 				}
 				startActivity(intent);
 			}
 		});
-	}
-
-	@Override
-	public void onBackPressed() {
-		if (storyApplication.hasPreviousTag(tagId)) {
-			Intent intent = ClassVersionFactory.createIntent(getApplicationContext(),
-					StoryActivityHoneycomb.class, StoryActivity.class);
-			intent.putExtra(EXTRA_STORY, story);
-			intent.putExtra(EXTRA_TAG, storyApplication.getPreviousTag(tagId));
-			startActivity(intent);
-		} else {
-			super.onBackPressed();
-		}
 	}
 }

@@ -110,7 +110,7 @@ public class Story implements Serializable {
 		return storyParts;
 	}
 	
-	public StoryTag getStoryPart(String key) {
+	public StoryTag getTag(String key) {
 		return storyParts.get(key);
 	}
 	

@@ -27,7 +27,7 @@ public class StoryFinishedActivity extends Activity {
 		story = (Story) getIntent().getSerializableExtra(StoryActivity.EXTRA_STORY);
 		setTitle(story.getTitle());
 		partTag = getIntent().getStringExtra(StoryActivity.EXTRA_TAG);
-		part = story.getStoryPart(partTag);
+		part = story.getTag(partTag);
 
 		((TextView) findViewById(R.id.story_finished_text)).setText(part
 				.getDescription());

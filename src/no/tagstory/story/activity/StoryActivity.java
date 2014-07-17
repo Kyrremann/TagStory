@@ -14,7 +14,6 @@ import android.widget.TextView;
 import no.tagstory.StoryApplication;
 import no.tagstory.R;
 import no.tagstory.honeycomb.StoryActivityHoneycomb;
-import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryPartOption;
 import no.tagstory.story.StoryTag;
@@ -91,7 +90,7 @@ public class StoryActivity extends Activity {
 		Button travelButton = (Button) findViewById(R.id.story_activity_travel);
 
 		if (hasUserAlreadyVisitedTag()) {
-			goDirectlyToNextTag(tag, travelButton);
+			goDirectlyToNextTag(travelButton);
 		} else if (tag.hasOnlyOneOption()) {
 			onlyOneOption(tag, travelButton);
 		} else {
@@ -99,7 +98,7 @@ public class StoryActivity extends Activity {
 		}
 	}
 
-	private void goDirectlyToNextTag(StoryTag tag, Button travelButton) {
+	private void goDirectlyToNextTag(Button travelButton) {
 		travelButton.setText(R.string.next_tag);
 		travelButton.setOnClickListener(new OnClickListener() {
 			@Override

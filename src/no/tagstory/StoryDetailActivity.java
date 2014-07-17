@@ -57,7 +57,7 @@ public class StoryDetailActivity extends Activity {
 								.open(story.getImage()), story.getImage()));
 			} catch (IOException e) {
 				((ImageView) findViewById(R.id.story_detail_image))
-						.setImageResource(R.drawable.dummy320240);
+						.setImageResource(R.drawable.placeimg_320_240_nature);
 			}
 		}
 	}

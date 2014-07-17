@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import no.tagstory.adapters.StoryAdapter;
+import no.tagstory.adapters.StoryCursorAdapter;
 import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
 import no.tagstory.marked.StoryMarkedActivity;
 import no.tagstory.story.StoryManager;
@@ -36,7 +36,7 @@ public class TagStoryActivity extends FragmentActivity {
 		setContentView(R.layout.activity_story_list);
 
 		storyManager = new StoryManager(this);
-		storyCursor = storyManager.getStoryList();
+		storyCursor = storyManager.getCursorOverStories();
 
 		initializeListView();
 		GooglePlayServiceUtils.servicesConnected(this);
@@ -44,8 +44,7 @@ public class TagStoryActivity extends FragmentActivity {
 
 	protected void initializeListView() {
 		listView = (ListView) findViewById(R.id.story_list);
-		// TODO Make list adapter that works with the image in the database/json
-		listView.setAdapter(new StoryAdapter(this, R.layout.story_list_item,
+		listView.setAdapter(new StoryCursorAdapter(this, R.layout.story_list_item,
 				storyCursor));
 		listView.setOnItemClickListener(new OnItemClickListener() {
 

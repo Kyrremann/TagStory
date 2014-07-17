@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import no.tagstory.honeycomb.TagStoryActivityHoneyComb;
-import no.tagstory.utils.ClassVersionFactory;
 
 import static no.tagstory.utils.ClassVersionFactory.createIntent;
 

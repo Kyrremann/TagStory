@@ -28,7 +28,7 @@ public class StoryManager {
 	 * 
 	 * @return
 	 */
-	public Cursor getStoryList() {
+	public Cursor getCursorOverStories() {
 		// TODO Convert cursor to a StoryList-object and return a list
 		return database.getStoryList();
 	}

@@ -62,7 +62,7 @@ public class JsonParser {
 		story.setDesc(storyObject.getString(DESCRIPTION));
 		story.setImage(storyObject.getString(IMAGE));
 		story.setStartTag(storyObject.getString(START_TAG));
-		story.setTagCount(storyObject.getInt(TAG_COUNT));
+		story.setTagCount(storyObject.getInt(TAG_COUNT)); // TODO Do we need this?
 		story.setStoryParts(parseJsonStoryParts(
 				storyObject.getJSONObject(PARTS), story.getTagCount()));
 		story.setLanguage(storyObject.getString(LANGUAGE));
@@ -103,9 +103,9 @@ public class JsonParser {
 			String key = keys.next();
 			JSONObject object = jsonObject.getJSONObject(key);
 			StoryTag storyTag = new StoryTag(key,
-					object.getString(BELONSG_TO_TAG),
+					object.optString(BELONSG_TO_TAG, ""), // TODO is this really necesasry?
 					object.getString(PART_DESCRIPTION),
-					object.getString(IS_ENDPOINT));
+					object.optString(IS_ENDPOINT, "false")); // Should be boolean, not string
 			if (object.has(GAME_MODE)) {
 				storyTag.setGameMode(object.getString(GAME_MODE));
 			}

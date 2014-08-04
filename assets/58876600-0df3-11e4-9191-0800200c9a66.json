@@ -8,7 +8,8 @@
   	"tag_count": "12",
   	"language": "nb_NO",
   	"tag_types": "GPS;QR",
-  	"game_modes": "",
+  	"start_tag": "e8bd3c14-a86e-473d-bd4b-921f8060eed4",
+    "game_modes": "camera",
     "tags": {
       "e8bd3c14-a86e-473d-bd4b-921f8060eed4": {
         "title": "Brua",
@@ -17,11 +18,10 @@
         "game_mode": "none",
         "game_button": "",
         "tag_mode": "gps",
-        "save": "Save",
         "options": {	
           "Øvre Blindern": {
             "hint_title": "Øvre Blindern",
-            "hint_method": "hint_text",
+            "hint_method": "hint_map",
             "hint_text": "",
             "image_source": "",
             "sound_source": "",
@@ -31,7 +31,7 @@
           },
           "Forskninsparken": {
             "hint_title": "Forskninsparken",
-            "hint_method": "hint_text",
+            "hint_method": "hint_map",
             "hint_text": "",
             "image_source": "",
             "sound_source": "",
@@ -41,7 +41,7 @@
           },
           "Informatikkstoppet": {
             "hint_title": "Informatikkstoppet",
-            "hint_method": "hint_text",
+            "hint_method": "hint_map",
             "hint_text": "",
             "image_source": "",
             "sound_source": "",
@@ -59,12 +59,11 @@
         "game_mode": "none",
         "game_button": "",
         "tag_mode": "gps",
-        "save": "Save",
         "add_tag": "Add tag",
         "options": {
           "Ta bilde": {
             "hint_title": "Ta bilde",
-            "hint_method": "hint_text",
+            "hint_method": "hint_map",
             "hint_text": "",
             "image_source": "",
             "sound_source": "",
@@ -85,7 +84,7 @@
         "options": {
           "": {
             "hint_title": "",
-            "hint_method": "hint_text",
+            "hint_method": "hint_map",
             "hint_text": "",
             "image_source": "",
             "sound_source": "",
@@ -102,11 +101,10 @@
         "game_mode": "none",
         "game_button": "",
         "tag_mode": "gps",
-        "save": "Save",
         "options": {
           "Matematiker": {
             "hint_title": "Matematiker",
-            "hint_method": "hint_text",
+            "hint_method": "hint_map",
             "hint_text": "",
             "image_source": "",
             "sound_source": "",
@@ -116,7 +114,7 @@
           },
           "Filosof": {
             "hint_title": "Filosof",
-            "hint_method": "hint_text",
+            "hint_method": "hint_map",
             "hint_text": "",
             "image_source": "",
             "sound_source": "",
@@ -144,7 +142,6 @@
         "game_mode": "none",
         "game_button": "",
         "tag_mode": "qr",
-        "save": "Save",
         "options": {
           "": {
             "hint_title": "",
@@ -166,7 +163,6 @@
         "game_mode": "none",
         "game_button": "",
         "tag_mode": "qr",
-        "save": "Save",
         "add_tag": "Add tag",
         "options": {
           "": {
@@ -188,7 +184,6 @@
         "game_mode": "none",
         "game_button": "",
         "tag_mode": "qr",
-        "save": "Save",
         "add_tag": "Add tag",
         "options": {
           "": {
@@ -210,7 +205,6 @@
         "game_mode": "none",
         "game_button": "",
         "tag_mode": "qr",
-        "save": "Save",
         "add_tag": "Add tag",
         "options": {
           "": {
@@ -232,7 +226,6 @@
         "game_mode": "none",
         "game_button": "",
         "tag_mode": "qr",
-        "save": "Save",
         "add_tag": "Add tag",
         "options": {
           "": {
@@ -254,7 +247,6 @@
         "game_mode": "none",
         "game_button": "",
         "tag_mode": "qr",
-        "save": "Save",
         "add_tag": "Add tag",
         "options": {
           "": {
@@ -276,14 +268,7 @@
         "game_mode": "none",
         "game_button": "",
         "tag_mode": "qr",
-        "save": "Save",
-        "options": {
-          "": {
-            "lat": "59.922258",
-            "long": "10.754904"
-          }
-        },
-        "isEndpoint": "on"
+        "isEndPoint": "true"
       },
       "8e81aaa2-2e89-4d27-b8be-44fcb612ead6": {
         "title": "SV og HF",
@@ -292,7 +277,6 @@
         "game_mode": "none",
         "game_button": "",
         "tag_mode": "gps",
-        "save": "Save",
         "options": {
           "Foobar": {
             "hint_title": "Foobar",

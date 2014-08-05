@@ -60,6 +60,8 @@
         "game_button": "",
         "tag_mode": "gps",
         "add_tag": "Add tag",
+        "game_mode": "camera",
+        "game_button": "Ta bilde!",
         "options": {
           "Ta bilde": {
             "hint_title": "Ta bilde",
@@ -81,6 +83,8 @@
         "game_button": "",
         "tag_mode": "gps",
         "add_tag": "Add tag",
+        "game_mode": "camera",
+        "game_button": "Ta bilde!",
         "options": {
           "": {
             "hint_title": "",

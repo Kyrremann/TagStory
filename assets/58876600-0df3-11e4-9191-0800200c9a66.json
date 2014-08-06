@@ -1,325 +1,321 @@
 {
-  "story": {
-  	"UUID": "58876600-0df3-11e4-9191-0800200c9a66",
-  	"agegroup": "1-99",
-  	"description": "Jentedagen 2014",
-  	"image": "something",
-  	"start_tag": "",
-  	"tag_count": "12",
-  	"language": "nb_NO",
-  	"tag_types": "GPS;QR",
-  	"start_tag": "e8bd3c14-a86e-473d-bd4b-921f8060eed4",
-    "game_modes": "camera",
-    "tags": {
-      "e8bd3c14-a86e-473d-bd4b-921f8060eed4": {
-        "title": "Brua",
-        "description": "Når dere ser nedover t-bane sporet ser dere Blindern t-banestatsjon. Hvilken stasjon ser dere oppover?",
-        "choice_description": "",
-        "game_mode": "none",
-        "game_button": "",
-        "tag_mode": "gps",
-        "options": {	
-          "Øvre Blindern": {
-            "hint_title": "Øvre Blindern",
-            "hint_method": "hint_map",
-            "hint_text": "",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.9415384235369",
-            "long": "10.720177439884196",
-            "next": "6ebd9f39-08f2-4efc-926b-cdcfee4a45d3"
-          },
-          "Forskninsparken": {
-            "hint_title": "Forskninsparken",
-            "hint_method": "hint_map",
-            "hint_text": "",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.941201209865184",
-            "long": "10.721022335723887",
-            "next": "6ebd9f39-08f2-4efc-926b-cdcfee4a45d3"
-          },
-          "Informatikkstoppet": {
-            "hint_title": "Informatikkstoppet",
-            "hint_method": "hint_map",
-            "hint_text": "",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.94129256689589",
-            "long": "10.72046443624879",
-            "next": "6ebd9f39-08f2-4efc-926b-cdcfee4a45d3"
-          }
-        },
-        "add_tag": "Add tag"
-      },
-      "6ebd9f39-08f2-4efc-926b-cdcfee4a45d3": {
-        "title": "Parkeringen",
-        "description": "Dersom du får det travelt og bare må kjøre en dag, så er dette parkeringa, parkeringsbevis fås på kortsenteret. Hvem var verdens største dekkprodusent i 2011? Skriv ned svaret, ta bilde av og instagram svaret med hashtag #Jentedagen2014.",
-        "choice_description": "",
-        "game_mode": "none",
-        "game_button": "",
-        "tag_mode": "gps",
-        "add_tag": "Add tag",
-        "game_mode": "camera",
-        "game_button": "Ta bilde!",
-        "options": {
-          "Ta bilde": {
-            "hint_title": "Ta bilde",
-            "hint_method": "hint_map",
-            "hint_text": "",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.940400481589684",
-            "long": "10.722288338378917",
-            "next": "3d3f1aed-60ef-4257-9e94-de05c3dadc97"
-          }
+    "story": {
+        "UUID": "58876600-0df3-11e4-9191-0800200c9a66",
+        "title": "Jentedagen 2014",
+        "author": "Kine Gjerstad Eide",
+        "area": "Blindern",
+        "date": "09.08.2014",
+        "language": "nb_NO",
+        "agegroup": "1-99",
+        "description": "Jentedagen 2014",
+        "image": "something",
+        "tag_count": "12",
+        "tag_types": "GPS;QR",
+        "start_tag": "e8bd3c14-a86e-473d-bd4b-921f8060eed4",
+        "game_modes": "camera",
+        "tags": {
+            "e8bd3c14-a86e-473d-bd4b-921f8060eed4": {
+                "title": "Brua",
+                "description": "Når dere ser nedover t-bane sporet ser dere Blindern t-banestatsjon. Hvilken stasjon ser dere oppover?",
+                "choice_description": "",
+                "options_title": "Se svaralternativer",
+                "game_mode": "none",
+                "game_button": "",
+                "tag_mode": "gps",
+                "options": {
+                    "Øvre Blindern": {
+                        "hint_title": "Øvre Blindern",
+                        "hint_method": "hint_map",
+                        "hint_text": "",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.9415384235369",
+                        "long": "10.720177439884196",
+                        "next": "6ebd9f39-08f2-4efc-926b-cdcfee4a45d3"
+                    },
+                    "Forskninsparken": {
+                        "hint_title": "Forskninsparken",
+                        "hint_method": "hint_map",
+                        "hint_text": "",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.941201209865184",
+                        "long": "10.721022335723887",
+                        "next": "6ebd9f39-08f2-4efc-926b-cdcfee4a45d3"
+                    },
+                    "Informatikkstoppet": {
+                        "hint_title": "Informatikkstoppet",
+                        "hint_method": "hint_map",
+                        "hint_text": "",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.94129256689589",
+                        "long": "10.72046443624879",
+                        "next": "6ebd9f39-08f2-4efc-926b-cdcfee4a45d3"
+                    }
+                }
+            },
+            "6ebd9f39-08f2-4efc-926b-cdcfee4a45d3": {
+                "title": "Parkeringen",
+                "description": "Dersom du får det travelt og bare må kjøre en dag, så er dette parkeringa, parkeringsbevis fås på kortsenteret. Hvem var verdens største dekkprodusent i 2011? Skriv ned svaret, ta bilde av og instagram svaret med hashtag #Jentedagen2014.",
+                "choice_description": "",
+                "game_mode": "none",
+                "game_button": "",
+                "tag_mode": "gps",
+                "game_mode": "camera",
+                "game_button": "Ta bilde!",
+                "options": {
+                    "Ta bilde": {
+                        "hint_title": "Ta bilde",
+                        "hint_method": "hint_map",
+                        "hint_text": "",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.940400481589684",
+                        "long": "10.722288338378917",
+                        "next": "3d3f1aed-60ef-4257-9e94-de05c3dadc97"
+                    }
+                }
+            },
+            "3d3f1aed-60ef-4257-9e94-de05c3dadc97": {
+                "title": "Flykrasjet",
+                "description": "Lag gruppenummeret deres i binært og ta et bilde, hashtag det med #Jentedagen og legg det ut på instagram!",
+                "choice_description": "",
+                "game_mode": "none",
+                "game_button": "",
+                "tag_mode": "gps",
+                "game_mode": "camera",
+                "game_button": "Ta bilde!",
+                "options": {
+                    "": {
+                        "hint_title": "",
+                        "hint_method": "hint_map",
+                        "hint_text": "",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.939734088953784",
+                        "long": "10.722578016952525",
+                        "next": "669b1420-d1dc-4530-8da7-9aa82330fb83"
+                    }
+                }
+            },
+            "669b1420-d1dc-4530-8da7-9aa82330fb83": {
+                "title": "Sophus Lie",
+                "description": "Mange bra damer har hengt her før dere, hvem var egentlig Sophus Lie?",
+                "choice_description": "",
+                "options_title": "Se svaralternativer",
+                "game_mode": "none",
+                "game_button": "",
+                "tag_mode": "gps",
+                "options": {
+                    "Matematiker": {
+                        "hint_title": "Matematiker",
+                        "hint_method": "hint_map",
+                        "hint_text": "",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.94164187086866",
+                        "long": "10.724037138656627",
+                        "next": "8e81aaa2-2e89-4d27-b8be-44fcb612ead6"
+                    },
+                    "Filosof": {
+                        "hint_title": "Filosof",
+                        "hint_method": "hint_map",
+                        "hint_text": "",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.941652618624836",
+                        "long": "10.72396203680421",
+                        "next": "8e81aaa2-2e89-4d27-b8be-44fcb612ead6"
+                    },
+                    "Husmor": {
+                        "hint_title": "Husmor",
+                        "hint_method": "hint_map",
+                        "hint_text": "",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.94164187086866",
+                        "long": "10.724037138656627",
+                        "next": "8e81aaa2-2e89-4d27-b8be-44fcb612ead6"
+                    }
+                }
+            },
+            "7560ab0e-1f10-4ff6-99c1-819ac73da59b": {
+                "title": "Forskningsparken",
+                "description": "Dette er stedet hvor enhver ifi student søker tilflukt når arbeidsdagen blir lang og oppgavene uløselige. Stedet kalles \"Børeken\", \"Børek king\", \"Shappa under t-banestasjonen\" osv. Forreningsstand/spm/opg",
+                "choice_description": "",
+                "game_mode": "none",
+                "game_button": "",
+                "tag_mode": "qr",
+                "options": {
+                    "Neste sted": {
+                        "hint_title": "",
+                        "hint_method": "hint_text",
+                        "hint_text": "Rom 30**",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.922258",
+                        "long": "10.754904",
+                        "next": "fdcca3c6-13f8-450b-b856-882763f55819"
+                    }
+                }
+            },
+            "fdcca3c6-13f8-450b-b856-882763f55819": {
+                "title": "Eifel",
+                "description": "Velkommen til jenterommet! Her holder foreningen verdande til. Verdande har stand/spm/opg",
+                "belongs_to_tag": "edcca3c6-13f8-450b-b856-882763f55819",
+                "choice_description": "",
+                "game_mode": "none",
+                "game_button": "",
+                "tag_mode": "qr",
+                "options": {
+                    "Neste sted": {
+                        "hint_title": "",
+                        "hint_method": "hint_text",
+                        "hint_text": "Ada Lovelace",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.922258",
+                        "long": "10.754904",
+                        "next": "a513f8cc-9801-46b6-8ded-37bacbe9d8af"
+                    }
+                }
+            },
+            "7d22da62-9a1b-43da-a31c-01d732be6338": {
+                "title": "Simula",
+                "description": "Omid har krasjkurs.",
+                "choice_description": "",
+                "game_mode": "none",
+                "game_button": "",
+                "tag_mode": "qr",
+                "belongs_to_tag": "6d22da62-9a1b-43da-a31c-01d732be6338",
+                "options": {
+                    "Neste sted": {
+                        "hint_title": "",
+                        "hint_method": "hint_text",
+                        "hint_text": "Småsprat",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.922258",
+                        "long": "10.754904",
+                        "next": "4420ac5e-0692-4abb-9565-5338bd0c0b8d"
+                    }
+                }
+            },
+            "e3aee434-bd8b-4476-aaf8-8f43c7c3b8e2": {
+                "title": "Trappa",
+                "description": "Velkommen til fotoshoot! Her skal dere lage et rått gruppebilder. Kreativitet og morsomhet blir belønna! Utstyr: fotoapparat, lys kanskje, fotograf, osv.",
+                "choice_description": "",
+                "game_mode": "none",
+                "belongs_to_tag": "d3aee434-bd8b-4476-aaf8-8f43c7c3b8e2",
+                "game_button": "",
+                "tag_mode": "qr",
+                "options": {
+                    "Neste sted": {
+                        "hint_title": "",
+                        "hint_method": "hint_text",
+                        "hint_text": "Et sted og slappe av, et sted og feste",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.922258",
+                        "long": "10.754904",
+                        "next": "9ec52736-45fc-4300-8a28-00e8494f4b31"
+                    }
+                }
+            },
+            "4420ac5e-0692-4abb-9565-5338bd0c0b8d": {
+                "title": "Smalltalk",
+                "description": "Forrening har stand/spm./opg.",
+                "choice_description": "",
+                "belongs_to_tag": "3420ac5e-0692-4abb-9565-5338bd0c0b8d",
+                "game_mode": "none",
+                "game_button": "",
+                "tag_mode": "qr",
+                "options": {
+                    "Neste sted": {
+                        "hint_title": "",
+                        "hint_method": "hint_text",
+                        "hint_text": "Må ikke gå over bekken for å hente vann",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.922258",
+                        "long": "10.754904",
+                        "next": "e3aee434-bd8b-4476-aaf8-8f43c7c3b8e2"
+                    }
+                }
+            },
+            "a513f8cc-9801-46b6-8ded-37bacbe9d8af": {
+                "title": "Åpen Sone",
+                "description": "Rommet med alt dere trenger for å mekke, bygge og lage noe fantastisk. Sonen har egen oppgave her.",
+                "choice_description": "",
+                "belongs_to_tag": "a513f8cc-9801-46b6-8ded-37bacbe9d8af",
+                "game_mode": "none",
+                "game_button": "",
+                "tag_mode": "qr",
+                "options": {
+                    "Neste sted": {
+                        "hint_title": "",
+                        "hint_method": "hint_text",
+                        "hint_text": "Første OO-programmeringspråk",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.922258",
+                        "long": "10.754904",
+                        "next": "7d22da62-9a1b-43da-a31c-01d732be6338"
+                    }
+                }
+            },
+            "9ec52736-45fc-4300-8a28-00e8494f4b31": {
+                "title": "Escape",
+                "description": "Da har du nådd målet i rebusløpet...",
+                "belongs_to_tag": "8ec52736-45fc-4300-8a28-00e8494f4b31",
+                "choice_description": "",
+                "game_mode": "none",
+                "game_button": "",
+                "tag_mode": "qr",
+                "isEndPoint": "true"
+            },
+            "8e81aaa2-2e89-4d27-b8be-44fcb612ead6": {
+                "title": "SV og HF",
+                "description": "Her er fakultetene hvor man studerer samfunnsvitenskap og humanistiske fag. SV har pub i kjelleren kalt U1. Hva heter puben på Ifi?",
+                "choice_description": "",
+                "game_mode": "none",
+                "game_button": "",
+                "tag_mode": "gps",
+                "options_title": "Se svaralternativer",
+                "options": {
+                    "Foobar": {
+                        "hint_title": "Foobar",
+                        "hint_method": "hint_map",
+                        "hint_text": "",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.943785979249725",
+                        "long": "10.720764843658458",
+                        "next": "fdcca3c6-13f8-450b-b856-882763f55819"
+                    },
+                    "Serverrommet": {
+                        "hint_title": "Serverrommet",
+                        "hint_method": "hint_map",
+                        "hint_text": "",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.943785979249725",
+                        "long": "10.720764843658458",
+                        "next": "fdcca3c6-13f8-450b-b856-882763f55819"
+                    },
+                    "Escape": {
+                        "hint_title": "Escape",
+                        "hint_method": "hint_map",
+                        "hint_text": "",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.943785979249725",
+                        "long": "10.720764843658458",
+                        "next": "fdcca3c6-13f8-450b-b856-882763f55819"
+                    }
+                }
+            }
         }
-      },
-      "3d3f1aed-60ef-4257-9e94-de05c3dadc97": {
-        "title": "Flykrasjet",
-        "description": "Lag gruppenummeret deres i binært og ta et bilde, hashtag det med #Jentedagen og legg det ut på instagram!",
-        "choice_description": "",
-        "game_mode": "none",
-        "game_button": "",
-        "tag_mode": "gps",
-        "add_tag": "Add tag",
-        "game_mode": "camera",
-        "game_button": "Ta bilde!",
-        "options": {
-          "": {
-            "hint_title": "",
-            "hint_method": "hint_map",
-            "hint_text": "",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.939734088953784",
-            "long": "10.722578016952525",
-            "next": "669b1420-d1dc-4530-8da7-9aa82330fb83"
-          }
-        }
-      },
-      "669b1420-d1dc-4530-8da7-9aa82330fb83": {
-        "title": "Sophus Lie",
-        "description": "Mange bra damer har hengt her før dere, hvem var egentlig Sophus Lie?",
-        "choice_description": "",
-        "game_mode": "none",
-        "game_button": "",
-        "tag_mode": "gps",
-        "options": {
-          "Matematiker": {
-            "hint_title": "Matematiker",
-            "hint_method": "hint_map",
-            "hint_text": "",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.94164187086866",
-            "long": "10.724037138656627",
-            "next": "8e81aaa2-2e89-4d27-b8be-44fcb612ead6"
-          },
-          "Filosof": {
-            "hint_title": "Filosof",
-            "hint_method": "hint_map",
-            "hint_text": "",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.941652618624836",
-            "long": "10.72396203680421",
-            "next": "8e81aaa2-2e89-4d27-b8be-44fcb612ead6"
-          },
-          "Husmor": {
-            "hint_title": "Husmor",
-            "hint_method": "hint_text",
-            "hint_text": "",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.94164187086866",
-            "long": "10.724037138656627",
-            "next": "8e81aaa2-2e89-4d27-b8be-44fcb612ead6"
-          }
-        },
-        "add_tag": "Add tag"
-      },
-      "7560ab0e-1f10-4ff6-99c1-819ac73da59b": {
-        "title": "Forskningsparken",
-        "description": "Dete er stedet hvor enhver ifi student søker tilflukt når arbeidsdagen blir lang og oppgavene uløselige. Stedet kalles \"Børeken\", \"Børek king\", \"Shappa under t-banestasjonen\" osv. Forreningsstand/spm/opg",
-        "choice_description": "",
-        "game_mode": "none",
-        "game_button": "",
-        "tag_mode": "qr",
-        "options": {
-          "": {
-            "hint_title": "",
-            "hint_method": "hint_text",
-            "hint_text": "Rom 30**",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.922258",
-            "long": "10.754904",
-            "next": "fdcca3c6-13f8-450b-b856-882763f55819"
-          }
-        },
-        "add_tag": "Add tag"
-      },
-      "fdcca3c6-13f8-450b-b856-882763f55819": {
-        "title": "Eifel",
-        "description": "Velkommen til jenterommet! Her holder foreningen verdande til. Verdande har stand/spm/opg",
-        "choice_description": "",
-        "game_mode": "none",
-        "game_button": "",
-        "tag_mode": "qr",
-        "add_tag": "Add tag",
-        "options": {
-          "": {
-            "hint_title": "",
-            "hint_method": "hint_text",
-            "hint_text": "",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.922258",
-            "long": "10.754904",
-            "next": "a513f8cc-9801-46b6-8ded-37bacbe9d8af"
-          }
-        }
-      },
-      "7d22da62-9a1b-43da-a31c-01d732be6338": {
-        "title": "Simula",
-        "description": "Omid har krasjkurs.",
-        "choice_description": "",
-        "game_mode": "none",
-        "game_button": "",
-        "tag_mode": "qr",
-        "add_tag": "Add tag",
-        "options": {
-          "": {
-            "hint_title": "",
-            "hint_method": "hint_text",
-            "hint_text": "",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.922258",
-            "long": "10.754904",
-            "next": "4420ac5e-0692-4abb-9565-5338bd0c0b8d"
-          }
-        }
-      },
-      "e3aee434-bd8b-4476-aaf8-8f43c7c3b8e2": {
-        "title": "Trappa",
-        "description": "Velkommen til fotoshoot! Her skal dere lage et rått gruppebilder. Kreativitet og morsomhet blir belønna! Utstyr: fotoapparat, lys kanskje, fotograf, osv.",
-        "choice_description": "",
-        "game_mode": "none",
-        "game_button": "",
-        "tag_mode": "qr",
-        "add_tag": "Add tag",
-        "options": {
-          "": {
-            "hint_title": "",
-            "hint_method": "hint_text",
-            "hint_text": "",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.922258",
-            "long": "10.754904",
-            "next": "9ec52736-45fc-4300-8a28-00e8494f4b31"
-          }
-        }
-      },
-      "4420ac5e-0692-4abb-9565-5338bd0c0b8d": {
-        "title": "Smalltalk",
-        "description": "Forrening har stand/spm./opg.",
-        "choice_description": "",
-        "game_mode": "none",
-        "game_button": "",
-        "tag_mode": "qr",
-        "add_tag": "Add tag",
-        "options": {
-          "": {
-            "hint_title": "",
-            "hint_method": "hint_text",
-            "hint_text": "",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.922258",
-            "long": "10.754904",
-            "next": "e3aee434-bd8b-4476-aaf8-8f43c7c3b8e2"
-          }
-        }
-      },
-      "a513f8cc-9801-46b6-8ded-37bacbe9d8af": {
-        "title": "Ã…pen Sone",
-        "description": "Rommet med alt dere trenger for å mekke, bygge og lage noe fantastisk. Sonen har egen oppgave her.",
-        "choice_description": "",
-        "game_mode": "none",
-        "game_button": "",
-        "tag_mode": "qr",
-        "add_tag": "Add tag",
-        "options": {
-          "": {
-            "hint_title": "",
-            "hint_method": "hint_text",
-            "hint_text": "",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.922258",
-            "long": "10.754904",
-            "next": "7d22da62-9a1b-43da-a31c-01d732be6338"
-          }
-        }
-      },
-      "9ec52736-45fc-4300-8a28-00e8494f4b31": {
-        "title": "Escape",
-        "description": "Da har du nådd målet i rebusløpet...",
-        "choice_description": "",
-        "game_mode": "none",
-        "game_button": "",
-        "tag_mode": "qr",
-        "isEndPoint": "true"
-      },
-      "8e81aaa2-2e89-4d27-b8be-44fcb612ead6": {
-        "title": "SV og HF",
-        "description": "Her er fakultetene hvor man studerer samfunnsvitenskap og humanistiske fag. SV har pub i kjelleren kalt U1, hva heter puben på Ifi?",
-        "choice_description": "",
-        "game_mode": "none",
-        "game_button": "",
-        "tag_mode": "gps",
-        "options": {
-          "Foobar": {
-            "hint_title": "Foobar",
-            "hint_method": "hint_text",
-            "hint_text": "",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.943785979249725",
-            "long": "10.720764843658458",
-            "next": "fdcca3c6-13f8-450b-b856-882763f55819"
-          },
-          "Serverrommet": {
-            "hint_title": "Serverrommet",
-            "hint_method": "hint_text",
-            "hint_text": "",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.943785979249725",
-            "long": "10.720764843658458",
-            "next": "fdcca3c6-13f8-450b-b856-882763f55819"
-          },
-          "Escape": {
-            "hint_title": "Escape",
-            "hint_method": "hint_text",
-            "hint_text": "",
-            "image_source": "",
-            "sound_source": "",
-            "lat": "59.943785979249725",
-            "long": "10.720764843658458",
-            "next": "fdcca3c6-13f8-450b-b856-882763f55819"
-          }
-        }
-      }
-    },
-    "title": "Jentedagen 2014",
-    "author": "Kine Gjerstad Eide",
-    "area": "Blindern",
-    "date": "09.08.2014",
-    "language": "nb_NO",
-    "add_tag": "Add tag"
-  }
+    }
 }

@@ -18,7 +18,7 @@
     <string name="email">E-mail</string>
     <string name="email_hint">plus e-mail here&#8230;</string>
     <string name="cancel">Cancel</string>
-    <string name="gps_about_skip">Skip</string>
+    <string name="skip">Skip</string>
     
     <string name="description">Description</string>
     <string name="description_hint">Where is the tag</string>
@@ -29,8 +29,14 @@
     <string name="gps_about_content">A GPS tag uses the phone to see where you are. So that it magically can notifie
         the app and tell you when you are at the goal. So that all you have to do is walk!
         \n\nAre you a bit tired, or just don\'t find the tag? Then you can use the \"skip\"-button to advance to the next tag.</string>
-    
     <string name="gps_about_button">This story uses GPS tags</string>
+
+	<string name="qr">QR</string>
+	<string name="qr_hint">More presicely&#8230;</string>
+	<string name="qr_about_title">About QR tags</string>
+    <string name="qr_about_content">A QR-code is a matrix type of barcode.\n\nAre you a bit tired, or just don\'t find the tag? Then you can use the \"skip\"-button to advance to the next tag.</string>
+	<string name="qr_about_button">This story uses QR tags</string>
+
     <string name="front_menu_log_in">Log in</string>
     <string name="front_menu_create_user">Create user</string>
     <string name="front_menu_about">About</string>

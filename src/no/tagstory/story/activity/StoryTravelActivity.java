@@ -1,5 +1,8 @@
 package no.tagstory.story.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -24,6 +27,7 @@ public class StoryTravelActivity extends FragmentActivity {
 	protected StoryPartOption option;
 	protected String tagId;
 	protected TextView hintText;
+	private Dialog helpDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +78,42 @@ public class StoryTravelActivity extends FragmentActivity {
 				intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
 				startActivityForResult(intent, QR_REQUEST_CODE);
 			}
+		} else if (v.getId() == R.id.help_button) {
+			showHelpDialog();
 		}
+	}
+
+	private void showHelpDialog() {
+		if (helpDialog == null) {
+			helpDialog = createHelpDialog();
+		}
+		helpDialog.show();
+	}
+
+	private AlertDialog createHelpDialog() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle(R.string.qr_about_title);
+		builder.setMessage(R.string.qr_about_content);
+		builder.setCancelable(true);
+		builder.setNeutralButton(R.string.dialog_cancel,
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog,
+					                    int which) {
+						dialog.cancel();
+					}
+				});
+		builder.setNegativeButton(R.string.skip,
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog,
+					                    int which) {
+						skipTag();
+					}
+				});
+		return builder.create();
 	}
 
 	@Override

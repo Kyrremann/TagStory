@@ -110,7 +110,7 @@ public class GPSActivity extends StoryTravelActivity implements
 						dialog.cancel();
 					}
 				});
-		builder.setNegativeButton(R.string.gps_about_skip,
+		builder.setNegativeButton(R.string.skip,
 				new OnClickListener() {
 
 					@Override

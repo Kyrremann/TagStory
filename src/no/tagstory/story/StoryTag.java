@@ -25,7 +25,7 @@ public class StoryTag implements Serializable {
 	private String tagMode;
 	private boolean endpoint;
 	private String optionsTitle;
-	private HashMap<String, StoryPartOption> options;
+	private HashMap<String, StoryTagOption> options;
 	private HashMap<Integer, QuizNode> quiz;
 
 	public StoryTag(String UUID, String belongsToTag, String description,
@@ -41,7 +41,7 @@ public class StoryTag implements Serializable {
 	@SuppressLint("UseSparseArrays")
 	public StoryTag(String UUID, String belongsToTag, String description,
 	                String choiceDescription, String gameMode,
-	                HashMap<String, StoryPartOption> options, String isEndpoint) {
+	                HashMap<String, StoryTagOption> options, String isEndpoint) {
 		this.setUUID(UUID);
 		this.setBelongsToTag(belongsToTag);
 		this.setDescription(description);
@@ -52,6 +52,10 @@ public class StoryTag implements Serializable {
 
 		if (getGameMode().equals(JsonParser.QUIZ))
 			this.quiz = new HashMap<Integer, QuizNode>();
+	}
+
+	public StoryTag() {
+
 	}
 
 	/**
@@ -85,7 +89,7 @@ public class StoryTag implements Serializable {
 	/**
 	 * @return the options
 	 */
-	public HashMap<String, StoryPartOption> getOptions() {
+	public HashMap<String, StoryTagOption> getOptions() {
 		return options;
 	}
 
@@ -184,7 +188,7 @@ public class StoryTag implements Serializable {
 	/**
 	 * @param options the options to set
 	 */
-	public void setOptions(HashMap<String, StoryPartOption> options) {
+	public void setOptions(HashMap<String, StoryTagOption> options) {
 		this.options = options;
 	}
 
@@ -264,11 +268,11 @@ public class StoryTag implements Serializable {
 				new String[getOptions().size()]);
 	}
 
-	public StoryPartOption getOption(String key) {
+	public StoryTagOption getOption(String key) {
 		return getOptions().get(key);
 	}
 
-	public StoryPartOption getFirstOption() {
+	public StoryTagOption getFirstOption() {
 		return getOptions().values().iterator().next();
 	}
 

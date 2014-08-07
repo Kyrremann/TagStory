@@ -11,7 +11,7 @@ import android.webkit.WebView;
 import no.tagstory.R;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
-import no.tagstory.story.StoryPartOption;
+import no.tagstory.story.StoryTagOption;
 import no.tagstory.story.activity.StoryActivity;
 
 import java.io.*;
@@ -95,7 +95,7 @@ public class CameraActivity extends Activity {
 
 	public void done(View v) {
 		if (v.getId() == R.id.camera_button) {
-			final StoryPartOption option = part.getOptions().values()
+			final StoryTagOption option = part.getOptions().values()
 					.iterator().next();
 			Intent intent = createTravelIntent(
 					getApplicationContext(), story, story.getTag(tagId), option

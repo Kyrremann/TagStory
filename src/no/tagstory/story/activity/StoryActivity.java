@@ -15,7 +15,7 @@ import no.tagstory.StoryApplication;
 import no.tagstory.R;
 import no.tagstory.honeycomb.StoryActivityHoneycomb;
 import no.tagstory.story.Story;
-import no.tagstory.story.StoryPartOption;
+import no.tagstory.story.StoryTagOption;
 import no.tagstory.story.StoryTag;
 import no.tagstory.utils.ClassVersionFactory;
 
@@ -136,7 +136,7 @@ public class StoryActivity extends Activity {
 					public void onClick(DialogInterface dialog, int which) {
 						String selectedValue = (String) ((AlertDialog) dialog).
 								getListView().getItemAtPosition(which);
-						StoryPartOption option = tag.getOption(selectedValue);
+						StoryTagOption option = tag.getOption(selectedValue);
 						startActivity(createTravelIntent(
 								getApplicationContext(), story, tag,
 								option));
@@ -161,7 +161,7 @@ public class StoryActivity extends Activity {
 	}
 
 	private void onlyOneOption(final StoryTag tag, Button button) {
-		final StoryPartOption option = tag.getFirstOption();
+		final StoryTagOption option = tag.getFirstOption();
 
 		if (tag.hasGameMode()) {
 			button.setText(tag.getGameButton());

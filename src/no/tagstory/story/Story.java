@@ -16,7 +16,6 @@ public class Story implements Serializable {
 	// private Date date;
 	private String date;
 	private List<String> keywords;
-	private int tagCount;
 	private String ageGroup;
 	private String genre;
 	private String area;
@@ -28,12 +27,6 @@ public class Story implements Serializable {
 	private HashMap<String, StoryTag> storyParts;
 	private List<String> tagTypes;
 	private List<String> gameModes;
-	
-	public Story(String UUID, String author, String title) {
-		this.UUID = UUID;
-		this.author = author;
-		this.title = title;
-	}
 
 	/**
 	 * @return the title
@@ -70,12 +63,6 @@ public class Story implements Serializable {
 	 */
 	public List<String> getKeywords() {
 		return keywords;
-	}
-	/**
-	 * @return the tagCount
-	 */
-	public int getTagCount() {
-		return tagCount;
 	}
 	/**
 	 * @return the ageGroup
@@ -205,7 +192,7 @@ public class Story implements Serializable {
 	/**
 	 * @param storyParts the parts to set
 	 */
-	public void setStoryParts(HashMap<String, StoryTag> storyParts) {
+	public void setTags(HashMap<String, StoryTag> storyParts) {
 		this.storyParts = storyParts;
 	}
 
@@ -234,12 +221,6 @@ public class Story implements Serializable {
 	 */
 	public void setAgeGroup(String ageGroup) {
 		this.ageGroup = ageGroup;
-	}
-	/**
-	 * @param tagCount the tagCount to set
-	 */
-	public void setTagCount(int tagCount) {
-		this.tagCount = tagCount;
 	}
 	/**
 	 * @param keywords the keywords to set

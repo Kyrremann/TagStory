@@ -4,8 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 import no.tagstory.story.Story;
+import no.tagstory.story.StoryTagOption;
 import no.tagstory.story.activity.StoryActivity;
-import no.tagstory.story.StoryPartOption;
 import android.annotation.TargetApi;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
@@ -25,7 +25,7 @@ import no.tagstory.story.activity.option.gps.GPSActivity;
 public abstract class NFCActivity extends GPSActivity {
 
 	protected Story story;
-	protected StoryPartOption option;
+	protected StoryTagOption option;
 	protected String partTag;
 
 	protected NfcAdapter nfcAdapter;

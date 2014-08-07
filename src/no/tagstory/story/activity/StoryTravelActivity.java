@@ -16,7 +16,7 @@ import no.tagstory.StoryApplication;
 import no.tagstory.R;
 import no.tagstory.honeycomb.StoryActivityHoneycomb;
 import no.tagstory.story.Story;
-import no.tagstory.story.StoryPartOption;
+import no.tagstory.story.StoryTagOption;
 import no.tagstory.utils.ClassVersionFactory;
 
 public class StoryTravelActivity extends FragmentActivity {
@@ -24,7 +24,7 @@ public class StoryTravelActivity extends FragmentActivity {
 	public static final String OPTION = "OPTION";
 	private static final int QR_REQUEST_CODE = 0;
 	protected Story story;
-	protected StoryPartOption option;
+	protected StoryTagOption option;
 	protected String tagId;
 	protected TextView hintText;
 	private Dialog helpDialog;
@@ -35,7 +35,7 @@ public class StoryTravelActivity extends FragmentActivity {
 		setContentView(R.layout.activity_story_option);
 
 		Bundle bundle = getIntent().getExtras();
-		option = (StoryPartOption) bundle.getSerializable(OPTION);
+		option = (StoryTagOption) bundle.getSerializable(OPTION);
 		story = (Story) bundle.getSerializable(StoryActivity.EXTRA_STORY);
 		tagId = bundle.getString(StoryActivity.EXTRA_TAG);
 

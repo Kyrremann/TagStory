@@ -1,10 +1,6 @@
 package no.tagstory.story.activity.option.gps;
 
 import no.tagstory.R;
-import no.tagstory.story.Story;
-import no.tagstory.story.activity.StoryActivity;
-import no.tagstory.story.StoryPartOption;
-import no.tagstory.story.activity.StoryTravelActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -23,14 +19,6 @@ public class GPSMapNavigationActivity extends GPSActivity {
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		setContentView(R.layout.activity_story_map);
-		// getActionBar().setDisplayHomeAsUpEnabled(true);
-/*
-		Bundle bundle = getIntent().getExtras();
-		option = (StoryPartOption) bundle
-				.getSerializable(StoryTravelActivity.OPTION);
-		story = (Story) bundle.getSerializable(StoryActivity.EXTRA_STORY);
-		tagId = bundle.getString(StoryActivity.EXTRA_TAG);
-		previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);*/
 
 		if (option.getOptHintText().length() > 0) {
 			hintText = (TextView) findViewById(R.id.story_option_hint);
@@ -42,9 +30,8 @@ public class GPSMapNavigationActivity extends GPSActivity {
 				.findFragmentById(R.id.story_map_view);
 		GoogleMap googleMap = mapView.getMap();
 		googleMap.getUiSettings().setMyLocationButtonEnabled(true);
-		// TODO: Zoom level could be set in the .json file
 		googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(
-				option.getLatitude(), option.getLongitude()), 15.0F));
+				option.getLatitude(), option.getLongitude()), option.getZoomLevel()));
 		googleMap.setMyLocationEnabled(true);
 
 		addMarker(googleMap, option.getLatitude(), option.getLongitude(),

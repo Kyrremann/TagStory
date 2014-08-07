@@ -2,7 +2,7 @@ package no.tagstory.story;
 
 import java.io.Serializable;
 
-public class StoryPartOption implements Serializable {
+public class StoryTagOption implements Serializable {
 
 	public static String HINT_IMAGE = "hint_image";
 	public static String HINT_SOUND = "hint_sound";
@@ -21,12 +21,11 @@ public class StoryPartOption implements Serializable {
 	private double longitude;
 	private double latitude;
 	private boolean optArrowLength;
+	private int zoomLevel;
 
-	public StoryPartOption(String UUID, String optSelectMethod,
-			String optHintText, String optNext) {
-		this.setUUID(UUID);
+	public StoryTagOption(String UUID, String optSelectMethod, String optNext) {
+		this.UUID = UUID;
 		this.optSelectMethod = optSelectMethod;
-		this.setOptHintText(optHintText);
 		this.optNext = optNext;
 	}
 
@@ -102,7 +101,7 @@ public class StoryPartOption implements Serializable {
 		return optPropagatingText;
 	}
 
-	public void setOptPropagatingText(String optPropagatingText) {
+	public void setPropagatingText(String optPropagatingText) {
 		this.optPropagatingText = optPropagatingText;
 	}
 
@@ -110,7 +109,7 @@ public class StoryPartOption implements Serializable {
 	 * @param optArrowLength
 	 *            the optArrowLength to set
 	 */
-	public void setOptArrowLength(boolean optArrowLength) {
+	public void setArrowLength(boolean optArrowLength) {
 		this.optArrowLength = optArrowLength;
 	}
 
@@ -126,7 +125,7 @@ public class StoryPartOption implements Serializable {
 	 * @param optImageSrc
 	 *            the optImageSrc to set
 	 */
-	public void setOptImageSrc(String optImageSrc) {
+	public void setImageSrc(String optImageSrc) {
 		this.optImageSrc = optImageSrc;
 	}
 
@@ -142,7 +141,7 @@ public class StoryPartOption implements Serializable {
 	 * @param optHintText
 	 *            the optHintText to set
 	 */
-	public void setOptHintText(String optHintText) {
+	public void setHintText(String optHintText) {
 		this.optHintText = optHintText;
 	}
 
@@ -182,6 +181,14 @@ public class StoryPartOption implements Serializable {
 	}
 
 	public boolean hasHintImage() {
-		return getOptSelectMethod().equals(StoryPartOption.HINT_IMAGE);
+		return getOptSelectMethod().equals(StoryTagOption.HINT_IMAGE);
+	}
+
+	public void setZoomLevel(int zoomLevel) {
+		this.zoomLevel = zoomLevel;
+	}
+
+	public int getZoomLevel() {
+		return zoomLevel;
 	}
 }

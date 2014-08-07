@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import no.tagstory.R;
 import no.tagstory.story.Story;
-import no.tagstory.story.StoryPartOption;
+import no.tagstory.story.StoryTagOption;
 import no.tagstory.story.StoryTag;
 import no.tagstory.story.activity.StoryActivity;
 
@@ -131,7 +131,7 @@ public class QuizActivity extends Activity {
 		builder.setTitle(R.string.story_next_part);
 		builder.setCancelable(false);
 		if (part.getOptions().size() == 1) {
-			final StoryPartOption option = part.getOptions().values()
+			final StoryTagOption option = part.getOptions().values()
 					.iterator().next();
 			builder.setMessage("You scored " + quizPoint
 					+ " point(s) of possible " + part.getQuizSize() + ".");
@@ -147,7 +147,7 @@ public class QuizActivity extends Activity {
 						}
 					});
 		} else {
-			final HashMap<String, StoryPartOption> options = part.getOptions();
+			final HashMap<String, StoryTagOption> options = part.getOptions();
 			final String[] keys = options.keySet().toArray(
 					new String[options.size()]);
 
@@ -159,7 +159,7 @@ public class QuizActivity extends Activity {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							dialog.dismiss();
-							StoryPartOption option = options
+							StoryTagOption option = options
 									.get(((AlertDialog) dialog).getListView()
 											.getItemAtPosition(which));
 							startActivity(createTravelIntent(

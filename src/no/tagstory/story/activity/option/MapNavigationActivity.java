@@ -29,9 +29,8 @@ public class MapNavigationActivity extends StoryTravelActivity {
 				.findFragmentById(R.id.story_map_view);
 		GoogleMap googleMap = mapView.getMap();
 		googleMap.getUiSettings().setMyLocationButtonEnabled(true);
-		// TODO: Zoom level could be set in the .json file
 		googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(
-				option.getLatitude(), option.getLongitude()), 15.0F));
+				option.getLatitude(), option.getLongitude()), option.getZoomLevel()));
 		googleMap.setMyLocationEnabled(true);
 
 		addMarker(googleMap, option.getLatitude(), option.getLongitude(),

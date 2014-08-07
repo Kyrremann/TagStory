@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import no.tagstory.story.Story;
-import no.tagstory.story.StoryPartOption;
+import no.tagstory.story.StoryTagOption;
 import no.tagstory.story.StoryTag;
 import no.tagstory.story.activity.StoryPropagatingActivity;
 import no.tagstory.story.activity.StoryTravelActivity;
@@ -40,7 +40,7 @@ public class TravelIntentFactory {
 
 	// TODO Below are just static methods... :\
 	public static Intent createTravelIntent(Context context, Story story,
-	                                        StoryTag tag, StoryPartOption option) {
+	                                        StoryTag tag, StoryTagOption option) {
 		return createTravelIntent(context, story, tag, option,
 				false);
 	}
@@ -50,7 +50,7 @@ public class TravelIntentFactory {
 	// TODO: Need to change from travel indent to show answer intent, and after
 	// then I can use the travel intent
 	public static Intent createTravelIntent(Context context, Story story,
-	                                        StoryTag tag, StoryPartOption option,
+	                                        StoryTag tag, StoryTagOption option,
 	                                        boolean fromPropagating) {
 
 		Intent intent = new Intent();
@@ -79,9 +79,9 @@ public class TravelIntentFactory {
 	}
 
 	private static Class<?> getGPSHintClass(String optionHint) {
-		if (optionHint.equals(StoryPartOption.HINT_SOUND)) {
+		if (optionHint.equals(StoryTagOption.HINT_SOUND)) {
 			return AudioPlayerActivity.class;
-		} else if (optionHint.equals(StoryPartOption.HINT_MAP)) {
+		} else if (optionHint.equals(StoryTagOption.HINT_MAP)) {
 			return GPSMapNavigationActivity.class;
 		} else {
 			return GPSActivity.class;
@@ -89,9 +89,9 @@ public class TravelIntentFactory {
 	}
 
 	private static Class<?> getQRHintClass(String optionHint) {
-		if (optionHint.equals(StoryPartOption.HINT_SOUND)) {
+		if (optionHint.equals(StoryTagOption.HINT_SOUND)) {
 			return AudioPlayerActivity.class;
-		} else if (optionHint.equals(StoryPartOption.HINT_MAP)) {
+		} else if (optionHint.equals(StoryTagOption.HINT_MAP)) {
 			return MapNavigationActivity.class;
 		} else {
 			return StoryTravelActivity.class;

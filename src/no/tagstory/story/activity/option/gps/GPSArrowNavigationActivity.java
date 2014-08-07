@@ -21,7 +21,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import no.tagstory.R;
 import no.tagstory.story.Story;
-import no.tagstory.story.StoryPartOption;
+import no.tagstory.story.StoryTagOption;
 import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.story.activity.StoryTravelActivity;
 
@@ -62,7 +62,7 @@ public class GPSArrowNavigationActivity extends GPSActivity {
 		// getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		Bundle bundle = getIntent().getExtras();
-		option = (StoryPartOption) bundle
+		option = (StoryTagOption) bundle
 				.getSerializable(StoryTravelActivity.OPTION);
 		story = (Story) bundle.getSerializable(StoryActivity.EXTRA_STORY);
 		tagId = bundle.getString(StoryActivity.EXTRA_TAG);

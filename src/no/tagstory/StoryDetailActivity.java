@@ -50,7 +50,7 @@ public class StoryDetailActivity extends Activity {
 			setTitle(story.getTitle());
 			((TextView) findViewById(R.id.story_detail_desc)).setText(story
 					.getDesc());
-			// TODO Check if user has image, should be mandatory
+			// TODO Check if story has image, should be mandatory
 			try {
 				((ImageView) findViewById(R.id.story_detail_image))
 						.setImageDrawable(Drawable.createFromStream(getAssets()

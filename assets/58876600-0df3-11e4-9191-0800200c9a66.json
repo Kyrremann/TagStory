@@ -16,7 +16,7 @@
         "tags": {
             "e8bd3c14-a86e-473d-bd4b-921f8060eed4": {
                 "title": "Brua",
-                "description": "Når dere ser nedover t-bane sporet ser dere Blindern t-banestatsjon. Hvilken stasjon ser dere oppover?",
+                "description": "Når dere ser nedover t-banesporet ser dere Blindern t-banestatsjon. Hvilken stasjon ser dere oppover?",
                 "choice_description": "",
                 "options_title": "Se svaralternativer",
                 "game_mode": "none",
@@ -162,7 +162,7 @@
             },
             "fdcca3c6-13f8-450b-b856-882763f55819": {
                 "title": "Eifel",
-                "description": "Velkommen til jenterommet! Her holder foreningen verdande til. Verdande har stand/spm/opg",
+                "description": "Velkommen til jenterommet! Her holder foreningen Verdande til. ",
                 "belongs_to_tag": "edcca3c6-13f8-450b-b856-882763f55819",
                 "choice_description": "",
                 "game_mode": "none",
@@ -204,7 +204,7 @@
             },
             "e3aee434-bd8b-4476-aaf8-8f43c7c3b8e2": {
                 "title": "Trappa",
-                "description": "Velkommen til fotoshoot! Her skal dere lage et rått gruppebilder. Kreativitet og morsomhet blir belønna! Utstyr: fotoapparat, lys kanskje, fotograf, osv.",
+                "description": "Velkommen til fotoshoot! Her skal dere lage et rått gruppebilder. Kreativitet og morsomhet blir belønnet! Utstyr: fotoapparat, lys kanskje, fotograf, osv.",
                 "choice_description": "",
                 "game_mode": "none",
                 "belongs_to_tag": "d3aee434-bd8b-4476-aaf8-8f43c7c3b8e2",

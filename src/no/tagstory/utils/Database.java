@@ -80,10 +80,10 @@ public class Database {
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
 					+ " VALUES ('0dd941f0-c943-11e2-8b8b-0800200c9a66', 'Klima nettverket', 'Oslo klimatur', 'Oslo', 'slottet.jpg')");
-					*/
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
 					+ " VALUES ('5fee5ee0-e11f-11e3-8b68-0800200c9a66', 'Kine Gjerstad Eide', 'Kiness bursdagsløp', 'Oslo', 'kine_gevaer.jpg')");
+					*/
 			db.execSQL("INSERT INTO " +
 					STORY_TABLE_NAME +
 					" VALUES ('58876600-0df3-11e4-9191-0800200c9a66', 'Kine Gjerstad Eide', 'Jentedagen 2014', 'Oslo', '')");

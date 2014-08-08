@@ -1,6 +1,6 @@
 package no.tagstory.rfid;
 
-import no.tagstory.kines_bursdag.R;
+import no.tagstory.jentedagen.R;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.PendingIntent;

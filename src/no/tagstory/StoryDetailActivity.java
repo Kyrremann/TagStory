@@ -10,7 +10,7 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import no.tagstory.kines_bursdag.R;
+import no.tagstory.jentedagen.R;
 import no.tagstory.honeycomb.StoryActivityHoneycomb;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
@@ -51,14 +51,15 @@ public class StoryDetailActivity extends Activity {
 			((TextView) findViewById(R.id.story_detail_desc)).setText(story
 					.getDesc());
 			// TODO Check if story has image, should be mandatory
-			try {
+//			try {
+//				((ImageView) findViewById(R.id.story_detail_image))
+//						.setImageDrawable(Drawable.createFromStream(getAssets()
+//								.open(story.getImage()), story.getImage()));
+//			} catch (IOException e) {
 				((ImageView) findViewById(R.id.story_detail_image))
-						.setImageDrawable(Drawable.createFromStream(getAssets()
-								.open(story.getImage()), story.getImage()));
-			} catch (IOException e) {
-				((ImageView) findViewById(R.id.story_detail_image))
-						.setImageResource(R.drawable.placeimg_320_240_nature);
-			}
+						.setImageResource(R.drawable.blindern);
+//						.setImageResource(R.drawable.placeimg_320_240_nature);
+//			}
 		}
 	}
 

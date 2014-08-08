@@ -14,7 +14,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import no.tagstory.adapters.StoryCursorAdapter;
 import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
-import no.tagstory.kines_bursdag.R;
+import no.tagstory.jentedagen.R;
 import no.tagstory.marked.StoryMarkedActivity;
 import no.tagstory.story.StoryManager;
 import no.tagstory.utils.ClassVersionFactory;

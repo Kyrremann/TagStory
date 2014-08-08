@@ -7,7 +7,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import no.tagstory.TagStoryActivity;
 import no.tagstory.adapters.StoryCursorAdapter;
-import no.tagstory.kines_bursdag.R;
+import no.tagstory.jentedagen.R;
 import no.tagstory.utils.Database;
 
 public class TagStoryActivityHoneyComb extends TagStoryActivity {

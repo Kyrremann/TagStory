@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import no.tagstory.kines_bursdag.R;
+import no.tagstory.jentedagen.R;
 
 import java.io.InputStream;
 

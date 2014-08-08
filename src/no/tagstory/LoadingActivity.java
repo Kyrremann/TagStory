@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import no.tagstory.honeycomb.TagStoryActivityHoneyComb;
-import no.tagstory.kines_bursdag.R;
+import no.tagstory.jentedagen.R;
 
 import static no.tagstory.utils.ClassVersionFactory.createIntent;
 

@@ -15,7 +15,7 @@ package no.tagstory.marked;
 		import android.view.View;
 		import android.view.ViewGroup;
 		import android.widget.TextView;
-		import no.tagstory.kines_bursdag.R;
+		import no.tagstory.jentedagen.R;
 
 public class CollectionDemoActivity extends FragmentActivity {
 

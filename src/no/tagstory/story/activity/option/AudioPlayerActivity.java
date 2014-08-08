@@ -2,7 +2,7 @@ package no.tagstory.story.activity.option;
 
 import java.io.IOException;
 
-import no.tagstory.kines_bursdag.R;
+import no.tagstory.jentedagen.R;
 import no.tagstory.story.activity.StoryTravelActivity;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;

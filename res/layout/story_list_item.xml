@@ -13,6 +13,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:contentDescription="@string/cd_story_image"
+        android:visibility="gone"
         android:src="@drawable/blindern" />
 
     <TextView

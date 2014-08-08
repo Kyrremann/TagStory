@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import no.tagstory.StoryApplication;
-import no.tagstory.kines_bursdag.R;
+import no.tagstory.jentedagen.R;
 import no.tagstory.honeycomb.StoryActivityHoneycomb;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTagOption;

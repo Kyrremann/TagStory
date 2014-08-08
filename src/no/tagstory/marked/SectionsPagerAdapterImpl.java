@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import no.tagstory.R;
+import no.tagstory.kines_bursdag.R;
 import no.tagstory.marked.sections.NewStorySectionFragment;
 
 public class SectionsPagerAdapterImpl extends FragmentPagerAdapter {

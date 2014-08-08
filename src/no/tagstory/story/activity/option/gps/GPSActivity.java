@@ -18,7 +18,7 @@ import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import no.tagstory.StoryApplication;
-import no.tagstory.R;
+import no.tagstory.kines_bursdag.R;
 import no.tagstory.story.activity.StoryTravelActivity;
 
 import static no.tagstory.utils.GooglePlayServiceUtils.ErrorDialogFragment;

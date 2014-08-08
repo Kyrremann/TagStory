@@ -10,7 +10,7 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import no.tagstory.R;
+import no.tagstory.kines_bursdag.R;
 import no.tagstory.honeycomb.StoryActivityHoneycomb;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;

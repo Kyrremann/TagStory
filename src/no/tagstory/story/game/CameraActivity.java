@@ -8,7 +8,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.webkit.WebView;
-import no.tagstory.R;
+import no.tagstory.kines_bursdag.R;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
 import no.tagstory.story.StoryTagOption;

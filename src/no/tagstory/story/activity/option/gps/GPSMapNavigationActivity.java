@@ -1,6 +1,6 @@
 package no.tagstory.story.activity.option.gps;
 
-import no.tagstory.R;
+import no.tagstory.kines_bursdag.R;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;

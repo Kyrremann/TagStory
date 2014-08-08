@@ -11,7 +11,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import no.tagstory.R;
+import no.tagstory.kines_bursdag.R;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTagOption;
 import no.tagstory.story.StoryTag;

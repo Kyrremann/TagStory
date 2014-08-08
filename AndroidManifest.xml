@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="no.tagstory"
-    android:versionCode="2"
+    package="no.tagstory.kines_bursdag"
+    android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
@@ -86,9 +86,8 @@
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBLjzy8aQNW69tDSnWVKjDy-5lLyhI1hh8" />
-        <meta-data android:name="com.google.android.gms.version"
-                   android:value="@integer/google_play_services_version" />
+            android:value="AIzaSyATS3BkYamx1-mvvk4OMB5jnzFaZ3s3kCk" />
+	    <meta-data android:name="com.google.android.gms.version" android:value="5089000" />
 
         <activity
             android:name="no.tagstory.honeycomb.TagStoryActivityHoneyComb"

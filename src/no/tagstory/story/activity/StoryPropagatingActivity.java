@@ -1,6 +1,6 @@
 package no.tagstory.story.activity;
 
-import no.tagstory.R;
+import no.tagstory.kines_bursdag.R;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
 import no.tagstory.story.StoryTagOption;

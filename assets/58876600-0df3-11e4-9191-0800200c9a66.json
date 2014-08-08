@@ -11,9 +11,30 @@
         "image": "something",
         "tag_count": "12",
         "tag_types": "GPS;QR",
-        "start_tag": "e8bd3c14-a86e-473d-bd4b-921f8060eed4",
+        "start_tag": "e2bd3c14-a86e-473d-bd4b-921f8060eed4",
         "game_modes": "camera",
         "tags": {
+            "e2bd3c14-a86e-473d-bd4b-921f8060eed4": {
+                "title": "Brua",
+                "description": "Da var vi igang.",
+                "choice_description": "",
+                "options_title": "Se hvor dere skal",
+                "game_mode": "none",
+                "game_button": "",
+                "tag_mode": "gps",
+                "options": {
+                    "Brua": {
+                        "hint_title": "Brua",
+                        "hint_method": "hint_map",
+                        "hint_text": "",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.942341",
+                        "long": "10.718289",
+                        "next": "e8bd3c14-a86e-473d-bd4b-921f8060eed4"
+                    }
+                }
+            },
             "e8bd3c14-a86e-473d-bd4b-921f8060eed4": {
                 "title": "Brua",
                 "description": "Når dere ser nedover t-banesporet ser dere Blindern t-banestatsjon. Hvilken stasjon ser dere oppover?",
@@ -162,7 +183,7 @@
             },
             "fdcca3c6-13f8-450b-b856-882763f55819": {
                 "title": "Eifel",
-                "description": "Velkommen til jenterommet! Her holder foreningen Verdande til. ",
+                "description": "Velkommen til jenterommet! Her holder foreningen Verdande til.",
                 "belongs_to_tag": "edcca3c6-13f8-450b-b856-882763f55819",
                 "choice_description": "",
                 "game_mode": "none",
@@ -214,7 +235,7 @@
                     "Neste sted": {
                         "hint_title": "",
                         "hint_method": "hint_text",
-                        "hint_text": "Et sted og slappe av, et sted og feste",
+                        "hint_text": "Et sted å slappe av, et sted å feste",
                         "image_source": "",
                         "sound_source": "",
                         "lat": "59.922258",
@@ -267,7 +288,7 @@
             },
             "9ec52736-45fc-4300-8a28-00e8494f4b31": {
                 "title": "Escape",
-                "description": "Da har du nådd målet i rebusløpet...",
+                "description": "Gratulerer! Dere har kommet deg igjennom rebusløpet!",
                 "belongs_to_tag": "8ec52736-45fc-4300-8a28-00e8494f4b31",
                 "choice_description": "",
                 "game_mode": "none",
@@ -292,7 +313,7 @@
                         "sound_source": "",
                         "lat": "59.943785979249725",
                         "long": "10.720764843658458",
-                        "next": "fdcca3c6-13f8-450b-b856-882763f55819"
+                        "next": "7560ab0e-1f10-4ff6-99c1-819ac73da59b"
                     },
                     "Serverrommet": {
                         "hint_title": "Serverrommet",
@@ -302,7 +323,7 @@
                         "sound_source": "",
                         "lat": "59.943785979249725",
                         "long": "10.720764843658458",
-                        "next": "fdcca3c6-13f8-450b-b856-882763f55819"
+                        "next": "7560ab0e-1f10-4ff6-99c1-819ac73da59b"
                     },
                     "Escape": {
                         "hint_title": "Escape",
@@ -312,7 +333,7 @@
                         "sound_source": "",
                         "lat": "59.943785979249725",
                         "long": "10.720764843658458",
-                        "next": "fdcca3c6-13f8-450b-b856-882763f55819"
+                        "next": "7560ab0e-1f10-4ff6-99c1-819ac73da59b"
                     }
                 }
             }

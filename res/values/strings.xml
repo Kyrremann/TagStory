@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
-    <string name="app_name">Tag Story</string>
-    <string name="app_title">Tag Story</string>
+    <string name="app_name">Jentedagen</string>
+    <string name="app_title">Tag Story: Jentedagen</string>
     
     <string name="title_story_detail">Story Detail</string>
     <string name="title_story_list">Stories</string>
@@ -46,8 +46,7 @@
     
     <string name="detail_menu_start_story">Start story</string>
     <string name="detail_story_description_image">This image is used as an description for the story.</string>
-    
-    <string name="story_where_to_go">See where to go next</string>
+
     <string name="login_title">Please log in</string>
     <string name="login_login">Log in</string>
     <string name="login_cancel">Not now</string>
@@ -70,7 +69,7 @@
     <string name="create_tag_title">Tag-O-Creator</string>
     <string name="create_tag_info">Type in description and gps for the tag.</string>
     <string name="create_tag_write">Write to tag</string>
-    
+
     <string name="story_finished">The End</string>
     <string name="story_new_story">Look for a new story</string>
     <string name="story_scan_tag">Scan tag</string>
@@ -91,6 +90,7 @@
     <string name="story_find_next">Click to decide where to go next</string>
     <string name="story_next_part">Go to next part</string>
     <string name="story_ready">I am ready</string>
+	<string name="story_where_to_go">See where to go next</string>
     
     <string name="menu_about_app">Om Tag Story</string>
 	<string name="menu_story_marked">Story marked</string>

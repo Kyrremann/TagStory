@@ -1,9 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
-    <string name="app_name">TS: Kines bursdag</string>
-    <string name="app_title">Tag Story: Kines bursdag</string>
+    <string name="app_name">Jentedagen</string>
+    <string name="app_title">Tag Story: Jentedagen</string>
+
     <string name="title_story_detail">Story detail</string>
     <string name="title_story_list">Historier</string>
+
     <string name="no_stories">Ingen historier tilgjengelig</string>
     <string name="add_more_stories">Klikk her for å se etter flere historier</string>
     <string name="powered_by">Powered by TagStory</string>
@@ -17,8 +19,10 @@
     <string name="email_hint">E-mail skrives her&#8230;</string>
     <string name="cancel">Avbryt</string>
     <string name="skip">Juks</string>
+
     <string name="description">Beskrivelse</string>
     <string name="description_hint">Hvor er taggen</string>
+
     <string name="gps">GPS</string>
     <string name="gps_hint">Mer spesifikt&#8230;</string>
     <string name="gps_about_title">Om GPS tags</string>
@@ -26,40 +30,53 @@
         automagisk si i fra. Slik at du ikke trenger å gjøre noe mer enn å gå.
         \n\nEr du litt sliten, eller finner du ikke fram? Da kan du bruke \"jukse\"-knappen for å komme videre.</string>
     <string name="gps_about_button">Denne historien bruker GPS tags</string>
-    <string name="story_camera_button">Bilde tatt og sendt</string>
-    <string name="story_camera_button_retry">Ta et nytt bilde</string>
-    <string name="front_menu_log_in">Pålogging</string>
+
+	<string name="qr">QR</string>
+	<string name="qr_hint">More presicely&#8230;</string>
+	<string name="qr_about_title">About QR tags</string>
+	<string name="qr_about_content">A QR-code is a matrix type of barcode.\n\nAre you a bit tired, or just don\'t find the tag? Then you can use the \"skip\"-button to advance to the next tag.</string>
+	<string name="qr_about_button">This story uses QR tags</string>
+
+	<string name="front_menu_log_in">Pålogging</string>
     <string name="front_menu_create_user">Opprett en bruker</string>
     <string name="front_menu_about">Om</string>
     <string name="front_menu_options">Valg</string>
     <string name="front_menu_update_stories">Oppdater historier</string>
     <string name="front_menu_create_tag">Lag tag</string>
-    <string name="detail_menu_start_story">Start historie</string>
+
+	<string name="detail_menu_start_story">Start historie</string>
     <string name="detail_story_description_image">Dette bilde er brukt som en beskrivelse av historien.</string>
-    <string name="login_title">Vær snill å logge inn</string>
+
+	<string name="login_title">Vær snill å logge inn</string>
     <string name="login_login">Logg inn</string>
     <string name="login_cancel">Ikke nå</string>
     <string name="login_error">Feil brukernavn eller passord</string>
     <string name="login_success">Du har logget på</string>
-    <string name="new_user_title">Vær en del av Tag Story</string>
+
+	<string name="new_user_title">Vær en del av Tag Story</string>
     <string name="new_user_create">Join us!</string>
     <string name="new_user_cancel">Aldri!</string>
     <string name="new_user_info">Vær snill å fyll ut hvert felt.</string>
-    <string name="dialog_about_title">Om</string>
+
+	<string name="dialog_about_title">Om</string>
     <string name="dialog_about_tagstory">Tag Story kombinerer et tekst basert eventyr spill for å å skape en interaktiv, utendørs opplevelse.\n\nLagd som del av at prosjekt i faget INF5261 ved Universitetet i Oslo.</string>
     <string name="dialog_about_klima">«Hev stemmen!» er en oppfordring til alle om å sette klima på agendaen i årets Stortingsvalg. Hev stemmen og la den bli hørt, av familie og venner, folkevalgte og velgere, på sosiale medier og i den offentlige debatt. Hev stemmen i gatene over hele landet 24. august – og la 9. september 2013 bli dagen da klimastemmene for alvor gjør sitt inntog i norsk politikk.</string>
     <string name="dialog_cancel">Avbryt</string>
     <string name="dialog_enable_gps">GPS funksjonen må være påslått for å kunne gjennomføre denne historien. Ønsker du å tillate dette?</string>
     <string name="dialog_yes">Ja</string>
     <string name="dialog_no">Nei</string>
-    <string name="create_tag_title">Tag-O-Creator</string>
+
+	<string name="create_tag_title">Tag-O-Creator</string>
     <string name="create_tag_info">Tast inn beskrivelse og GPS for taggen.</string>
     <string name="create_tag_write">Skriv til tagen</string>
-    <string name="story_finished">Slutten</string>
+
+	<string name="story_finished">Slutten</string>
     <string name="story_new_story">Se etter en ny historie</string>
     <string name="story_scan_tag">Scann tag</string>
     <string name="story_gps_button">Hjelp?</string>
-    <string name="story_pick_story">Velg en historie fra lista under</string>
+	<string name="story_camera_button">Bilde tatt og sendt</string>
+	<string name="story_camera_button_retry">Ta et nytt bilde</string>
+	<string name="story_pick_story">Velg en historie fra lista under</string>
     <string name="story_arrow_gps_is_off">Vær snill å skru GPSen din på</string>
     <string name="story_arrow_turn_on">Skru på</string>
     <string name="story_arrow_no">Nei takk</string>
@@ -74,16 +91,20 @@
     <string name="story_next_part">Gå til neste del</string>
     <string name="story_ready">Jeg er klar</string>
     <string name="story_where_to_go">Se hvor jeg skal gå videre</string>
-    <string name="menu_about_app">Om Tag Story</string>
+
+	<string name="menu_about_app">Om Tag Story</string>
 	<string name="menu_story_marked">Story marked</string>
     <string name="menu_klimanettverket">Om Klimanettverket</string>
-    <string name="map_target">Dette er målet ditt</string>
+
+	<string name="map_target">Dette er målet ditt</string>
     <string name="map_default_snippet">Her finner du den neste taggen</string>
     <string name="map_next_tag">Neste sted</string>
-    <string name="dummy_statistics">Statistikk\n
+
+	<string name="dummy_statistics">Statistikk\n
         Tid brukt: 21:41\n
         Gå lengde: 2km</string>
     <string name="cd_logo">Hev Stemmen logo</string>
+	<string name="cd_ts_logo">Tag Story logo</string>
     <string name="cd_story_image">Bilde som representerer en historie</string>
 
     <color name="light_tree_green">#739D88</color>
@@ -104,5 +125,6 @@
 	<string name="dummy_section_text">Section %1d is just a dummy section.</string>
 	<string name="demo_external_activity">Demo External Activity</string>
 	<string name="demo_collection">Demo Collection</string>
+	<string name="next_tag">Gå til neste</string>
 
 </resources>

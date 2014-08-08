@@ -156,6 +156,7 @@ public class JsonParser {
 		return map;
 	}
 
+	@SuppressWarnings("unchecked")
 	private static void parseGameMode(StoryTag storyTag, JSONObject jsonTag) throws JSONException {
 		if (storyTag.isQuizGameMode()) {
 			storyTag.setGameButton(jsonTag.getString(GAME_BUTTON));
@@ -208,6 +209,8 @@ public class JsonParser {
 				option.setImageSrc(jsonOption.getString(IMAGE_SRC));
 			} else if (jsonOption.has(PROPAGATING_TEXT)) {
 				option.setPropagatingText(jsonOption.getString(PROPAGATING_TEXT));
+			} else if (hintMethod.equals(HINT_SOUD)) {
+				option.setSoundSrc(jsonOption.getString(SOUND_SRC));
 			}
 
 			map.put(optionKey, option);

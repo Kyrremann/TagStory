@@ -117,7 +117,7 @@ public class StoryTagOption implements Serializable {
 	 * @param optSoundSrc
 	 *            the optSoundSrc to set
 	 */
-	public void setOptSoundSrc(String optSoundSrc) {
+	public void setSoundSrc(String optSoundSrc) {
 		this.optSoundSrc = optSoundSrc;
 	}
 

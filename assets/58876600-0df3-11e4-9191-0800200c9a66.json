@@ -16,7 +16,7 @@
         "tags": {
             "e2bd3c14-a86e-473d-bd4b-921f8060eed4": {
                 "title": "Brua",
-                "description": "Da var vi igang.",
+                "description": "Da var vi igang.\nDette er et rebusløp som inneholder en del forskjellige poster. Kom gjerne med tilbakemeldinger eller innspill på hvordan vi kan gjøre det bedre til neste år!.",
                 "choice_description": "",
                 "options_title": "Se hvor dere skal",
                 "game_mode": "none",
@@ -37,7 +37,7 @@
             },
             "e8bd3c14-a86e-473d-bd4b-921f8060eed4": {
                 "title": "Brua",
-                "description": "Når dere ser nedover t-banesporet ser dere Blindern t-banestatsjon. Hvilken stasjon ser dere oppover?",
+                "description": "Når dere ser nedover t-banesporet ser dere Blindern t-banestatsjon. Hvilken stasjon ser dere oppover t-bane sporet?",
                 "choice_description": "",
                 "options_title": "Se svaralternativer",
                 "game_mode": "none",
@@ -78,7 +78,7 @@
             },
             "6ebd9f39-08f2-4efc-926b-cdcfee4a45d3": {
                 "title": "Parkeringen",
-                "description": "Dersom du får det travelt og bare må kjøre en dag, så er dette parkeringa, parkeringsbevis fås på kortsenteret. Hvem var verdens største dekkprodusent i 2011? Skriv ned svaret, ta bilde av og instagram svaret med hashtag #Jentedagen2014.",
+                "description": "Dersom du får det travelt og bare må kjøre en dag, så er dette parkeringa, parkeringsbevis fås på kortsenteret. Her skal dere møte en hyggelig person med et par spørsmål om oppgaver til dere. Lykke til!",
                 "choice_description": "",
                 "game_mode": "none",
                 "game_button": "",
@@ -100,7 +100,7 @@
             },
             "3d3f1aed-60ef-4257-9e94-de05c3dadc97": {
                 "title": "Flykrasjet",
-                "description": "Lag gruppenummeret deres i binært og ta et bilde, hashtag det med #Jentedagen og legg det ut på instagram!",
+                "description": "En kreativ informatikker er en glad informatikker. Har skal dere briljere med deres kunnskap fra miniforedraget til Omin, samt vise en litt mer kunstnerisk side. Bruk noe dere finner, eller noe rundt dere til å lage gruppenummeret deres i binære tall, ta et bilde, hashtag det med #IfiJentedagen og legg det ut på instagram!",
                 "choice_description": "",
                 "game_mode": "none",
                 "game_button": "",
@@ -122,7 +122,7 @@
             },
             "669b1420-d1dc-4530-8da7-9aa82330fb83": {
                 "title": "Sophus Lie",
-                "description": "Mange bra damer har hengt her før dere, hvem var egentlig Sophus Lie?",
+                "description": "Mange bra damer har hengt på universitetet før dere, hvem var egentlig Cecilie Thoresen?",
                 "choice_description": "",
                 "options_title": "Se svaralternativer",
                 "game_mode": "none",
@@ -130,7 +130,7 @@
                 "tag_mode": "gps",
                 "options": {
                     "Matematiker": {
-                        "hint_title": "Matematiker",
+                        "hint_title": "Norges første student",
                         "hint_method": "hint_map",
                         "hint_text": "",
                         "image_source": "",
@@ -150,7 +150,7 @@
                         "next": "8e81aaa2-2e89-4d27-b8be-44fcb612ead6"
                     },
                     "Husmor": {
-                        "hint_title": "Husmor",
+                        "hint_title": "Den i Norge med mest utdanning",
                         "hint_method": "hint_map",
                         "hint_text": "",
                         "image_source": "",
@@ -163,7 +163,7 @@
             },
             "7560ab0e-1f10-4ff6-99c1-819ac73da59b": {
                 "title": "Forskningsparken",
-                "description": "Dette er stedet hvor enhver ifi student søker tilflukt når arbeidsdagen blir lang og oppgavene uløselige. Stedet kalles \"Børeken\", \"Børek king\", \"Shappa under t-banestasjonen\" osv. Forreningsstand/spm/opg",
+                "description": "Dette er stedet hvor enhver ifi student søker tilflukt når arbeidsdagen blir lang og oppgavene uløselige. Stedet kalles \"Børeken\", \"Børek king\", \"Shappa under t-banestasjonen\" osv. Se etter en lystig person som har noen fine oppgaver til dere.",
                 "choice_description": "",
                 "game_mode": "none",
                 "game_button": "",
@@ -172,7 +172,7 @@
                     "Neste sted": {
                         "hint_title": "",
                         "hint_method": "hint_text",
-                        "hint_text": "Rom 30**",
+                        "hint_text": "Nå hjelper det ikke lenger med koordinater og GPS. Dere må nå helt på egenhånd gå til Ifi, finne Eiffel, altså rom 3453, også kjent som jenterommet*",
                         "image_source": "",
                         "sound_source": "",
                         "lat": "59.922258",
@@ -182,8 +182,8 @@
                 }
             },
             "fdcca3c6-13f8-450b-b856-882763f55819": {
-                "title": "Eifel",
-                "description": "Velkommen til jenterommet! Her holder foreningen Verdande til.",
+                "title": "Eiffel",
+                "description": "Velkommen til jenterommet! Her holder foreningen Verdande til. Se dere rundt, hør etter og få oppgaver at personen her.",
                 "belongs_to_tag": "edcca3c6-13f8-450b-b856-882763f55819",
                 "choice_description": "",
                 "game_mode": "none",

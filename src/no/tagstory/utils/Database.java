@@ -20,7 +20,7 @@ public class Database {
 	public static final String STORY_ID = "_id";
 	public static final String STORY_AUTHOR = "AUTHOR";
 	public static final String STORY_TITLE = "TITLE";
-	public static final String STORY_PLACE = "PLACE";
+	public static final String STORY_LOCATION = "LOCATION";
 	public static final String STORY_IMAGE = "IMAGE";
 	
 	public static final String POINTS_TABLE_NAME = "POINTS";
@@ -31,7 +31,7 @@ public class Database {
 	
 	private static final String STORY_CREATE = "CREATE TABLE "
 			+ STORY_TABLE_NAME + " (" + STORY_ID + " TEXT, " + STORY_AUTHOR
-			+ " TEXT, " + STORY_TITLE + " TEXT, " + STORY_PLACE + " TEXT, " + STORY_IMAGE + " TEXT);";
+			+ " TEXT, " + STORY_TITLE + " TEXT, " + STORY_LOCATION + " TEXT, " + STORY_IMAGE + " TEXT);";
 	
 	private static final String POINTS_CREATE = "CREATE TABLE "
 			+ POINTS_TABLE_NAME + " (" + POINTS_USERNAME + " TEXT, " + POINTS_STORY
@@ -83,10 +83,11 @@ public class Database {
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
 					+ " VALUES ('5fee5ee0-e11f-11e3-8b68-0800200c9a66', 'Kine Gjerstad Eide', 'Kiness bursdagsløp', 'Oslo', 'kine_gevaer.jpg')");
-					*/
+
 			db.execSQL("INSERT INTO " +
 					STORY_TABLE_NAME +
 					" VALUES ('58876600-0df3-11e4-9191-0800200c9a66', 'Kine Gjerstad Eide', 'Jentedagen 2014', 'Oslo', '')");
+			*/
 		}
 	}
 
@@ -105,9 +106,18 @@ public class Database {
 	public void close() {
 		dbHelper.close();
 	}
+	
+	public boolean insertStory(String uuid, String author, String title, String location, String image) {
+		ContentValues values = new ContentValues(5);
+		values.put(STORY_ID, uuid);
+		values.put(STORY_AUTHOR, author);
+		values.put(STORY_TITLE, title);
+		values.put(STORY_LOCATION, location);
+		values.put(STORY_IMAGE, image);
+		return db.insert(STORY_TABLE_NAME, null, values) != -1;
+	}
 
 	/**
-	 * 
 	 * @return A Cursor containing a list of stories titles and the author.
 	 */
 	public Cursor getStoryList() {

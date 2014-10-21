@@ -78,16 +78,16 @@
             },
             "6ebd9f39-08f2-4efc-926b-cdcfee4a45d3": {
                 "title": "Parkeringen",
-                "description": "Dersom du får det travelt og bare må kjøre en dag, så er dette parkeringa, parkeringsbevis fås på kortsenteret. Her skal dere møte en hyggelig person med et par spørsmål om oppgaver til dere. Lykke til!",
+                "description": "Dersom du får det travelt og bare må kjøre en dag, så er dette parkeringen, parkeringsbevis fås på kortsenteret. Her skal dere møte en hyggelig person med et par spørsmål om oppgaver til dere. Lykke til!",
                 "choice_description": "",
                 "game_mode": "none",
                 "game_button": "",
                 "tag_mode": "gps",
-                "game_mode": "camera",
-                "game_button": "Ta bilde!",
+                "game_mode": "none",
+                "game_button": "",
                 "options": {
-                    "Ta bilde": {
-                        "hint_title": "Ta bilde",
+                    "Gå til neste": {
+                        "hint_title": "Neste sted",
                         "hint_method": "hint_map",
                         "hint_text": "",
                         "image_source": "",
@@ -108,7 +108,7 @@
                 "game_mode": "camera",
                 "game_button": "Ta bilde!",
                 "options": {
-                    "": {
+                    "Ta bilde!": {
                         "hint_title": "",
                         "hint_method": "hint_map",
                         "hint_text": "",
@@ -129,15 +129,15 @@
                 "game_button": "",
                 "tag_mode": "gps",
                 "options": {
-                    "Matematiker": {
-                        "hint_title": "Norges første student",
+                    "Norges første student": {
+                        "hint_title": "",
                         "hint_method": "hint_map",
                         "hint_text": "",
                         "image_source": "",
                         "sound_source": "",
-                        "lat": "59.94164187086866",
-                        "long": "10.724037138656627",
-                        "next": "8e81aaa2-2e89-4d27-b8be-44fcb612ead6"
+                        "lat": "59.940018",
+                        "long": "10.723107",
+                        "next": "3a3f1aed-60ef-4257-9e94-de05c3dadc97"
                     },
                     "Filosof": {
                         "hint_title": "Filosof",
@@ -145,12 +145,34 @@
                         "hint_text": "",
                         "image_source": "",
                         "sound_source": "",
-                        "lat": "59.941652618624836",
-                        "long": "10.72396203680421",
-                        "next": "8e81aaa2-2e89-4d27-b8be-44fcb612ead6"
+                        "lat": "59.940018",
+                        "long": "10.723107",
+                        "next": "3a3f1aed-60ef-4257-9e94-de05c3dadc97"
                     },
-                    "Husmor": {
+                    "Den i Norge med mest utdanning": {
                         "hint_title": "Den i Norge med mest utdanning",
+                        "hint_method": "hint_map",
+                        "hint_text": "",
+                        "image_source": "",
+                        "sound_source": "",
+                        "lat": "59.940018",
+                        "long": "10.723107",
+                        "next": "3a3f1aed-60ef-4257-9e94-de05c3dadc97"
+                    }
+                }
+            },
+            "3a3f1aed-60ef-4257-9e94-de05c3dadc97": {
+                "title": "Realfagsbiblioteket",
+                "description": "Velkommen til Vilhelm Bjerknes (VB), her inne finner dere realfagsbiblioteket. Gå inn, let dere frem til biblioteket og finn en person i resepsjonen som venter på dere.",
+                "choice_description": "",
+                "game_mode": "none",
+                "game_button": "",
+                "tag_mode": "gps",
+                "game_mode": "noen",
+                "game_button": "",
+                "options": {
+                    "Gå til neste": {
+                        "hint_title": "Neste sted",
                         "hint_method": "hint_map",
                         "hint_text": "",
                         "image_source": "",
@@ -172,7 +194,7 @@
                     "Neste sted": {
                         "hint_title": "",
                         "hint_method": "hint_text",
-                        "hint_text": "Nå hjelper det ikke lenger med koordinater og GPS. Dere må nå helt på egenhånd gå til Ifi, finne Eiffel, altså rom 3453, også kjent som jenterommet*",
+                        "hint_text": "Nå hjelper det ikke lenger med koordinater og GPS. Dere må nå helt på egenhånd gå til Ifi, finne Eiffel, altså rom 3453, også kjent som jenterommet",
                         "image_source": "",
                         "sound_source": "",
                         "lat": "59.922258",
@@ -183,113 +205,8 @@
             },
             "fdcca3c6-13f8-450b-b856-882763f55819": {
                 "title": "Eiffel",
-                "description": "Velkommen til jenterommet! Her holder foreningen Verdande til. Se dere rundt, hør etter og få oppgaver at personen her.",
+                "description": "Velkommen til jenterommet! Her holder foreningen Verdande til. Se dere rundt, hør etter og få oppgaver av personen her. Dere har også kommet dere igjennom rebusløpet! Gratulerer!",
                 "belongs_to_tag": "edcca3c6-13f8-450b-b856-882763f55819",
-                "choice_description": "",
-                "game_mode": "none",
-                "game_button": "",
-                "tag_mode": "qr",
-                "options": {
-                    "Neste sted": {
-                        "hint_title": "",
-                        "hint_method": "hint_text",
-                        "hint_text": "Ada Lovelace",
-                        "image_source": "",
-                        "sound_source": "",
-                        "lat": "59.922258",
-                        "long": "10.754904",
-                        "next": "a513f8cc-9801-46b6-8ded-37bacbe9d8af"
-                    }
-                }
-            },
-            "7d22da62-9a1b-43da-a31c-01d732be6338": {
-                "title": "Simula",
-                "description": "Omid har krasjkurs.",
-                "choice_description": "",
-                "game_mode": "none",
-                "game_button": "",
-                "tag_mode": "qr",
-                "belongs_to_tag": "6d22da62-9a1b-43da-a31c-01d732be6338",
-                "options": {
-                    "Neste sted": {
-                        "hint_title": "",
-                        "hint_method": "hint_text",
-                        "hint_text": "Småsprat",
-                        "image_source": "",
-                        "sound_source": "",
-                        "lat": "59.922258",
-                        "long": "10.754904",
-                        "next": "4420ac5e-0692-4abb-9565-5338bd0c0b8d"
-                    }
-                }
-            },
-            "e3aee434-bd8b-4476-aaf8-8f43c7c3b8e2": {
-                "title": "Trappa",
-                "description": "Velkommen til fotoshoot! Her skal dere lage et rått gruppebilder. Kreativitet og morsomhet blir belønnet! Utstyr: fotoapparat, lys kanskje, fotograf, osv.",
-                "choice_description": "",
-                "game_mode": "none",
-                "belongs_to_tag": "d3aee434-bd8b-4476-aaf8-8f43c7c3b8e2",
-                "game_button": "",
-                "tag_mode": "qr",
-                "options": {
-                    "Neste sted": {
-                        "hint_title": "",
-                        "hint_method": "hint_text",
-                        "hint_text": "Et sted å slappe av, et sted å feste",
-                        "image_source": "",
-                        "sound_source": "",
-                        "lat": "59.922258",
-                        "long": "10.754904",
-                        "next": "9ec52736-45fc-4300-8a28-00e8494f4b31"
-                    }
-                }
-            },
-            "4420ac5e-0692-4abb-9565-5338bd0c0b8d": {
-                "title": "Smalltalk",
-                "description": "Forrening har stand/spm./opg.",
-                "choice_description": "",
-                "belongs_to_tag": "3420ac5e-0692-4abb-9565-5338bd0c0b8d",
-                "game_mode": "none",
-                "game_button": "",
-                "tag_mode": "qr",
-                "options": {
-                    "Neste sted": {
-                        "hint_title": "",
-                        "hint_method": "hint_text",
-                        "hint_text": "Må ikke gå over bekken for å hente vann",
-                        "image_source": "",
-                        "sound_source": "",
-                        "lat": "59.922258",
-                        "long": "10.754904",
-                        "next": "e3aee434-bd8b-4476-aaf8-8f43c7c3b8e2"
-                    }
-                }
-            },
-            "a513f8cc-9801-46b6-8ded-37bacbe9d8af": {
-                "title": "Åpen Sone",
-                "description": "Rommet med alt dere trenger for å mekke, bygge og lage noe fantastisk. Sonen har egen oppgave her.",
-                "choice_description": "",
-                "belongs_to_tag": "a513f8cc-9801-46b6-8ded-37bacbe9d8af",
-                "game_mode": "none",
-                "game_button": "",
-                "tag_mode": "qr",
-                "options": {
-                    "Neste sted": {
-                        "hint_title": "",
-                        "hint_method": "hint_text",
-                        "hint_text": "Første OO-programmeringspråk",
-                        "image_source": "",
-                        "sound_source": "",
-                        "lat": "59.922258",
-                        "long": "10.754904",
-                        "next": "7d22da62-9a1b-43da-a31c-01d732be6338"
-                    }
-                }
-            },
-            "9ec52736-45fc-4300-8a28-00e8494f4b31": {
-                "title": "Escape",
-                "description": "Gratulerer! Dere har kommet deg igjennom rebusløpet!",
-                "belongs_to_tag": "8ec52736-45fc-4300-8a28-00e8494f4b31",
                 "choice_description": "",
                 "game_mode": "none",
                 "game_button": "",

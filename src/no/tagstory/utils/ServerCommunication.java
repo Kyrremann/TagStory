@@ -207,4 +207,41 @@ public class ServerCommunication {
 			}
 		}).start();
 	}
+
+
+	@SuppressLint("NewApi")
+	public static void sendTempStatistic(final String time, final String distance) {
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					HttpClient httpclient = new DefaultHttpClient();
+					HttpResponse response;
+
+					response = httpclient.execute(new HttpGet(
+							"http://www.tagstory.no/stats/?time=" + time
+									+ "&distance=" + distance));
+
+					StatusLine statusLine = response.getStatusLine();
+					if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
+						ByteArrayOutputStream out = new ByteArrayOutputStream();
+						response.getEntity().writeTo(out);
+						// Log.d("STATS", out.toString());
+						out.close();
+					} else {
+						// Closes the connection.
+						response.getEntity().getContent().close();
+						throw new IOException(statusLine.getReasonPhrase());
+					}
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}).start();
+	}
 }

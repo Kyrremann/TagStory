@@ -1,20 +1,19 @@
 package no.tagstory.utils;
 
-import java.util.ArrayList;
-
+import android.util.Log;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
+import java.util.ArrayList;
 
 public class CommunicationManager {
 
 	private ServerCommunication serverCommunication;
 	private ArrayList<NameValuePair> params, headers;
-	
+
 	private static final int POST = ServerCommunication.POST;
 	private static final int GET = ServerCommunication.GET;
 
@@ -81,7 +80,6 @@ public class CommunicationManager {
 	}
 
 	/**
-	 * 
 	 * @param desc
 	 * @param gps
 	 * @return the newly created tag <bold>id</bold>

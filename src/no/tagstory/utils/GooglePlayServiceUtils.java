@@ -1,9 +1,6 @@
 package no.tagstory.utils;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;

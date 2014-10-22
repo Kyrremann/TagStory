@@ -1,12 +1,10 @@
 package no.tagstory;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-
 import android.app.Application;
 import android.location.Location;
-import android.nfc.Tag;
-import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class StoryApplication extends Application {
 
@@ -14,7 +12,7 @@ public class StoryApplication extends Application {
 	private Location startLocation;
 	private ArrayList<Location> currentLocationHistoryList;
 	private long startTime;
-	
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -45,7 +43,7 @@ public class StoryApplication extends Application {
 	public float distanceFromStartTo(Location dest) {
 		return startLocation.distanceTo(dest);
 	}
-	
+
 	public boolean addLocation(Location location) {
 		return currentLocationHistoryList.add(location);
 	}
@@ -61,7 +59,7 @@ public class StoryApplication extends Application {
 		}
 		return distance;
 	}
-	
+
 	public void emptyHistory() {
 		currentLocationHistoryList.clear();
 		tagHistory.clear();

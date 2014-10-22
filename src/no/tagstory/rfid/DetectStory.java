@@ -1,6 +1,5 @@
 package no.tagstory.rfid;
 
-import no.tagstory.jentedagen.R;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -13,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.widget.TextView;
+import no.tagstory.jentedagen.R;
 
 @TargetApi(Build.VERSION_CODES.GINGERBREAD_MR1)
 public class DetectStory extends Activity {
@@ -49,7 +49,7 @@ public class DetectStory extends Activity {
 	public void enableForegroundMode() {
 		IntentFilter tagDetected = new IntentFilter(
 				NfcAdapter.ACTION_TAG_DISCOVERED); // filter for all
-		IntentFilter[] writeTagFilters = new IntentFilter[] { tagDetected };
+		IntentFilter[] writeTagFilters = new IntentFilter[]{tagDetected};
 		nfcAdapter.enableForegroundDispatch(this, nfcPendingIntent,
 				writeTagFilters, null);
 	}

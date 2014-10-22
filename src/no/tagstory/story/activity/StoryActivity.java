@@ -12,11 +12,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import no.tagstory.StoryApplication;
-import no.tagstory.jentedagen.R;
 import no.tagstory.honeycomb.StoryActivityHoneycomb;
+import no.tagstory.jentedagen.R;
 import no.tagstory.story.Story;
-import no.tagstory.story.StoryTagOption;
 import no.tagstory.story.StoryTag;
+import no.tagstory.story.StoryTagOption;
 import no.tagstory.utils.ClassVersionFactory;
 
 import static no.tagstory.story.activity.utils.TravelIntentFactory.*;

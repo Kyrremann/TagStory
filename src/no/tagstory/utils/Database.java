@@ -22,17 +22,17 @@ public class Database {
 	public static final String STORY_TITLE = "TITLE";
 	public static final String STORY_LOCATION = "LOCATION";
 	public static final String STORY_IMAGE = "IMAGE";
-	
+
 	public static final String POINTS_TABLE_NAME = "POINTS";
 	public static final String POINTS_USERNAME = "_id";
 	public static final String POINTS_STORY = "PASSWORD";
 	public static final String POINTS_DATE = "DATE";
 	public static final String POINTS_SCORE = "SCORE";
-	
+
 	private static final String STORY_CREATE = "CREATE TABLE "
 			+ STORY_TABLE_NAME + " (" + STORY_ID + " TEXT, " + STORY_AUTHOR
 			+ " TEXT, " + STORY_TITLE + " TEXT, " + STORY_LOCATION + " TEXT, " + STORY_IMAGE + " TEXT);";
-	
+
 	private static final String POINTS_CREATE = "CREATE TABLE "
 			+ POINTS_TABLE_NAME + " (" + POINTS_USERNAME + " TEXT, " + POINTS_STORY
 			+ " TEXT, " + POINTS_DATE + " TEXT, " + POINTS_SCORE + " TEXT);";
@@ -106,7 +106,7 @@ public class Database {
 	public void close() {
 		dbHelper.close();
 	}
-	
+
 	public boolean insertStory(String uuid, String author, String title, String location, String image) {
 		ContentValues values = new ContentValues(5);
 		values.put(STORY_ID, uuid);

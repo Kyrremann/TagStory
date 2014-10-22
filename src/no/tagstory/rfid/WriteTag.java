@@ -1,20 +1,16 @@
 package no.tagstory.rfid;
 
-import java.io.IOException;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.nfc.FormatException;
-import android.nfc.NdefMessage;
-import android.nfc.NdefRecord;
-import android.nfc.NfcAdapter;
-import android.nfc.Tag;
+import android.nfc.*;
 import android.nfc.tech.Ndef;
 import android.os.Build;
+
+import java.io.IOException;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class WriteTag {
@@ -78,7 +74,7 @@ public class WriteTag {
 	public void enableForegroundMode() {
 		IntentFilter tagDetected = new IntentFilter(
 				NfcAdapter.ACTION_TAG_DISCOVERED); // filter for all
-		IntentFilter[] writeTagFilters = new IntentFilter[] { tagDetected };
+		IntentFilter[] writeTagFilters = new IntentFilter[]{tagDetected};
 		nfcAdapter.enableForegroundDispatch((Activity) context,
 				nfcPendingIntent, writeTagFilters, null);
 	}

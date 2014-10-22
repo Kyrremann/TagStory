@@ -1,13 +1,12 @@
 package no.tagstory.story;
 
-import java.io.IOException;
-
-import org.json.JSONException;
-
-import no.tagstory.utils.Database;
-import no.tagstory.utils.JsonParser;
 import android.content.Context;
 import android.database.Cursor;
+import no.tagstory.utils.Database;
+import no.tagstory.utils.JsonParser;
+import org.json.JSONException;
+
+import java.io.IOException;
 
 public class StoryManager {
 
@@ -25,7 +24,6 @@ public class StoryManager {
 	}
 
 	/**
-	 * 
 	 * @return
 	 */
 	public Cursor getCursorOverStories() {

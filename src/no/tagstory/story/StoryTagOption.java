@@ -49,6 +49,7 @@ public class StoryTagOption implements Serializable {
 	/**
 	 * Placeholder method to the title of the tag.
 	 * The title is the same as the UUID, but title sounds more sane.
+	 *
 	 * @return The value of the UUID
 	 */
 	public String getTitle() {
@@ -106,56 +107,49 @@ public class StoryTagOption implements Serializable {
 	}
 
 	/**
-	 * @param optArrowLength
-	 *            the optArrowLength to set
+	 * @param optArrowLength the optArrowLength to set
 	 */
 	public void setArrowLength(boolean optArrowLength) {
 		this.optArrowLength = optArrowLength;
 	}
 
 	/**
-	 * @param optSoundSrc
-	 *            the optSoundSrc to set
+	 * @param optSoundSrc the optSoundSrc to set
 	 */
 	public void setSoundSrc(String optSoundSrc) {
 		this.optSoundSrc = optSoundSrc;
 	}
 
 	/**
-	 * @param optImageSrc
-	 *            the optImageSrc to set
+	 * @param optImageSrc the optImageSrc to set
 	 */
 	public void setImageSrc(String optImageSrc) {
 		this.optImageSrc = optImageSrc;
 	}
 
 	/**
-	 * @param optNext
-	 *            the optNext to set
+	 * @param optNext the optNext to set
 	 */
 	public void setOptNext(String optNext) {
 		this.optNext = optNext;
 	}
 
 	/**
-	 * @param optHintText
-	 *            the optHintText to set
+	 * @param optHintText the optHintText to set
 	 */
 	public void setHintText(String optHintText) {
 		this.optHintText = optHintText;
 	}
 
 	/**
-	 * @param uUID
-	 *            the uUID to set
+	 * @param uUID the uUID to set
 	 */
 	public void setUUID(String uUID) {
 		UUID = uUID;
 	}
 
 	/**
-	 * @param optSelectMethod
-	 *            the optSelectMethod to set
+	 * @param optSelectMethod the optSelectMethod to set
 	 */
 	public void setOptSelectMethod(String optSelectMethod) {
 		this.optSelectMethod = optSelectMethod;

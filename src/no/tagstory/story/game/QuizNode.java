@@ -29,8 +29,7 @@ public class QuizNode implements Serializable {
 	}
 
 	/**
-	 * @param correction
-	 *            the correction to set
+	 * @param correction the correction to set
 	 */
 	public void setCorrection(String correction) {
 		this.correction = correction;

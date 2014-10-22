@@ -1,12 +1,11 @@
 package no.tagstory.honeycomb;
 
-import no.tagstory.StoryDetailActivity;
-import no.tagstory.story.activity.StoryActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+import no.tagstory.StoryDetailActivity;
 
 @SuppressLint("NewApi")
 public class StoryDetailActivityHoneycomb extends StoryDetailActivity {

@@ -1,11 +1,5 @@
 package no.tagstory.story.activity.option.nfc;
 
-import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
-
-import no.tagstory.story.Story;
-import no.tagstory.story.StoryTagOption;
-import no.tagstory.story.activity.StoryActivity;
 import android.annotation.TargetApi;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
@@ -19,7 +13,13 @@ import android.os.Build;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.Toast;
+import no.tagstory.story.Story;
+import no.tagstory.story.StoryTagOption;
+import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.story.activity.option.gps.GPSActivity;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 
 @TargetApi(Build.VERSION_CODES.GINGERBREAD_MR1)
 public abstract class NFCActivity extends GPSActivity {
@@ -32,7 +32,7 @@ public abstract class NFCActivity extends GPSActivity {
 	protected PendingIntent nfcPendingIntent;
 	protected boolean nfcScanning;
 	protected ProgressDialog progressDialog;
-	
+
 	public void scanTag(View v) {
 		startScanning();
 	}
@@ -135,7 +135,7 @@ public abstract class NFCActivity extends GPSActivity {
 	public void enableForegroundMode() {
 		IntentFilter tagDetected = new IntentFilter(
 				NfcAdapter.ACTION_TAG_DISCOVERED); // filter for all
-		IntentFilter[] writeTagFilters = new IntentFilter[] { tagDetected };
+		IntentFilter[] writeTagFilters = new IntentFilter[]{tagDetected};
 		nfcAdapter.enableForegroundDispatch(this, nfcPendingIntent,
 				writeTagFilters, null);
 	}

@@ -1,18 +1,7 @@
 package no.tagstory.utils;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.NameValuePair;
-import org.apache.http.StatusLine;
+import android.annotation.SuppressLint;
+import org.apache.http.*;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -22,7 +11,9 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 
-import android.annotation.SuppressLint;
+import java.io.*;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 
 public class ServerCommunication {
 
@@ -67,55 +58,55 @@ public class ServerCommunication {
 	}
 
 	public void execute(int method, String url,
-			ArrayList<NameValuePair> params, ArrayList<NameValuePair> headers)
+	                    ArrayList<NameValuePair> params, ArrayList<NameValuePair> headers)
 			throws Exception {
 
 		switch (method) {
-		case GET: {
-			// add parameters
-			String combinedParams = "";
-			if (params != null && !params.isEmpty()) {
-				combinedParams += "?";
-				for (NameValuePair p : params) {
-					String paramString = p.getName() + "="
-							+ URLEncoder.encode(p.getValue(), "UTF-8");
-					if (combinedParams.length() > 1) {
-						combinedParams += "&" + paramString;
-					} else {
-						combinedParams += paramString;
+			case GET: {
+				// add parameters
+				String combinedParams = "";
+				if (params != null && !params.isEmpty()) {
+					combinedParams += "?";
+					for (NameValuePair p : params) {
+						String paramString = p.getName() + "="
+								+ URLEncoder.encode(p.getValue(), "UTF-8");
+						if (combinedParams.length() > 1) {
+							combinedParams += "&" + paramString;
+						} else {
+							combinedParams += paramString;
+						}
 					}
 				}
-			}
 
-			HttpGet request = new HttpGet(url + combinedParams);
+				HttpGet request = new HttpGet(url + combinedParams);
 
-			// add headers
-			if (headers != null) {
-				for (NameValuePair h : headers) {
-					request.addHeader(h.getName(), h.getValue());
+				// add headers
+				if (headers != null) {
+					for (NameValuePair h : headers) {
+						request.addHeader(h.getName(), h.getValue());
+					}
 				}
+
+				executeRequest(request, url);
+				break;
 			}
+			case POST: {
+				HttpPost request = new HttpPost(url);
 
-			executeRequest(request, url);
-			break;
-		}
-		case POST: {
-			HttpPost request = new HttpPost(url);
-
-			// add headers
-			if (headers != null) {
-				for (NameValuePair h : headers) {
-					request.addHeader(h.getName(), h.getValue());
+				// add headers
+				if (headers != null) {
+					for (NameValuePair h : headers) {
+						request.addHeader(h.getName(), h.getValue());
+					}
 				}
-			}
 
-			if (params != null && !params.isEmpty()) {
-				request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
-			}
+				if (params != null && !params.isEmpty()) {
+					request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+				}
 
-			executeRequest(request, url);
-			break;
-		}
+				executeRequest(request, url);
+				break;
+			}
 		}
 	}
 
@@ -173,7 +164,7 @@ public class ServerCommunication {
 
 	@SuppressLint("NewApi")
 	public static void sendTempStatistic(final String time,
-			final String distance) {
+	                                     final String distance) {
 		new Thread(new Runnable() {
 
 			@Override

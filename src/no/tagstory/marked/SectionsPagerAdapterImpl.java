@@ -14,7 +14,7 @@ import no.tagstory.marked.sections.NewStorySectionFragment;
 
 public class SectionsPagerAdapterImpl extends FragmentPagerAdapter {
 
-	private static final String[] tab_titles = new String[] { "New", "Popular", "Hand-picked" };
+	private static final String[] tab_titles = new String[]{"New", "Popular", "Hand-picked"};
 
 	public SectionsPagerAdapterImpl(FragmentManager fragmentManager) {
 		super(fragmentManager);

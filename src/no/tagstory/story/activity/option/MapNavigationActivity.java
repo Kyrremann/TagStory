@@ -1,7 +1,5 @@
 package no.tagstory.story.activity.option;
 
-import no.tagstory.jentedagen.R;
-import no.tagstory.story.activity.StoryTravelActivity;
 import android.os.Bundle;
 import android.view.View;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -9,6 +7,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import no.tagstory.jentedagen.R;
+import no.tagstory.story.activity.StoryTravelActivity;
 
 public class MapNavigationActivity extends StoryTravelActivity {
 
@@ -24,7 +24,7 @@ public class MapNavigationActivity extends StoryTravelActivity {
 			hintText.setText(option.getOptHintText());
 			hintText.setVisibility(View.VISIBLE);
 		}
-		
+
 		mapView = (SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.story_map_view);
 		GoogleMap googleMap = mapView.getMap();
@@ -38,7 +38,7 @@ public class MapNavigationActivity extends StoryTravelActivity {
 	}
 
 	private void addMarker(GoogleMap map, double lat, double lon, int title,
-			int snippetId) {
+	                       int snippetId) {
 		String snippet = "";
 		if (snippetId == -1) {
 			snippet = getString(R.string.map_default_snippet);

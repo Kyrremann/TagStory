@@ -1,11 +1,5 @@
 package no.tagstory.story.activity.option.nfc;
 
-import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
-
-import no.tagstory.story.Story;
-import no.tagstory.story.StoryTagOption;
-import no.tagstory.story.activity.StoryActivity;
 import android.annotation.TargetApi;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
@@ -21,6 +15,12 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+import no.tagstory.story.Story;
+import no.tagstory.story.StoryTagOption;
+import no.tagstory.story.activity.StoryActivity;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 public abstract class NFCMapActivity extends FragmentActivity {
@@ -33,7 +33,7 @@ public abstract class NFCMapActivity extends FragmentActivity {
 	protected PendingIntent nfcPendingIntent;
 	protected boolean nfcScanning;
 	protected ProgressDialog progressDialog;
-	
+
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD_MR1)
 	public void scanTag(View v) {
 		startScanning();
@@ -52,7 +52,7 @@ public abstract class NFCMapActivity extends FragmentActivity {
 		progressDialog = new ProgressDialog(this);
 		progressDialog.setMessage("Searching for tag");
 		progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-			
+
 			@Override
 			public void onCancel(DialogInterface dialog) {
 				cancelDialog(dialog);
@@ -82,36 +82,36 @@ public abstract class NFCMapActivity extends FragmentActivity {
 					}
 				});
 		progressDialog.setButton(DialogInterface.BUTTON_POSITIVE, "QR-Code", new DialogInterface.OnClickListener() {
-			
+
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-			Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+				Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 
-		    intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
-		    startActivityForResult(intent, 0);
+				intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+				startActivityForResult(intent, 0);
 			}
 		});
 		progressDialog.show();
 	}
-	
+
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-	    if (requestCode == 0) {
-	        if (resultCode == RESULT_OK) {
-	            //  The Intents Fairy has delivered us some data!
-	            String contents = intent.getStringExtra("SCAN_RESULT");
-	            String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
-	            // Handle successful scan
-	            Log.d("QR", "Contents: " + contents);
-	            Log.d("QR", "Format: " + format);
-	            checkTagData(contents);
-	        } else if (resultCode == RESULT_CANCELED) {
-	            // Handle cancel
-	        }
-	    }
+		if (requestCode == 0) {
+			if (resultCode == RESULT_OK) {
+				//  The Intents Fairy has delivered us some data!
+				String contents = intent.getStringExtra("SCAN_RESULT");
+				String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+				// Handle successful scan
+				Log.d("QR", "Contents: " + contents);
+				Log.d("QR", "Format: " + format);
+				checkTagData(contents);
+			} else if (resultCode == RESULT_CANCELED) {
+				// Handle cancel
+			}
+		}
 	}
-	
+
 	private void cancelDialog(DialogInterface dialog) {
 		dialog.dismiss();
 		progressDialog.dismiss();
@@ -161,7 +161,7 @@ public abstract class NFCMapActivity extends FragmentActivity {
 
 		checkTagData(data.split("\n")[0]);
 	}
-	
+
 	private void checkTagData(String tag) {
 		// TODO: Implement randomized tags
 		if (tag.equals(story.getTag(option.getOptNext())
@@ -182,7 +182,7 @@ public abstract class NFCMapActivity extends FragmentActivity {
 	public void enableForegroundMode() {
 		IntentFilter tagDetected = new IntentFilter(
 				NfcAdapter.ACTION_TAG_DISCOVERED); // filter for all
-		IntentFilter[] writeTagFilters = new IntentFilter[] { tagDetected };
+		IntentFilter[] writeTagFilters = new IntentFilter[]{tagDetected};
 		nfcAdapter.enableForegroundDispatch(this, nfcPendingIntent,
 				writeTagFilters, null);
 	}

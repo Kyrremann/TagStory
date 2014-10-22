@@ -9,8 +9,9 @@ public class DialogFactory {
 
 	/**
 	 * Helper method to create simple dialog with title, message and OK-button
+	 *
 	 * @param context The application environment
-	 * @param title Title of the dialog
+	 * @param title   Title of the dialog
 	 * @param message The main message of the dialog
 	 * @return a Dialog-object
 	 */

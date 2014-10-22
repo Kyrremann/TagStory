@@ -1,8 +1,5 @@
 package no.tagstory.story.activity.option.gps;
 
-import java.io.IOException;
-
-import no.tagstory.jentedagen.R;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Bundle;
@@ -12,8 +9,11 @@ import android.view.MotionEvent;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
+import no.tagstory.jentedagen.R;
 
-public class GPSAudioPlayerActivity extends GPSActivity implements	OnPreparedListener, MediaController.MediaPlayerControl {
+import java.io.IOException;
+
+public class GPSAudioPlayerActivity extends GPSActivity implements OnPreparedListener, MediaController.MediaPlayerControl {
 
 	private static final String TAG = "AudioPlayer";
 	private static String AUDIO_FILE_NAME;

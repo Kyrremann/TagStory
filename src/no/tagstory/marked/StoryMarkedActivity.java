@@ -12,7 +12,7 @@ import no.tagstory.marked.listeners.StoryMarkedTabListener;
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class StoryMarkedActivity extends FragmentActivity {
 
-	private static final String[] tab_titles = new String[] { "New", "Popular", "Hand-picked" };
+	private static final String[] tab_titles = new String[]{"New", "Popular", "Hand-picked"};
 
 	private SectionsPagerAdapterImpl mSectionsPagerAdapter;
 	private ViewPager mViewPager;

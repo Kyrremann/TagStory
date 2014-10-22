@@ -1,13 +1,16 @@
 package no.tagstory.story;
 
 import java.io.Serializable;
-// import java.util.Date;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+// import java.util.Date;
+
+// import java.util.Date;
+
 public class Story implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	private String title;
 	private String UUID;
@@ -34,48 +37,56 @@ public class Story implements Serializable {
 	public String getTitle() {
 		return title;
 	}
+
 	/**
 	 * @return the hash
 	 */
 	public String getUUID() {
 		return UUID;
 	}
+
 	/**
 	 * @return the desc
 	 */
 	public String getDesc() {
 		return desc;
 	}
+
 	/**
 	 * @return the author
 	 */
 	public String getAuthor() {
 		return author;
 	}
+
 	/**
 	 * @return the date
 	 */
 	public String getDate() {
 		return date;
 	}
+
 	/**
 	 * @return the keywords
 	 */
 	public List<String> getKeywords() {
 		return keywords;
 	}
+
 	/**
 	 * @return the ageGroup
 	 */
 	public String getAgeGroup() {
 		return ageGroup;
 	}
+
 	/**
 	 * @return the genre
 	 */
 	public String getGenre() {
 		return genre;
 	}
+
 	/**
 	 * @return the area
 	 */
@@ -93,14 +104,14 @@ public class Story implements Serializable {
 	/**
 	 * @return the parts
 	 */
-	public HashMap<String,StoryTag> getStoryParts() {
+	public HashMap<String, StoryTag> getStoryParts() {
 		return storyParts;
 	}
-	
+
 	public StoryTag getTag(String key) {
 		return storyParts.get(key);
 	}
-	
+
 	/**
 	 * @return the image
 	 */
@@ -216,49 +227,57 @@ public class Story implements Serializable {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
+
 	/**
 	 * @param ageGroup the ageGroup to set
 	 */
 	public void setAgeGroup(String ageGroup) {
 		this.ageGroup = ageGroup;
 	}
+
 	/**
 	 * @param keywords the keywords to set
 	 */
 	public void setKeywords(List<String> keywords) {
 		this.keywords = keywords;
 	}
+
 	/**
 	 * @param keywords the keywords to set
 	 */
 	public void setKeywords(String[] keywords) {
 		this.keywords = Arrays.asList(keywords);
 	}
+
 	/**
 	 * @param date the date to set
 	 */
 	public void setDate(String date) {
 		// TODO: Convert to date format
-		 this.date = date;
+		this.date = date;
 	}
+
 	/**
 	 * @param author the author to set
 	 */
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+
 	/**
 	 * @param desc the desc to set
 	 */
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
+
 	/**
 	 * @param UUID the hash to set
 	 */
 	public void setUUID(String UUID) {
 		this.UUID = UUID;
 	}
+
 	/**
 	 * @param title the title to set
 	 */

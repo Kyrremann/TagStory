@@ -2,8 +2,8 @@ package no.tagstory.utils;
 
 import android.content.Context;
 import no.tagstory.story.Story;
-import no.tagstory.story.StoryTagOption;
 import no.tagstory.story.StoryTag;
+import no.tagstory.story.StoryTagOption;
 import org.json.JSONException;
 import org.json.JSONObject;
 

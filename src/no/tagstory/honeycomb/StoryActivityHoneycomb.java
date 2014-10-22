@@ -7,13 +7,13 @@ import no.tagstory.story.activity.StoryActivity;
 
 @SuppressLint("NewApi")
 public class StoryActivityHoneycomb extends StoryActivity {
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == android.R.id.home) {

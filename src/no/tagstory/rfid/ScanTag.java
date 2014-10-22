@@ -22,11 +22,11 @@ public class ScanTag {
 	public ScanTag(Context context) {
 		this.context = context;
 		nfcAdapter = NfcAdapter.getDefaultAdapter(context);
-		
+
 		nfcPendingIntent = PendingIntent.getActivity(context, 0, new Intent(
 				context, this.getClass())
 				.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
- 
+
 		enableForegroundMode();
 		// onNewIntent(((Activity) context).getIntent());
 	}
@@ -43,7 +43,7 @@ public class ScanTag {
 	public void enableForegroundMode() {
 		IntentFilter tagDetected = new IntentFilter(
 				NfcAdapter.ACTION_TAG_DISCOVERED); // filter for all
-		IntentFilter[] writeTagFilters = new IntentFilter[] { tagDetected };
+		IntentFilter[] writeTagFilters = new IntentFilter[]{tagDetected};
 		nfcAdapter.enableForegroundDispatch((Activity) context,
 				nfcPendingIntent, writeTagFilters, null);
 	}

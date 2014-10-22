@@ -14,7 +14,8 @@ import no.tagstory.story.StoryTag;
 import no.tagstory.story.StoryTagOption;
 import no.tagstory.story.activity.StoryActivity;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -61,7 +62,7 @@ public class CameraActivity extends Activity {
 		//		".jpg",         /* suffix */
 		//		storageDir      /* directory */
 		//);
-		File image =  new File(
+		File image = new File(
 				Environment.getExternalStoragePublicDirectory(
 						Environment.DIRECTORY_DOWNLOADS),
 				imageFileName + ".jpg");

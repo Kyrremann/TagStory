@@ -1,9 +1,5 @@
 package no.tagstory.story.activity.option;
 
-import java.io.IOException;
-
-import no.tagstory.jentedagen.R;
-import no.tagstory.story.activity.StoryTravelActivity;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Bundle;
@@ -13,6 +9,10 @@ import android.view.MotionEvent;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
+import no.tagstory.jentedagen.R;
+import no.tagstory.story.activity.StoryTravelActivity;
+
+import java.io.IOException;
 
 public class AudioPlayerActivity extends StoryTravelActivity implements
 		OnPreparedListener, MediaController.MediaPlayerControl {

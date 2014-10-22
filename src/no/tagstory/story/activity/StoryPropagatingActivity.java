@@ -1,13 +1,13 @@
 package no.tagstory.story.activity;
 
-import no.tagstory.jentedagen.R;
-import no.tagstory.story.Story;
-import no.tagstory.story.StoryTag;
-import no.tagstory.story.StoryTagOption;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import no.tagstory.jentedagen.R;
+import no.tagstory.story.Story;
+import no.tagstory.story.StoryTag;
+import no.tagstory.story.StoryTagOption;
 
 import static no.tagstory.story.activity.utils.TravelIntentFactory.createTravelIntent;
 

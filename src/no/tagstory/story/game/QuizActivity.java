@@ -13,8 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import no.tagstory.jentedagen.R;
 import no.tagstory.story.Story;
-import no.tagstory.story.StoryTagOption;
 import no.tagstory.story.StoryTag;
+import no.tagstory.story.StoryTagOption;
 import no.tagstory.story.activity.StoryActivity;
 
 import java.util.HashMap;

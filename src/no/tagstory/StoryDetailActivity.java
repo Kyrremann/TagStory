@@ -4,21 +4,18 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import no.tagstory.jentedagen.R;
 import no.tagstory.honeycomb.StoryActivityHoneycomb;
+import no.tagstory.jentedagen.R;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
 import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
-
-import java.io.IOException;
 
 public class StoryDetailActivity extends Activity {
 
@@ -56,8 +53,8 @@ public class StoryDetailActivity extends Activity {
 //						.setImageDrawable(Drawable.createFromStream(getAssets()
 //								.open(story.getImage()), story.getImage()));
 //			} catch (IOException e) {
-				((ImageView) findViewById(R.id.story_detail_image))
-						.setImageResource(R.drawable.blindern);
+			((ImageView) findViewById(R.id.story_detail_image))
+					.setImageResource(R.drawable.blindern);
 //						.setImageResource(R.drawable.placeimg_320_240_nature);
 //			}
 		}

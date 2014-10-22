@@ -1,6 +1,7 @@
 package no.tagstory.utils;
 
 import android.annotation.SuppressLint;
+import android.widget.Toast;
 import org.apache.http.*;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -10,10 +11,12 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
+import org.json.JSONObject;
 
 import java.io.*;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ServerCommunication {
 
@@ -161,44 +164,6 @@ public class ServerCommunication {
 		}
 		return sb.toString();
 	}
-
-	@SuppressLint("NewApi")
-	public static void sendTempStatistic(final String time,
-	                                     final String distance) {
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				try {
-					HttpClient httpclient = new DefaultHttpClient();
-					HttpResponse response;
-
-					response = httpclient.execute(new HttpGet(
-							"http://www.tagstory.no/stats/?time=" + time
-									+ "&distance=" + distance));
-
-					StatusLine statusLine = response.getStatusLine();
-					if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-						ByteArrayOutputStream out = new ByteArrayOutputStream();
-						response.getEntity().writeTo(out);
-						// Log.d("STATS", out.toString());
-						out.close();
-					} else {
-						// Closes the connection.
-						response.getEntity().getContent().close();
-						throw new IOException(statusLine.getReasonPhrase());
-					}
-				} catch (ClientProtocolException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}).start();
-	}
-
 
 	@SuppressLint("NewApi")
 	public static void sendTempStatistic(final String time, final String distance) {

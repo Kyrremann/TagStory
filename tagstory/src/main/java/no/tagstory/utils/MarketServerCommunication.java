@@ -16,18 +16,13 @@ import java.util.concurrent.ExecutionException;
 
 public class MarketServerCommunication {
 
-	public static JSONArray synchronizeSets(Context context) throws ExecutionException, InterruptedException {
-		ProgressDialog progressDialog = new ProgressDialog(context);
-		progressDialog.setCancelable(false);
-		progressDialog.setMessage("Test");
-
-		AsyncTask<ProgressDialog, Void, JSONArray> task = new AsyncTask<ProgressDialog, Void, JSONArray>() {
+	public static void synchronizeSets(final Context context) {
+		AsyncTask<Void, Void, JSONArray> task = new AsyncTask<Void, Void, JSONArray>() {
 
 			private ProgressDialog progressDialog;
 
 			@Override
-			protected JSONArray doInBackground(ProgressDialog... progressDialogs) {
-				progressDialog = progressDialogs[0];
+			protected JSONArray doInBackground(Void... v) {
 				try {
 					return getListOfStories();
 				} catch (IOException e) {
@@ -42,17 +37,22 @@ public class MarketServerCommunication {
 			@Override
 			protected void onPreExecute() {
 				super.onPreExecute();
+				progressDialog = new ProgressDialog(context);
+				progressDialog.setCancelable(false);
+				progressDialog.setMessage("Updating the market");
+				progressDialog.show();
+
 			}
 
 			@Override
 			protected void onPostExecute(JSONArray jsonArray) {
 				super.onPostExecute(jsonArray);
 				progressDialog.cancel();
+				// :\
 			}
 		};
-
-		progressDialog.show();
-		return task.execute(progressDialog).get();
+		task.execute();
+		return;
 	}
 
 	private static JSONArray getListOfStories() throws IOException, JSONException {

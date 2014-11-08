@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,12 +14,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import no.tagstory.adapters.StoryCursorAdapter;
 import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
-import no.tagstory.R;
-import no.tagstory.marked.StoryMarkedActivity;
+import no.tagstory.marked.SimpleStoryMarkedActivity;
 import no.tagstory.story.StoryManager;
 import no.tagstory.utils.*;
-
-import java.util.concurrent.ExecutionException;
 
 import static no.tagstory.utils.GooglePlayServiceUtils.CONNECTION_FAILURE_RESOLUTION_REQUEST;
 
@@ -94,14 +90,7 @@ public class TagStoryActivity extends FragmentActivity {
 				showAboutTagStoryDialog();
 				break;
 			case R.id.menu_story_marked:
-				// startActivity(new Intent(this, StoryMarkedActivity.class));
-				try {
-					Log.d("MARKET", MarketServerCommunication.synchronizeSets(this).toString());
-				} catch (ExecutionException e) {
-					e.printStackTrace();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				startActivity(new Intent(this, SimpleStoryMarkedActivity.class));
 				break;
 		}
 

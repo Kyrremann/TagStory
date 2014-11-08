@@ -104,6 +104,9 @@
 				android:name="no.tagstory.TagStoryActivity"
 				android:label="@string/app_title">
 		</activity>
+		<activity
+		android:name=".marked.SimpleStoryMarkedActivity">
+		</activity>
 	</application>
 
 </manifest>

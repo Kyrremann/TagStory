@@ -64,6 +64,14 @@ public class StoryMarkedListFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				// startImagePagerActivity(position);
+				try {
+					JSONObject value = jsonArray.getJSONObject(position).getJSONObject("value");
+					if (value.has("description")) {
+						Toast.makeText(getActivity().getApplicationContext(), value.getString("description"), Toast.LENGTH_SHORT).show();
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 				// TODO: Start story information activity
 			}
 		});

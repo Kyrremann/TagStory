@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="15dp">
+
+	<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/story_image"
+			android:layout_alignParentTop="true"
+			android:layout_centerHorizontal="true"
+			android:src="@drawable/blindern"/>
+
+	<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:text="Medium Text"
+			android:id="@+id/title"
+			android:layout_alignBottom="@+id/story_image"
+			android:layout_alignLeft="@+id/story_image"
+			android:layout_alignStart="@+id/story_image"/>
+
+	<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:text="by"
+			android:id="@+id/by"
+			android:paddingTop="5dp"
+			android:paddingBottom="5dp"
+			android:layout_below="@+id/story_image"
+			android:layout_alignLeft="@+id/story_image"
+			android:layout_alignStart="@+id/story_image"/>
+
+	<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:text="Medium Text"
+			android:id="@+id/author"
+			android:paddingLeft="5dp"
+			android:paddingStart="5dp"
+			android:layout_alignBaseline="@+id/by"
+			android:layout_below="@+id/story_image"
+			android:layout_toRightOf="@+id/by"/>
+
+	<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:text="Medium Text"
+			android:id="@+id/description"
+			android:padding="5dp"
+			android:layout_below="@+id/by"
+			android:layout_alignLeft="@+id/by"
+			android:layout_alignStart="@+id/by"
+			android:layout_alignRight="@+id/story_image"
+			android:background="@drawable/background_border_light_green"/>
+
+	<Button
+			android:id="@+id/download"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentRight="true"
+			android:background="@color/android_yellow"
+			android:onClick="onClick"
+			android:padding="15dp"
+			android:text="Download"
+			android:textStyle="bold"/>
+
+</RelativeLayout>

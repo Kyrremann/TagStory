@@ -1,5 +1,6 @@
 package no.tagstory.marked;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -43,7 +44,6 @@ public class StoryMarkedListFragment extends Fragment {
 			jsonArray = new JSONArray();
 		}
 
-		// TODO Need list of stories before this one i started, or at least before the image adapter is set!
 		options = new DisplayImageOptions.Builder()
 				.showImageOnLoading(R.drawable.ic_stub)
 				.showImageForEmptyUri(R.drawable.ic_empty)
@@ -63,16 +63,9 @@ public class StoryMarkedListFragment extends Fragment {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				// startImagePagerActivity(position);
-				try {
-					JSONObject value = jsonArray.getJSONObject(position).getJSONObject("value");
-					if (value.has("description")) {
-						Toast.makeText(getActivity().getApplicationContext(), value.getString("description"), Toast.LENGTH_SHORT).show();
-					}
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				// TODO: Start story information activity
+				Intent intent = new Intent(getActivity().getApplicationContext(), StoryMarkedListingActivity.class);
+				intent.putExtra("json", jsonArray.optString(position, ""));
+				startActivity(intent);
 			}
 		});
 		return rootView;
@@ -141,10 +134,8 @@ public class StoryMarkedListFragment extends Fragment {
 			try {
 				JSONObject jsonObject = jsonArray.getJSONObject(position).getJSONObject("value");
 
-//				holder.text.setText("Item " + (position + 1)); // List text
 				holder.text.setText(jsonObject.getString("title"));
 
-//			ImageLoader.getInstance().displayImage(imageUrls[position], holder.image, options, animateFirstListener); // image url
 				String url = "http://www.2k3.org/wp-content/uploads/Screenshot-from-2014-10-27-194657-980x761.png";
 				// url = jsonObject.getString("image_url");
 				ImageLoader.getInstance().displayImage(url, holder.image, options, animateFirstListener);

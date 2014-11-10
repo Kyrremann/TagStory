@@ -94,10 +94,6 @@
 		</activity>
 		<activity android:name="no.tagstory.story.activity.StoryPropagatingActivity">
 		</activity>
-		<activity android:name="no.tagstory.marked.StoryMarkedActivity">
-		</activity>
-		<activity android:name="no.tagstory.marked.CollectionDemoActivity">
-		</activity>
 		<activity android:name="no.tagstory.story.game.CameraActivity">
 		</activity>
 		<activity
@@ -106,6 +102,9 @@
 		</activity>
 		<activity
 		android:name=".marked.SimpleStoryMarkedActivity">
+		</activity>
+		<activity
+		android:name=".marked.StoryMarkedListingActivity">
 		</activity>
 	</application>
 

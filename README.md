@@ -28,5 +28,5 @@ Visit the [Story Creator repo](https://github.com/Kyrremann/TagStory-StoryCreato
 Tag Story is run under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007.
 
 
-[logo]: http://www.uio.no/studier/emner/matnat/ifi/INF5261/h12/project-groups/tag-story--out/feature-graphic-tag-story.png "Tag Story banner"
+[logo]: http://drive.google.com/uc?export=view&id=0BwFhp769kbaoSmVKSFh3dWlXQzQ "Tag Story banner"
 [xml-style]: http://developer.android.com/guide/topics/ui/themes.html

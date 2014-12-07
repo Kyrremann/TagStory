@@ -8,13 +8,6 @@ We have started working on a side project for writing stories for TagStory.
 Visit the [Story Creator repo](https://github.com/Kyrremann/TagStory-StoryCreator)
 
 
-## Other
-* Tags can not be hanged on metal
-* Check out what TripAdvisor have done on suggesting routes, maybe we can do something similar
-* Move all features request/TODOs to the "Issues" section
-* Make a clean version of the framework and forks for the others/spin-offs
-
-
 ## Contributing
 
 1. Fork it

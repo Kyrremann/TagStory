@@ -19,7 +19,7 @@ import no.tagstory.story.StoryTag;
 import no.tagstory.story.StoryTagOption;
 import no.tagstory.utils.ClassVersionFactory;
 
-import static no.tagstory.story.activity.utils.TravelIntentFactory.*;
+import static no.tagstory.story.activity.utils.TravelIntentUtil.*;
 
 public class StoryActivity extends Activity {
 
@@ -80,11 +80,11 @@ public class StoryActivity extends Activity {
 			ImageView imageView = (ImageView) findViewById(R.id.story_tag_image);
 			imageView.setVisibility(View.VISIBLE);
 			// TODO Implement image parser for choice image
-			if (tag.getChoiceImage().equals("ledere")) {
-				imageView.setImageDrawable(getResources().getDrawable(R.drawable.ledere));
-			} else if (tag.getChoiceImage().equals("mjaowl.jpg")) {
-				imageView.setImageDrawable(getResources().getDrawable(R.drawable.majowl));
-			}
+//			if (tag.getChoiceImage().equals("ledere")) {
+//				imageView.setImageDrawable(getResources().getDrawable(R.drawable.ledere));
+//			} else if (tag.getChoiceImage().equals("mjaowl.jpg")) {
+//				imageView.setImageDrawable(getResources().getDrawable(R.drawable.majowl));
+//			}
 		}
 
 	}

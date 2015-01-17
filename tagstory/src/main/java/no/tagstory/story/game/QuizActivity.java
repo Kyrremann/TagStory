@@ -19,7 +19,7 @@ import no.tagstory.story.activity.StoryActivity;
 
 import java.util.HashMap;
 
-import static no.tagstory.story.activity.utils.TravelIntentFactory.createTravelIntent;
+import static no.tagstory.story.activity.utils.TravelIntentUtil.createTravelIntent;
 
 public class QuizActivity extends Activity {
 

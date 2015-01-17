@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-import static no.tagstory.story.activity.utils.TravelIntentFactory.createTravelIntent;
+import static no.tagstory.story.activity.utils.TravelIntentUtil.createTravelIntent;
 
 public class CameraActivity extends Activity {
 

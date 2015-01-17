@@ -9,7 +9,7 @@ import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
 import no.tagstory.story.StoryTagOption;
 
-import static no.tagstory.story.activity.utils.TravelIntentFactory.createTravelIntent;
+import static no.tagstory.story.activity.utils.TravelIntentUtil.createTravelIntent;
 
 public class StoryPropagatingActivity extends Activity {
 

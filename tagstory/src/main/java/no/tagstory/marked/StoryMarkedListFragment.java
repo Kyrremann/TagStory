@@ -27,7 +27,6 @@ import java.util.List;
 
 public class StoryMarkedListFragment extends Fragment {
 
-	//	private String[] imageUrls = Constants.IMAGES;
 	private DisplayImageOptions options;
 	private AbsListView listView;
 	private boolean pauseOnScroll = false;
@@ -136,9 +135,15 @@ public class StoryMarkedListFragment extends Fragment {
 
 				holder.text.setText(jsonObject.getString("title"));
 
-				String url = "http://www.2k3.org/wp-content/uploads/Screenshot-from-2014-10-27-194657-980x761.png";
-				// url = jsonObject.getString("image_url");
-				ImageLoader.getInstance().displayImage(url, holder.image, options, animateFirstListener);
+				String url = "";
+				if (jsonObject.has("image")) {
+					url = jsonObject.getString("image");
+				}
+				if (url.length() == 0) {
+					url = "placeimg_960_720_nature_1.jpg";
+				}
+
+				ImageLoader.getInstance().displayImage(StoryMarkedListingActivity.SERVER_URL + url, holder.image, options, animateFirstListener);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}

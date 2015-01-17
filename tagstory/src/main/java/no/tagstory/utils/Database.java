@@ -83,10 +83,15 @@ public class Database {
 			db.execSQL("INSERT INTO "
 					+ STORY_TABLE_NAME
 					+ " VALUES ('5fee5ee0-e11f-11e3-8b68-0800200c9a66', 'Kine Gjerstad Eide', 'Kiness bursdagsløp', 'Oslo', 'kine_gevaer.jpg')");
-
 			db.execSQL("INSERT INTO " +
 					STORY_TABLE_NAME +
-					" VALUES ('58876600-0df3-11e4-9191-0800200c9a66', 'Kine Gjerstad Eide', 'Jentedagen 2014', 'Oslo', '')");
+					" VALUES ('4ff0b8f0-18a6-11e2-892e-0800200c9a66', 'Kine Gjerstad Eide', 'blindern', 'Oslo', '')");
+			db.execSQL("INSERT INTO " +
+					STORY_TABLE_NAME +
+					" VALUES ('testStory', 'Kine Gjerstad Eide', 'test', 'Oslo', '')");
+			db.execSQL("INSERT INTO " +
+					STORY_TABLE_NAME +
+					" VALUES ('58876600-0df3-11e4-9191-0800200c9a66', 'Kine Gjerstad Eide', 'blindern', 'Oslo', '')");
 			*/
 		}
 	}

@@ -7,8 +7,7 @@ import no.tagstory.story.StoryTagOption;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -70,11 +69,15 @@ public class JsonParser {
 			filename += ".json";
 		}
 
-		InputStream inputStream = context.getAssets().open(filename);
-		byte[] buffer = new byte[inputStream.available()];
-		inputStream.read(buffer);
-		inputStream.close();
-		return new JSONObject(new String(buffer));
+		FileInputStream fileInputStream = context.openFileInput(filename);
+		InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+		BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while ((line = bufferedReader.readLine()) != null) {
+			sb.append(line);
+		}
+		return new JSONObject(sb.toString());
 	}
 
 	public static Story parseJsonToStory(Context context, String UUID)

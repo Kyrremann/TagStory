@@ -6,11 +6,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import no.tagstory.honeycomb.StoryActivityHoneycomb;
-import no.tagstory.R;
+import no.tagstory.marked.SimpleStoryMarkedActivity;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
 import no.tagstory.story.activity.StoryActivity;
@@ -54,8 +56,8 @@ public class StoryDetailActivity extends Activity {
 //								.open(story.getImage()), story.getImage()));
 //			} catch (IOException e) {
 			((ImageView) findViewById(R.id.story_detail_image))
-					.setImageResource(R.drawable.blindern);
-//						.setImageResource(R.drawable.placeimg_320_240_nature);
+//					.setImageResource(R.drawable.blindern);
+						.setImageResource(R.drawable.placeimg_960_720_nature_1);
 //			}
 		}
 	}
@@ -127,5 +129,22 @@ public class StoryDetailActivity extends Activity {
 		if (resultCode == ENABLE_GPS) {
 			startStory();
 		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.story_detail, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.menu_delete_story:
+				// TODO Delete story
+				break;
+		}
+
+		return true;
 	}
 }

@@ -32,11 +32,15 @@ public class TagStoryActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_story_list);
 
+		GooglePlayServiceUtils.servicesConnected(this);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
 		storyManager = new StoryManager(this);
 		storyCursor = storyManager.getCursorOverStories();
-
 		initializeListView();
-		GooglePlayServiceUtils.servicesConnected(this);
 	}
 
 	protected void initializeListView() {
@@ -52,7 +56,7 @@ public class TagStoryActivity extends FragmentActivity {
 				Intent detailIntent = ClassVersionFactory.createIntent(getApplicationContext(),
 						StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);
 				detailIntent.putExtra(Database.STORY_ID,
-						storyCursor.getString(0) + ".json");
+						storyCursor.getString(0));
 				startActivity(detailIntent);
 			}
 		});

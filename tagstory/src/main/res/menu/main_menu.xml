@@ -1,21 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
-    <!-- <item
-        android:id="@+id/menu_klimanettverk"
-        android:orderInCategory="0"
-        android:showAsAction="never"
-        android:title="@string/menu_klimanettverket"/>-->
     <item
         android:id="@+id/menu_about"
         android:orderInCategory="1"
         android:showAsAction="never"
         android:title="@string/menu_about_app"/>
-    <!-- <item
-        android:id="@+id/menu_gps"
-        android:orderInCategory="2"
-        android:showAsAction="never"
-        android:title="@string/test_gps"/> -->
-
 	<item
         android:id="@+id/menu_story_marked"
         android:orderInCategory="2"

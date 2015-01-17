@@ -20,6 +20,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
         android:background="@drawable/background_border_light_green"
         android:orientation="vertical" >
 

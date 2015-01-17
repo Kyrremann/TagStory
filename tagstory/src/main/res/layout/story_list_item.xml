@@ -14,7 +14,7 @@
         android:layout_marginLeft="5dp"
         android:contentDescription="@string/cd_story_image"
         android:visibility="gone"
-        android:src="@drawable/blindern" />
+        android:src="@drawable/placeimg_320_240_nature" />
 
     <TextView
         android:id="@+id/storyListItemTitle"
@@ -32,28 +32,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/storyListItemTitle"
-        android:layout_toLeftOf="@+id/imageView3"
+        android:layout_toLeftOf="@+id/navigation_arrow"
         android:layout_toRightOf="@+id/story_list_image"
         android:text="@string/dummy_author"
         android:textColor="@android:color/black"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-<!--     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/story_list_image"
-        android:layout_alignLeft="@+id/storyListItemAuthor"
-        android:layout_alignParentRight="true" >
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_star" />
-    </LinearLayout> -->
-
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/navigation_arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

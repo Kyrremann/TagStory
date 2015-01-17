@@ -36,8 +36,9 @@
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					android:contentDescription="@string/cd_story_image"
-					android:scaleType="centerInside"
-					android:src="@drawable/kine_reggis"/>
+					android:scaleType="fitStart"
+					android:adjustViewBounds="true"
+					android:src="@drawable/placeimg_960_720_nature_1"/>
 
 			<TextView
 					android:id="@+id/story_detail_desc"

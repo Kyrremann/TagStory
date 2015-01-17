@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/activity_map_layout"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/activity_map_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
@@ -21,7 +22,8 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/button_bottom"
         android:layout_below="@id/story_option_hint"
-        android:name="com.google.android.gms.maps.SupportMapFragment" />
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        tools:layout="@layout/dialog_login"/>
 
     <LinearLayout
         android:id="@+id/button_bottom"

@@ -11,7 +11,7 @@
     "keywords": "food; random; adventure",
     "start_tag": "1001",
     "tagCount": "7",
-    "tag_types": "QR",
+    "tag_types": "qr",
     "language": "en",
     "game_modes": "none",
     "image": "blindern.jpg",
@@ -23,7 +23,7 @@
         "options_title": "The first tag",
         "game_mode": "none",
         "game_button": "",
-        "tag_mode": "QR",
+        "tag_mode": "qr",
         "options": {
           "Show me how to get to the next tag": {
           	"hint_title": "First hint",
@@ -38,11 +38,13 @@
         "description": "People like fruit because it's...",
         "choice_description": "Pick a fruit",
         "game_button": "See fruits",
+        "game_button": "",
+        "tag_mode": "qr",
         "options": {
           "Banana": {
             "hint_method": "hint_text",
             "hint_text": "Go to the tree",
-            "next": "1005"
+            "next": "1006"
           },
           "Apple": {
             "hint_method": "hint_image",
@@ -63,6 +65,8 @@
         "description": "You are in a beautiful forest...",
         "choice_description": "Where is that damn rock!",
         "game_button": "Take a look",
+        "game_button": "",
+        "tag_mode": "qr",
         "options": {
           "Take a look": {
             "hint_method": "hint_image",
@@ -77,6 +81,8 @@
         "description": "This rock is funny looking",
         "choice_description": "Play a song on the rock",
         "game_button": "See songs",
+        "game_button": "",
+        "tag_mode": "qr",
         "options": {
           "Bada boom": {
             "hint_method": "hint_sound",
@@ -97,6 +103,8 @@
         "description": "What a place!",
         "choice_description": "Please follow the arrow",
         "game_button": "no arrows",
+        "game_button": "",
+        "tag_mode": "qr",
         "options": {
           "Follow me": {
             "hint_method": "hint_arrow",
@@ -114,6 +122,8 @@
         "description": "text",
         "choice_description": "",
         "game_button": "See map",
+        "game_button": "",
+        "tag_mode": "qr",
         "options": {
           "Follow the map": {
             "hint_method": "hint_map",

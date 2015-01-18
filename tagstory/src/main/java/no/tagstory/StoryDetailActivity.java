@@ -147,14 +147,6 @@ public class StoryDetailActivity extends Activity {
 		switch (item.getItemId()) {
 			case R.id.menu_delete_story:
 				// TODO: Add transactions
-				System.out.println("ID: " + story_id);
-				System.out.println("In db: " + storyManager.hasStory(story_id));
-				Cursor cursorOverStories = storyManager.getCursorOverStories();
-				cursorOverStories.moveToFirst();
-				while (!cursorOverStories.isAfterLast()) {
-					System.out.println("ID in db: " + cursorOverStories.getString(0));
-					cursorOverStories.moveToNext();
-				}
 				if (storyManager.deleteStory(story_id) && deleteFile(story_id + ".json")) {
 						finish();
 				} else {

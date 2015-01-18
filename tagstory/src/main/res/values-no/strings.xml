@@ -127,5 +127,6 @@
 	<string name="demo_collection">Demo Collection</string>
 	<string name="next_tag">Gå til neste</string>
     <string name="menu_delete_story">Delete story</string>
+    <string name="marked_go_to_story">Start story</string>
 
 </resources>

@@ -20,6 +20,7 @@ import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
 import no.tagstory.story.StoryManager;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
+import no.tagstory.utils.JsonParser;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
@@ -27,12 +28,15 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.util.Iterator;
+import java.util.Objects;
 
 public class StoryMarkedListingActivity extends Activity {
 
-	public static String SERVER_URL = "https://s3-eu-west-1.amazonaws.com/tagstory/images/";
+	private static String SERVER_URL = "https://s3-eu-west-1.amazonaws.com/tagstory/";
+	public static String SERVER_URL_IMAGES = SERVER_URL + "images/";
+	public static String SERVER_URL_AUDIO = SERVER_URL + "audio/";
 
 	private static final int MESSAGE_DONE = 0;
 	private static final int MESSAGE_FAIL_JSON = -1;
@@ -82,7 +86,7 @@ public class StoryMarkedListingActivity extends Activity {
 				url = "placeimg_960_720_nature_1.jpg";
 			}
 
-			ImageLoader.getInstance().displayImage(SERVER_URL + url, imageView);
+			ImageLoader.getInstance().displayImage(SERVER_URL_IMAGES + url, imageView);
 
 			title.setText(storyDetailValues.getString("title"));
 			author.setText(storyDetailValues.getString("author"));
@@ -166,6 +170,7 @@ public class StoryMarkedListingActivity extends Activity {
 					database.open();
 					database.insertStory(story.getString("UUID"), story.getString("author"), story.getString("title"), story.getString("area"), ""); // story.getString("image")
 					// TODO: download images
+					downloadAssets(story);
 					// TODO: Change button to 'play story'
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -178,5 +183,47 @@ public class StoryMarkedListingActivity extends Activity {
 				}
 			}
 		}).start();
+	}
+
+	private void downloadAssets(JSONObject story) throws JSONException, IOException {
+		downloadAsset(SERVER_URL_IMAGES, story.optString(JsonParser.IMAGE, ""));
+
+		JSONObject tags = story.getJSONObject(JsonParser.TAGS);
+		Iterator<String> keys = tags.keys();
+		while (keys.hasNext()) {
+			String key = keys.next();
+			JSONObject tag = tags.getJSONObject(key);
+			if (tag.has(JsonParser.TAG_OPTIONS)) {
+				JSONObject options = tag.getJSONObject(JsonParser.TAG_OPTIONS);
+				Iterator<String> optionKeys = options.keys();
+				while (optionKeys.hasNext()) {
+					String optionKey = optionKeys.next();
+					JSONObject option = options.getJSONObject(optionKey);
+					if (option.has(JsonParser.IMAGE_SRC)) {
+						downloadAsset(SERVER_URL_IMAGES, option.optString(JsonParser.IMAGE_SRC, ""));
+					}
+					if (option.has(JsonParser.SOUND_SRC)) {
+						downloadAsset(SERVER_URL_AUDIO, option.optString(JsonParser.SOUND_SRC, ""));
+					}
+				}
+			}
+		}
+	}
+
+	private boolean downloadAsset(String url, String name) throws IOException {
+		if (name.length() == 0) {
+			return false;
+		}
+
+		HttpClient client = new DefaultHttpClient();
+		HttpGet get = new HttpGet(url + name);
+		Object content = client.execute(get, new BasicResponseHandler());
+
+		OutputStream outputStream = openFileOutput(name, Context.MODE_PRIVATE);
+		ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+		objectOutputStream.writeObject(content);
+		objectOutputStream.close();
+
+		return true;
 	}
 }

@@ -143,7 +143,7 @@ public class StoryMarkedListFragment extends Fragment {
 					url = "placeimg_960_720_nature_1.jpg";
 				}
 
-				ImageLoader.getInstance().displayImage(StoryMarkedListingActivity.SERVER_URL + url, holder.image, options, animateFirstListener);
+				ImageLoader.getInstance().displayImage(StoryMarkedListingActivity.SERVER_URL_IMAGES + url, holder.image, options, animateFirstListener);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}

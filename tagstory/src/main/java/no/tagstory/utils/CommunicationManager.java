@@ -70,7 +70,6 @@ public class CommunicationManager {
 					Log.e(object.get(CODE).toString(), object.get(ERROR)
 							.toString());
 				}
-				System.out.println();
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

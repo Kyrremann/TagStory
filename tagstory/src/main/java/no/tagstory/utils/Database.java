@@ -133,13 +133,11 @@ public class Database {
 
 	public boolean deleteStory(String id) {
 		int result = db.delete(STORY_TABLE_NAME, STORY_ID + "=?", new String[]{ id });
-		System.out.println(result);
 		return result > 0;
 	}
 
 	public boolean hasStory(String id) {
 		int result = db.query(STORY_TABLE_NAME, new String[] { STORY_ID }, STORY_ID + "=?", new String[] { id }, null, null, null).getCount();
-		System.out.println(result);
 		return result == 1;
 	}
 }

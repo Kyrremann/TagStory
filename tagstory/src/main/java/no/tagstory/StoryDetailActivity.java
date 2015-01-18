@@ -2,9 +2,15 @@ package no.tagstory;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
@@ -14,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import no.tagstory.honeycomb.StoryActivityHoneycomb;
-import no.tagstory.marked.SimpleStoryMarkedActivity;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
 import no.tagstory.story.activity.StoryActivity;
@@ -51,19 +56,25 @@ public class StoryDetailActivity extends Activity {
 		}
 
 		if (story != null) {
+			boolean showDefault = false;
 			setTitle(story.getTitle());
 			((TextView) findViewById(R.id.story_detail_desc)).setText(story
 					.getDesc());
 			// TODO Check if story has image, should be mandatory
-//			try {
-//				((ImageView) findViewById(R.id.story_detail_image))
-//						.setImageDrawable(Drawable.createFromStream(getAssets()
-//								.open(story.getImage()), story.getImage()));
-//			} catch (IOException e) {
-			((ImageView) findViewById(R.id.story_detail_image))
-//					.setImageResource(R.drawable.blindern);
+			String imagefile = story.getImage();
+			if (imagefile != null
+					&& imagefile.length() != 0) {
+				Bitmap bitmap = BitmapFactory.decodeFile(getFileStreamPath(imagefile).getPath());
+				((ImageView) findViewById(R.id.story_detail_image))
+						.setImageBitmap(bitmap);
+			} else {
+				showDefault = true;
+			}
+
+			if (showDefault) {
+				((ImageView) findViewById(R.id.story_detail_image))
 						.setImageResource(R.drawable.placeimg_960_720_nature_1);
-//			}
+			}
 		}
 	}
 
@@ -148,7 +159,7 @@ public class StoryDetailActivity extends Activity {
 			case R.id.menu_delete_story:
 				// TODO: Add transactions
 				if (storyManager.deleteStory(story_id) && deleteFile(story_id + ".json")) {
-						finish();
+					finish();
 				} else {
 					Toast.makeText(this, "Story was not deleted, please try again.", Toast.LENGTH_SHORT).show();
 				}

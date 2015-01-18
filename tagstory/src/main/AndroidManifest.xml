@@ -64,6 +64,8 @@
 		</activity>
 		<activity android:name="no.tagstory.story.activity.option.gps.GPSActivity">
 		</activity>
+		<activity android:name="no.tagstory.story.activity.option.AudioPlayerActivity">
+		</activity>
 		<activity android:name="no.tagstory.story.activity.option.MapNavigationActivity">
 			<intent-filter>
 				<action android:name="android.nfc.action.NDEF_DISCOVERED"/>

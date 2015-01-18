@@ -88,9 +88,8 @@ public class SimpleStoryMarkedActivity extends FragmentActivity {
 		Bundle bundle = new Bundle(1);
 		bundle.putString("JSON", jsonArray.toString());
 		fragment.setArguments(bundle);
-		int titleRes = R.string.ac_name_image_list;
 
-		setTitle(titleRes);
+		setTitle(R.string.story_marked);
 		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment, tag).commit();
 	}
 }

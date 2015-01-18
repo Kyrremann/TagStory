@@ -19,7 +19,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,17 +34,17 @@ public class StoryMarkedListingActivity extends Activity {
 	private static final int MESSAGE_FAIL_HTTP = -2;
 
 	private DisplayImageOptions options;
-	private JSONObject jsonObject;
-	private Handler handler;
+	private JSONObject storyDetail;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_marked_listing);
+		// TODO: Check if story has been downloaded
 
 		try {
-			jsonObject = new JSONObject(getIntent().getStringExtra("json"));
-			JSONObject story = jsonObject.getJSONObject("value");
+			storyDetail = new JSONObject(getIntent().getStringExtra("json"));
+			JSONObject storyDetailValues = storyDetail.getJSONObject("value");
 
 			options = new DisplayImageOptions.Builder()
 					.showImageOnLoading(R.drawable.ic_stub)
@@ -63,8 +62,8 @@ public class StoryMarkedListingActivity extends Activity {
 			TextView description = (TextView) findViewById(R.id.description);
 
 			String url = "";
-			if (story.has("image")) {
-				url = story.getString("image");
+			if (storyDetailValues.has("image")) {
+				url = storyDetailValues.getString("image");
 			}
 			if (url.length() == 0) {
 				url = "placeimg_960_720_nature_1.jpg";
@@ -72,9 +71,9 @@ public class StoryMarkedListingActivity extends Activity {
 
 			ImageLoader.getInstance().displayImage(SERVER_URL + url, imageView);
 
-			title.setText(story.getString("title"));
-			author.setText(story.getString("author"));
-			description.setText(story.getString("description"));
+			title.setText(storyDetailValues.getString("title"));
+			author.setText(storyDetailValues.getString("author"));
+			description.setText(storyDetailValues.getString("description"));
 		} catch (JSONException e) {
 			e.printStackTrace();
 			// TODO
@@ -88,10 +87,7 @@ public class StoryMarkedListingActivity extends Activity {
 				progressDialog.setCancelable(false);
 				progressDialog.setMessage("Downloading story");
 				progressDialog.show();
-				// TODO Download story
-				final String id = jsonObject.optString("id", "");
-				// TODO Check for wrong ID
-				handler = new Handler(new Handler.Callback() {
+				final Handler handler = new Handler(new Handler.Callback() {
 					@Override
 					public boolean handleMessage(Message msg) {
 						switch (msg.what) {
@@ -111,30 +107,34 @@ public class StoryMarkedListingActivity extends Activity {
 						return true;
 					}
 				});
+
+				final String storyIdServerside = storyDetail.optString("id", "");
+				// TODO Check for wrong ID
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
 						try {
 							HttpClient client = new DefaultHttpClient();
-							String url = "http://tagstory.herokuapp.com/story/" + id + "/json";
+							String url = "http://tagstory.herokuapp.com/story/" + storyIdServerside + "/json";
 							HttpGet get = new HttpGet(url);
 							String content = client.execute(get, new BasicResponseHandler());
 
-							JSONObject story = new JSONObject(content);
-							JSONObject jsonObject = new JSONObject();
-							jsonObject.put("story", story);
+							JSONObject storyServerside = new JSONObject(content);
+
+							JSONObject story = storyServerside.getJSONObject("story");
 							String filename = story.getString("UUID");
 							if (!filename.endsWith(".json")) {
 								filename = filename.concat(".json");
 							}
 							FileOutputStream fileOutputStream = openFileOutput(filename, Context.MODE_PRIVATE);
-							fileOutputStream.write(jsonObject.toString().getBytes());
+							fileOutputStream.write(storyServerside.toString().getBytes());
 							fileOutputStream.close();
 
 							Database database = new Database(getApplicationContext());
 							database.open();
-							database.insertStory(story.getString("UUID"), story.getString("author"), story.getString("title"), "unspecified", ""); // story.getString("image")
-							// TODO download images
+							database.insertStory(story.getString("UUID"), story.getString("author"), story.getString("title"), story.getString("area"), ""); // story.getString("image")
+							// TODO: download images
+							// TODO: Change button to 'play story'
 						} catch (IOException e) {
 							e.printStackTrace();
 							handler.sendEmptyMessage(MESSAGE_FAIL_HTTP);

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import no.tagstory.honeycomb.StoryActivityHoneycomb;
 import no.tagstory.marked.SimpleStoryMarkedActivity;
 import no.tagstory.story.Story;
@@ -18,6 +20,9 @@ import no.tagstory.story.StoryManager;
 import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class StoryDetailActivity extends Activity {
 
@@ -141,7 +146,20 @@ public class StoryDetailActivity extends Activity {
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.menu_delete_story:
-				// TODO Delete story
+				// TODO: Add transactions
+				System.out.println("ID: " + story_id);
+				System.out.println("In db: " + storyManager.hasStory(story_id));
+				Cursor cursorOverStories = storyManager.getCursorOverStories();
+				cursorOverStories.moveToFirst();
+				while (!cursorOverStories.isAfterLast()) {
+					System.out.println("ID in db: " + cursorOverStories.getString(0));
+					cursorOverStories.moveToNext();
+				}
+				if (storyManager.deleteStory(story_id) && deleteFile(story_id + ".json")) {
+						finish();
+				} else {
+					Toast.makeText(this, "Story was not deleted, please try again.", Toast.LENGTH_SHORT).show();
+				}
 				break;
 		}
 

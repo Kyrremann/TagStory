@@ -20,7 +20,7 @@ import no.tagstory.utils.*;
 
 import static no.tagstory.utils.GooglePlayServiceUtils.CONNECTION_FAILURE_RESOLUTION_REQUEST;
 
-public class TagStoryActivity extends FragmentActivity {
+public class TagStoryActivity extends FragmentActivity implements OnItemClickListener {
 
 	protected Dialog aboutTagStoryDialog;
 	protected Cursor storyCursor;
@@ -47,19 +47,7 @@ public class TagStoryActivity extends FragmentActivity {
 		listView = (ListView) findViewById(R.id.story_list);
 		listView.setAdapter(new StoryCursorAdapter(this, R.layout.story_list_item,
 				storyCursor));
-		listView.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> l, View view, int position,
-			                        long id) {
-				storyCursor.moveToPosition(position);
-				Intent detailIntent = ClassVersionFactory.createIntent(getApplicationContext(),
-						StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);
-				detailIntent.putExtra(Database.STORY_ID,
-						storyCursor.getString(0));
-				startActivity(detailIntent);
-			}
-		});
+		listView.setOnItemClickListener(this);
 	}
 
 	@Override
@@ -107,5 +95,15 @@ public class TagStoryActivity extends FragmentActivity {
 					R.string.dialog_about_tagstory);
 		}
 		aboutTagStoryDialog.show();
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		storyCursor.moveToPosition(position);
+		Intent detailIntent = ClassVersionFactory.createIntent(getApplicationContext(),
+				StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);
+		detailIntent.putExtra(Database.STORY_ID,
+				storyCursor.getString(0));
+		startActivity(detailIntent);
 	}
 }

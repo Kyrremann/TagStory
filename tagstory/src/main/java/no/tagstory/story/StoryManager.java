@@ -42,20 +42,11 @@ public class StoryManager {
 		return null;
 	}
 
-	public void getStoriesFromServer() {
-//		new Thread(new Runnable() {
-//
-//			@Override
-//			public void run() {
-//				CommunicationManager communicationManager = new CommunicationManager();
-//				try {
-//					// TODO: Save JSON file to phone
-//					// Internal storage
-//				} catch (JSONException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
-//		}).start();
+	public boolean deleteStory(String id) {
+		return database.deleteStory(id);
+	}
+
+	public boolean hasStory(String id) {
+		return database.hasStory(id);
 	}
 }

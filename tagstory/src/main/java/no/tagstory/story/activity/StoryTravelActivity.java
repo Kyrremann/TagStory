@@ -143,8 +143,7 @@ public class StoryTravelActivity extends FragmentActivity {
 
 	protected void checkTagData(String tagId) {
 		// TODO: Implement randomized tags
-		if (tagId.equals(story.getTag(option.getOptNext())
-				.getBelongsToTag())) {
+		if (tagId.equals(option.getOptNext())) {
 			goToNextActivity();
 		} else {
 			// TODO: What do to when user scan wrong tag?

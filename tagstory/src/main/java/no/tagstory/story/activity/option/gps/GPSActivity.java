@@ -8,31 +8,30 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.SharedPreferences.Editor;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
-import no.tagstory.StoryApplication;
+import com.google.android.gms.location.LocationServices;
 import no.tagstory.R;
+import no.tagstory.StoryApplication;
 import no.tagstory.story.activity.StoryTravelActivity;
 
 import static no.tagstory.utils.GooglePlayServiceUtils.ErrorDialogFragment;
 import static no.tagstory.utils.GooglePlayServiceUtils.servicesConnected;
 
 public class GPSActivity extends StoryTravelActivity implements
-		LocationListener, GooglePlayServicesClient.ConnectionCallbacks,
-		GooglePlayServicesClient.OnConnectionFailedListener {
+		LocationListener, GoogleApiClient.ConnectionCallbacks,
+		GoogleApiClient.OnConnectionFailedListener {
 
 	protected Location goalLocation;
 
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
-	private LocationClient mLocationClient;
-	// private Location mCurrentLocation;
+	GoogleApiClient mGoogleApiClient;
 	private LocationRequest mLocationRequest;
 	private boolean mUpdatesRequested;
 	private SharedPreferences mPrefs;
@@ -51,6 +50,7 @@ public class GPSActivity extends StoryTravelActivity implements
 	// A fast frequency ceiling in milliseconds
 	private static final long FASTEST_INTERVAL = MILLISECONDS_PER_SECOND
 			* FASTEST_INTERVAL_IN_SECONDS;
+	private static String TAG = "GPS";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,11 @@ public class GPSActivity extends StoryTravelActivity implements
 
 		mPrefs = getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE);
 		mEditor = mPrefs.edit();
-		mLocationClient = new LocationClient(this, this, this);
+		mGoogleApiClient = new GoogleApiClient.Builder(this)
+				.addApi(LocationServices.API)
+				.addConnectionCallbacks(this)
+				.addOnConnectionFailedListener(this)
+				.build();
 		// Start with updates turned on
 		mUpdatesRequested = true;
 		mEditor.putBoolean("KEY_UPDATES_ON", mUpdatesRequested);
@@ -123,21 +127,6 @@ public class GPSActivity extends StoryTravelActivity implements
 	}
 
 	@Override
-	protected void onStart() {
-		super.onStart();
-		mLocationClient.connect();
-	}
-
-	@Override
-	protected void onStop() {
-		if (mLocationClient.isConnected()) {
-			stopPeriodicUpdates();
-		}
-		mLocationClient.disconnect();
-		super.onStop();
-	}
-
-	@Override
 	protected void onPause() {
 		super.onPause();
 		mEditor.putBoolean("KEY_UPDATES_ON", mUpdatesRequested);
@@ -155,20 +144,18 @@ public class GPSActivity extends StoryTravelActivity implements
 		}
 	}
 
-	/**
-	 * In response to a request to start updates, send a request to Location
-	 * Services
-	 */
-	private void startPeriodicUpdates() {
-		mLocationClient.requestLocationUpdates(mLocationRequest, this);
+	@Override
+	protected void onStart() {
+		super.onStart();
+		// Connect the client.
+		mGoogleApiClient.connect();
 	}
 
-	/**
-	 * In response to a request to stop updates, send a request to Location
-	 * Services
-	 */
-	private void stopPeriodicUpdates() {
-		mLocationClient.removeLocationUpdates(this);
+	@Override
+	protected void onStop() {
+		// Disconnecting the client invalidates it.
+		mGoogleApiClient.disconnect();
+		super.onStop();
 	}
 
 	@Override
@@ -187,23 +174,25 @@ public class GPSActivity extends StoryTravelActivity implements
 
 	@Override
 	public void onConnected(Bundle dataBundle) {
-		Log.d("GPS", "Connected");
-		if (mUpdatesRequested) {
-			startPeriodicUpdates();
-		}
+		Log.i(TAG, "Connected");
+		mLocationRequest = LocationRequest.create();
+		mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+		mLocationRequest.setInterval(UPDATE_INTERVAL); // Update location every second
+
+		LocationServices.FusedLocationApi.requestLocationUpdates(
+				mGoogleApiClient, mLocationRequest, this);
 	}
 
 	@Override
-	public void onDisconnected() {
-		Toast.makeText(this, "Disconnected. Please re-connect GPS to continue.",
-				Toast.LENGTH_SHORT).show();
+	public void onConnectionSuspended(int i) {
+		Log.i(TAG, "GoogleApiClient connection has been suspend");
 	}
 
 	@Override
 	public void onLocationChanged(Location location) {
 		((StoryApplication) getApplication()).addLocation(location);
 		if (goalLocation != null) {
-			Log.d("GPS",
+			Log.d(TAG,
 					"Distance to goal " + location.distanceTo(goalLocation)
 							+ " meters");
 			if (location.distanceTo(goalLocation) < 20) {
@@ -216,6 +205,7 @@ public class GPSActivity extends StoryTravelActivity implements
 
 	@Override
 	public void onConnectionFailed(ConnectionResult connectionResult) {
+		Log.i(TAG, "GoogleApiClient connection has failed");
 		if (connectionResult.hasResolution()) {
 			try {
 				connectionResult.startResolutionForResult(this,

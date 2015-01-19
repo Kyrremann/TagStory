@@ -14,7 +14,7 @@ repositories {
 
 android {
 	compileSdkVersion 21
-	buildToolsVersion "20.0.0"
+	buildToolsVersion "21.1.2"
 
 	defaultConfig {
 		applicationId "no.tagstory"
@@ -25,9 +25,7 @@ android {
 	}
 	buildTypes {
 		release {
-			runProguard false
 			minifyEnabled true
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
 	}
 }

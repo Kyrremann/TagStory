@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import no.tagstory.honeycomb.StoryActivityHoneycomb;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
@@ -26,6 +27,7 @@ import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -64,9 +66,13 @@ public class StoryDetailActivity extends Activity {
 			String imagefile = story.getImage();
 			if (imagefile != null
 					&& imagefile.length() != 0) {
-				Bitmap bitmap = BitmapFactory.decodeFile(getFileStreamPath(imagefile).getPath());
-				((ImageView) findViewById(R.id.story_detail_image))
-						.setImageBitmap(bitmap);
+				try {
+					Bitmap myBitmap = BitmapFactory.decodeStream(openFileInput(imagefile));
+					((ImageView) findViewById(R.id.story_detail_image))
+						.setImageBitmap(myBitmap);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
 			} else {
 				showDefault = true;
 			}

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -29,8 +31,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Iterator;
-import java.util.Objects;
 
 public class StoryMarkedListingActivity extends Activity {
 
@@ -186,7 +190,7 @@ public class StoryMarkedListingActivity extends Activity {
 	}
 
 	private void downloadAssets(JSONObject story) throws JSONException, IOException {
-		downloadAsset(SERVER_URL_IMAGES, story.optString(JsonParser.IMAGE, ""));
+		downloadImage(SERVER_URL_IMAGES, story.optString(JsonParser.IMAGE, ""));
 
 		JSONObject tags = story.getJSONObject(JsonParser.TAGS);
 		Iterator<String> keys = tags.keys();
@@ -200,17 +204,50 @@ public class StoryMarkedListingActivity extends Activity {
 					String optionKey = optionKeys.next();
 					JSONObject option = options.getJSONObject(optionKey);
 					if (option.has(JsonParser.IMAGE_SRC)) {
-						downloadAsset(SERVER_URL_IMAGES, option.optString(JsonParser.IMAGE_SRC, ""));
+						downloadImage(SERVER_URL_IMAGES, option.optString(JsonParser.IMAGE_SRC, ""));
 					}
 					if (option.has(JsonParser.SOUND_SRC)) {
-						downloadAsset(SERVER_URL_AUDIO, option.optString(JsonParser.SOUND_SRC, ""));
+						downloadImage(SERVER_URL_AUDIO, option.optString(JsonParser.SOUND_SRC, ""));
 					}
 				}
 			}
 		}
 	}
 
-	private boolean downloadAsset(String url, String name) throws IOException {
+	// TODO watch out for errors
+	private boolean downloadImage(String serverUrl, String name) {
+		if (name.length() == 0) {
+			return false;
+		}
+
+		URL url = null;
+		try {
+			url = new URL(serverUrl + name);
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setDoInput(true);
+			connection.connect();
+			BufferedInputStream bufferedInputStream = new BufferedInputStream(connection.getInputStream());
+			BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(getFileStreamPath(name)));
+			int inByte;
+			while ((inByte = bufferedInputStream.read()) != -1) {
+				bufferedOutputStream.write(inByte);
+			}
+			bufferedInputStream.close();
+			bufferedOutputStream.close();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			return false;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	private boolean downloadAudio(String url, String name) throws IOException {
 		if (name.length() == 0) {
 			return false;
 		}

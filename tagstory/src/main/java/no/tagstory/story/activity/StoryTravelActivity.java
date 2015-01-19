@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -18,6 +20,8 @@ import no.tagstory.R;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTagOption;
 import no.tagstory.utils.ClassVersionFactory;
+
+import java.io.FileNotFoundException;
 
 public class StoryTravelActivity extends FragmentActivity {
 
@@ -63,9 +67,14 @@ public class StoryTravelActivity extends FragmentActivity {
 
 	private View createImageHint(String optImageSrc) {
 		ImageView imageView = new ImageView(this);
-		imageView.setImageResource(getResources().getIdentifier(optImageSrc,
-				"drawable", getPackageName()));
-		return imageView;
+		try {
+			Bitmap myBitmap = BitmapFactory.decodeStream(openFileInput(optImageSrc));
+			imageView.setImageBitmap(myBitmap);
+			return imageView;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return imageView;
+		}
 	}
 
 	public void scanTag(View v) {

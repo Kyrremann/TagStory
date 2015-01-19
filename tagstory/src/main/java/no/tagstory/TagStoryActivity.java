@@ -16,7 +16,10 @@ import no.tagstory.adapters.StoryCursorAdapter;
 import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
 import no.tagstory.marked.SimpleStoryMarkedActivity;
 import no.tagstory.story.StoryManager;
-import no.tagstory.utils.*;
+import no.tagstory.utils.ClassVersionFactory;
+import no.tagstory.utils.Database;
+import no.tagstory.utils.DialogFactory;
+import no.tagstory.utils.GooglePlayServiceUtils;
 
 import static no.tagstory.utils.GooglePlayServiceUtils.CONNECTION_FAILURE_RESOLUTION_REQUEST;
 
@@ -40,7 +43,15 @@ public class TagStoryActivity extends FragmentActivity implements OnItemClickLis
 		super.onResume();
 		storyManager = new StoryManager(this);
 		storyCursor = storyManager.getCursorOverStories();
-		initializeListView();
+		if (storyCursor.getCount() > 0) {
+			initializeListView();
+		} else {
+			initializeNoStoriesView();
+		}
+	}
+
+	private void initializeNoStoriesView() {
+		setContentView(R.layout.activity_no_stories);
 	}
 
 	protected void initializeListView() {
@@ -52,18 +63,11 @@ public class TagStoryActivity extends FragmentActivity implements OnItemClickLis
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// Decide what to do based on the original request code
 		switch (requestCode) {
 			case CONNECTION_FAILURE_RESOLUTION_REQUEST:
-			/*
-			 * If the result code is Activity.RESULT_OK, try
-			 * to connect again
-			 */
 				switch (resultCode) {
 					case Activity.RESULT_OK:
-				/*
-				 * Try the request again
-				 */
+						// Try the request again
 						break;
 				}
 		}
@@ -82,11 +86,15 @@ public class TagStoryActivity extends FragmentActivity implements OnItemClickLis
 				showAboutTagStoryDialog();
 				break;
 			case R.id.menu_story_marked:
-				startActivity(new Intent(this, SimpleStoryMarkedActivity.class));
+				startMarkedActivity();
 				break;
 		}
 
 		return true;
+	}
+
+	private void startMarkedActivity() {
+		startActivity(new Intent(this, SimpleStoryMarkedActivity.class));
 	}
 
 	private void showAboutTagStoryDialog() {
@@ -105,5 +113,13 @@ public class TagStoryActivity extends FragmentActivity implements OnItemClickLis
 		detailIntent.putExtra(Database.STORY_ID,
 				storyCursor.getString(0));
 		startActivity(detailIntent);
+	}
+
+	public void onClick(View v) {
+		switch (v.getId()) {
+			case R.id.visit_marked:
+				startMarkedActivity();
+				break;
+		}
 	}
 }

@@ -13,10 +13,8 @@ public class TagStoryActivityHoneyComb extends TagStoryActivity implements OnIte
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		storyCursor.moveToPosition(position);
 		Intent detailIntent = new Intent(
-				TagStoryActivityHoneyComb.this,
-				StoryDetailActivityHoneycomb.class);
-		detailIntent.putExtra(Database.STORY_ID,
-				storyCursor.getString(0));
+				TagStoryActivityHoneyComb.this, StoryDetailActivityHoneycomb.class);
+		detailIntent.putExtra(Database.STORY_ID, storyCursor.getString(0));
 		startActivity(detailIntent);
 	}
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+	<ScrollView
+			android:id="@+id/scrollView1"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_above="@+id/start_story_button"
+			android:layout_alignParentTop="true"
+			android:layout_centerHorizontal="true"
+			android:padding="15dp">
+
+		<TextView
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="10dp"
+				android:background="@drawable/square_textview_green"
+				android:padding="15dp"
+				android:text="@string/front_no_stories"
+				android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+	</ScrollView>
+
+
+	<Button
+			android:id="@+id/visit_marked"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentRight="true"
+			android:background="@color/android_yellow"
+			android:onClick="onClick"
+			android:padding="15dp"
+			android:text="@string/front_visit_marked"
+			android:textStyle="bold"/>
+
+</RelativeLayout>

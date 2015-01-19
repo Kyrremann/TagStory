@@ -32,21 +32,21 @@ public class AudioPlayerActivity extends StoryTravelActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_story_audioplayer);
 		// getActionBar().setDisplayHomeAsUpEnabled(true);
-/*
-		Bundle bundle = getIntent().getExtras();
-		option = (StoryPartOption) bundle
-				.getSerializable(StoryTravelActivity.OPTION);
-		story = (Story) bundle.getSerializable(StoryActivity.EXTRA_STORY);
-		tagId = bundle.getString(StoryActivity.EXTRA_TAG);
-		previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);*/
+	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
 		AUDIO_FILE_NAME = option.getOptSoundSrc();
 		((TextView) findViewById(R.id.story_audio_song)).setText(AUDIO_FILE_NAME);
 		hintText.setText(option.getOptHintText());
 
 		try {
 			Uri myUri = Uri.parse(getFileStreamPath(AUDIO_FILE_NAME).getPath());
+			mediaController = new MediaController(this);
+			mediaController.show(0);
 			mediaPlayer = new MediaPlayer();
+			mediaPlayer.setOnPreparedListener(this);
 			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 			mediaPlayer.setDataSource(getApplicationContext(), myUri);
 			mediaPlayer.prepare();
@@ -57,22 +57,6 @@ public class AudioPlayerActivity extends StoryTravelActivity implements
 					Toast.LENGTH_SHORT).show();
 			Log.e(TAG, "Could not open file " + AUDIO_FILE_NAME + " for playback.", e);
 		}
-/*
-		mediaPlayer = new MediaPlayer();
-		mediaPlayer.setOnPreparedListener(this);
-
-		mediaController = new MediaController(this);
-
-		try {
-			mediaPlayer.setDataSource(getFileStreamPath(AUDIO_FILE_NAME).getPath());
-			mediaPlayer.prepare();
-			mediaPlayer.start();
-		} catch (IOException e) {
-			Toast.makeText(this, "Something went wrong,  we are very sorry",
-					Toast.LENGTH_SHORT).show();
-			Log.e(TAG, "Could not open file " + AUDIO_FILE_NAME + " for playback.", e);
-		}
-		*/
 	}
 
 	@Override
@@ -148,7 +132,7 @@ public class AudioPlayerActivity extends StoryTravelActivity implements
 	public void onPrepared(MediaPlayer mediaPlayer) {
 		Log.d(TAG, "onPrepared");
 		mediaController.setMediaPlayer(this);
-		mediaController.setAnchorView(findViewById(R.id.story_audio_layout));
+		mediaController.setAnchorView(findViewById(R.id.audio_controllers));
 
 		handler.post(new Runnable() {
 			@Override

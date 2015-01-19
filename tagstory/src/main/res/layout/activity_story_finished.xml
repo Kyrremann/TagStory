@@ -29,13 +29,13 @@
 
             <TextView
                 android:id="@+id/story_finished_text"
-                style="@style/TagStoryView"
+                style="@style/TagStoryViewMedium"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/story_finished" />
 
             <TextView
                 android:id="@+id/story_statistic"
-                style="@style/TagStoryView"
+                style="@style/TagStoryViewMedium"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
                 android:text="@string/dummy_statistics" />

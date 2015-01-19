@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import no.tagstory.honeycomb.TagStoryActivityHoneyComb;
 
 import static no.tagstory.utils.ClassVersionFactory.createIntent;
@@ -21,7 +23,6 @@ public class LoadingActivity extends Activity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// Create global configuration and initialize ImageLoader with this config
 				ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
 						.build();
 				ImageLoader.getInstance().init(config);

@@ -42,7 +42,7 @@
 
 			<TextView
 					android:id="@+id/story_detail_desc"
-					style="@style/TagStoryView"
+					style="@style/TagStoryViewMedium"
 					android:layout_marginBottom="10dp"
 					android:layout_marginTop="15dp"/>
 		</LinearLayout>

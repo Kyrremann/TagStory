@@ -14,7 +14,7 @@
         android:padding="5dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:visibility="gone"
-        style="@style/TagStoryView"/>
+        style="@style/TagStoryViewMedium"/>
 
     <fragment
         android:id="@+id/story_map_view"

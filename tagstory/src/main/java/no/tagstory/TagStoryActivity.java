@@ -12,14 +12,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import no.tagstory.adapters.StoryCursorAdapter;
 import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
 import no.tagstory.marked.SimpleStoryMarkedActivity;
 import no.tagstory.story.StoryManager;
-import no.tagstory.utils.ClassVersionFactory;
-import no.tagstory.utils.Database;
-import no.tagstory.utils.DialogFactory;
-import no.tagstory.utils.GooglePlayServiceUtils;
+import no.tagstory.utils.*;
 
 import static no.tagstory.utils.GooglePlayServiceUtils.CONNECTION_FAILURE_RESOLUTION_REQUEST;
 
@@ -30,11 +30,12 @@ public class TagStoryActivity extends FragmentActivity implements OnItemClickLis
 	protected StoryManager storyManager;
 	protected ListView listView;
 
+	private boolean pauseOnScroll = false;
+	private boolean pauseOnFling = true;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_story_list);
-
 		GooglePlayServiceUtils.servicesConnected(this);
 	}
 
@@ -50,15 +51,26 @@ public class TagStoryActivity extends FragmentActivity implements OnItemClickLis
 		}
 	}
 
+	private void applyScrollListener() {
+		listView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), pauseOnScroll, pauseOnFling));
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		ImageLoaderUtils.AnimateFirstDisplayListener.displayedImages.clear();
+	}
+
 	private void initializeNoStoriesView() {
 		setContentView(R.layout.activity_no_stories);
 	}
 
 	protected void initializeListView() {
+		setContentView(R.layout.activity_story_list);
 		listView = (ListView) findViewById(R.id.story_list);
-		listView.setAdapter(new StoryCursorAdapter(this, R.layout.story_list_item,
-				storyCursor));
+		listView.setAdapter(new StoryCursorAdapter(this, R.layout.story_list_item, storyCursor));
 		listView.setOnItemClickListener(this);
+		applyScrollListener();
 	}
 
 	@Override

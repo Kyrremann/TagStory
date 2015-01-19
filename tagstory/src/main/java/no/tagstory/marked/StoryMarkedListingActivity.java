@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import no.tagstory.R;
 import no.tagstory.StoryDetailActivity;
@@ -46,7 +48,6 @@ public class StoryMarkedListingActivity extends Activity {
 	private static final int MESSAGE_FAIL_JSON = -1;
 	private static final int MESSAGE_FAIL_HTTP = -2;
 
-	private DisplayImageOptions options;
 	private JSONObject storyDetail;
 	private boolean isDownloaded;
 	private String storyUUID;
@@ -61,17 +62,7 @@ public class StoryMarkedListingActivity extends Activity {
 			storyDetail = new JSONObject(getIntent().getStringExtra("json"));
 			JSONObject storyDetailValues = storyDetail.getJSONObject("value");
 
-			options = new DisplayImageOptions.Builder()
-					.showImageOnLoading(R.drawable.ic_stub)
-					.showImageForEmptyUri(R.drawable.ic_empty)
-					.showImageOnFail(R.drawable.ic_error)
-					.cacheInMemory(true)
-					.cacheOnDisk(true)
-					.considerExifParams(true)
-					.displayer(new RoundedBitmapDisplayer(20))
-					.build();
-
-			ImageView imageView = (ImageView) findViewById(R.id.story_image);
+			ImageView imageView = (ImageView) findViewById(R.id.image);
 			TextView title = (TextView) findViewById(R.id.title);
 			TextView author = (TextView) findViewById(R.id.author);
 			TextView description = (TextView) findViewById(R.id.description);
@@ -172,7 +163,7 @@ public class StoryMarkedListingActivity extends Activity {
 
 					Database database = new Database(getApplicationContext());
 					database.open();
-					database.insertStory(story.getString("UUID"), story.getString("author"), story.getString("title"), story.getString("area"), ""); // story.getString("image")
+					database.insertStory(story.getString("UUID"), story.getString("author"), story.getString("title"), story.getString("area"), story.getString("image"));
 					// TODO: download images
 					downloadAssets(story);
 					// TODO: Change button to 'play story'

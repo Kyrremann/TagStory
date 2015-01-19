@@ -14,7 +14,7 @@
 		<ImageView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:id="@+id/story_image"
+				android:id="@+id/image"
 				android:layout_alignParentTop="true"
 				android:layout_centerHorizontal="true"
 				android:scaleType="fitStart"
@@ -27,7 +27,7 @@
 				android:textAppearance="?android:attr/textAppearanceMedium"
 				android:text="Title of the story"
 				android:id="@+id/title"
-				android:layout_alignBottom="@+id/story_image"/>
+				android:layout_alignBottom="@+id/image"/>
 
 		<TextView
 				android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
 				android:paddingTop="5dp"
 				android:paddingBottom="5dp"
 				android:layout_alignParentLeft="true"
-				android:layout_below="@+id/story_image"/>
+				android:layout_below="@+id/image"/>
 
 		<TextView
 				android:layout_width="fill_parent"
@@ -48,7 +48,7 @@
 				android:id="@+id/author"
 				android:paddingLeft="5dp"
 				android:layout_alignBaseline="@+id/by"
-				android:layout_below="@+id/story_image"
+				android:layout_below="@+id/image"
 				android:layout_toRightOf="@+id/by"/>
 
 		<TextView

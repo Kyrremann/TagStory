@@ -2,24 +2,29 @@ package no.tagstory.adapters;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import no.tagstory.R;
+import no.tagstory.utils.ImageLoaderUtils;
 
-import java.io.InputStream;
+import java.io.FileNotFoundException;
 
 public class StoryCursorAdapter extends CursorAdapter {
 
 	private int viewId;
 	private LayoutInflater inflater;
+	private ImageLoadingListener animateFirstListener = new ImageLoaderUtils.AnimateFirstDisplayListener();
 
-	public StoryCursorAdapter(Context context, int textViewResourceId,
-	                          Cursor storyCursor) {
+	public StoryCursorAdapter(Context context, int textViewResourceId, Cursor storyCursor) {
 		super(context, storyCursor, false);
 		this.viewId = textViewResourceId;
 		inflater = LayoutInflater.from(context);
@@ -27,26 +32,19 @@ public class StoryCursorAdapter extends CursorAdapter {
 
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
+		((TextView) view.findViewById(R.id.title)).setText(cursor.getString(2));
 		try {
-			String imageAsset = cursor.getString(4);
-			InputStream inputStream = context.getAssets().open(imageAsset);
-			Drawable drawable = Drawable.createFromStream(inputStream, imageAsset);
-			((ImageView) view.findViewById(R.id.story_list_image))
-					.setImageDrawable(drawable);
-		} catch (Exception e) {
-			((ImageView) view.findViewById(R.id.story_list_image))
-					.setImageResource(R.drawable.placeimg_478_186_arch);
+			Bitmap myBitmap = BitmapFactory.decodeStream(context.openFileInput(cursor.getString(4)));
+			((ImageView) view.findViewById(R.id.image))
+					.setImageBitmap(myBitmap);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
-		((TextView) view.findViewById(R.id.storyListItemTitle)).setText(cursor
-				.getString(2));
-		((TextView) view.findViewById(R.id.storyListItemAuthor))
-				.setText("Sted: " + cursor
-						.getString(3));
+//		ImageLoader.getInstance().displayImage(imagePath(), (ImageView) view.findViewById(R.id.image), ImageLoaderUtils.options, animateFirstListener);
 	}
 
 	@Override
 	public View newView(Context context, Cursor cursor, ViewGroup parent) {
-		final View view = inflater.inflate(viewId, parent, false);
-		return view;
+		return inflater.inflate(viewId, parent, false);
 	}
 }

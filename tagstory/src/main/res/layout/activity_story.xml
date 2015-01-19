@@ -31,11 +31,11 @@
 
 			<TextView
 					android:id="@+id/story_part_desc"
-					style="@style/TagStoryView"/>
+					style="@style/TagStoryViewMedium"/>
 
 			<TextView
 					android:id="@+id/story_part_choice"
-					style="@style/TagStoryView"
+					style="@style/TagStoryViewMedium"
 					android:visibility="gone"/>
 
 			<ImageView

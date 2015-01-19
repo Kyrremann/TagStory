@@ -11,7 +11,24 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/background_border_light_green</item>
         <item name="android:padding">10dp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="TagStoryViewMedium" parent="TagStoryView">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/background_border_light_green</item>
+        <item name="android:padding">10dp</item>
         <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="TagStoryViewLarge" parent="TagStoryView">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/background_border_light_green</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
 

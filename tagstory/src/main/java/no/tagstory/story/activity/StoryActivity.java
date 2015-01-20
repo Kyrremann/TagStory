@@ -14,6 +14,7 @@ import android.widget.TextView;
 import no.tagstory.StoryApplication;
 import no.tagstory.honeycomb.StoryActivityHoneycomb;
 import no.tagstory.R;
+import no.tagstory.statistics.StoryHistory;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
 import no.tagstory.story.StoryTagOption;
@@ -30,6 +31,7 @@ public class StoryActivity extends Activity {
 	private StoryTag tag;
 	protected String tagId;
 	protected StoryApplication storyApplication;
+	protected StoryHistory storyHistory;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class StoryActivity extends Activity {
 		setContentView(R.layout.activity_story);
 
 		storyApplication = (StoryApplication) getApplication();
+		storyHistory = storyApplication.getStoryHistory();
 		story = (Story) getIntent().getSerializableExtra(EXTRA_STORY);
 		tagId = getIntent().getStringExtra(EXTRA_TAG);
 		tag = story.getTag(tagId);
@@ -89,8 +92,7 @@ public class StoryActivity extends Activity {
 
 	}
 
-	private void setTravelButton(
-			final StoryTag tag) {
+	private void setTravelButton(StoryTag tag) {
 		Button travelButton = (Button) findViewById(R.id.story_activity_travel);
 
 		if (hasUserAlreadyVisitedTag()) {
@@ -102,6 +104,10 @@ public class StoryActivity extends Activity {
 		}
 	}
 
+	private boolean hasUserAlreadyVisitedTag() {
+		return storyHistory.hasNext();
+	}
+
 	private void goDirectlyToNextTag(Button travelButton) {
 		travelButton.setText(R.string.next_tag);
 		travelButton.setOnClickListener(new OnClickListener() {
@@ -110,14 +116,11 @@ public class StoryActivity extends Activity {
 				Intent intent = ClassVersionFactory.createIntent(getApplicationContext(),
 						StoryActivityHoneycomb.class, StoryActivity.class);
 				intent.putExtra(StoryActivity.EXTRA_STORY, story);
-				intent.putExtra(StoryActivity.EXTRA_TAG, storyApplication.getNextTagFor(tagId));
+				intent.putExtra(StoryActivity.EXTRA_TAG, storyHistory.getNextStory().getUUID());
+				storyHistory.next();
 				startActivity(intent);
 			}
 		});
-	}
-
-	private boolean hasUserAlreadyVisitedTag() {
-		return storyApplication.hasUserVisited(tagId);
 	}
 
 	private void severalOptions(final StoryTag tag, Button button) {

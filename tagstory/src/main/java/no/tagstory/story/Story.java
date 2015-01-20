@@ -97,8 +97,12 @@ public class Story implements Serializable {
 	/**
 	 * @return the startTag
 	 */
-	public String getStartTag() {
+	public String getStartTagId() {
 		return startTag;
+	}
+
+	public StoryTag getStartTag() {
+		return getTag(startTag);
 	}
 
 	/**

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import no.tagstory.StoryApplication;
 import no.tagstory.honeycomb.StoryActivityHoneycomb;
 import no.tagstory.R;
+import no.tagstory.statistics.StoryHistory;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTagOption;
 import no.tagstory.utils.ClassVersionFactory;
@@ -162,7 +163,8 @@ public class StoryTravelActivity extends FragmentActivity {
 				StoryActivityHoneycomb.class, StoryActivity.class);
 		intent.putExtra(StoryActivity.EXTRA_STORY, story);
 		intent.putExtra(StoryActivity.EXTRA_TAG, option.getOptNext());
-		((StoryApplication) getApplication()).addTagTohistory(tagId, option.getOptNext());
+		StoryHistory storyHistory = ((StoryApplication) getApplication()).getStoryHistory();
+		storyHistory.push(story.getTag(option.getOptNext()));
 		startActivity(intent);
 		finish();
 	}

@@ -2,15 +2,10 @@ package no.tagstory;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
@@ -19,7 +14,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import no.tagstory.honeycomb.StoryActivityHoneycomb;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
@@ -27,8 +21,6 @@ import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class StoryDetailActivity extends Activity {
@@ -96,8 +88,7 @@ public class StoryDetailActivity extends Activity {
 	}
 
 	protected void startStory() {
-		storyApplication.emptyHistory();
-		storyApplication.startTimer();
+		storyApplication.getStoryHistory().startStory(story);
 		startStoryActivity();
 	}
 
@@ -105,7 +96,7 @@ public class StoryDetailActivity extends Activity {
 		Intent intent = ClassVersionFactory.createIntent(this,
 				StoryActivityHoneycomb.class, StoryActivity.class);
 		intent.putExtra(StoryActivity.EXTRA_STORY, story);
-		intent.putExtra(StoryActivity.EXTRA_TAG, story.getStartTag());
+		intent.putExtra(StoryActivity.EXTRA_TAG, story.getStartTagId());
 		startActivity(intent);
 		finish();
 	}

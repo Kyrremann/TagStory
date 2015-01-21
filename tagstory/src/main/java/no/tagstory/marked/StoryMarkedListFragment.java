@@ -3,17 +3,16 @@ package no.tagstory.marked;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.internal.widget.AdapterViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import no.tagstory.R;
+import no.tagstory.StoryApplication;
 import no.tagstory.honeycomb.StoryMarkedListingActivityHoneycomb;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.ImageLoaderUtils;
@@ -24,19 +23,12 @@ import org.json.JSONObject;
 public class StoryMarkedListFragment extends Fragment implements OnItemClickListener {
 
 	private AbsListView listView;
-	private boolean pauseOnScroll = false;
-	private boolean pauseOnFling = true;
-	private JSONArray jsonArray;
+	private JSONArray stories;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		try {
-			jsonArray = new JSONArray(getArguments().getString("JSON"));
-		} catch (JSONException e) {
-			jsonArray = new JSONArray();
-		}
+		stories = ((StoryApplication) getActivity().getApplication()).getMarkedstories();
 	}
 
 	@Override
@@ -49,7 +41,7 @@ public class StoryMarkedListFragment extends Fragment implements OnItemClickList
 	}
 
 	private void applyScrollListener() {
-		listView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), pauseOnScroll, pauseOnFling));
+		listView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), false, true));
 	}
 
 	@Override
@@ -67,7 +59,7 @@ public class StoryMarkedListFragment extends Fragment implements OnItemClickList
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Intent intent = ClassVersionFactory.createIntent(getActivity().getApplicationContext(), StoryMarkedListingActivityHoneycomb.class, StoryMarkedListingActivity.class);
-		intent.putExtra("json", jsonArray.optString(position, ""));
+		intent.putExtra("json", stories.optString(position, ""));
 		startActivity(intent);
 	}
 
@@ -87,8 +79,7 @@ public class StoryMarkedListFragment extends Fragment implements OnItemClickList
 
 		@Override
 		public int getCount() {
-//			return imageUrls.length;
-			return jsonArray.length();
+			return stories.length();
 		}
 
 		@Override
@@ -116,7 +107,7 @@ public class StoryMarkedListFragment extends Fragment implements OnItemClickList
 			}
 
 			try {
-				JSONObject jsonObject = jsonArray.getJSONObject(position).getJSONObject("value");
+				JSONObject jsonObject = stories.getJSONObject(position).getJSONObject("value");
 
 				holder.text.setText(jsonObject.getString("title"));
 
@@ -129,9 +120,8 @@ public class StoryMarkedListFragment extends Fragment implements OnItemClickList
 				}
 
 				ImageLoader.getInstance().displayImage(url, holder.image, ImageLoaderUtils.options, animateFirstListener);
-
 			} catch (JSONException e) {
-				e.printStackTrace();
+				holder.text.setText(R.string.marked_error_item_list);
 			}
 
 			return view;

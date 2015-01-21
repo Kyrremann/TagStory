@@ -3,6 +3,7 @@ package no.tagstory;
 import android.app.Application;
 import android.location.Location;
 import no.tagstory.statistics.StoryHistory;
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -14,6 +15,7 @@ public class StoryApplication extends Application {
 	private long startTime;
 
 	private StoryHistory storyHistory;
+	private JSONArray markedstories;
 
 	@Override
 	public void onCreate() {
@@ -62,5 +64,22 @@ public class StoryApplication extends Application {
 			last = l;
 		}
 		return distance;
+	}
+
+	public void setMarkedstories(JSONArray markedstories) {
+		this.markedstories = markedstories;
+	}
+
+	public JSONArray getMarkedstories() {
+		if (markedstories != null) {
+			return markedstories;
+		}
+		return new JSONArray();
+	}
+
+	public boolean isMarkedStoriesEmptyOrOutdated() {
+		return markedstories == null
+				|| markedstories.length() == 0;
+		// TODO add datetracking
 	}
 }

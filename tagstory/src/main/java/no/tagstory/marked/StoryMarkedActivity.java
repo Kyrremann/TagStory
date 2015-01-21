@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 import no.tagstory.R;
+import no.tagstory.StoryApplication;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
@@ -23,7 +24,6 @@ public class StoryMarkedActivity extends FragmentActivity {
 	private static final int MESSAGE_FAIL_JSON = -1;
 	private static final int MESSAGE_FAIL_HTTP = -2;
 
-	private JSONArray jsonArray;
 	private Handler handler;
 
 	@Override
@@ -31,12 +31,46 @@ public class StoryMarkedActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setTitle(R.string.story_marked);
 
+		StoryApplication storyApplication = (StoryApplication) getApplication();
+
 		final ProgressDialog progressDialog = new ProgressDialog(this);
 		progressDialog.setCancelable(false);
 		progressDialog.setMessage("Updating the market");
 		progressDialog.show();
 
-		handler = new Handler(new Handler.Callback() {
+		handler = createHandler(progressDialog);
+		if (storyApplication.isMarkedStoriesEmptyOrOutdated()) {
+			downloadNewStoriesForMarked();
+		} else {
+			handler.sendEmptyMessage(MESSAGE_DONE);
+		}
+	}
+
+	private void downloadNewStoriesForMarked() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					HttpClient client = new DefaultHttpClient();
+					HttpGet get = new HttpGet("http://tagstory.herokuapp.com/stories/json");
+					String content = client.execute(get, new BasicResponseHandler());
+
+					((StoryApplication) getApplication()).setMarkedstories(new JSONArray(content));
+				} catch (IOException e) {
+					e.printStackTrace();
+					handler.sendEmptyMessage(MESSAGE_FAIL_HTTP);
+				} catch (JSONException e) {
+					e.printStackTrace();
+					handler.sendEmptyMessage(MESSAGE_FAIL_JSON);
+				} finally {
+					handler.sendEmptyMessage(MESSAGE_DONE);
+				}
+			}
+		}).start();
+	}
+
+	private Handler createHandler(final ProgressDialog progressDialog) {
+		return new Handler(new Handler.Callback() {
 			@Override
 			public boolean handleMessage(Message msg) {
 				switch (msg.what) {
@@ -57,27 +91,6 @@ public class StoryMarkedActivity extends FragmentActivity {
 				return true;
 			}
 		});
-
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					HttpClient client = new DefaultHttpClient();
-					HttpGet get = new HttpGet("http://tagstory.herokuapp.com/stories/json");
-					String content = client.execute(get, new BasicResponseHandler());
-
-					jsonArray = new JSONArray(content);
-				} catch (IOException e) {
-					e.printStackTrace();
-					handler.sendEmptyMessage(MESSAGE_FAIL_HTTP);
-				} catch (JSONException e) {
-					e.printStackTrace();
-					handler.sendEmptyMessage(MESSAGE_FAIL_JSON);
-				} finally {
-					handler.sendEmptyMessage(MESSAGE_DONE);
-				}
-			}
-		}).start();
 	}
 
 	private void showMarkedFragment() {
@@ -86,9 +99,6 @@ public class StoryMarkedActivity extends FragmentActivity {
 		if (fragment == null) {
 			fragment = new StoryMarkedListFragment();
 		}
-		Bundle bundle = new Bundle(1);
-		bundle.putString("JSON", jsonArray.toString());
-		fragment.setArguments(bundle);
 
 		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment, tag).commit();
 	}

@@ -17,13 +17,11 @@ public class StoryDetailActivityHoneycomb extends StoryDetailActivity {
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	public boolean onMenuItemSelected(int featuredId, MenuItem item) {
 		if (item.getItemId() == android.R.id.home) {
-			NavUtils.navigateUpTo(this, new Intent(this,
-					TagStoryActivityHoneyComb.class));
+			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		}
-
 		return super.onOptionsItemSelected(item);
 	}
 }

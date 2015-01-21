@@ -13,11 +13,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import no.tagstory.adapters.StoryCursorAdapter;
 import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
-import no.tagstory.marked.SimpleStoryMarkedActivity;
+import no.tagstory.marked.StoryMarkedActivity;
 import no.tagstory.story.StoryManager;
 import no.tagstory.utils.*;
 
@@ -105,8 +104,8 @@ public class TagStoryActivity extends FragmentActivity implements OnItemClickLis
 		return true;
 	}
 
-	private void startMarkedActivity() {
-		startActivity(new Intent(this, SimpleStoryMarkedActivity.class));
+	protected void startMarkedActivity() {
+		startActivity(new Intent(this, StoryMarkedActivity.class));
 	}
 
 	private void showAboutTagStoryDialog() {

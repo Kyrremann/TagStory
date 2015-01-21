@@ -42,9 +42,10 @@
         <activity
                 android:name="no.tagstory.StoryDetailActivity"
                 android:label="@string/title_story_detail">
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".TagStoryActivity"/>
+        </activity>
+        <activity
+                android:name="no.tagstory.honeycomb.StoryDetailActivityHoneycomb"
+                android:parentActivityName=".honeycomb.TagStoryActivityHoneycomb">
         </activity>
         <activity android:name="no.tagstory.story.activity.StoryActivity">
         </activity>
@@ -86,10 +87,8 @@
                 android:value="@integer/google_play_services_version"/>
 
         <activity
-                android:name="no.tagstory.honeycomb.TagStoryActivityHoneyComb"
+                android:name=".honeycomb.TagStoryActivityHoneycomb"
                 android:label="@string/app_title">
-        </activity>
-        <activity android:name="no.tagstory.honeycomb.StoryDetailActivityHoneycomb">
         </activity>
         <activity android:name="no.tagstory.story.activity.StoryPropagatingActivity">
         </activity>
@@ -100,10 +99,18 @@
                 android:label="@string/app_title">
         </activity>
         <activity
-                android:name=".marked.SimpleStoryMarkedActivity">
+                android:name=".marked.StoryMarkedActivity">
+        </activity>
+        <activity
+                android:name=".honeycomb.StoryMarkedActivityHoneycomb"
+                android:parentActivityName=".honeycomb.TagStoryActivityHoneycomb">
         </activity>
         <activity
                 android:name=".marked.StoryMarkedListingActivity">
+        </activity>
+        <activity
+                android:name=".honeycomb.StoryMarkedListingActivityHoneycomb"
+                android:parentActivityName=".honeycomb.StoryMarkedActivityHoneycomb">
         </activity>
     </application>
 

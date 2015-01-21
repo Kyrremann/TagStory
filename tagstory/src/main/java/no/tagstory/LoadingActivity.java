@@ -4,11 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
-import no.tagstory.honeycomb.TagStoryActivityHoneyComb;
+import no.tagstory.honeycomb.TagStoryActivityHoneycomb;
 
 import static no.tagstory.utils.ClassVersionFactory.createIntent;
 
@@ -33,7 +31,7 @@ public class LoadingActivity extends Activity {
 			@Override
 			public void run() {
 				Intent intent = createIntent(getApplicationContext(),
-						TagStoryActivityHoneyComb.class, TagStoryActivity.class);
+						TagStoryActivityHoneycomb.class, TagStoryActivity.class);
 				startActivity(intent);
 				finish();
 			}

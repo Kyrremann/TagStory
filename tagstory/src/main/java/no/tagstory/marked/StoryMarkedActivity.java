@@ -17,7 +17,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
-public class SimpleStoryMarkedActivity extends FragmentActivity {
+public class StoryMarkedActivity extends FragmentActivity {
 
 	private static final int MESSAGE_DONE = 0;
 	private static final int MESSAGE_FAIL_JSON = -1;
@@ -29,6 +29,7 @@ public class SimpleStoryMarkedActivity extends FragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setTitle(R.string.story_marked);
 
 		final ProgressDialog progressDialog = new ProgressDialog(this);
 		progressDialog.setCancelable(false);
@@ -89,7 +90,6 @@ public class SimpleStoryMarkedActivity extends FragmentActivity {
 		bundle.putString("JSON", jsonArray.toString());
 		fragment.setArguments(bundle);
 
-		setTitle(R.string.story_marked);
 		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment, tag).commit();
 	}
 }

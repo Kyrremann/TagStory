@@ -3,6 +3,7 @@ package no.tagstory.marked;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.internal.widget.AdapterViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,14 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import no.tagstory.R;
+import no.tagstory.honeycomb.StoryMarkedListingActivityHoneycomb;
+import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.ImageLoaderUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class StoryMarkedListFragment extends Fragment {
+public class StoryMarkedListFragment extends Fragment implements OnItemClickListener {
 
 	private AbsListView listView;
 	private boolean pauseOnScroll = false;
@@ -41,14 +44,7 @@ public class StoryMarkedListFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_image_list, container, false);
 		listView = (ListView) rootView.findViewById(android.R.id.list);
 		((ListView) listView).setAdapter(new ImageAdapter());
-		listView.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Intent intent = new Intent(getActivity().getApplicationContext(), StoryMarkedListingActivity.class);
-				intent.putExtra("json", jsonArray.optString(position, ""));
-				startActivity(intent);
-			}
-		});
+		listView.setOnItemClickListener(this);
 		return rootView;
 	}
 
@@ -66,6 +62,13 @@ public class StoryMarkedListFragment extends Fragment {
 	public void onDestroy() {
 		super.onDestroy();
 		ImageLoaderUtils.AnimateFirstDisplayListener.displayedImages.clear();
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		Intent intent = ClassVersionFactory.createIntent(getActivity().getApplicationContext(), StoryMarkedListingActivityHoneycomb.class, StoryMarkedListingActivity.class);
+		intent.putExtra("json", jsonArray.optString(position, ""));
+		startActivity(intent);
 	}
 
 	private static class ViewHolder {

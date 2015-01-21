@@ -140,6 +140,8 @@ public class StoryDetailActivity extends Activity {
 		}
 	}
 
+
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.story_detail, menu);

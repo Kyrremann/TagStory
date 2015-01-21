@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,10 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import no.tagstory.R;
 import no.tagstory.StoryDetailActivity;
 import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
@@ -86,6 +80,8 @@ public class StoryMarkedListingActivity extends Activity {
 			title.setText(storyDetailValues.getString("title"));
 			author.setText(storyDetailValues.getString("author"));
 			description.setText(storyDetailValues.getString("description"));
+
+			setTitle(storyDetailValues.getString("title"));
 		} catch (JSONException e) {
 			e.printStackTrace();
 			// TODO
@@ -181,7 +177,7 @@ public class StoryMarkedListingActivity extends Activity {
 	}
 
 	private void downloadAssets(JSONObject story) throws JSONException, IOException {
-		downloadImage(SERVER_URL_IMAGES, story.optString(JsonParser.IMAGE, ""));
+		downloadAsset(SERVER_URL_IMAGES, story.optString(JsonParser.IMAGE, ""));
 
 		JSONObject tags = story.getJSONObject(JsonParser.TAGS);
 		Iterator<String> keys = tags.keys();
@@ -195,10 +191,10 @@ public class StoryMarkedListingActivity extends Activity {
 					String optionKey = optionKeys.next();
 					JSONObject option = options.getJSONObject(optionKey);
 					if (option.has(JsonParser.IMAGE_SRC)) {
-						downloadImage(SERVER_URL_IMAGES, option.optString(JsonParser.IMAGE_SRC, ""));
+						downloadAsset(SERVER_URL_IMAGES, option.optString(JsonParser.IMAGE_SRC, ""));
 					}
 					if (option.has(JsonParser.SOUND_SRC)) {
-						downloadImage(SERVER_URL_AUDIO, option.optString(JsonParser.SOUND_SRC, ""));
+						downloadAsset(SERVER_URL_AUDIO, option.optString(JsonParser.SOUND_SRC, ""));
 					}
 				}
 			}
@@ -206,14 +202,13 @@ public class StoryMarkedListingActivity extends Activity {
 	}
 
 	// TODO watch out for errors
-	private boolean downloadImage(String serverUrl, String name) {
+	private boolean downloadAsset(String serverUrl, String name) {
 		if (name.length() == 0) {
 			return false;
 		}
 
-		URL url = null;
 		try {
-			url = new URL(serverUrl + name);
+			URL url = new URL(serverUrl + name);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setDoInput(true);
 			connection.connect();
@@ -235,23 +230,6 @@ public class StoryMarkedListingActivity extends Activity {
 			e.printStackTrace();
 			return false;
 		}
-		return true;
-	}
-
-	private boolean downloadAudio(String url, String name) throws IOException {
-		if (name.length() == 0) {
-			return false;
-		}
-
-		HttpClient client = new DefaultHttpClient();
-		HttpGet get = new HttpGet(url + name);
-		Object content = client.execute(get, new BasicResponseHandler());
-
-		OutputStream outputStream = openFileOutput(name, Context.MODE_PRIVATE);
-		ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-		objectOutputStream.writeObject(content);
-		objectOutputStream.close();
-
 		return true;
 	}
 }

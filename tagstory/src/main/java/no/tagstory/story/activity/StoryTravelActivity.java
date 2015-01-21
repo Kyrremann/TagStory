@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import no.tagstory.StoryApplication;
-import no.tagstory.honeycomb.StoryActivityHoneycomb;
 import no.tagstory.R;
 import no.tagstory.statistics.StoryHistory;
 import no.tagstory.story.Story;
@@ -109,8 +108,7 @@ public class StoryTravelActivity extends FragmentActivity {
 				new DialogInterface.OnClickListener() {
 
 					@Override
-					public void onClick(DialogInterface dialog,
-					                    int which) {
+					public void onClick(DialogInterface dialog, int which) {
 						dialog.cancel();
 					}
 				});
@@ -118,8 +116,7 @@ public class StoryTravelActivity extends FragmentActivity {
 				new DialogInterface.OnClickListener() {
 
 					@Override
-					public void onClick(DialogInterface dialog,
-					                    int which) {
+					public void onClick(DialogInterface dialog, int which) {
 						skipTag();
 					}
 				});
@@ -159,8 +156,7 @@ public class StoryTravelActivity extends FragmentActivity {
 	}
 
 	private void goToNextActivity() {
-		Intent intent = ClassVersionFactory.createIntent(getApplicationContext(),
-				StoryActivityHoneycomb.class, StoryActivity.class);
+		Intent intent = new Intent(this, StoryActivity.class);
 		intent.putExtra(StoryActivity.EXTRA_STORY, story);
 		intent.putExtra(StoryActivity.EXTRA_TAG, option.getOptNext());
 		StoryHistory storyHistory = ((StoryApplication) getApplication()).getStoryHistory();

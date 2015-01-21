@@ -18,6 +18,8 @@
 				android:layout_margin="10dp"
 				android:background="@drawable/square_textview_green"
 				android:padding="15dp"
+				android:autoLink="web"
+				android:linksClickable="true"
 				android:text="@string/front_no_stories"
 				android:textAppearance="?android:attr/textAppearanceLarge"/>
 

@@ -14,11 +14,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import no.tagstory.honeycomb.StoryActivityHoneycomb;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
 import no.tagstory.story.activity.StoryActivity;
-import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
 
 import java.io.FileNotFoundException;
@@ -93,12 +91,10 @@ public class StoryDetailActivity extends Activity {
 	}
 
 	protected void startStoryActivity() {
-		Intent intent = ClassVersionFactory.createIntent(this,
-				StoryActivityHoneycomb.class, StoryActivity.class);
+		Intent intent = new Intent(this, StoryActivity.class);
 		intent.putExtra(StoryActivity.EXTRA_STORY, story);
 		intent.putExtra(StoryActivity.EXTRA_TAG, story.getStartTagId());
 		startActivity(intent);
-		finish();
 	}
 
 	protected void showNoGpsDialog() {

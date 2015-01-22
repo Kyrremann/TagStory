@@ -76,11 +76,11 @@ public class StoryDetailActivity extends Activity {
 
 	public void startStory(View v) {
 		if (v.getId() == R.id.start_story_button) {
-			if (story.requireGPS()
-					&& isGPSDisabled()) {
-				showNoGpsDialog();
-				return;
-			}
+//			if (story.requireGPS()
+//					&& isGPSDisabled()) {
+//				showNoGpsDialog();
+//				return;
+//			}
 			startStory();
 		}
 	}

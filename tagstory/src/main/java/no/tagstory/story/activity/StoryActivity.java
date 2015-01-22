@@ -199,6 +199,7 @@ public class StoryActivity extends Activity {
 			intent.putExtra(StoryActivity.EXTRA_STORY, story);
 			intent.putExtra(StoryActivity.EXTRA_TAG, storyHistory.getPreviousStory().getUUID());
 			storyHistory.previous();
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);
 			finish();
 		} else {

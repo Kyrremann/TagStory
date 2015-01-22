@@ -22,6 +22,6 @@ public class StoryDetailActivityHoneycomb extends StoryDetailActivity {
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		}
-		return super.onOptionsItemSelected(item);
+		return super.onMenuItemSelected(featuredId, item);
 	}
 }

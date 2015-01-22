@@ -70,6 +70,8 @@ public class TravelIntentUtil {
 		} else if (context.getPackageManager().hasSystemFeature(
 				PackageManager.FEATURE_NFC)) {
 			// TODO Device has NFC
+		} else {
+			throw new UnsupportedOperationException("Unsupported tagmode: " + tagMode);
 		}
 
 		return intent;

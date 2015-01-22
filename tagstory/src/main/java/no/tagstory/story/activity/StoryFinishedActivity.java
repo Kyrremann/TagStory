@@ -29,9 +29,8 @@ public class StoryFinishedActivity extends Activity {
 		partTag = getIntent().getStringExtra(StoryActivity.EXTRA_TAG);
 		part = story.getTag(partTag);
 
-		((TextView) findViewById(R.id.story_finished_text)).setText(part
-				.getDescription());
-		printStatistics();
+		((TextView) findViewById(R.id.story_finished_text)).setText(part.getDescription());
+//		printStatistics();
 	}
 
 	private void printStatistics() {
@@ -54,8 +53,9 @@ public class StoryFinishedActivity extends Activity {
 		// NavUtils.navigateUpTo(this, new Intent(this, TagStoryActivity.class));
 		// finish();
 		Intent intent = new Intent(this, TagStoryActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		startActivity(intent);
+		finish();
 	}
 
 }

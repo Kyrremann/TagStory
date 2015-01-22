@@ -95,8 +95,8 @@ public class JsonParser {
 		story.setImage(storyObject.getString(IMAGE));
 		story.setStartTag(storyObject.getString(START_TAG));
 		story.setLanguage(storyObject.getString(LANGUAGE));
-		story.setTagTypes(Arrays.asList(storyObject.getString(TAG_TYPES).split(";")));
-		story.setGameModes(Arrays.asList(storyObject.getString(GAME_MODES).split(";")));
+		story.setTagTypes(Arrays.asList(storyObject.getString(TAG_TYPES).toLowerCase().split(";")));
+		story.setGameModes(Arrays.asList(storyObject.getString(GAME_MODES).toLowerCase().split(";")));
 
 		story.setTags(parseTags(storyObject.getJSONObject(TAGS)));
 

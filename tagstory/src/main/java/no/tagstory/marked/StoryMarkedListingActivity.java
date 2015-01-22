@@ -232,4 +232,23 @@ public class StoryMarkedListingActivity extends Activity {
 		}
 		return true;
 	}
+
+	/*
+	final CognitoCachingCredentialsProvider cognitoProvider = new CognitoCachingCredentialsProvider(
+		this,
+		"",
+		Regions.EU_WEST_1);
+
+	new Thread(new Runnable() {
+		@Override
+		public void run() {
+			TransferManager transferManager = new TransferManager(cognitoProvider);
+			transferManager.getAmazonS3Client().setRegion(Region.getRegion(Regions.EU_WEST_1));
+			Download download = transferManager.download("tagstory", "images/dfcfe0105271fa8cd21ce32ad8349f6b8909a28e79b2a0f27e47f5ca91f6becc.jpg", getFileStreamPath("dfcfe0105271fa8cd21ce32ad8349f6b8909a28e79b2a0f27e47f5ca91f6becc.jpg"));
+			System.out.println(download);
+			while (!download.isDone()) ;//System.out.println("Downloading..." + download.getProgress().getPercentTransferred());
+			System.out.println(download);
+		}
+	}).start();
+	 */
 }

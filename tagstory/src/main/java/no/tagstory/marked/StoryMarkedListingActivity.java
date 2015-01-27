@@ -11,6 +11,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.StringUtil;
+import com.amazonaws.mobileconnectors.s3.transfermanager.Download;
+import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import no.tagstory.R;
 import no.tagstory.StoryDetailActivity;
@@ -27,20 +33,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Iterator;
 
 public class StoryMarkedListingActivity extends Activity {
 
 	private static String SERVER_URL = "https://s3-eu-west-1.amazonaws.com/tagstory/";
-	public static String SERVER_URL_IMAGES = SERVER_URL + "images/";
-	public static String SERVER_URL_AUDIO = SERVER_URL + "audio/";
+	private static String IMAGES_FOLDER = "images/";
+	private static String AUDIO_FOLDER = "audio/";
+	public static String SERVER_URL_IMAGES = SERVER_URL + IMAGES_FOLDER;
+	public static String SERVER_URL_AUDIO = SERVER_URL + AUDIO_FOLDER;
 
 	private static final int MESSAGE_DONE = 0;
 	private static final int MESSAGE_FAIL_JSON = -1;
 	private static final int MESSAGE_FAIL_HTTP = -2;
+	private static final int MESSAGE_INFO = 1;
 
 	private JSONObject storyDetail;
 	private boolean isDownloaded;
@@ -50,7 +56,6 @@ public class StoryMarkedListingActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_marked_listing);
-		// TODO: Check if story has been downloaded
 
 		try {
 			storyDetail = new JSONObject(getIntent().getStringExtra("json"));
@@ -127,6 +132,8 @@ public class StoryMarkedListingActivity extends Activity {
 					case MESSAGE_FAIL_JSON:
 						Toast.makeText(getApplicationContext(), "Something went wrong with the data", Toast.LENGTH_SHORT).show();
 						break;
+					case MESSAGE_INFO:
+						progressDialog.setMessage("Downloading: " + msg.arg1);
 					default:
 						break;
 				}
@@ -161,7 +168,7 @@ public class StoryMarkedListingActivity extends Activity {
 					database.open();
 					database.insertStory(story.getString("UUID"), story.getString("author"), story.getString("title"), story.getString("area"), story.getString("image"));
 					// TODO: download images
-					downloadAssets(story);
+					downloadAssets(story, handler);
 					// TODO: Change button to 'play story'
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -176,8 +183,15 @@ public class StoryMarkedListingActivity extends Activity {
 		}).start();
 	}
 
-	private void downloadAssets(JSONObject story) throws JSONException, IOException {
-		downloadAsset(SERVER_URL_IMAGES, story.optString(JsonParser.IMAGE, ""));
+	private void downloadAssets(JSONObject story, Handler handler) throws JSONException, IOException {
+		CognitoCachingCredentialsProvider cognitoProvider = new CognitoCachingCredentialsProvider(
+				this,
+				"",
+				Regions.EU_WEST_1);
+		TransferManager transferManager = new TransferManager(cognitoProvider);
+		transferManager.getAmazonS3Client().setRegion(Region.getRegion(Regions.EU_WEST_1));
+
+		downloadAsset(IMAGES_FOLDER, story.optString(JsonParser.IMAGE, ""), transferManager, handler);
 
 		JSONObject tags = story.getJSONObject(JsonParser.TAGS);
 		Iterator<String> keys = tags.keys();
@@ -191,10 +205,10 @@ public class StoryMarkedListingActivity extends Activity {
 					String optionKey = optionKeys.next();
 					JSONObject option = options.getJSONObject(optionKey);
 					if (option.has(JsonParser.IMAGE_SRC)) {
-						downloadAsset(SERVER_URL_IMAGES, option.optString(JsonParser.IMAGE_SRC, ""));
+						downloadAsset(IMAGES_FOLDER, option.optString(JsonParser.IMAGE_SRC, ""), transferManager, handler);
 					}
 					if (option.has(JsonParser.SOUND_SRC)) {
-						downloadAsset(SERVER_URL_AUDIO, option.optString(JsonParser.SOUND_SRC, ""));
+						downloadAsset(AUDIO_FOLDER, option.optString(JsonParser.SOUND_SRC, ""), transferManager, handler);
 					}
 				}
 			}
@@ -202,53 +216,25 @@ public class StoryMarkedListingActivity extends Activity {
 	}
 
 	// TODO watch out for errors
-	private boolean downloadAsset(String serverUrl, String name) {
-		if (name.length() == 0) {
+	private boolean downloadAsset(String serverUrl, String name, TransferManager transferManager, Handler handler) {
+		if (StringUtil.isBlank(name)) {
 			return false;
 		}
 
-		try {
-			URL url = new URL(serverUrl + name);
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setDoInput(true);
-			connection.connect();
-			BufferedInputStream bufferedInputStream = new BufferedInputStream(connection.getInputStream());
-			BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(getFileStreamPath(name)));
-			int inByte;
-			while ((inByte = bufferedInputStream.read()) != -1) {
-				bufferedOutputStream.write(inByte);
+		Download download = transferManager.download("tagstory", serverUrl + name, getFileStreamPath(name));
+		Message message = new Message();
+		while (!download.isDone()) {
+			message.what = MESSAGE_INFO;
+			message.arg1 = (int) download.getProgress().getPercentTransferred();
+			handler.sendMessage(message);
+			try {
+				Thread.sleep(250);
+			} catch (InterruptedException e) {
 			}
-			bufferedInputStream.close();
-			bufferedOutputStream.close();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-			return false;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return false;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return false;
 		}
+		message.what = MESSAGE_INFO;
+		message.arg1 = 100;
+
 		return true;
 	}
-
-	/*
-	final CognitoCachingCredentialsProvider cognitoProvider = new CognitoCachingCredentialsProvider(
-		this,
-		"",
-		Regions.EU_WEST_1);
-
-	new Thread(new Runnable() {
-		@Override
-		public void run() {
-			TransferManager transferManager = new TransferManager(cognitoProvider);
-			transferManager.getAmazonS3Client().setRegion(Region.getRegion(Regions.EU_WEST_1));
-			Download download = transferManager.download("tagstory", "images/dfcfe0105271fa8cd21ce32ad8349f6b8909a28e79b2a0f27e47f5ca91f6becc.jpg", getFileStreamPath("dfcfe0105271fa8cd21ce32ad8349f6b8909a28e79b2a0f27e47f5ca91f6becc.jpg"));
-			System.out.println(download);
-			while (!download.isDone()) ;//System.out.println("Downloading..." + download.getProgress().getPercentTransferred());
-			System.out.println(download);
-		}
-	}).start();
-	 */
 }

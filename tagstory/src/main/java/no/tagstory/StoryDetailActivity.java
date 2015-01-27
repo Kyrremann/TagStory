@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
 import no.tagstory.story.activity.StoryActivity;
+import no.tagstory.story.activity.utils.PhoneRequirementsUtils;
 import no.tagstory.utils.Database;
 
 import java.io.FileNotFoundException;
@@ -28,7 +30,7 @@ public class StoryDetailActivity extends Activity {
 	protected String story_id;
 	protected StoryManager storyManager;
 	protected Story story;
-	protected AlertDialog enableGPSDialog;
+	protected AlertDialog enableGPSDialog, enableNFCDialog, enableQRDialog;
 	protected StoryApplication storyApplication;
 
 	@Override
@@ -76,13 +78,31 @@ public class StoryDetailActivity extends Activity {
 
 	public void startStory(View v) {
 		if (v.getId() == R.id.start_story_button) {
-//			if (story.requireGPS()
-//					&& isGPSDisabled()) {
-//				showNoGpsDialog();
-//				return;
-//			}
+			if (hasPhoneRequirements()) {
+				return;
+			}
 			startStory();
 		}
+	}
+
+	private boolean hasPhoneRequirements() {
+		String mode = PhoneRequirementsUtils.checkGamemodes(this, story.getGameModes());
+		if (mode != null) {
+			// No game mode requirements, yet
+		}
+
+		String type = PhoneRequirementsUtils.checkTagtypes(this, story.getTagTypes());
+		if (type != null) {
+			if (type.equalsIgnoreCase("QR")) {
+				showNoQrDialog();
+			} else if (type.equalsIgnoreCase("GPS")) {
+				showNoGpsDialog();
+			} else if (type.equalsIgnoreCase("NFC")) {
+				showNoNfcDialog();
+			}
+		}
+
+		return false;
 	}
 
 	protected void startStory() {
@@ -95,6 +115,35 @@ public class StoryDetailActivity extends Activity {
 		intent.putExtra(StoryActivity.EXTRA_STORY, story);
 		intent.putExtra(StoryActivity.EXTRA_TAG, story.getStartTagId());
 		startActivity(intent);
+	}
+
+	private void showNoQrDialog() {
+		if (enableQRDialog == null) {
+			final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(getResources().getString(
+					R.string.dialog_download_barcodescanner));
+			builder.setCancelable(false);
+			builder.setPositiveButton(R.string.dialog_go_to_play_store, new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog, final int id) {
+							// TODO open Play Store
+						}
+					});
+			builder.setNegativeButton(R.string.dialog_cancel,
+					new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog,
+						                    final int id) {
+							dialog.cancel();
+						}
+					});
+			enableGPSDialog = builder.create();
+		}
+		enableQRDialog.show();
+	}
+
+	private void showNoNfcDialog() {
+		if (enableNFCDialog == null) {
+			// TODO
+		}
 	}
 
 	protected void showNoGpsDialog() {
@@ -123,13 +172,6 @@ public class StoryDetailActivity extends Activity {
 			enableGPSDialog = builder.create();
 		}
 		enableGPSDialog.show();
-	}
-
-	protected boolean isGPSDisabled() {
-		String provider = Settings.Secure.getString(getContentResolver(),
-				Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
-		return provider != null
-				&& provider.contains("gps");
 	}
 
 	@Override

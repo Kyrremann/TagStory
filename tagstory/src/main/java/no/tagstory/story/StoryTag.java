@@ -2,7 +2,7 @@ package no.tagstory.story;
 
 import android.annotation.SuppressLint;
 import no.tagstory.story.game.QuizNode;
-import no.tagstory.utils.JsonParser;
+import no.tagstory.utils.StoryParser;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -50,7 +50,7 @@ public class StoryTag implements Serializable {
 		this.setOptions(options);
 		this.setIsEndpoint(isEndpoint);
 
-		if (getGameMode().equals(JsonParser.QUIZ))
+		if (getGameMode().equals(StoryParser.QUIZ))
 			this.quiz = new HashMap<Integer, QuizNode>();
 	}
 
@@ -247,16 +247,16 @@ public class StoryTag implements Serializable {
 
 	public boolean hasGameMode() {
 		return getGameMode() != null
-				&& (getGameMode().equals(JsonParser.QUIZ)
-				|| getGameMode().equals(JsonParser.CAMERA));
+				&& (getGameMode().equals(StoryParser.QUIZ)
+				|| getGameMode().equals(StoryParser.CAMERA));
 	}
 
 	public boolean isQuizGameMode() {
-		return getGameMode().equals(JsonParser.QUIZ);
+		return getGameMode().equals(StoryParser.QUIZ);
 	}
 
 	public boolean isCameraGameMode() {
-		return getGameMode().equals(JsonParser.CAMERA);
+		return getGameMode().equals(StoryParser.CAMERA);
 	}
 
 	public boolean hasOnlyOneOption() {

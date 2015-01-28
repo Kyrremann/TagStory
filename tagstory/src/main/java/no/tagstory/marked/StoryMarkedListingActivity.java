@@ -24,7 +24,7 @@ import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
 import no.tagstory.story.StoryManager;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
-import no.tagstory.utils.JsonParser;
+import no.tagstory.utils.StoryParser;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
@@ -191,24 +191,24 @@ public class StoryMarkedListingActivity extends Activity {
 		TransferManager transferManager = new TransferManager(cognitoProvider);
 		transferManager.getAmazonS3Client().setRegion(Region.getRegion(Regions.EU_WEST_1));
 
-		downloadAsset(IMAGES_FOLDER, story.optString(JsonParser.IMAGE, ""), transferManager, handler);
+		downloadAsset(IMAGES_FOLDER, story.optString(StoryParser.IMAGE, ""), transferManager, handler);
 
-		JSONObject tags = story.getJSONObject(JsonParser.TAGS);
+		JSONObject tags = story.getJSONObject(StoryParser.TAGS);
 		Iterator<String> keys = tags.keys();
 		while (keys.hasNext()) {
 			String key = keys.next();
 			JSONObject tag = tags.getJSONObject(key);
-			if (tag.has(JsonParser.TAG_OPTIONS)) {
-				JSONObject options = tag.getJSONObject(JsonParser.TAG_OPTIONS);
+			if (tag.has(StoryParser.TAG_OPTIONS)) {
+				JSONObject options = tag.getJSONObject(StoryParser.TAG_OPTIONS);
 				Iterator<String> optionKeys = options.keys();
 				while (optionKeys.hasNext()) {
 					String optionKey = optionKeys.next();
 					JSONObject option = options.getJSONObject(optionKey);
-					if (option.has(JsonParser.IMAGE_SRC)) {
-						downloadAsset(IMAGES_FOLDER, option.optString(JsonParser.IMAGE_SRC, ""), transferManager, handler);
+					if (option.has(StoryParser.HINT_IMAGE_SOURCE)) {
+						downloadAsset(IMAGES_FOLDER, option.optString(StoryParser.HINT_IMAGE_SOURCE, ""), transferManager, handler);
 					}
-					if (option.has(JsonParser.SOUND_SRC)) {
-						downloadAsset(AUDIO_FOLDER, option.optString(JsonParser.SOUND_SRC, ""), transferManager, handler);
+					if (option.has(StoryParser.HINT_SOUND_SOURCE)) {
+						downloadAsset(AUDIO_FOLDER, option.optString(StoryParser.HINT_SOUND_SOURCE, ""), transferManager, handler);
 					}
 				}
 			}

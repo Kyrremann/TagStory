@@ -12,59 +12,69 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class JsonParser {
+public class StoryParser {
 
+	// Main content
 	public static final String STORY = "story";
 	public static final String UUID = "UUID";
 	public static final String AUTHOR = "author";
 	public static final String TITLE = "title";
+	public static final String RELEASE_DATE = "date";
 	public static final String AGEGROUP = "agegroup";
-	public static final String DATE = "date";
 	public static final String GENRE = "genre";
 	public static final String DESCRIPTION = "description";
 	public static final String START_TAG = "start_tag";
 	public static final String KEYWORDS = "keywords";
-	public static final String TAG_COUNT = "tag_count";
-	public static final String TAGS = "tags";
 	public static final String COUNTRY = "country";
-	public static final String IMAGE = "image";
+	public static final String IMAGE = "image"; // This image needs to be public
+	public static final String TAG_TYPES = "tag_types"; // List seperated with ;
+	public static final String GAME_MODES = "game_modes"; // List seperated with ;
+	public static final String AREA = "area"; // Should be a Google Maps location
+	public static final String LANGUAGE = "language"; // Use ISO 639-1
+	public static final String TAGS = "tags";
+	// Optinal
 	public static final String URL = "url";
-	public static final String TAG_TYPES = "tag_types";
-	public static final String GAME_MODES = "game_modes";
-	public static final String AREA = "area";
-	public static final String LANGUAGE = "language";
-	public static final String OPTIONS_TITLE = "options_title";
-	public static final String BELONSG_TO_TAG = "belongs_to_tag";
-	public static final String TAG_MODE = "tag_mode";
-	public static final String PART_DESCRIPTION = "description";
-	public static final String CHOICE_DESCRIPTION = "choice_description";
-	public static final String CHOICE_IMAGE = "choice_image";
-	public static final String IS_ENDPOINT = "isEndPoint";
+
+	// Tags
+	public static final String TAG_TITLE = "title";
+	public static final String TAG_DESCRIPTION = "description";
+	public static final String TAG_MODE = "tag_mode"; // List seperated with ;
 	public static final String TAG_OPTIONS = "options";
-	public static final String HINT_METHOD = "hint_method";
-	public static final String LONG = "long";
-	public static final String LAT = "lat";
-	public static final String HINT_TEXT = "hint_text";
-	public static final String HINT_IMAGE = "hint_image";
-	public static final String HINT_MAP = "hint_map";
-	public static final String HINT_ARROW = "hint_arrow";
-	public static final String HINT_SOUD = "hint_sound";
-	public static final String ZOOM_LEVEL = "zoom_level";
-	public static final String NEXT = "next";
-	public static final String IMAGE_SRC = "image_source";
-	public static final String SOUND_SRC = "sound_source";
-	public static final String ARROW_LENGTH = "arrow_length";
-	public static final String PROPAGATING_TEXT = "propagatingText";
 	public static final String GAME_MODE = "game_mode";
 	public static final String GAME_BUTTON = "game_button";
+	// Optional
+	public static final String CHOICE_DESCRIPTION = "choice_description";
+	public static final String CHOICE_IMAGE = "choice_image";
+	public static final String ENDPOINT = "isEndPoint"; // Last tag has to have this sat to true
+
+	// Options
+	public static final String HINT_METHOD = "method";
+	public static final String NEXT = "next";
+	// Optional
+	public static final String LONG = "long";
+	public static final String LAT = "lat";
+	public static final String ZOOM_LEVEL = "zoom_level";
+	public static final String HINT_IMAGE_SOURCE = "image_source";
+	public static final String HINT_SOUND_SOURCE = "sound_source";
+	public static final String ARROW_LENGTH = "arrow_length";
+	public static final String PROPAGATING_TEXT = "propagatingText";
+	// Used to check for hint method
+	public static final String HINT_TEXT = "text";
+	public static final String HINT_IMAGE = "image";
+	public static final String HINT_MAP = "map";
+	public static final String HINT_ARROW = "arrow";
+	public static final String HINT_SOUD = "sound";
+
+	// Quiz
 	public static final String QUIZ = "quiz";
 	public static final String QUIZ_Q = "quizQ";
 	public static final String QUIZ_A = "quizA";
 	public static final String QUIZ_C = "quizC";
+
+	// Camera
 	public static final String CAMERA = "camera";
 
-	public static JSONObject parseJson(Context context, String filename)
-			throws IOException, JSONException {
+	private static JSONObject parseJson(Context context, String filename) throws IOException, JSONException {
 		if (!filename.endsWith(".json")) {
 			filename += ".json";
 		}
@@ -86,27 +96,27 @@ public class JsonParser {
 
 		// Required
 		Story story = new Story();
-		story.setUUID(storyObject.getString(JsonParser.UUID));
+		story.setUUID(storyObject.getString(StoryParser.UUID));
 		story.setAuthor(storyObject.getString(AUTHOR));
-		story.setTitle(storyObject.getString(TITLE));
-		story.setDesc(storyObject.getString(DESCRIPTION));
+		story.setStoryTitle(storyObject.getString(TITLE));
+		story.setDescription(storyObject.getString(DESCRIPTION));
 		story.setAgeGroup(storyObject.getString(AGEGROUP));
-		story.setDate(storyObject.getString(DATE)); // TODO Should be release date
+		story.setReleaseDate(storyObject.getString(RELEASE_DATE));
 		story.setImage(storyObject.getString(IMAGE));
 		story.setStartTag(storyObject.getString(START_TAG));
 		story.setLanguage(storyObject.getString(LANGUAGE));
 		story.setTagTypes(Arrays.asList(storyObject.getString(TAG_TYPES).toLowerCase().split(";")));
 		story.setGameModes(Arrays.asList(storyObject.getString(GAME_MODES).toLowerCase().split(";")));
-
-		story.setTags(parseTags(storyObject.getJSONObject(TAGS)));
+		story.setGenre(storyObject.getString(GENRE));
+		story.setArea(storyObject.getString(AREA));
+		story.setCountry(storyObject.getString(COUNTRY));
+		story.setKeywords(storyObject.getString(KEYWORDS).split(";"));
 
 		// Optional
-		story.setGenre(storyObject.optString(GENRE));
-		story.setArea(storyObject.optString(AREA));
-		story.setCountry(storyObject.optString(COUNTRY));
-		story.setKeywords(storyObject.optString(KEYWORDS).split(";"));
 		story.setUrl(storyObject.optString(URL));
 		// story.setEstimatedTime(storyObject.optString(ESTIMATED_TIME)); TODO Estimated time
+
+		story.setTags(parseTags(storyObject.getJSONObject(TAGS)));
 
 		return story;
 	}
@@ -123,12 +133,11 @@ public class JsonParser {
 			// Required
 			StoryTag storyTag = new StoryTag();
 			storyTag.setUUID(tagKey);
-			storyTag.setDescription(jsonTag.getString(PART_DESCRIPTION));
-			storyTag.setIsEndpoint(jsonTag.optBoolean(IS_ENDPOINT, false));
+			storyTag.setDescription(jsonTag.getString(TAG_DESCRIPTION));
+
 			storyTag.setTagMode(jsonTag.optString(TAG_MODE));
 
-			// Optional
-			storyTag.setBelongsToTag(jsonTag.optString(BELONSG_TO_TAG)); // TODO is nice to have for physical tags
+			// OptionalstoryTag.setIsEndpoint(jsonTag.optBoolean(ENDPOINT, false));
 			storyTag.setGameMode(jsonTag.optString(GAME_MODE));
 
 			if (!storyTag.isEndpoint()) { // Not the last tag
@@ -147,8 +156,8 @@ public class JsonParser {
 					storyTag.setChoiceImage(jsonTag.optString(CHOICE_IMAGE));
 				}
 
-				if (jsonTag.has(OPTIONS_TITLE)) {
-					storyTag.setOptionsTitle(jsonTag.getString(OPTIONS_TITLE));
+				if (jsonTag.has(TAG_TITLE)) {
+					storyTag.setOptionsTitle(jsonTag.getString(TAG_TITLE));
 				}
 
 				storyTag.setOptions(parseOptions(jsonTag.getJSONObject(TAG_OPTIONS)));
@@ -200,7 +209,7 @@ public class JsonParser {
 			option.setZoomLevel(jsonOption.optInt(ZOOM_LEVEL, 15));
 
 			if (hintMethod.equals(HINT_IMAGE)) {
-				option.setImageSrc(jsonOption.getString(IMAGE_SRC));
+				option.setImageSrc(jsonOption.getString(HINT_IMAGE_SOURCE));
 			} else if (hintMethod.equals(HINT_MAP)) {
 				option.setLatitude(jsonOption.getDouble(LAT));
 				option.setLongitude(jsonOption.getDouble(LONG));
@@ -209,11 +218,11 @@ public class JsonParser {
 				option.setLongitude(jsonOption.getDouble(LONG));
 				option.setArrowLength(jsonOption.getBoolean(ARROW_LENGTH));
 			} else if (hintMethod.equals(HINT_IMAGE)) {
-				option.setImageSrc(jsonOption.getString(IMAGE_SRC));
+				option.setImageSrc(jsonOption.getString(HINT_IMAGE_SOURCE));
 			} else if (jsonOption.has(PROPAGATING_TEXT)) {
 				option.setPropagatingText(jsonOption.getString(PROPAGATING_TEXT));
 			} else if (hintMethod.equals(HINT_SOUD)) {
-				option.setSoundSrc(jsonOption.getString(SOUND_SRC));
+				option.setSoundSrc(jsonOption.getString(HINT_SOUND_SOURCE));
 			}
 
 			map.put(optionKey, option);

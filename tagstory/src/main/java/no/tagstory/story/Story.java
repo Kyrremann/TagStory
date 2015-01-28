@@ -256,7 +256,7 @@ public class Story implements Serializable {
 	/**
 	 * @param date the date to set
 	 */
-	public void setDate(String date) {
+	public void setReleaseDate(String date) {
 		// TODO: Convert to date format
 		this.date = date;
 	}
@@ -271,7 +271,7 @@ public class Story implements Serializable {
 	/**
 	 * @param desc the desc to set
 	 */
-	public void setDesc(String desc) {
+	public void setDescription(String desc) {
 		this.desc = desc;
 	}
 
@@ -285,7 +285,7 @@ public class Story implements Serializable {
 	/**
 	 * @param title the title to set
 	 */
-	public void setTitle(String title) {
+	public void setStoryTitle(String title) {
 		this.title = title;
 	}
 

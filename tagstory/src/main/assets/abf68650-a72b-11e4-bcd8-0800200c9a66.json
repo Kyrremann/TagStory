@@ -1,0 +1,101 @@
+{
+  "story": {
+    "UUID": "abf68650-a72b-11e4-bcd8-0800200c9a66",
+    "author": "Everyone can be an author",
+    "title": "A walk in 'Doktorska Gradina'",
+    "genre": "test",
+    "agegroup": "1-99",
+    "area": "Sofia, Bulgaria",
+    "date": "28.01.2015",
+    "description": "This is a walk in the park. Showing the concept behind Tag Story using only GPS tags.\n\nImage: \"Doktorska gradina E1\" by Elena Chochkova - Own work. Licensed under CC BY-SA 3.0 via Wikimedia Commons - http://commons.wikimedia.org/wiki/File:Doktorska_gradina_E1.jpg#mediaviewer/File:Doktorska_gradina_E1.jpg",
+    "keywords": "park, walk",
+    "start_tag": "abf68651-a72b-11e4-bcd8-0800200c9a66",
+    "tag_types": "gps",
+    "language": "en",
+    "game_modes": "none",
+    "image": "9e1a3ef0-a72b-11e4-bcd8-0800200c9a66.jpg",
+    "tags": {
+      "abf68651-a72b-11e4-bcd8-0800200c9a66": {
+        "UUID": "abf68651-a72b-11e4-bcd8-0800200c9a66",
+        "description": "",
+        "choice_description": "",
+        "options_title": "",
+        "game_mode": "none",
+        "game_button": "",
+        "tag_mode": "qr",
+        "options": {
+          "": {
+            "hint_title": "",
+            "hint_method": "",
+            "hint_text": "",
+            "long": "",
+            "lat": "",
+            "next": ""
+          }
+        }
+      },
+      "": {
+        "UUID": "",
+        "description": "",
+        "choice_description": "",
+        "options_title": "",
+        "game_mode": "none",
+        "game_button": "",
+        "tag_mode": "qr",
+        "options": {
+          "": {
+            "hint_title": "",
+            "hint_method": "",
+            "hint_text": "",
+            "long": "",
+            "lat": "",
+            "next": ""
+          }
+        }
+      },
+      "": {
+        "UUID": "",
+        "description": "",
+        "choice_description": "",
+        "options_title": "",
+        "game_mode": "none",
+        "game_button": "",
+        "tag_mode": "qr",
+        "options": {
+          "": {
+            "hint_title": "",
+            "hint_method": "",
+            "hint_text": "",
+            "long": "",
+            "lat": "",
+            "next": ""
+          }
+        }
+      },
+      "": {
+        "UUID": "",
+        "description": "",
+        "choice_description": "",
+        "options_title": "",
+        "game_mode": "none",
+        "game_button": "",
+        "tag_mode": "qr",
+        "options": {
+          "": {
+            "hint_title": "",
+            "hint_method": "",
+            "hint_text": "",
+            "long": "",
+            "lat": "",
+            "next": ""
+          }
+        }
+      },
+      "1007": {
+        "UUID": "1007",
+        "description": "You are done! Thank you for experiencing my story! Hope you enjoyed it.",
+        "isEndPoint": "true"
+      }
+    }
+  }
+}

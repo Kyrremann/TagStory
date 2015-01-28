@@ -3,7 +3,7 @@ package no.tagstory.story;
 import android.content.Context;
 import android.database.Cursor;
 import no.tagstory.utils.Database;
-import no.tagstory.utils.JsonParser;
+import no.tagstory.utils.StoryParser;
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class StoryManager {
 
 	public Story getStory(String id) {
 		try {
-			return JsonParser.parseJsonToStory(context, id);
+			return StoryParser.parseJsonToStory(context, id);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

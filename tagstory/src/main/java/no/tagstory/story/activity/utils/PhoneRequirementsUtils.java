@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcManager;
 import android.provider.Settings;
+import no.tagstory.R;
 import no.tagstory.story.GameModeEnum;
 import no.tagstory.story.TagTypeEnum;
 
@@ -48,7 +49,7 @@ public class PhoneRequirementsUtils {
 	private static boolean isBarcodeScannerAvailable(Context context) {
 		PackageManager pm = context.getPackageManager();
 		try {
-			pm.getPackageInfo("com.google.zxing.client.android.SCAN", PackageManager.GET_ACTIVITIES);
+			pm.getPackageInfo(context.getString(R.string.barcode_scanner_play_store), PackageManager.GET_ACTIVITIES);
 			return true;
 		} catch (PackageManager.NameNotFoundException e) {
 			return false;

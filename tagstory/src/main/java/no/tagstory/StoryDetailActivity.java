@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
@@ -61,7 +62,7 @@ public class StoryDetailActivity extends Activity {
 				try {
 					Bitmap myBitmap = BitmapFactory.decodeStream(openFileInput(imagefile));
 					((ImageView) findViewById(R.id.story_detail_image))
-						.setImageBitmap(myBitmap);
+							.setImageBitmap(myBitmap);
 				} catch (FileNotFoundException e) {
 					showDefault = true;
 				}
@@ -126,10 +127,15 @@ public class StoryDetailActivity extends Activity {
 					R.string.dialog_download_barcodescanner));
 			builder.setCancelable(false);
 			builder.setPositiveButton(R.string.dialog_go_to_play_store, new DialogInterface.OnClickListener() {
-						public void onClick(final DialogInterface dialog, final int id) {
-							// TODO open Play Store
-						}
-					});
+				public void onClick(final DialogInterface dialog, final int id) {
+					String appPackageName = getString(R.string.barcode_scanner_play_store);
+					try {
+						startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+					} catch (android.content.ActivityNotFoundException anfe) {
+						startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+					}
+				}
+			});
 			builder.setNegativeButton(R.string.dialog_cancel,
 					new DialogInterface.OnClickListener() {
 						public void onClick(final DialogInterface dialog,
@@ -137,7 +143,7 @@ public class StoryDetailActivity extends Activity {
 							dialog.cancel();
 						}
 					});
-			enableGPSDialog = builder.create();
+			enableQRDialog = builder.create();
 		}
 		enableQRDialog.show();
 	}
@@ -183,7 +189,6 @@ public class StoryDetailActivity extends Activity {
 			startStory();
 		}
 	}
-
 
 
 	@Override

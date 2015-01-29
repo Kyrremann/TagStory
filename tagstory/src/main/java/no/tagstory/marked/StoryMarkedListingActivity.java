@@ -135,7 +135,7 @@ public class StoryMarkedListingActivity extends Activity {
 						Toast.makeText(getApplicationContext(), "Something went wrong with the data", Toast.LENGTH_SHORT).show();
 						break;
 					case MESSAGE_INFO:
-						progressDialog.setMessage("Downloading: " + msg.arg1);
+						progressDialog.setMessage("Downloading: " + msg.arg1 + "%");
 					default:
 						break;
 				}

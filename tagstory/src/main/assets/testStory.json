@@ -3,141 +3,137 @@
     "UUID": "c74dbd7f-e302-438c-80e6-dbb9feb5374a",
     "author": "Everyone can be an author",
     "title": "Test the experience!",
-    "genre": "genre, another genre,",
+    "release_date": "date",
     "agegroup": "1-99",
-    "area": "area",
-    "date": "date",
+    "genre": "genre, another genre,",
     "description": "This is a long description about how this adventure is crazy funny! PS: It's also a test story, so you can see what this app supports in story telling!",
-    "keywords": "food; random; adventure",
     "start_tag": "1001",
-    "tagCount": "7",
-    "tag_types": "qr",
-    "language": "en",
+    "keywords": "food; random; adventure",
+    "country": "NO",
+    "image": "3ca17371-9f63-11e4-bcd8-0800200c9a66.jpg",
+    "tag_types": "qr;gps",
     "game_modes": "none",
-    "image": "blindern.jpg",
+    "area": "area",
+    "language": "en",
+    "status": "published",
     "tags": {
       "1001": {
         "UUID": "1001",
-        "description": "This is the main text describing the story you are on, and just giving you one option to get to next tag. Telling it where it is, or a riddle",
-        "choice_description": "There is only one choice here, and it's a riddle to get to the next tag. Enjoy!",
-        "options_title": "The first tag",
-        "game_mode": "none",
-        "game_button": "",
-        "tag_mode": "qr",
+        "title": "The first tag",
+        "description": "This is the first tag, welcome. On every tag there will be a description, questions, or a story. Underneath you can find a button, either for going directly to the hint on where the next tag is, or answers to the question asked. Let us keep it simple the first time, and just click the button, no question asked.",
+        "question": "There is only one choice here, and it's a riddle to get to the next tag. Enjoy!",
+        "tag_type": "qr",
+        "travel_button": "Show me the next tag",
         "options": {
           "Show me how to get to the next tag": {
-          	"hint_title": "First hint",
-            "hint_method": "hint_text",
-            "hint_text": "Do you know where I can get a coffee at a reasonable price? That's where the next tag is ;)",
+            "title": "First hint",
+            "method": "text",
+            "text": "Do you know where I can get a coffee at a reasonable price? That's where the next tag is.\nHere we have a simple text that hint off where the next tag is found. As you can see fromt he button bellow, you need to scan something. In this case it is a QR-code. Press the help button to read about QR-codes or to skip if you can't find the code.",
             "next": "1002"
           }
         }
       },
       "1002": {
         "UUID": "1002",
-        "description": "People like fruit because it's...",
-        "choice_description": "Pick a fruit",
-        "game_button": "See fruits",
-        "game_button": "",
-        "tag_mode": "qr",
+        "title": "Fruits",
+        "description": "People like fruit because it's healty and sweet.",
+        "question": "What is your favourite fruit?",
+        "tag_type": "qr",
+        "travel_button": "See fruits",
         "options": {
           "Banana": {
-            "hint_method": "hint_text",
-            "hint_text": "Go to the tree",
+            "method": "text",
+            "text": "Since you are such a fan of bananas, you should go the banana tree",
             "next": "1006"
           },
           "Apple": {
-            "hint_method": "hint_image",
-            "image_source": "test.jpg",
-            "hint_text": "Do you know where this image is taken?",
+            "method": "image",
+            "image_source": "3ca17370-9f63-11e4-bcd8-0800200c9a66.jpg",
+            "text": "As an apple fan, you should know where this image is taken from. Hurry up, the others are closing in.",
             "next": "1004"
           },
           "Orange": {
-            "hint_method": "hint_sound",
-            "sound_source": "02_keflings_spring.mp3",
-            "hint_text": "Listen to the text and tell me who you are",
+            "method": "sound",
+            "sound_source": "c5f0d170-9f63-11e4-bcd8-0800200c9a66.mp3",
+            "text": "People who like orange often find them self wandering around pounding the all important question \"who are you?\"\n\nSound by 11linda (freesound.org)",
             "next": "1003"
           }
         }
       },
       "1003": {
         "UUID": "1003",
-        "description": "You are in a beautiful forest...",
-        "choice_description": "Where is that damn rock!",
-        "game_button": "Take a look",
-        "game_button": "",
-        "tag_mode": "qr",
+        "title": "Rocks everywhere",
+        "description": "You are in a beautiful forest...but you can't find your pet rock.",
+        "question": "Where is that damn rock!",
+        "travel_button": "Take a look",
+        "tag_type": "qr",
         "options": {
           "Take a look": {
-            "hint_method": "hint_image",
-            "image_source": "test.jpg",
-            "hint_text": "Do you know where this rock is?",
+            "method": "image",
+            "image_source": "3ca17372-9f63-11e4-bcd8-0800200c9a66.jpg",
+            "text": "Ah, there it is. You should hurry over to where this image is taken.",
             "next": "1004"
           }
         }
       },
       "1004": {
         "UUID": "1004",
-        "description": "This rock is funny looking",
-        "choice_description": "Play a song on the rock",
-        "game_button": "See songs",
-        "game_button": "",
-        "tag_mode": "qr",
+        "title": "Rockmaster",
+        "description": "It's a mighty fine rock you have there, wonder what kind of music you can play with it.",
+        "question": "Could you please play a song with it?",
+        "travel_button": "Pick a song",
+        "tag_type": "qr",
         "options": {
           "Bada boom": {
-            "hint_method": "hint_sound",
-            "sound_source": "02_keflings_spring.mp3",
-            "hint_text": "I got an answer",
+            "method": "sound",
+            "sound_source": "26ef9920-9f64-11e4-bcd8-0800200c9a66.wav",
+            "text": "I got an answer",
             "next": "1006"
           },
           "Bing bing doom": {
-            "hint_method": "hint_text",
-            "hint_text": "blarg",
-            "next": "1004"
+            "method": "text",
+            "text": "No, I don't like that one. Please just go...to that tall building over there.",
+            "next": "1006"
           }
-        },
-        "isEndPoint": "false"
+        }
       },
       "1005": {
         "UUID": "1005",
+        "title": "Tower of Rocks",
         "description": "What a place!",
-        "choice_description": "Please follow the arrow",
-        "game_button": "no arrows",
-        "game_button": "",
-        "tag_mode": "qr",
+        "travel_button": "no arrows",
+        "tag_type": "qr",
         "options": {
           "Follow me": {
-            "hint_method": "hint_arrow",
+            "method": "arrow",
             "lat": "59.942341",
             "long": "10.718289",
             "arrow_length": "true",
-            "hint_text": "Just follow the arrow and you will find the treasure (with optional length to the treasure)",
+            "text": "Just follow the arrow and you will find the treasure (with optional length to the treasure)",
             "next": "1006"
           }
         }
       },
       "1006": {
         "UUID": "1006",
-        "belongsToTag": "test1006",
-        "description": "text",
-        "choice_description": "",
-        "game_button": "See map",
-        "game_button": "",
-        "tag_mode": "qr",
+        "title": "The Tower in the Forest",
+        "description": "Welcome to the tower in the forest. You are not far from home now.",
+        "travel_button": "See where home is",
+        "tag_type": "qr",
         "options": {
           "Follow the map": {
-            "hint_method": "hint_map",
+            "method": "map",
             "lat": "59.942341",
             "long": "10.718289",
-            "hint_text": "Just navigate with the map",
+            "text": "Use the map to navigate home",
             "next": "1007"
           }
-        },
-        "isEndPoint": "false"
+        }
       },
       "1007": {
         "UUID": "1007",
-        "description": "You are done! Thank you for experiencing my story! Hope you enjoyed it.",
+        "title": "The end",
+        "description": "Welcome home, you are now done! Thank you for experiencing my story! Hope you enjoyed it.",
         "isEndPoint": "true"
       }
     }

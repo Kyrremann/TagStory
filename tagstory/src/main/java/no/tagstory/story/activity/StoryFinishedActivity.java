@@ -12,24 +12,18 @@ import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
 import no.tagstory.utils.ServerCommunication;
 
-public class StoryFinishedActivity extends Activity {
-
-	private Story story;
-	private StoryTag part;
-	private String partTag;
+public class StoryFinishedActivity extends AbstractStoryActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setTitle(R.string.story_finished);
 		setContentView(R.layout.activity_story_finished);
+	}
 
-		story = (Story) getIntent().getSerializableExtra(StoryActivity.EXTRA_STORY);
-		setTitle(story.getTitle());
-		partTag = getIntent().getStringExtra(StoryActivity.EXTRA_TAG);
-		part = story.getTag(partTag);
-
-		((TextView) findViewById(R.id.story_finished_text)).setText(part.getDescription());
+	@Override
+	protected void onResume() {
+		super.onResume();
+		setTagDescription();
 //		printStatistics();
 	}
 
@@ -50,8 +44,6 @@ public class StoryFinishedActivity extends Activity {
 	}
 
 	public void endOfStory(View view) {
-		// NavUtils.navigateUpTo(this, new Intent(this, TagStoryActivity.class));
-		// finish();
 		Intent intent = new Intent(this, TagStoryActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		startActivity(intent);

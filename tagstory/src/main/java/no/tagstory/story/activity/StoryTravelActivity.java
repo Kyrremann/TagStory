@@ -43,7 +43,11 @@ public class StoryTravelActivity extends FragmentActivity {
 		tagId = bundle.getString(StoryActivity.EXTRA_TAG);
 
 		setTitle(option.getTitle());
+	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
 		if (option.hasHintText()) {
 			setHintText();
 		}
@@ -84,7 +88,7 @@ public class StoryTravelActivity extends FragmentActivity {
 		}
 	}
 
-	private void showHelpDialog() {
+	protected void showHelpDialog() {
 		if (helpDialog == null) {
 			helpDialog = createHelpDialog();
 		}

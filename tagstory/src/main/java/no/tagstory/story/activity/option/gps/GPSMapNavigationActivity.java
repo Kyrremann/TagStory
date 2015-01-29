@@ -1,8 +1,6 @@
 package no.tagstory.story.activity.option.gps;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -18,12 +16,11 @@ public class GPSMapNavigationActivity extends GPSActivity {
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		setContentView(R.layout.activity_story_map);
+	}
 
-		if (option.getHintText().length() > 0) {
-			hintText = (TextView) findViewById(R.id.story_option_hint);
-			hintText.setText(option.getHintText());
-			hintText.setVisibility(View.VISIBLE);
-		}
+	@Override
+	protected void onResume() {
+		super.onResume();
 
 		mapView = (SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.story_map_view);

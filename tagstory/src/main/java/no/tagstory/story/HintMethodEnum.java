@@ -30,4 +30,16 @@ public enum HintMethodEnum {
 	public boolean isMap() {
 		return this.equals(MAP);
 	}
+
+	public static HintMethodEnum fromString(String hint) {
+		if (hint != null) {
+			for (HintMethodEnum anEnum : HintMethodEnum.values()) {
+				if (hint.equalsIgnoreCase(anEnum.hint)) {
+					return anEnum;
+				}
+			}
+		}
+
+		throw new IllegalArgumentException("No constant with text " + hint + " found");
+	}
 }

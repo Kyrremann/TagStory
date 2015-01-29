@@ -8,6 +8,7 @@ public enum GameModeEnum {
 	NONE("none"),
 	CAMERA("camera"),
 	QUIZ("quiz");
+
 	private String mode;
 
 
@@ -28,10 +29,22 @@ public enum GameModeEnum {
 		List<GameModeEnum> enums = new ArrayList<GameModeEnum>(types.size());
 		for (String type : types) {
 			try {
-				enums.add(GameModeEnum.valueOf(type));
+				enums.add(GameModeEnum.fromString(type));
 			} catch (IllegalArgumentException e) {}
 		}
 
 		return enums;
+	}
+
+	public static GameModeEnum fromString(String mode) {
+		if (mode != null) {
+			for (GameModeEnum anEnum : GameModeEnum.values()) {
+				if (mode.equalsIgnoreCase(anEnum.mode)) {
+					return anEnum;
+				}
+			}
+		}
+
+		throw new IllegalArgumentException("No constant with text " + mode + " found");
 	}
 }

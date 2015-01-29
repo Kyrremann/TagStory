@@ -30,7 +30,7 @@
 				android:orientation="vertical">
 
 			<TextView
-					android:id="@+id/story_part_desc"
+					android:id="@+id/description"
 					style="@style/TagStoryViewMedium"/>
 
 			<TextView

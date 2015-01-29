@@ -100,6 +100,8 @@ public class StoryDetailActivity extends Activity {
 			} else if (type.isNFC()) {
 				showNoNfcDialog();
 			}
+
+			return true;
 		}
 
 		return false;

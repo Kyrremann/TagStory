@@ -47,6 +47,7 @@ public class StoryMarkedListingActivity extends Activity {
 	private static final int MESSAGE_DONE = 0;
 	private static final int MESSAGE_FAIL_JSON = -1;
 	private static final int MESSAGE_FAIL_HTTP = -2;
+	private static final int MESSAGE_FAILED = -3;
 	private static final int MESSAGE_INFO = 1;
 
 	private JSONObject storyDetail;
@@ -165,20 +166,23 @@ public class StoryMarkedListingActivity extends Activity {
 					fileOutputStream.write(storyServerside.toString().getBytes());
 					fileOutputStream.close();
 
+					// TODO: download images
+					downloadAssets(storyObject, handler);
+					// TODO: Change button to 'play story'
 					Database database = new Database(getApplicationContext());
 					database.open();
 					database.insertStory(storyObject.getString("UUID"), storyObject.getString("author"),
 							storyObject.getString("title"), storyObject.getString("area"),
 							storyObject.getString("image"));
-					// TODO: download images
-					downloadAssets(storyObject, handler);
-					// TODO: Change button to 'play story'
 				} catch (IOException e) {
 					e.printStackTrace();
 					handler.sendEmptyMessage(MESSAGE_FAIL_HTTP);
 				} catch (JSONException e) {
 					e.printStackTrace();
 					handler.sendEmptyMessage(MESSAGE_FAIL_JSON);
+				} catch (Exception e) {
+					e.printStackTrace();
+					handler.sendEmptyMessage(MESSAGE_FAILED);
 				} finally {
 					handler.sendEmptyMessage(MESSAGE_DONE);
 				}
@@ -189,7 +193,7 @@ public class StoryMarkedListingActivity extends Activity {
 	private void downloadAssets(JSONObject storyObject, Handler handler) throws JSONException, IOException {
 		CognitoCachingCredentialsProvider cognitoProvider = new CognitoCachingCredentialsProvider(
 				this,
-				"",
+				"eu-west-1:0524ea09-ca76-4e85-bc4a-a48b98e6b1f4",
 				Regions.EU_WEST_1);
 		TransferManager transferManager = new TransferManager(cognitoProvider);
 		transferManager.getAmazonS3Client().setRegion(Region.getRegion(Regions.EU_WEST_1));
@@ -225,8 +229,8 @@ public class StoryMarkedListingActivity extends Activity {
 		}
 
 		Download download = transferManager.download("tagstory", serverUrl + name, getFileStreamPath(name));
-		Message message = new Message();
 		while (!download.isDone()) {
+			Message message = new Message();
 			message.what = MESSAGE_INFO;
 			message.arg1 = (int) download.getProgress().getPercentTransferred();
 			handler.sendMessage(message);
@@ -235,8 +239,10 @@ public class StoryMarkedListingActivity extends Activity {
 			} catch (InterruptedException e) {
 			}
 		}
+		Message message = new Message();
 		message.what = MESSAGE_INFO;
 		message.arg1 = 100;
+		handler.sendMessage(message);
 
 		return true;
 	}

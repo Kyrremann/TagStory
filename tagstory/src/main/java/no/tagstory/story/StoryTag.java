@@ -132,11 +132,11 @@ public class StoryTag implements Serializable {
 	}
 
 	public boolean hasSingleQuestion() {
-		return StringUtil.isBlank(getQuestion());
+		return !StringUtil.isBlank(question);
 	}
 
 	public boolean hasSingleQuestionImage() {
-		return StringUtil.isBlank(getImage());
+		return !StringUtil.isBlank(image);
 	}
 
 	public boolean isQuiz() {

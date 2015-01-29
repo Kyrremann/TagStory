@@ -85,13 +85,7 @@ public class GPSActivity extends StoryTravelActivity implements
 	}
 
 	@Override
-	public void scanTag(View v) {
-		if (v.getId() == R.id.help_button) {
-			showGpsDialog();
-		}
-	}
-
-	private void showGpsDialog() {
+	protected void showHelpDialog() {
 		if (gpsInfoDialog == null) {
 			gpsInfoDialog = createGpsDialog();
 		}

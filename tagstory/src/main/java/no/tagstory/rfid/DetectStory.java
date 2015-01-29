@@ -60,7 +60,7 @@ public class DetectStory extends Activity {
 
 	@Override
 	public void onNewIntent(Intent intent) {
-		TextView textView = (TextView) findViewById(R.id.story_part_desc);
+		TextView textView = (TextView) findViewById(R.id.description);
 		String action = intent.getAction();
 
 		if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)

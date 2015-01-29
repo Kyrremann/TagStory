@@ -21,13 +21,13 @@
         "UUID": "abf68651-a72b-11e4-bcd8-0800200c9a66",
         "title": "The 'Doktorska Gradina'",
         "description": "To get you startet on this story you need to get to the 'Doktorska Gradina'. So press the 'see the map' button and get going.\n\nUsing GPS I will track where you are walking and let you know when you have found the starting point.",
-        "tag_type": "qr",
+        "tag_type": "gps",
         "travel_button": "See the map",
         "game_mode": "none",
         "options": {
           "See the map": {
-            "hint_title": "To the park",
-            "hint_method": "map",
+            "title": "To the park",
+            "method": "map",
             "long": "42.693697",
             "lat": "23.339248",
             "next": "abf68652-a72b-11e4-bcd8-0800200c9a66"
@@ -39,30 +39,30 @@
         "title": "The 'Doktorska Gradina'",
         "description": "Welcome to the park 'Doktorska Gradina' and Tag Story. I will now take you around for a little trip around the park. For the first tag you have to answer a question to continue!",
         "question": "What was the name of the treaty proposed 3 of March, 1878?",
-        "tag_type": "qr",
+        "tag_type": "gps",
         "travel_button": "See answers",
         "game_mode": "none",
         "options": {
           "Treaty of Berlin": {
-            "hint_title": "Next tag",
-            "hint_method": "map",
-            "hint_text": "Sorry, but it was named Treaty of San Stefano.",
+            "title": "Next tag",
+            "method": "map",
+            "text": "Sorry, but it was named Treaty of San Stefano.",
             "long": "42.69461",
             "lat": "23.33838",
             "next": "abf68653-a72b-11e4-bcd8-0800200c9a66"
           },
           "Treaty of San Stefano": {
-            "hint_title": "Next tag",
-            "hint_method": "map",
-            "hint_text": "That is correct!",
+            "title": "Next tag",
+            "method": "map",
+            "text": "That is correct!",
             "long": "42.69461",
             "lat": "23.33838",
             "next": "abf68653-a72b-11e4-bcd8-0800200c9a66"
           },
           "Treaty of Sofia": {
-            "hint_title": "Next tag",
-            "hint_method": "map",
-            "hint_text": "Sorry, but it was named Treaty of San Stefano.",
+            "title": "Next tag",
+            "method": "map",
+            "text": "Sorry, but it was named Treaty of San Stefano.",
             "long": "42.69461",
             "lat": "23.33838",
             "next": "abf68653-a72b-11e4-bcd8-0800200c9a66"
@@ -73,13 +73,13 @@
         "UUID": "abf68653-a72b-11e4-bcd8-0800200c9a66",
         "title": "The 'Doktorska Gradina'",
         "description": "Well done, you manage to find the 'Doctors Memorial'. Did you know that the park is named after the monument of the fallen medics during the Russo-Turkish War (1877–1878), most of whom worked for the mission of the Russian Red Cross and perished in the battles at Pleven, Plovdiv, Mechka and Shipka (source Wikipedia).",
-        "tag_type": "qr",
+        "tag_type": "gps",
         "travel_button": "Let's continue",
         "game_mode": "none",
         "options": {
           "": {
-            "hint_title": "Is that a fountain?",
-            "hint_method": "map",
+            "title": "Is that a fountain?",
+            "method": "map",
             "long": "42.694679",
             "lat": "23.336943",
             "next": "abf68654-a72b-11e4-bcd8-0800200c9a66"
@@ -90,31 +90,31 @@
         "UUID": "abf68654-a72b-11e4-bcd8-0800200c9a66",
         "title": "The 'Doktorska Gradina'",
         "description": "By the images from Google Maps and Street View this looks like a nice place to grab a coffe or an ice cream (in the summer). There is even a little fountain in the middle.",
-        "question": "The building situated in the 'Doktorska Gradina' park is called SS. Cyril and Methodius National Library. Do you know that the SS stands for?",
-        "tag_type": "qr",
+        "question": "The building situated in the 'Doktorska Gradina' park is called SS. Cyril and Methodius National Library. Do you know what the SS stands for?",
+        "tag_type": "gps",
         "travel_button": "Let's continue",
         "game_mode": "none",
         "options": {
           "Sisters": {
-            "hint_title": "To the library",
-            "hint_method": "map",
-            "hint_text": "No, it was 'Saints'.",
+            "title": "To the library",
+            "method": "map",
+            "text": "No, it was 'Saints'.",
             "long": "42.694969",
             "lat": "23.335074",
             "next": "abf68655-a72b-11e4-bcd8-0800200c9a66"
           },
           "Saints": {
-            "hint_title": "To the library",
-            "hint_method": "map",
-            "hint_text": "That is correct!",
+            "title": "To the library",
+            "method": "map",
+            "text": "That is correct!",
             "long": "42.694969",
             "lat": "23.335074",
             "next": "abf68655-a72b-11e4-bcd8-0800200c9a66"
           },
           "Scilicet": {
-            "hint_title": "To the library",
-            "hint_method": "map",
-            "hint_text": "No, it was 'Saints'. Did you know that scilicet means 'namely' or 'as follows'?",
+            "title": "To the library",
+            "method": "map",
+            "text": "No, it was 'Saints'. Scilicet means 'namely' or 'as follows'.",
             "long": "42.694969",
             "lat": "23.335074",
             "next": "abf68655-a72b-11e4-bcd8-0800200c9a66"
@@ -124,7 +124,7 @@
       "abf68655-a72b-11e4-bcd8-0800200c9a66": {
         "UUID": "abf68655-a72b-11e4-bcd8-0800200c9a66",
         "title": "Saints Cyril and Methodius",
-        "description": "You have now reach the end of this story. Hope you had a wonderful trip through the 'Doktorska Gradina' park.\n\nThe monument infront of you are of the Saints Cyril and Methodius, and did you know that they are the most celebrated saints in the Bulgarian Orthodox church, and icons of the two brothers can be found in every church (source wikipedia)?",
+        "description": "You have now reach the end of this story. Hope you had a wonderful trip through the 'Doktorska Gradina' park.\n\nThe monument infront of you are of the Saints Cyril and Methodius, and did you know that they are the most celebrated saints in the Bulgarian Orthodox church, and icons of the two brothers can be found in every church (source wikipedia).",
         "isEndPoint": "true"
       }
     }

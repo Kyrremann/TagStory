@@ -1,15 +1,18 @@
 package no.tagstory.story;
 
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.StringUtil;
+
 import java.io.Serializable;
 
 public class StoryTagOption implements Serializable {
 
 	private static final long serialVersionUID = -7137600478159292595L;
 
-	private String UUID;
+	private String answer;
 	private HintMethodEnum method;
 	private String hintText;
 	private String next;
+	private String title;
 	private String imageSrc;
 	private String soundSrc;
 	private String propagatingText;
@@ -18,53 +21,48 @@ public class StoryTagOption implements Serializable {
 	private String arrowLength;
 	private int zoomLevel;
 
-	public StoryTagOption(String UUID, HintMethodEnum method, String next) {
-		this.UUID = UUID;
+	public StoryTagOption(String answer, HintMethodEnum method, String next) {
+		this.answer = answer;
 		this.method = method;
 		this.next = next;
 	}
 
-	
 	public HintMethodEnum getMethod() {
 		return method;
 	}
 
-	
-	public String getUUID() {
-		return UUID;
+	public String getAnswer() {
+		return answer;
 	}
 
-	
 	public String getTitle() {
-		return getUUID();
+		return StringUtil.isBlank(title) ? getAnswer() : title;
 	}
 
-	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public String getHintText() {
 		return hintText;
 	}
 
-	
 	public String getNext() {
 		return next;
 	}
 
-	
 	public String getImageSrc() {
 		return imageSrc;
 	}
 
-	
 	public String getSoundSrc() {
 		return soundSrc;
 	}
 
-	
 	public double getLongitude() {
 		return longitude;
 	}
 
-	
 	public double getLatitude() {
 		return latitude;
 	}
@@ -77,12 +75,10 @@ public class StoryTagOption implements Serializable {
 		this.propagatingText = propagatingText;
 	}
 
-	
 	public void setArrowLength(String arrowLength) {
 		this.arrowLength = arrowLength;
 	}
 
-	
 	public void setSoundSrc(String soundSrc) {
 		this.soundSrc = soundSrc;
 	}
@@ -106,11 +102,10 @@ public class StoryTagOption implements Serializable {
 	}
 
 	
-	public void setUUID(String uUID) {
-		UUID = uUID;
+	public void setAnswer(String uUID) {
+		answer = uUID;
 	}
 
-	
 	public void setMethod(HintMethodEnum method) {
 		this.method = method;
 	}
@@ -124,7 +119,7 @@ public class StoryTagOption implements Serializable {
 	}
 
 	public boolean hasHintText() {
-		return getHintText().length() > 0;
+		return !StringUtil.isBlank(hintText);
 	}
 
 	public boolean hasHintImage() {

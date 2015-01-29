@@ -52,6 +52,7 @@ public class StoryParser {
 
 	// Options
 	public static final String HINT_METHOD = "method";
+	public static final String HINT_TITLE = "title";
 	public static final String NEXT = "next";
 	// Optional
 	public static final String LONG = "long";
@@ -109,7 +110,7 @@ public class StoryParser {
 		story.setArea(storyObject.getString(AREA));
 		story.setCountry(storyObject.getString(COUNTRY));
 		story.setKeywords(storyObject.getString(KEYWORDS).split(";"));
-		story.setStatus(StoryStatusEnum.valueOf(storyObject.getString(STATUS).toLowerCase()));
+		story.setStatus(StoryStatusEnum.fromString(storyObject.getString(STATUS).toLowerCase()));
 
 		// Optional
 		story.setUrl(storyObject.optString(URL));
@@ -133,12 +134,12 @@ public class StoryParser {
 			StoryTag storyTag = new StoryTag(tagKey, jsonTag.getString(TAG_DESCRIPTION), jsonTag.optBoolean(ENDPOINT, false));
 
 			if (!storyTag.isEndpoint()) { // Not the last tag
-				storyTag.setTagType(TagTypeEnum.valueOf(jsonTag.getString(TAG_TYPE)));
+				storyTag.setTagType(TagTypeEnum.fromString(jsonTag.getString(TAG_TYPE)));
 				storyTag.setTitle(jsonTag.getString(TAG_TITLE));
 				storyTag.setTravelButton(jsonTag.getString(TRAVEL_BUTTON));
 
 				if (jsonTag.has(GAME_MODE)) {
-					storyTag.setGameMode(GameModeEnum.valueOf(jsonTag.getString(GAME_MODE)));
+					storyTag.setGameMode(GameModeEnum.fromString(jsonTag.getString(GAME_MODE)));
 					parseGameMode(storyTag, jsonTag);
 				} else {
 					storyTag.setGameMode(GameModeEnum.NONE);
@@ -194,8 +195,9 @@ public class StoryParser {
 			String key = keys.next();
 			JSONObject jsonOption = jsonOptions.getJSONObject(key);
 
-			StoryTagOption option = new StoryTagOption(key, HintMethodEnum.valueOf(jsonOption.getString(HINT_METHOD)), jsonOption.getString(NEXT));
+			StoryTagOption option = new StoryTagOption(key, HintMethodEnum.fromString(jsonOption.getString(HINT_METHOD)), jsonOption.getString(NEXT));
 
+			option.setTitle(jsonOption.optString(HINT_TITLE));
 			option.setHintText(jsonOption.optString(HINT_TEXT));
 			option.setZoomLevel(jsonOption.optInt(ZOOM_LEVEL, 15));
 

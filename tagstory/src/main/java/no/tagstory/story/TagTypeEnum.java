@@ -20,7 +20,7 @@ public enum TagTypeEnum {
 		List<TagTypeEnum> enums = new ArrayList<TagTypeEnum>(types.size());
 		for (String type : types) {
 			try {
-				enums.add(TagTypeEnum.valueOf(type));
+				enums.add(TagTypeEnum.fromString(type));
 			} catch (IllegalArgumentException e) {}
 		}
 
@@ -41,5 +41,17 @@ public enum TagTypeEnum {
 
 	public boolean isBLE() {
 		return this.equals(BLE);
+	}
+
+	public static TagTypeEnum fromString(String tagType) {
+		if (tagType != null) {
+			for (TagTypeEnum anEnum : TagTypeEnum.values()) {
+				if (tagType.equalsIgnoreCase(anEnum.type)) {
+					return anEnum;
+				}
+			}
+		}
+
+		throw new IllegalArgumentException("No constant with text " + tagType + " found");
 	}
 }

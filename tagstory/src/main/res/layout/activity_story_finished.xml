@@ -29,7 +29,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/story_finished_text"
+                android:id="@+id/description"
                 style="@style/TagStoryViewMedium"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/story_finished" />

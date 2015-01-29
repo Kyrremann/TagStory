@@ -68,7 +68,7 @@ public class GPSArrowNavigationActivity extends GPSActivity {
 		tagId = bundle.getString(StoryActivity.EXTRA_TAG);
 
 		((TextView) findViewById(R.id.story_arrow_hint)).setText(option
-				.getOptHintText());
+				.getHintText());
 
 		// TODO: Screen orientation
 		// setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

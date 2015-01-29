@@ -5,18 +5,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-// import java.util.Date;
-
-// import java.util.Date;
-
 public class Story implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	private String title;
 	private String UUID;
-	private String desc;
+	private String description;
 	private String author;
-	// private Date date;
 	private String date;
 	private List<String> keywords;
 	private String ageGroup;
@@ -28,75 +24,47 @@ public class Story implements Serializable {
 	private String country;
 	private String url;
 	private HashMap<String, StoryTag> storyParts;
-	private List<String> tagTypes;
-	private List<String> gameModes;
+	private List<TagTypeEnum> tagTypes;
+	private List<GameModeEnum> gameModes;
+	private int estimatedTime;
+	private StoryStatusEnum status;
 
-	/**
-	 * @return the title
-	 */
 	public String getTitle() {
 		return title;
 	}
 
-	/**
-	 * @return the hash
-	 */
 	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * @return the desc
-	 */
-	public String getDesc() {
-		return desc;
+	public String getDescription() {
+		return description;
 	}
 
-	/**
-	 * @return the author
-	 */
 	public String getAuthor() {
 		return author;
 	}
 
-	/**
-	 * @return the date
-	 */
 	public String getDate() {
 		return date;
 	}
 
-	/**
-	 * @return the keywords
-	 */
 	public List<String> getKeywords() {
 		return keywords;
 	}
 
-	/**
-	 * @return the ageGroup
-	 */
 	public String getAgeGroup() {
 		return ageGroup;
 	}
 
-	/**
-	 * @return the genre
-	 */
 	public String getGenre() {
 		return genre;
 	}
 
-	/**
-	 * @return the area
-	 */
 	public String getArea() {
 		return area;
 	}
 
-	/**
-	 * @return the startTag
-	 */
 	public String getStartTagId() {
 		return startTag;
 	}
@@ -105,9 +73,6 @@ public class Story implements Serializable {
 		return getTag(startTag);
 	}
 
-	/**
-	 * @return the parts
-	 */
 	public HashMap<String, StoryTag> getStoryParts() {
 		return storyParts;
 	}
@@ -116,86 +81,50 @@ public class Story implements Serializable {
 		return storyParts.get(key);
 	}
 
-	/**
-	 * @return the image
-	 */
 	public String getImage() {
 		return image;
 	}
 
-	/**
-	 * @return the language
-	 */
 	public String getLanguage() {
 		return language;
 	}
 
-	/**
-	 * @return the country
-	 */
 	public String getCountry() {
 		return country;
 	}
 
-	/**
-	 * @return the url
-	 */
 	public String getUrl() {
 		return url;
 	}
 
-	/**
-	 * @return the tagTypes
-	 */
-	public List<String> getTagTypes() {
+	public List<TagTypeEnum> getTagTypes() {
 		return tagTypes;
 	}
 
-	/**
-	 * @return the gameModes
-	 */
-	public List<String> getGameModes() {
+	public List<GameModeEnum> getGameModes() {
 		return gameModes;
 	}
 
-	/**
-	 * @param gameModes the gameModes to set
-	 */
-	public void setGameModes(List<String> gameModes) {
+	public void setGameModes(List<GameModeEnum> gameModes) {
 		this.gameModes = gameModes;
 	}
 
-	/**
-	 * @param tagTypes the tagTypes to set
-	 */
-	public void setTagTypes(List<String> tagTypes) {
+	public void setTagTypes(List<TagTypeEnum> tagTypes) {
 		this.tagTypes = tagTypes;
 	}
 
-	/**
-	 * @param url the url to set
-	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
 
-	/**
-	 * @param country the country to set
-	 */
 	public void setCountry(String country) {
 		this.country = country;
 	}
 
-	/**
-	 * @param language the language to set
-	 */
 	public void setLanguage(String language) {
 		this.language = language;
 	}
 
-	/**
-	 * @param image the image to set
-	 */
 	public void setImage(String image) {
 		this.image = image;
 	}
@@ -204,92 +133,68 @@ public class Story implements Serializable {
 		storyParts.put(key, object);
 	}
 
-	/**
-	 * @param storyParts the parts to set
-	 */
 	public void setTags(HashMap<String, StoryTag> storyParts) {
 		this.storyParts = storyParts;
 	}
 
-	/**
-	 * @param startTag the startTag to set
-	 */
 	public void setStartTag(String startTag) {
 		this.startTag = startTag;
 	}
 
-	/**
-	 * @param area the area to set
-	 */
 	public void setArea(String area) {
 		this.area = area;
 	}
 
-	/**
-	 * @param genre the genre to set
-	 */
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 
-	/**
-	 * @param ageGroup the ageGroup to set
-	 */
 	public void setAgeGroup(String ageGroup) {
 		this.ageGroup = ageGroup;
 	}
 
-	/**
-	 * @param keywords the keywords to set
-	 */
 	public void setKeywords(List<String> keywords) {
 		this.keywords = keywords;
 	}
 
-	/**
-	 * @param keywords the keywords to set
-	 */
 	public void setKeywords(String[] keywords) {
 		this.keywords = Arrays.asList(keywords);
 	}
 
-	/**
-	 * @param date the date to set
-	 */
 	public void setReleaseDate(String date) {
 		// TODO: Convert to date format
 		this.date = date;
 	}
 
-	/**
-	 * @param author the author to set
-	 */
 	public void setAuthor(String author) {
 		this.author = author;
 	}
 
-	/**
-	 * @param desc the desc to set
-	 */
 	public void setDescription(String desc) {
-		this.desc = desc;
+		this.description = desc;
 	}
 
-	/**
-	 * @param UUID the hash to set
-	 */
 	public void setUUID(String UUID) {
 		this.UUID = UUID;
 	}
 
-	/**
-	 * @param title the title to set
-	 */
-	public void setStoryTitle(String title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public boolean requireGPS() {
-		return getTagTypes().contains("GPS");
+	public void setEstimatedTime(int estimatedTime) {
+		this.estimatedTime = estimatedTime;
+	}
+
+	public int getEstimatedTime() {
+		return estimatedTime;
+	}
+
+	public void setStatus(StoryStatusEnum status) {
+		this.status = status;
+	}
+
+	public StoryStatusEnum getStatus() {
+		return status;
 	}
 }

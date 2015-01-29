@@ -19,9 +19,9 @@ public class GPSMapNavigationActivity extends GPSActivity {
 		super.onCreate(arg0);
 		setContentView(R.layout.activity_story_map);
 
-		if (option.getOptHintText().length() > 0) {
+		if (option.getHintText().length() > 0) {
 			hintText = (TextView) findViewById(R.id.story_option_hint);
-			hintText.setText(option.getOptHintText());
+			hintText.setText(option.getHintText());
 			hintText.setVisibility(View.VISIBLE);
 		}
 

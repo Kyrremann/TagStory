@@ -30,7 +30,7 @@ public class StoryPropagatingActivity extends Activity {
 		option = (StoryTagOption) getIntent().getSerializableExtra(
 				StoryTravelActivity.OPTION);
 
-		((TextView) findViewById(R.id.story_propagating)).setText(option.getOptPropagatingText());
+		((TextView) findViewById(R.id.story_propagating)).setText(option.getPropagatingText());
 	}
 
 	public void whereToGo(View v) {

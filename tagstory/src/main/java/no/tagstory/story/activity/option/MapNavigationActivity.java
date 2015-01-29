@@ -18,12 +18,11 @@ public class MapNavigationActivity extends StoryTravelActivity {
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		setContentView(R.layout.activity_story_map);
-		// getActionBar().setDisplayHomeAsUpEnabled(true);
+	}
 
-		if (option.getOptHintText().length() > 0) {
-			hintText.setText(option.getOptHintText());
-			hintText.setVisibility(View.VISIBLE);
-		}
+	@Override
+	protected void onResume() {
+		super.onResume();
 
 		mapView = (SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.story_map_view);
@@ -33,19 +32,17 @@ public class MapNavigationActivity extends StoryTravelActivity {
 				option.getLatitude(), option.getLongitude()), option.getZoomLevel()));
 		googleMap.setMyLocationEnabled(true);
 
-		addMarker(googleMap, option.getLatitude(), option.getLongitude(),
-				R.string.map_target, -1);
+		addMarker(googleMap, option.getLatitude(), option.getLongitude(), R.string.map_target, -1);
 	}
 
-	private void addMarker(GoogleMap map, double lat, double lon, int title,
-	                       int snippetId) {
+	// TODO Implement marker snippet in the story json
+	private void addMarker(GoogleMap map, double lat, double lon, int title, int snippetId) {
 		String snippet = "";
 		if (snippetId == -1) {
 			snippet = getString(R.string.map_default_snippet);
 		} else {
 			snippet = getString(snippetId);
 		}
-		map.addMarker(new MarkerOptions().position(new LatLng(lat, lon))
-				.title(getString(title)).snippet(snippet));
+		map.addMarker(new MarkerOptions().position(new LatLng(lat, lon)).title(getString(title)).snippet(snippet));
 	}
 }

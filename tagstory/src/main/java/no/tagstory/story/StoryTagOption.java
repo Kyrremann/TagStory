@@ -4,155 +4,115 @@ import java.io.Serializable;
 
 public class StoryTagOption implements Serializable {
 
-	public static String HINT_IMAGE = "hint_image";
-	public static String HINT_SOUND = "hint_sound";
-	public static String HINT_TEXT = "hint_text";
-	public static String HINT_MAP = "hint_map";
-	public static String HINT_ARROW = "hint_arrow";
-
 	private static final long serialVersionUID = -7137600478159292595L;
+
 	private String UUID;
-	private String optSelectMethod;
-	private String optHintText;
-	private String optNext;
-	private String optImageSrc;
-	private String optSoundSrc;
-	private String optPropagatingText;
+	private HintMethodEnum method;
+	private String hintText;
+	private String next;
+	private String imageSrc;
+	private String soundSrc;
+	private String propagatingText;
 	private double longitude;
 	private double latitude;
-	private boolean optArrowLength;
+	private String arrowLength;
 	private int zoomLevel;
 
-	public StoryTagOption(String UUID, String optSelectMethod, String optNext) {
+	public StoryTagOption(String UUID, HintMethodEnum method, String next) {
 		this.UUID = UUID;
-		this.optSelectMethod = optSelectMethod;
-		this.optNext = optNext;
+		this.method = method;
+		this.next = next;
 	}
 
-	/**
-	 * @return the optSelectMethod
-	 */
-	public String getOptSelectMethod() {
-		if (optSelectMethod == null) {
-			return "";
-		}
-		return optSelectMethod;
+	
+	public HintMethodEnum getMethod() {
+		return method;
 	}
 
-	/**
-	 * @return the uUID
-	 */
+	
 	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * Placeholder method to the title of the tag.
-	 * The title is the same as the UUID, but title sounds more sane.
-	 *
-	 * @return The value of the UUID
-	 */
+	
 	public String getTitle() {
 		return getUUID();
 	}
 
-	/**
-	 * @return the optHintText
-	 */
-	public String getOptHintText() {
-		return optHintText;
+	
+	public String getHintText() {
+		return hintText;
 	}
 
-	/**
-	 * @return the optNext
-	 */
-	public String getOptNext() {
-		return optNext;
+	
+	public String getNext() {
+		return next;
 	}
 
-	/**
-	 * @return the optImageSrc
-	 */
-	public String getOptImageSrc() {
-		return optImageSrc;
+	
+	public String getImageSrc() {
+		return imageSrc;
 	}
 
-	/**
-	 * @return the optSoundSrc
-	 */
-	public String getOptSoundSrc() {
-		return optSoundSrc;
+	
+	public String getSoundSrc() {
+		return soundSrc;
 	}
 
-	/**
-	 * @return the optLong
-	 */
+	
 	public double getLongitude() {
 		return longitude;
 	}
 
-	/**
-	 * @return the optLat
-	 */
+	
 	public double getLatitude() {
 		return latitude;
 	}
 
-	public String getOptPropagatingText() {
-		return optPropagatingText;
+	public String getPropagatingText() {
+		return propagatingText;
 	}
 
-	public void setPropagatingText(String optPropagatingText) {
-		this.optPropagatingText = optPropagatingText;
+	public void setPropagatingText(String propagatingText) {
+		this.propagatingText = propagatingText;
 	}
 
-	/**
-	 * @param optArrowLength the optArrowLength to set
-	 */
-	public void setArrowLength(boolean optArrowLength) {
-		this.optArrowLength = optArrowLength;
+	
+	public void setArrowLength(String arrowLength) {
+		this.arrowLength = arrowLength;
 	}
 
-	/**
-	 * @param optSoundSrc the optSoundSrc to set
-	 */
-	public void setSoundSrc(String optSoundSrc) {
-		this.optSoundSrc = optSoundSrc;
+	
+	public void setSoundSrc(String soundSrc) {
+		this.soundSrc = soundSrc;
 	}
 
-	/**
-	 * @param optImageSrc the optImageSrc to set
-	 */
-	public void setImageSrc(String optImageSrc) {
-		this.optImageSrc = optImageSrc;
+	public String getArrowLength() {
+		return arrowLength;
 	}
 
-	/**
-	 * @param optNext the optNext to set
-	 */
-	public void setOptNext(String optNext) {
-		this.optNext = optNext;
+	public void setImageSrc(String imageSrc) {
+		this.imageSrc = imageSrc;
 	}
 
-	/**
-	 * @param optHintText the optHintText to set
-	 */
-	public void setHintText(String optHintText) {
-		this.optHintText = optHintText;
+	
+	public void setNext(String next) {
+		this.next = next;
 	}
 
-	/**
-	 * @param uUID the uUID to set
-	 */
+	
+	public void setHintText(String hintText) {
+		this.hintText = hintText;
+	}
+
+	
 	public void setUUID(String uUID) {
 		UUID = uUID;
 	}
 
-	/**
-	 * @param optSelectMethod the optSelectMethod to set
-	 */
-	public void setOptSelectMethod(String optSelectMethod) {
-		this.optSelectMethod = optSelectMethod;
+	
+	public void setMethod(HintMethodEnum method) {
+		this.method = method;
 	}
 
 	public void setLongitude(double d) {
@@ -163,19 +123,12 @@ public class StoryTagOption implements Serializable {
 		this.latitude = d;
 	}
 
-	/**
-	 * @return the optArrowLength
-	 */
-	public boolean isOptArrowLength() {
-		return optArrowLength;
-	}
-
 	public boolean hasHintText() {
-		return getOptHintText().length() > 0;
+		return getHintText().length() > 0;
 	}
 
 	public boolean hasHintImage() {
-		return getOptSelectMethod().equals(StoryTagOption.HINT_IMAGE);
+		return getMethod().isImage();
 	}
 
 	public void setZoomLevel(int zoomLevel) {
@@ -184,5 +137,21 @@ public class StoryTagOption implements Serializable {
 
 	public int getZoomLevel() {
 		return zoomLevel;
+	}
+
+	public boolean isSound() {
+		return method.isSound();
+	}
+
+	public boolean isArrow() {
+		return method.isArrow();
+	}
+
+	public boolean isMap() {
+		return method.isMap();
+	}
+
+	public boolean isImage() {
+		return method.isImage();
 	}
 }

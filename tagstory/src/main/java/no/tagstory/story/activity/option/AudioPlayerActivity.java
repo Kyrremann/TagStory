@@ -31,15 +31,13 @@ public class AudioPlayerActivity extends StoryTravelActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_story_audioplayer);
-		// getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		AUDIO_FILE_NAME = option.getOptSoundSrc();
+		AUDIO_FILE_NAME = option.getSoundSrc();
 		((TextView) findViewById(R.id.story_audio_song)).setText(AUDIO_FILE_NAME);
-		hintText.setText(option.getOptHintText());
 
 		try {
 			Uri myUri = Uri.parse(getFileStreamPath(AUDIO_FILE_NAME).getPath());

@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
+import no.tagstory.story.TagTypeEnum;
 import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.story.activity.utils.PhoneRequirementsUtils;
 import no.tagstory.utils.Database;
@@ -53,8 +53,8 @@ public class StoryDetailActivity extends Activity {
 			boolean showDefault = false;
 			setTitle(story.getTitle());
 			((TextView) findViewById(R.id.story_detail_desc)).setText(story
-					.getDesc());
-			// TODO Check if story has image, should be mandatory
+					.getDescription());
+
 			String imagefile = story.getImage();
 			if (imagefile != null
 					&& imagefile.length() != 0) {
@@ -63,7 +63,7 @@ public class StoryDetailActivity extends Activity {
 					((ImageView) findViewById(R.id.story_detail_image))
 						.setImageBitmap(myBitmap);
 				} catch (FileNotFoundException e) {
-					e.printStackTrace();
+					showDefault = true;
 				}
 			} else {
 				showDefault = true;
@@ -91,13 +91,13 @@ public class StoryDetailActivity extends Activity {
 			// No game mode requirements, yet
 		}
 
-		String type = PhoneRequirementsUtils.checkTagtypes(this, story.getTagTypes());
+		TagTypeEnum type = PhoneRequirementsUtils.checkTagtypes(this, story.getTagTypes());
 		if (type != null) {
-			if (type.equalsIgnoreCase("QR")) {
+			if (type.isQR()) {
 				showNoQrDialog();
-			} else if (type.equalsIgnoreCase("GPS")) {
+			} else if (type.isGPS()) {
 				showNoGpsDialog();
-			} else if (type.equalsIgnoreCase("NFC")) {
+			} else if (type.isNFC()) {
 				showNoNfcDialog();
 			}
 		}

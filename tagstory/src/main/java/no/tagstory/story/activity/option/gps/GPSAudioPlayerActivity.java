@@ -36,9 +36,9 @@ public class GPSAudioPlayerActivity extends GPSActivity implements OnPreparedLis
 		tagId = bundle.getString(StoryActivity.EXTRA_TAG);
 		previousTag = bundle.getString(StoryActivity.PREVIOUSTAG);*/
 
-		AUDIO_FILE_NAME = option.getOptSoundSrc();
+		AUDIO_FILE_NAME = option.getSoundSrc();
 		((TextView) findViewById(R.id.story_audio_song)).setText(AUDIO_FILE_NAME);
-		hintText.setText(option.getOptHintText());
+		hintText.setText(option.getHintText());
 
 		mediaPlayer = new MediaPlayer();
 		mediaPlayer.setOnPreparedListener(this);

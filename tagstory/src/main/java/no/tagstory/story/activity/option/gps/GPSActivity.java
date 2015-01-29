@@ -8,7 +8,6 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.SharedPreferences.Editor;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import com.google.android.gms.common.ConnectionResult;
@@ -79,8 +78,7 @@ public class GPSActivity extends StoryTravelActivity implements
 		servicesConnected(this);
 		// hintText.setText(R.string.gps_about_button);
 
-		// TODO: Provider should be set in the json file
-		setTitle(R.string.map_next_tag);
+		// TODO: Provider should be set in the story json file
 		goalLocation = new Location("goal"); // <-- provider
 		goalLocation.setLatitude(option.getLatitude());
 		goalLocation.setLongitude(option.getLongitude());
@@ -197,8 +195,7 @@ public class GPSActivity extends StoryTravelActivity implements
 							+ " meters");
 			if (location.distanceTo(goalLocation) < 20) {
 				Log.d("GPS", "Closer then 20 meters to location");
-				checkTagData(story.getTag(option.getOptNext())
-						.getBelongsToTag());
+				checkTagData(option.getNext());
 			}
 		}
 	}

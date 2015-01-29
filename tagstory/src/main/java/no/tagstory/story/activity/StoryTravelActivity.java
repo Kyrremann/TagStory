@@ -14,12 +14,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import no.tagstory.StoryApplication;
 import no.tagstory.R;
+import no.tagstory.StoryApplication;
 import no.tagstory.statistics.StoryHistory;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTagOption;
-import no.tagstory.utils.ClassVersionFactory;
 
 import java.io.FileNotFoundException;
 
@@ -55,34 +54,27 @@ public class StoryTravelActivity extends FragmentActivity {
 	}
 
 	private void setHintImage() {
-		((LinearLayout) findViewById(R.id.story_option_layout))
-				.addView(createImageHint(option.getOptImageSrc()));
+		try {
+			ImageView imageView = new ImageView(this);
+			Bitmap myBitmap = BitmapFactory.decodeStream(openFileInput(option.getImageSrc()));
+			imageView.setImageBitmap(myBitmap);
+			((LinearLayout) findViewById(R.id.story_option_layout))
+					.addView(imageView);
+		} catch (FileNotFoundException e) {
+		}
 	}
 
 	private void setHintText() {
 		hintText = (TextView) findViewById(R.id.story_option_hint);
-		hintText.setText(option.getOptHintText());
+		hintText.setText(option.getHintText());
 		hintText.setVisibility(View.VISIBLE);
-	}
-
-	private View createImageHint(String optImageSrc) {
-		ImageView imageView = new ImageView(this);
-		try {
-			Bitmap myBitmap = BitmapFactory.decodeStream(openFileInput(optImageSrc));
-			imageView.setImageBitmap(myBitmap);
-			return imageView;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return imageView;
-		}
 	}
 
 	public void scanTag(View v) {
 		if (v.getId() == R.id.scan_tag) {
-			System.out.println("pressing scan");
-			if (story.getTag(tagId).isQrMode()) {
-				Intent intent = new Intent(
-						"com.google.zxing.client.android.SCAN");
+			if (story.getTag(tagId).getTagType().isQR()) {
+				// TODO Should be switched out with an internal implementation
+				Intent intent = new Intent("com.google.zxing.client.android.SCAN");
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 				intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
 				startActivityForResult(intent, QR_REQUEST_CODE);
@@ -131,7 +123,6 @@ public class StoryTravelActivity extends FragmentActivity {
 				String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
 				Log.d("QR", "Contents: " + contents);
 				Log.d("QR", "Format: " + format);
-				// TODO: What to do when user scanning the wrong QR code?
 				checkTagData(contents);
 			} else if (resultCode == RESULT_CANCELED) {
 				// Handle cancel
@@ -141,12 +132,11 @@ public class StoryTravelActivity extends FragmentActivity {
 
 	protected void checkTagData(String tagId) {
 		// TODO: Implement randomized tags
-		if (tagId.equals(option.getOptNext())) {
+		if (tagId.equals(option.getNext())) {
 			goToNextActivity();
 		} else {
 			// TODO: What do to when user scan wrong tag?
-			Toast.makeText(this, "Sorry, you're scanning the wrong tag",
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Sorry, you're scanning the wrong tag", Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -158,9 +148,9 @@ public class StoryTravelActivity extends FragmentActivity {
 	private void goToNextActivity() {
 		Intent intent = new Intent(this, StoryActivity.class);
 		intent.putExtra(StoryActivity.EXTRA_STORY, story);
-		intent.putExtra(StoryActivity.EXTRA_TAG, option.getOptNext());
+		intent.putExtra(StoryActivity.EXTRA_TAG, option.getNext());
 		StoryHistory storyHistory = ((StoryApplication) getApplication()).getStoryHistory();
-		storyHistory.push(story.getTag(option.getOptNext()));
+		storyHistory.push(story.getTag(option.getNext()));
 		startActivity(intent);
 		finish();
 	}

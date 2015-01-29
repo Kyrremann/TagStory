@@ -21,6 +21,7 @@ import no.tagstory.story.activity.option.gps.GPSActivity;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
+@Deprecated
 @TargetApi(Build.VERSION_CODES.GINGERBREAD_MR1)
 public abstract class NFCActivity extends GPSActivity {
 
@@ -69,7 +70,7 @@ public abstract class NFCActivity extends GPSActivity {
 								StoryActivity.class);
 						intent.putExtra(StoryActivity.EXTRA_STORY, story);
 						intent.putExtra(StoryActivity.EXTRA_TAG,
-								option.getOptNext());
+								option.getNext());
 						startActivity(intent);
 					}
 				});
@@ -118,12 +119,11 @@ public abstract class NFCActivity extends GPSActivity {
 			}
 		}
 
-		if (data.split("\n")[0].equals(story.getTag(option.getOptNext())
-				.getBelongsToTag())) {
+		if (data.split("\n")[0].equals(option.getNext())) {
 			progressDialog.dismiss();
 			intent = new Intent(this, StoryActivity.class);
 			intent.putExtra(StoryActivity.EXTRA_STORY, story);
-			intent.putExtra(StoryActivity.EXTRA_TAG, option.getOptNext());
+			intent.putExtra(StoryActivity.EXTRA_TAG, option.getNext());
 			startActivity(intent);
 		} else {
 			// TODO: What do to when user scan wrong tag?

@@ -32,7 +32,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Iterator;
 
 public class StoryMarkedListingActivity extends Activity {
@@ -155,8 +156,8 @@ public class StoryMarkedListingActivity extends Activity {
 
 					JSONObject storyServerside = new JSONObject(content);
 
-					JSONObject story = storyServerside.getJSONObject("story");
-					String filename = story.getString("UUID");
+					JSONObject storyObject = storyServerside.getJSONObject("story");
+					String filename = storyObject.getString("UUID");
 					if (!filename.endsWith(".json")) {
 						filename = filename.concat(".json");
 					}
@@ -166,9 +167,11 @@ public class StoryMarkedListingActivity extends Activity {
 
 					Database database = new Database(getApplicationContext());
 					database.open();
-					database.insertStory(story.getString("UUID"), story.getString("author"), story.getString("title"), story.getString("area"), story.getString("image"));
+					database.insertStory(storyObject.getString("UUID"), storyObject.getString("author"),
+							storyObject.getString("title"), storyObject.getString("area"),
+							storyObject.getString("image"));
 					// TODO: download images
-					downloadAssets(story, handler);
+					downloadAssets(storyObject, handler);
 					// TODO: Change button to 'play story'
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -183,7 +186,7 @@ public class StoryMarkedListingActivity extends Activity {
 		}).start();
 	}
 
-	private void downloadAssets(JSONObject story, Handler handler) throws JSONException, IOException {
+	private void downloadAssets(JSONObject storyObject, Handler handler) throws JSONException, IOException {
 		CognitoCachingCredentialsProvider cognitoProvider = new CognitoCachingCredentialsProvider(
 				this,
 				"",
@@ -191,9 +194,9 @@ public class StoryMarkedListingActivity extends Activity {
 		TransferManager transferManager = new TransferManager(cognitoProvider);
 		transferManager.getAmazonS3Client().setRegion(Region.getRegion(Regions.EU_WEST_1));
 
-		downloadAsset(IMAGES_FOLDER, story.optString(StoryParser.IMAGE, ""), transferManager, handler);
+		downloadAsset(IMAGES_FOLDER, storyObject.optString(StoryParser.IMAGE, ""), transferManager, handler);
 
-		JSONObject tags = story.getJSONObject(StoryParser.TAGS);
+		JSONObject tags = storyObject.getJSONObject(StoryParser.TAGS);
 		Iterator<String> keys = tags.keys();
 		while (keys.hasNext()) {
 			String key = keys.next();

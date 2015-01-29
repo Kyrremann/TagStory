@@ -22,6 +22,7 @@ import no.tagstory.story.activity.StoryActivity;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
+@Deprecated
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 public abstract class NFCMapActivity extends FragmentActivity {
 
@@ -77,7 +78,7 @@ public abstract class NFCMapActivity extends FragmentActivity {
 								StoryActivity.class);
 						intent.putExtra(StoryActivity.EXTRA_STORY, story);
 						intent.putExtra(StoryActivity.EXTRA_TAG,
-								option.getOptNext());
+								option.getNext());
 						startActivity(intent);
 					}
 				});
@@ -164,12 +165,11 @@ public abstract class NFCMapActivity extends FragmentActivity {
 
 	private void checkTagData(String tag) {
 		// TODO: Implement randomized tags
-		if (tag.equals(story.getTag(option.getOptNext())
-				.getBelongsToTag())) {
+		if (tag.equals(option.getNext())) {
 			progressDialog.dismiss();
 			Intent intent = new Intent(this, StoryActivity.class);
 			intent.putExtra(StoryActivity.EXTRA_STORY, story);
-			intent.putExtra(StoryActivity.EXTRA_TAG, option.getOptNext());
+			intent.putExtra(StoryActivity.EXTRA_TAG, option.getNext());
 			startActivity(intent);
 		} else {
 			// TODO: What do to when user scan wrong tag?

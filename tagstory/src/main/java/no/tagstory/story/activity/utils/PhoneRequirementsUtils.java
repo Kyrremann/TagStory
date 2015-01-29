@@ -5,6 +5,8 @@ import android.content.pm.PackageManager;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcManager;
 import android.provider.Settings;
+import no.tagstory.story.GameModeEnum;
+import no.tagstory.story.TagTypeEnum;
 
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class PhoneRequirementsUtils {
 	 * @param gameModes A list of games modes
 	 * @return the first game mode not supported by this phone
 	 */
-	public static String checkGamemodes(Context context, List<String> gameModes) {
+	public static String checkGamemodes(Context context, List<GameModeEnum> gameModes) {
 		// For now there are no game modes not supported by this phones
 		return null;
 	}
@@ -27,14 +29,16 @@ public class PhoneRequirementsUtils {
 	 * @param tagTypes A list of tag types
 	 * @return the first tag type not supported by this phone
 	 */
-	public static String checkTagtypes(Context context, List<String> tagTypes) {
-		for (String tagType : tagTypes) {
-			if (tagType.equalsIgnoreCase("QR")) {
-				if (!isBarcodeScannerAvailable(context)) return "QR";
-			} else if (tagType.equalsIgnoreCase("NFC")) {
-				if (!isNFCEnabled(context)) return "NFC";
-			} else if (tagType.equalsIgnoreCase("GPS")) {
-				if (!isGPSEnabled(context)) return "GPS";
+	public static TagTypeEnum checkTagtypes(Context context, List<TagTypeEnum> tagTypes) {
+		for (TagTypeEnum tagType : tagTypes) {
+			if (tagType.isQR()) {
+				if (!isBarcodeScannerAvailable(context)) return TagTypeEnum.QR;
+			} else if (tagType.isNFC()) {
+				if (!isNFCEnabled(context)) return TagTypeEnum.NFC;
+			} else if (tagType.isGPS()) {
+				if (!isGPSEnabled(context)) return TagTypeEnum.GPS;
+			} else if (tagType.isBLE()) {
+				// not implemented yet
 			}
 		}
 

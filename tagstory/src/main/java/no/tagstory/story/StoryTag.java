@@ -1,8 +1,8 @@
 package no.tagstory.story;
 
-import android.annotation.SuppressLint;
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.StringUtil;
+import com.amazonaws.util.StringUtils;
 import no.tagstory.story.game.QuizNode;
-import no.tagstory.utils.StoryParser;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -16,111 +16,56 @@ public class StoryTag implements Serializable {
 
 	private static final long serialVersionUID = -8334768426662100348L;
 	private String UUID;
-	private String belongsToTag;
 	private String description;
-	private String choiceDescription;
-	private String choiceImage;
-	private String gameMode;
-	private String gameButton;
-	private String tagMode;
+	private String question;
+	private String image;
+	private GameModeEnum gameMode;
+	private String travelButton;
+	private TagTypeEnum tagType;
 	private boolean endpoint;
-	private String optionsTitle;
+	private String title;
 	private HashMap<String, StoryTagOption> options;
 	private HashMap<Integer, QuizNode> quiz;
 
-	public StoryTag(String UUID, String belongsToTag, String description,
-	                String isEndpoint) {
-		this(UUID, belongsToTag, description, null, null, null, isEndpoint);
+	public StoryTag(String UUID, String description, boolean endpoint) {
+		this.UUID = UUID;
+		this.description = description;
+		this.endpoint = endpoint;
 	}
 
-	public StoryTag(String UUID, String belongsToTag, String description,
-	                String gameMode, String isEndpoint) {
-		this(UUID, belongsToTag, description, null, gameMode, null, isEndpoint);
-	}
-
-	@SuppressLint("UseSparseArrays")
-	public StoryTag(String UUID, String belongsToTag, String description,
-	                String choiceDescription, String gameMode,
-	                HashMap<String, StoryTagOption> options, String isEndpoint) {
-		this.setUUID(UUID);
-		this.setBelongsToTag(belongsToTag);
-		this.setDescription(description);
-		this.setChoiceDescription(choiceDescription);
-		this.setGameMode(gameMode);
-		this.setOptions(options);
-		this.setIsEndpoint(isEndpoint);
-
-		if (getGameMode().equals(StoryParser.QUIZ))
-			this.quiz = new HashMap<Integer, QuizNode>();
-	}
-
-	public StoryTag() {
-
-	}
-
-	/**
-	 * @return the uUID
-	 */
 	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * @return the belongsToTag
-	 */
-	public String getBelongsToTag() {
-		return belongsToTag;
-	}
-
-	/**
-	 * @return the description
-	 */
 	public String getDescription() {
 		return description;
 	}
 
-	/**
-	 * @return the choiceDescription
-	 */
-	public String getChoiceDescription() {
-		return choiceDescription;
+
+	public String getQuestion() {
+		return question;
 	}
 
-	/**
-	 * @return the options
-	 */
 	public HashMap<String, StoryTagOption> getOptions() {
 		return options;
 	}
 
-	public String getOptionsTitle() {
-		return optionsTitle;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setOptionsTitle(String optionsTitle) {
-		this.optionsTitle = optionsTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	/**
-	 * @return the endpoint
-	 */
 	public boolean isEndpoint() {
 		return endpoint;
 	}
 
-	/**
-	 * @return the gameMode
-	 */
-	public String getGameMode() {
-		if (gameMode == null) {
-			return "";
-		}
+	public GameModeEnum getGameMode() {
 		return gameMode;
 	}
 
-	/**
-	 * @return the quiz
-	 */
 	public HashMap<Integer, QuizNode> getQuiz() {
 		return quiz;
 	}
@@ -133,89 +78,39 @@ public class StoryTag implements Serializable {
 		return quiz.get(location);
 	}
 
-	/**
-	 * @return the gameButton
-	 */
-	public String getGameButton() {
-		return gameButton;
+	public String getTravelButton() {
+		return travelButton;
 	}
 
-	/**
-	 * @return the tagMode
-	 */
-	public String getTagMode() {
-		return tagMode;
+	public TagTypeEnum getTagType() {
+		return tagType;
 	}
 
-	/**
-	 * @param tagMode the tagMode to set
-	 */
-	public void setTagMode(String tagMode) {
-		this.tagMode = tagMode;
+	public void setTagType(TagTypeEnum tagType) {
+		this.tagType = tagType;
 	}
 
-	/**
-	 * @param gameButton the gameButton to set
-	 */
-	public void setGameButton(String gameButton) {
-		this.gameButton = gameButton;
+	public void setTravelButton(String travelButton) {
+		this.travelButton = travelButton;
 	}
 
-	/**
-	 * @param gameMode the gameMode to set
-	 */
-	public void setGameMode(String gameMode) {
+	public void setGameMode(GameModeEnum gameMode) {
 		this.gameMode = gameMode;
 	}
 
-	/**
-	 * @param isEndpoint the endpoint to set
-	 */
-	public void setIsEndpoint(String isEndpoint) {
-		if (isEndpoint.equalsIgnoreCase("true"))
-			this.endpoint = true;
-		else
-			this.endpoint = false;
-	}
-
-	/**
-	 * @param isEndpoint the endpoint to set
-	 */
-	public void setIsEndpoint(boolean isEndpoint) {
-		this.endpoint = isEndpoint;
-	}
-
-	/**
-	 * @param options the options to set
-	 */
 	public void setOptions(HashMap<String, StoryTagOption> options) {
 		this.options = options;
 	}
 
-	/**
-	 * @param choiceDescription the choiceDescription to set
-	 */
-	public void setChoiceDescription(String choiceDescription) {
-		this.choiceDescription = choiceDescription;
+	public void setQuestion(String question) {
+		this.question = question;
 	}
 
-	/**
-	 * @param description the description to set
-	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	/**
-	 * @param belongsToTag the belongsToTag to set
-	 */
-	public void setBelongsToTag(String belongsToTag) {
-		this.belongsToTag = belongsToTag;
-	}
 
-	/**
-	 * @param uUID the uUID to set
-	 */
 	public void setUUID(String uUID) {
 		UUID = uUID;
 	}
@@ -228,35 +123,28 @@ public class StoryTag implements Serializable {
 		quiz.get(location).setCorrection(correction);
 	}
 
-	public String getChoiceImage() {
-		return choiceImage;
+	public String getImage() {
+		return image;
 	}
 
-	public void setChoiceImage(String choiceImage) {
-		this.choiceImage = choiceImage;
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public boolean hasSingleQuestion() {
-		return getChoiceDescription() != null
-				&& getChoiceDescription().length() != 0;
+		return StringUtil.isBlank(getQuestion());
 	}
 
 	public boolean hasSingleQuestionImage() {
-		return getChoiceImage() != null && !getChoiceImage().equals("");
+		return StringUtil.isBlank(getImage());
 	}
 
-	public boolean hasGameMode() {
-		return getGameMode() != null
-				&& (getGameMode().equals(StoryParser.QUIZ)
-				|| getGameMode().equals(StoryParser.CAMERA));
+	public boolean isQuiz() {
+		return gameMode.isQuiz();
 	}
 
-	public boolean isQuizGameMode() {
-		return getGameMode().equals(StoryParser.QUIZ);
-	}
-
-	public boolean isCameraGameMode() {
-		return getGameMode().equals(StoryParser.CAMERA);
+	public boolean isCamera() {
+		return gameMode.isCamera();
 	}
 
 	public boolean hasOnlyOneOption() {
@@ -274,9 +162,5 @@ public class StoryTag implements Serializable {
 
 	public StoryTagOption getFirstOption() {
 		return getOptions().values().iterator().next();
-	}
-
-	public boolean isQrMode() {
-		return tagMode.equals(StoryTag.TAG_QR);
 	}
 }

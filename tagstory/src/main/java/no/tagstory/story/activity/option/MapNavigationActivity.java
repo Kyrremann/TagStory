@@ -5,6 +5,7 @@ import android.view.View;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import no.tagstory.R;
@@ -27,7 +28,10 @@ public class MapNavigationActivity extends StoryTravelActivity {
 		mapView = (SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.story_map_view);
 		GoogleMap googleMap = mapView.getMap();
-		googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+		UiSettings uiSettings = googleMap.getUiSettings();
+		uiSettings.setMyLocationButtonEnabled(true);
+		uiSettings.setZoomControlsEnabled(true);
+
 		googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(
 				option.getLatitude(), option.getLongitude()), option.getZoomLevel()));
 		googleMap.setMyLocationEnabled(true);

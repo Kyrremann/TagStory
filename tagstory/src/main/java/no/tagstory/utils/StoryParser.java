@@ -2,6 +2,7 @@ package no.tagstory.utils;
 
 import android.content.Context;
 import no.tagstory.story.*;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,9 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 public class StoryParser {
 
@@ -51,6 +50,7 @@ public class StoryParser {
 	public static final String ENDPOINT = "isEndPoint"; // Last tag has to have this sat to true
 
 	// Options
+	public static final String ANSWER = "answer";
 	public static final String HINT_METHOD = "method";
 	public static final String HINT_TITLE = "title";
 	public static final String NEXT = "next";
@@ -153,7 +153,7 @@ public class StoryParser {
 					storyTag.setImage(jsonTag.optString(TAG_IMAGE));
 				}
 
-				storyTag.setOptions(parseOptions(jsonTag.getJSONObject(TAG_OPTIONS)));
+				storyTag.setOptions(parseOptions(jsonTag.getJSONArray(TAG_OPTIONS)));
 
 			}
 			map.put(tagKey, storyTag);
@@ -187,15 +187,13 @@ public class StoryParser {
 	}
 
 	@SuppressWarnings("unchecked")
-	private static HashMap<String, StoryTagOption> parseOptions(JSONObject jsonOptions) throws JSONException {
-		HashMap<String, StoryTagOption> map = new HashMap<String, StoryTagOption>(jsonOptions.length());
-		Iterator<String> keys = jsonOptions.keys();
+	private static List<StoryTagOption> parseOptions(JSONArray jsonOptions) throws JSONException {
+		List<StoryTagOption> storyTagOptions = new ArrayList<StoryTagOption>(jsonOptions.length());
 
-		while (keys.hasNext()) {
-			String key = keys.next();
-			JSONObject jsonOption = jsonOptions.getJSONObject(key);
+		for (int index = 0; index < jsonOptions.length(); index++) {
+			JSONObject jsonOption = jsonOptions.getJSONObject(index);
 
-			StoryTagOption option = new StoryTagOption(key, HintMethodEnum.fromString(jsonOption.getString(HINT_METHOD)), jsonOption.getString(NEXT));
+			StoryTagOption option = new StoryTagOption(jsonOption.getString(ANSWER), HintMethodEnum.fromString(jsonOption.getString(HINT_METHOD)), jsonOption.getString(NEXT));
 
 			option.setTitle(jsonOption.optString(HINT_TITLE));
 			option.setHintText(jsonOption.optString(HINT_TEXT));
@@ -218,9 +216,9 @@ public class StoryParser {
 				option.setPropagatingText(jsonOption.getString(PROPAGATING_TEXT));
 			}
 
-			map.put(key, option);
+			storyTagOptions.add(option);
 		}
 
-		return map;
+		return storyTagOptions;
 	}
 }

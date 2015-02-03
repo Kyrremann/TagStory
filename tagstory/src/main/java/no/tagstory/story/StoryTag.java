@@ -6,6 +6,7 @@ import no.tagstory.story.game.QuizNode;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 
 public class StoryTag implements Serializable {
 
@@ -24,7 +25,7 @@ public class StoryTag implements Serializable {
 	private TagTypeEnum tagType;
 	private boolean endpoint;
 	private String title;
-	private HashMap<String, StoryTagOption> options;
+	private List<StoryTagOption> options;
 	private HashMap<Integer, QuizNode> quiz;
 
 	public StoryTag(String UUID, String description, boolean endpoint) {
@@ -46,7 +47,7 @@ public class StoryTag implements Serializable {
 		return question;
 	}
 
-	public HashMap<String, StoryTagOption> getOptions() {
+	public List<StoryTagOption> getOptions() {
 		return options;
 	}
 
@@ -98,7 +99,7 @@ public class StoryTag implements Serializable {
 		this.gameMode = gameMode;
 	}
 
-	public void setOptions(HashMap<String, StoryTagOption> options) {
+	public void setOptions(List<StoryTagOption> options) {
 		this.options = options;
 	}
 
@@ -151,16 +152,19 @@ public class StoryTag implements Serializable {
 		return getOptions().size() == 1;
 	}
 
-	public String[] getOptionsTitles() {
-		return getOptions().keySet().toArray(
-				new String[getOptions().size()]);
+	public String[] getOptionsAnswers() {
+		String[] answers = new String[options.size()];
+		for (int i = 0; i < options.size(); i++) {
+			answers[i] = options.get(i).getAnswer();
+		}
+		return answers;
 	}
 
-	public StoryTagOption getOption(String key) {
-		return getOptions().get(key);
+	public StoryTagOption getOption(int index) {
+		return getOptions().get(index);
 	}
 
 	public StoryTagOption getFirstOption() {
-		return getOptions().values().iterator().next();
+		return getOptions().get(0);
 	}
 }

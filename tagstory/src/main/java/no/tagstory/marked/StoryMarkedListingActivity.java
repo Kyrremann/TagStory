@@ -29,6 +29,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -206,11 +207,9 @@ public class StoryMarkedListingActivity extends Activity {
 			String key = keys.next();
 			JSONObject tag = tags.getJSONObject(key);
 			if (tag.has(StoryParser.TAG_OPTIONS)) {
-				JSONObject options = tag.getJSONObject(StoryParser.TAG_OPTIONS);
-				Iterator<String> optionKeys = options.keys();
-				while (optionKeys.hasNext()) {
-					String optionKey = optionKeys.next();
-					JSONObject option = options.getJSONObject(optionKey);
+				JSONArray options = tag.getJSONArray(StoryParser.TAG_OPTIONS);
+				for(int index = 0; index < options.length(); index++) {
+					JSONObject option = options.getJSONObject(index);
 					if (option.has(StoryParser.HINT_IMAGE_SOURCE)) {
 						downloadAsset(IMAGES_FOLDER, option.optString(StoryParser.HINT_IMAGE_SOURCE, ""), transferManager, handler);
 					}

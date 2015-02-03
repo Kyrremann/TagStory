@@ -96,8 +96,7 @@ public class CameraActivity extends Activity {
 
 	public void done(View v) {
 		if (v.getId() == R.id.camera_button) {
-			final StoryTagOption option = part.getOptions().values()
-					.iterator().next();
+			final StoryTagOption option = part.getFirstOption();
 			Intent intent = createTravelIntent(
 					getApplicationContext(), story, story.getTag(tagId), option
 			);

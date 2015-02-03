@@ -17,7 +17,7 @@ import no.tagstory.story.StoryTag;
 import no.tagstory.story.StoryTagOption;
 import no.tagstory.story.activity.StoryActivity;
 
-import java.util.HashMap;
+import java.util.List;
 
 import static no.tagstory.story.activity.utils.TravelIntentUtil.createTravelIntent;
 
@@ -131,8 +131,7 @@ public class QuizActivity extends Activity {
 		builder.setTitle(R.string.story_next_part);
 		builder.setCancelable(false);
 		if (part.getOptions().size() == 1) {
-			final StoryTagOption option = part.getOptions().values()
-					.iterator().next();
+			final StoryTagOption option = part.getFirstOption();
 			builder.setMessage("You scored " + quizPoint
 					+ " point(s) of possible " + part.getQuizSize() + ".");
 			builder.setNeutralButton(R.string.story_ready,
@@ -147,21 +146,15 @@ public class QuizActivity extends Activity {
 						}
 					});
 		} else {
-			final HashMap<String, StoryTagOption> options = part.getOptions();
-			final String[] keys = options.keySet().toArray(
-					new String[options.size()]);
+			final List<StoryTagOption> options = part.getOptions();
 
-			builder.setMessage("You scored " + quizPoint
-					+ " point(s) of possible " + part.getQuizSize() + ".");
-			builder.setSingleChoiceItems(keys, -1,
-					new DialogInterface.OnClickListener() {
+			builder.setMessage("You scored " + quizPoint + " point(s) of possible " + part.getQuizSize() + ".");
+			builder.setSingleChoiceItems(part.getOptionsAnswers(), -1, new DialogInterface.OnClickListener() {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							dialog.dismiss();
-							StoryTagOption option = options
-									.get(((AlertDialog) dialog).getListView()
-											.getItemAtPosition(which));
+							StoryTagOption option = options.get(which);
 							startActivity(createTravelIntent(
 									getApplicationContext(), story, story.getTag(partTag), option
 							));

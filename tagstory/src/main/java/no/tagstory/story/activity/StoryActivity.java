@@ -101,14 +101,11 @@ public class StoryActivity extends AbstractStoryActivity {
 
 	private void severalOptions(final StoryTag tag, Button button) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		final String[] keys = tag.getOptionsTitles();
-
-		builder.setSingleChoiceItems(keys, -1, new DialogInterface.OnClickListener() {
+		builder.setSingleChoiceItems(tag.getOptionsAnswers(), -1, new DialogInterface.OnClickListener() {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				String selectedValue = (String) ((AlertDialog) dialog).getListView().getItemAtPosition(which);
-				StoryTagOption option = tag.getOption(selectedValue);
+				StoryTagOption option = tag.getOption(which);
 				startActivity(createTravelIntent(getApplicationContext(), story, tag, option));
 				dialog.cancel();
 			}

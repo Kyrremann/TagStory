@@ -166,22 +166,17 @@ public class StoryParser {
 	private static void parseGameMode(StoryTag storyTag, JSONObject jsonTag) throws JSONException {
 		if (storyTag.isQuiz()) {
 			// TODO Implement better quiz
-			JSONObject quiz = jsonTag.getJSONObject(QUIZ);
-			Iterator<String> quizKeys = quiz.keys();
+			JSONArray quiz = jsonTag.getJSONArray(QUIZ);
 			JSONObject question;
 			int location;
 			String quizKey;
 
-			while (quizKeys.hasNext()) {
-				quizKey = quizKeys.next();
-				question = quiz.getJSONObject(quizKey);
-				location = Integer.parseInt(quizKey);
-				storyTag.addToQuiz(location,
-						question.getString(QUIZ_Q),
-						question.getBoolean(QUIZ_A));
-				if (!question.isNull(QUIZ_C))
-					storyTag.addCorrectionToQuiz(location,
-							question.getString(QUIZ_C));
+			for (int index = 0; index < quiz.length(); index++) {
+				question = quiz.getJSONObject(index);
+				storyTag.addToQuiz(index, question.getString(QUIZ_Q), question.getBoolean(QUIZ_A));
+				if (question.has(QUIZ_C)) {
+					storyTag.addCorrectionToQuiz(index, question.getString(QUIZ_C));
+				}
 			}
 		}
 	}

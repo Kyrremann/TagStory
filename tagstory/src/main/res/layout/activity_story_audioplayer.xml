@@ -4,34 +4,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-	<LinearLayout
+	<ScrollView
 			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:paddingRight="15dp"
-			android:paddingLeft="15dp"
-			android:orientation="vertical">
+			android:layout_height="fill_parent"
+			android:layout_above="@+id/button_bottom"
+			android:padding="15dp">
 
-		<TextView
-				android:id="@+id/story_option_hint"
-				android:layout_width="fill_parent"
+		<LinearLayout
+				android:id="@+id/story_option_layout"
+				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:background="@drawable/background_border_light_green"
-				style="?android:attr/textAppearanceLarge"
-				android:textStyle="bold"/>
+				android:orientation="vertical">
 
-		<TextView
-				android:id="@+id/story_audio_song"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:background="@drawable/background_border_light_green"
-				style="?android:attr/textAppearanceMedium"
-				android:textStyle="italic"/>
+			<TextView
+					android:id="@+id/story_option_hint"
+					style="@style/TagStoryViewMedium"/>
 
-		<MediaController
-				android:id="@+id/audio_controllers"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"/>
-	</LinearLayout>
+			<TextView
+					android:id="@+id/story_audio_song"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:background="@drawable/background_border_light_green"
+					style="?android:attr/textAppearanceMedium"
+					android:textStyle="italic"/>
+
+			<MediaController
+					android:id="@+id/audio_controllers"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+		</LinearLayout>
+	</ScrollView>
 
 	<LinearLayout
 			android:id="@+id/button_bottom"

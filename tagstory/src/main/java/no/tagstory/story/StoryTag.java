@@ -167,4 +167,8 @@ public class StoryTag implements Serializable {
 	public StoryTagOption getFirstOption() {
 		return getOptions().get(0);
 	}
+
+	public void initQuizMode() {
+		quiz = new HashMap<>();
+	}
 }

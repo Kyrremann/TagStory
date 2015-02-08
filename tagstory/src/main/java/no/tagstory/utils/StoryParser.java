@@ -166,6 +166,7 @@ public class StoryParser {
 	private static void parseGameMode(StoryTag storyTag, JSONObject jsonTag) throws JSONException {
 		if (storyTag.isQuiz()) {
 			// TODO Implement better quiz
+			storyTag.initQuizMode();
 			JSONArray quiz = jsonTag.getJSONArray(QUIZ);
 			JSONObject question;
 			int location;

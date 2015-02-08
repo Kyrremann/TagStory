@@ -24,7 +24,7 @@ public class StoryPropagatingActivity extends Activity {
 		setContentView(R.layout.activity_story_propagating);
 
 		story = (Story) getIntent().getSerializableExtra(StoryActivity.EXTRA_STORY);
-		setTitle(story.getTitle()); // TODO: Should be part title
+		setTitle(story.getTitle()); // TODO: Should be tag title
 		partTag = getIntent().getStringExtra(StoryActivity.EXTRA_TAG);
 		part = story.getTag(partTag);
 		option = (StoryTagOption) getIntent().getSerializableExtra(

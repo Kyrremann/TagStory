@@ -49,6 +49,9 @@ public class StoryHistory {
      * @return true if current has a next
      */
     public boolean hasNext() {
+	    if (current == null) {
+		    current = root;
+	    }
         return current.hasNext();
     }
 
@@ -56,6 +59,9 @@ public class StoryHistory {
      * @return true if current has a previous
      */
     public boolean hasPrevious() {
+	    if (current == null) {
+		    current = root;
+	    }
         return current.hasPrevious();
     }
 

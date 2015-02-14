@@ -35,14 +35,14 @@ public class MapNavigationActivity extends StoryTravelActivity {
 				option.getLatitude(), option.getLongitude()), option.getZoomLevel()));
 		googleMap.setMyLocationEnabled(true);
 
-		addMarker(googleMap, option.getLatitude(), option.getLongitude(), R.string.map_target, -1);
+		addMarker(googleMap, option.getLatitude(), option.getLongitude(), R.string.dummy_map_target, -1);
 	}
 
 	// TODO Implement marker snippet in the story json
 	private void addMarker(GoogleMap map, double lat, double lon, int title, int snippetId) {
 		String snippet = "";
 		if (snippetId == -1) {
-			snippet = getString(R.string.map_default_snippet);
+			snippet = getString(R.string.dummy_map_snippet);
 		} else {
 			snippet = getString(snippetId);
 		}

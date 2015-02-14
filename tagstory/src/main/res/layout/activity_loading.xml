@@ -11,20 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:contentDescription="@string/cd_ts_logo"
+        android:contentDescription="@string/cd_tagstory_logo"
         android:src="@drawable/ts_logo" />
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:text="@string/powered_by"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginTop="15dp"
-        android:textColor="@android:color/white"
-        android:textIsSelectable="false"
-        android:textStyle="bold" />
 
 </RelativeLayout>

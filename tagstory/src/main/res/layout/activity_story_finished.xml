@@ -13,7 +13,7 @@
         android:background="@color/holo_orange_light"
         android:onClick="endOfStory"
         android:padding="15dp"
-        android:text="@string/story_finished"
+        android:text="@string/story_button_finished"
         android:textStyle="bold" />
 
     <ScrollView
@@ -32,7 +32,7 @@
                 android:id="@+id/description"
                 style="@style/TagStoryViewMedium"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/story_finished" />
+                android:text="@string/story_button_finished" />
 
             <TextView
                 android:id="@+id/story_statistic"

@@ -109,13 +109,13 @@ public class QuizActivity extends AbstractGameModeActivity {
 
 	private void goToTagDialog() {
 		AlertDialog.Builder builder = new Builder(this);
-		builder.setTitle(R.string.story_next_part);
+		builder.setTitle(R.string.story_quiz_next_part);
 		builder.setCancelable(false);
 		if (tag.getOptions().size() == 1) {
 			final StoryTagOption option = tag.getFirstOption();
 			builder.setMessage("You scored " + quizPoint
 					+ " point(s) of possible " + tag.getQuizSize() + ".");
-			builder.setNeutralButton(R.string.story_ready, new OnClickListener() {
+			builder.setNeutralButton(R.string.story_quiz_ready, new OnClickListener() {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {

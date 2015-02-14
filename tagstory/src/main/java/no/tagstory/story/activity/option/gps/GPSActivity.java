@@ -93,10 +93,10 @@ public class GPSActivity extends StoryTravelActivity implements
 
 	private AlertDialog createGpsDialog() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle(R.string.gps_about_title);
-		builder.setMessage(R.string.gps_about_content);
+		builder.setTitle(R.string.dialog_gps_about_title);
+		builder.setMessage(R.string.dialog_gps_about_content);
 		builder.setCancelable(true);
-		builder.setNeutralButton(R.string.dialog_cancel,
+		builder.setNeutralButton(R.string.cancel,
 				new OnClickListener() {
 
 					@Override

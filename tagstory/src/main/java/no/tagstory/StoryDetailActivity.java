@@ -136,7 +136,7 @@ public class StoryDetailActivity extends Activity {
 					}
 				}
 			});
-			builder.setNegativeButton(R.string.dialog_cancel,
+			builder.setNegativeButton(R.string.cancel,
 					new DialogInterface.OnClickListener() {
 						public void onClick(final DialogInterface dialog,
 						                    final int id) {
@@ -160,7 +160,7 @@ public class StoryDetailActivity extends Activity {
 			builder.setMessage(getResources().getString(
 					R.string.dialog_enable_gps));
 			builder.setCancelable(false);
-			builder.setPositiveButton(R.string.dialog_yes,
+			builder.setPositiveButton(R.string.yes,
 					new DialogInterface.OnClickListener() {
 						public void onClick(final DialogInterface dialog,
 						                    final int id) {
@@ -170,7 +170,7 @@ public class StoryDetailActivity extends Activity {
 									ENABLE_GPS);
 						}
 					});
-			builder.setNegativeButton(R.string.dialog_no,
+			builder.setNegativeButton(R.string.no,
 					new DialogInterface.OnClickListener() {
 						public void onClick(final DialogInterface dialog,
 						                    final int id) {

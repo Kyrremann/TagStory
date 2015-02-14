@@ -52,7 +52,7 @@
 				android:enabled="false"
 				android:onClick="scanTag"
 				android:padding="15dp"
-				android:text="@string/story_scan_tag"
+				android:text="@string/story_button_scan_tag"
 				android:textStyle="bold"/>
 
 		<Button
@@ -63,7 +63,7 @@
 				android:background="@color/holo_orange_dark"
 				android:onClick="scanTag"
 				android:padding="15dp"
-				android:text="@string/story_gps_button"
+				android:text="@string/story_help_button"
 				android:textStyle="bold"/>
 	</LinearLayout>
 

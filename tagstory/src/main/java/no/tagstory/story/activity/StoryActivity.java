@@ -85,7 +85,7 @@ public class StoryActivity extends AbstractStoryActivity {
 	}
 
 	private void goDirectlyToNextTag(Button travelButton) {
-		travelButton.setText(R.string.next_tag);
+		travelButton.setText(R.string.story_button_next_tag);
 		travelButton.setOnClickListener(new OnClickListener() {
 
 			@Override

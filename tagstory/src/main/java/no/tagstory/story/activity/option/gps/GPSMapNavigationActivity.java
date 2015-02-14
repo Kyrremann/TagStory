@@ -31,14 +31,14 @@ public class GPSMapNavigationActivity extends GPSActivity {
 		googleMap.setMyLocationEnabled(true);
 
 		addMarker(googleMap, option.getLatitude(), option.getLongitude(),
-				R.string.map_target, -1);
+				R.string.dummy_map_target, -1);
 	}
 
 	private void addMarker(GoogleMap map, double lat, double lon, int title,
 	                       int snippetId) {
 		String snippet = "";
 		if (snippetId == -1) {
-			snippet = getString(R.string.map_default_snippet);
+			snippet = getString(R.string.dummy_map_snippet);
 		} else {
 			snippet = getString(snippetId);
 		}

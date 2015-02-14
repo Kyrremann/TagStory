@@ -14,7 +14,7 @@
         android:background="@color/holo_orange_light"
         android:onClick="whereToGo"
         android:padding="15dp"
-        android:text="@string/story_where_to_go" />
+        android:text="@string/story_button_where_to_go" />
 
     <ScrollView
         android:layout_width="fill_parent"

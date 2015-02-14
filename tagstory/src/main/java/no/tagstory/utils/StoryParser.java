@@ -123,7 +123,7 @@ public class StoryParser {
 
 	@SuppressWarnings("unchecked")
 	private static HashMap<String, StoryTag> parseTags(JSONObject jsonObject) throws JSONException {
-		HashMap<String, StoryTag> map = new HashMap<String, StoryTag>();
+		HashMap<String, StoryTag> map = new HashMap<>();
 		Iterator<String> tagKeys = jsonObject.keys();
 
 		while (tagKeys.hasNext()) {
@@ -184,7 +184,7 @@ public class StoryParser {
 
 	@SuppressWarnings("unchecked")
 	private static List<StoryTagOption> parseOptions(JSONArray jsonOptions) throws JSONException {
-		List<StoryTagOption> storyTagOptions = new ArrayList<StoryTagOption>(jsonOptions.length());
+		List<StoryTagOption> storyTagOptions = new ArrayList<>(jsonOptions.length());
 
 		for (int index = 0; index < jsonOptions.length(); index++) {
 			JSONObject jsonOption = jsonOptions.getJSONObject(index);

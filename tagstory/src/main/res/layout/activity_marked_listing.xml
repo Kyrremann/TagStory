@@ -25,6 +25,7 @@
 					android:layout_centerHorizontal="true"
 					android:scaleType="fitStart"
 					android:adjustViewBounds="true"
+					android:contentDescription="@string/cd_no_market_image"
 					android:src="@drawable/ic_empty"/>
 
 			<TextView
@@ -38,7 +39,7 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:textAppearance="?android:attr/textAppearanceMedium"
-					android:text="by"
+					android:text="@string/market_by"
 					android:id="@+id/by"
 					android:paddingTop="5dp"
 					android:paddingBottom="5dp"
@@ -75,7 +76,7 @@
 			android:background="@color/android_yellow"
 			android:onClick="onClick"
 			android:padding="15dp"
-			android:text="Download"
+			android:text="@string/market_download"
 			android:textStyle="bold"/>
 
 </RelativeLayout>

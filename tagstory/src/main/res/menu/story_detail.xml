@@ -3,6 +3,5 @@
 	<item
 			android:id="@+id/menu_delete_story"
 			android:orderInCategory="1"
-			android:showAsAction="never"
 			android:title="@string/menu_delete_story"/>
 </menu>

@@ -140,5 +140,9 @@
     </string>
     <string name="dialog_go_to_play_store">To Play Store</string>
 	<string name="barcode_scanner_play_store">com.google.zxing.client.android</string>
+	<string name="cd_no_market_image">There is no image for this story</string>
+	<string name="cd_tag_image">Image for this tag</string>
+	<string name="market_by">by</string>
+	<string name="market_download">Download</string>
 
 </resources>

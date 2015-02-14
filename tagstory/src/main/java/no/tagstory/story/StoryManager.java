@@ -23,9 +23,6 @@ public class StoryManager {
 		database.close();
 	}
 
-	/**
-	 * @return
-	 */
 	public Cursor getCursorOverStories() {
 		// TODO Convert cursor to a StoryList-object and return a list
 		return database.getStoryList();
@@ -34,9 +31,7 @@ public class StoryManager {
 	public Story getStory(String id) {
 		try {
 			return StoryParser.parseJsonToStory(context, id);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (JSONException | IOException e) {
 			e.printStackTrace();
 		}
 		return null;

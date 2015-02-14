@@ -6,7 +6,6 @@ import no.tagstory.statistics.StoryHistory;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class StoryApplication extends Application {
 
@@ -20,7 +19,7 @@ public class StoryApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		currentLocationHistoryList = new ArrayList<Location>();
+		currentLocationHistoryList = new ArrayList<>();
 		storyHistory = new StoryHistory();
 	}
 

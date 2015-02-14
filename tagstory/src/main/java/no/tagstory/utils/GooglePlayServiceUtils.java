@@ -22,9 +22,8 @@ public class GooglePlayServiceUtils {
 			return true;
 		} else {
 			Log.d(TAG, "Google Play services is uavailable.");
-			int errorCode = resultCode;
 			Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(
-					errorCode, activity, CONNECTION_FAILURE_RESOLUTION_REQUEST);
+					resultCode, activity, CONNECTION_FAILURE_RESOLUTION_REQUEST);
 
 			if (errorDialog != null) {
 				ErrorDialogFragment errorFragment = new ErrorDialogFragment();

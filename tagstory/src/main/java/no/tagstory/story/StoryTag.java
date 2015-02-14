@@ -1,7 +1,6 @@
 package no.tagstory.story;
 
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.StringUtil;
-import com.amazonaws.util.StringUtils;
 import no.tagstory.story.game.QuizNode;
 
 import java.io.Serializable;

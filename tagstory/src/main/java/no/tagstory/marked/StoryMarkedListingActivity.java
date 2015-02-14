@@ -191,7 +191,7 @@ public class StoryMarkedListingActivity extends Activity {
 		}).start();
 	}
 
-	private void downloadAssets(JSONObject storyObject, Handler handler) throws JSONException, IOException {
+	private void downloadAssets(JSONObject storyObject, Handler handler) throws JSONException {
 		CognitoCachingCredentialsProvider cognitoProvider = new CognitoCachingCredentialsProvider(
 				this,
 				"eu-west-1:0524ea09-ca76-4e85-bc4a-a48b98e6b1f4",

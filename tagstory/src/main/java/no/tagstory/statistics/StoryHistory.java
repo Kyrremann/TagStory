@@ -3,8 +3,6 @@ package no.tagstory.statistics;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
 
-import java.util.LinkedList;
-
 public class StoryHistory {
 
     private Story story;

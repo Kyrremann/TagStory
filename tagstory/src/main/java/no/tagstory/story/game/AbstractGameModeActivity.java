@@ -6,7 +6,7 @@ import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
 import no.tagstory.story.activity.StoryActivity;
 
-public class AbstractGameModeActivity extends Activity {
+public abstract class AbstractGameModeActivity extends Activity {
 
 	protected Story story;
 	protected StoryTag tag;

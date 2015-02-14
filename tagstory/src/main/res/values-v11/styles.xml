@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="AppTheme" parent="android:Theme.Holo.Light">
+
+		<!-- <item name="android:windowBackground">@color/android_green</item> -->
+		<item name="android:windowBackground">@color/hs_green</item>
+	</style>
+</resources>

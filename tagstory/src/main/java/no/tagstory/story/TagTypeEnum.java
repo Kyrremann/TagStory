@@ -17,7 +17,7 @@ public enum TagTypeEnum {
 	}
 
 	public static List<TagTypeEnum> convert(List<String> types) {
-		List<TagTypeEnum> enums = new ArrayList<TagTypeEnum>(types.size());
+		List<TagTypeEnum> enums = new ArrayList<>(types.size());
 		for (String type : types) {
 			try {
 				enums.add(TagTypeEnum.fromString(type));

@@ -230,16 +230,6 @@ public class GPSArrowNavigationActivity extends GPSActivity {
 				canvas.drawBitmap(compassHand, 0, 0, mPaint);
 			}
 		}
-
-		@Override
-		protected void onAttachedToWindow() {
-			super.onAttachedToWindow();
-		}
-
-		@Override
-		protected void onDetachedFromWindow() {
-			super.onDetachedFromWindow();
-		}
 	}
 
 	private class MyLocationListener implements LocationListener {

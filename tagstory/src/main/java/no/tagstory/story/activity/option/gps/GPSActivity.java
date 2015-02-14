@@ -9,7 +9,6 @@ import android.content.SharedPreferences.Editor;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -65,7 +64,7 @@ public class GPSActivity extends StoryTravelActivity implements
 		// Start with updates turned on
 		mUpdatesRequested = true;
 		mEditor.putBoolean("KEY_UPDATES_ON", mUpdatesRequested);
-		mEditor.commit();
+		mEditor.apply();
 
 		// Create the LocationRequest object
 		mLocationRequest = LocationRequest.create();

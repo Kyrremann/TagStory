@@ -1,7 +1,6 @@
 package no.tagstory.utils;
 
 import android.annotation.SuppressLint;
-import android.widget.Toast;
 import org.apache.http.*;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -11,12 +10,10 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
-import org.json.JSONObject;
 
 import java.io.*;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ServerCommunication {
 
@@ -134,9 +131,6 @@ public class ServerCommunication {
 				instream.close();
 			}
 
-		} catch (ClientProtocolException e) {
-			client.getConnectionManager().shutdown();
-			e.printStackTrace();
 		} catch (IOException e) {
 			client.getConnectionManager().shutdown();
 			e.printStackTrace();
@@ -151,7 +145,7 @@ public class ServerCommunication {
 		String line = null;
 		try {
 			while ((line = reader.readLine()) != null) {
-				sb.append(line + "\n");
+				sb.append(line).append("\n");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

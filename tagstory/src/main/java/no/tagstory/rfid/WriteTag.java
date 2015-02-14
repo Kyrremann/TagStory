@@ -60,9 +60,7 @@ public class WriteTag {
 				ndef.connect();
 				ndef.writeNdefMessage(tagMessage);
 				ndef.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (FormatException e) {
+			} catch (IOException | FormatException e) {
 				e.printStackTrace();
 			}
 		} else {

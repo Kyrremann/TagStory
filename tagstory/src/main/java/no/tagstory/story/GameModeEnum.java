@@ -26,7 +26,7 @@ public enum GameModeEnum {
 
 
 	public static List<GameModeEnum> convert(List<String> types) {
-		List<GameModeEnum> enums = new ArrayList<GameModeEnum>(types.size());
+		List<GameModeEnum> enums = new ArrayList<>(types.size());
 		for (String type : types) {
 			try {
 				enums.add(GameModeEnum.fromString(type));

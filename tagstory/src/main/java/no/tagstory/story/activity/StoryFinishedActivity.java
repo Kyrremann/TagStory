@@ -1,6 +1,5 @@
 package no.tagstory.story.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,8 +7,6 @@ import android.widget.TextView;
 import no.tagstory.StoryApplication;
 import no.tagstory.TagStoryActivity;
 import no.tagstory.R;
-import no.tagstory.story.Story;
-import no.tagstory.story.StoryTag;
 import no.tagstory.utils.ServerCommunication;
 
 public class StoryFinishedActivity extends AbstractStoryActivity {

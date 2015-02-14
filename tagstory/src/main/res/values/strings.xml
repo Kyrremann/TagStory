@@ -11,7 +11,7 @@
 	<string name="descr_image">Test image of story</string>
 	<string name="marked_go_to_story">Go to story</string>
 	<string name="marked_error_item_list">Something went wrong with this story, sorry!</string>
-	<string name="market_by">by</string>
+	<string name="market_story_by">by</string>
 	<string name="market_download">Download</string>
 
 	<!-- Story detail -->
@@ -36,8 +36,8 @@
 	<string name="story_camera_button_retry">Take a new picture</string>
 	<string name="story_quiz_next_part">Go to next part</string>
 	<string name="story_quiz_ready">I am ready</string>
-	<string name="story_quiz_true">Sant</string>
-	<string name="story_quiz_false">Usant</string>
+	<string name="story_quiz_true">True</string>
+	<string name="story_quiz_false">False</string>
 	<string name="story_quiz_correction">Correction</string>
 	<string name="story_quiz_next">Next question</string>
 

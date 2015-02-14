@@ -11,7 +11,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:textStyle="bold"
-        android:background="@color/android_yellow"
+        android:background="@color/holo_orange_light"
         android:onClick="whereToGo"
         android:padding="15dp"
         android:text="@string/story_where_to_go" />

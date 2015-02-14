@@ -107,16 +107,6 @@
 	<string name="cd_ts_logo">Tag Story logo</string>
     <string name="cd_story_image">Image representing a story</string>
 
-    <color name="light_tree_green">#739D88</color>
-    <color name="tree_green">#1E5228</color>
-    <color name="distant_hill">#B3C6CF</color>
-    <color name="gray_sky">#C6D3E5</color>
-    <color name="android_green">#669900</color>
-    <color name="android_light_green">#99CC00</color>
-    <color name="android_yellow">#FFBB33</color>
-    <color name="android_yellow_dark">#FF8800</color>
-    <color name="hs_green">#27a056</color>
-
     <string name="dummy_author">Kyrre Havik Eriksen</string>
     <string name="dummy_title">Skattejakt på Blindern</string>
     <string name="test_gps">Test GPS</string>

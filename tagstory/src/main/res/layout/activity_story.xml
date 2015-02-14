@@ -12,7 +12,7 @@
 			android:layout_alignParentLeft="true"
 			android:layout_alignParentRight="true"
 			android:padding="15dp"
-			android:background="@color/android_yellow"
+			android:background="@color/holo_orange_light"
 			android:textStyle="bold"/>
 
 	<ScrollView

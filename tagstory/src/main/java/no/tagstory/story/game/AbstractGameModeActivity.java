@@ -2,6 +2,7 @@ package no.tagstory.story.game;
 
 import android.app.Activity;
 import android.os.Bundle;
+import no.tagstory.R;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
 import no.tagstory.story.activity.StoryActivity;

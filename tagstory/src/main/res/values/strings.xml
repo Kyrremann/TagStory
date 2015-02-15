@@ -52,6 +52,7 @@
 	<string name="menu_update_stories">Update stories</string>
 	<string name="menu_options">Options</string>
 	<string name="menu_delete_story">Delete story</string>
+	<string name="menu_sign_in">Sign in</string>
 
 	<!-- Content description -->
 	<string name="cd_tagstory_logo">Tag Story logo</string>

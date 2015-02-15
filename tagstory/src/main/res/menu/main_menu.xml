@@ -1,11 +1,12 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item
-        android:id="@+id/menu_about"
-        android:orderInCategory="1"
-        android:title="@string/menu_about_app"/>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item
-        android:id="@+id/menu_story_marked"
-        android:orderInCategory="2"
-        android:title="@string/menu_story_marked"/>
+			android:id="@+id/menu_about"
+			android:title="@string/menu_about_app"/>
+	<item
+			android:id="@+id/menu_story_marked"
+			android:title="@string/menu_story_marked"/>
+	<item
+			android:id="@+id/menu_sign_in"
+			android:title="@string/menu_sign_in"/>
 
 </menu>

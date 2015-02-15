@@ -152,7 +152,7 @@ public class StoryMarkedListingActivity extends Activity {
 			public void run() {
 				try {
 					HttpClient client = new DefaultHttpClient();
-					String url = "http://tagstory.herokuapp.com/story/" + storyIdServerside + "/json";
+					String url = "http://tagstory.herokuapp.com/api/story/" + storyIdServerside + "/json";
 					HttpGet get = new HttpGet(url);
 					String content = client.execute(get, new BasicResponseHandler());
 

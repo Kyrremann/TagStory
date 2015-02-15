@@ -52,7 +52,7 @@ public class StoryMarkedActivity extends FragmentActivity {
 			public void run() {
 				try {
 					HttpClient client = new DefaultHttpClient();
-					HttpGet get = new HttpGet("http://tagstory.herokuapp.com/stories/json");
+					HttpGet get = new HttpGet("http://tagstory.herokuapp.com/api/stories/json");
 					String content = client.execute(get, new BasicResponseHandler());
 
 					((StoryApplication) getApplication()).setMarkedstories(new JSONArray(content));

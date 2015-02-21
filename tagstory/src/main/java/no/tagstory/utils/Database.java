@@ -8,11 +8,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.Date;
+import java.util.Locale;
+
 public class Database {
 
 	private DatabaseHelper dbHelper;
 	private SQLiteDatabase db;
 	private Context context;
+
 	private static final int DATABASE_VERSION = 1;
 	private static final String DB_NAME = "TagStory";
 
@@ -22,20 +26,29 @@ public class Database {
 	public static final String STORY_TITLE = "TITLE";
 	public static final String STORY_LOCATION = "LOCATION";
 	public static final String STORY_IMAGE = "IMAGE";
+	private static final String STORY_CREATE = String.format(Locale.ENGLISH,
+			"CREATE TABLE %s (" +
+					"%s TEXT NOT NULL," +
+					"%s TEXT NOT NULL," +
+					"%s TEXT NOT NULL," +
+					"%s TEXT NOT NULL," +
+					"%s TEXT NOT NULL);",
+			STORY_TABLE_NAME, STORY_ID, STORY_AUTHOR, STORY_TITLE, STORY_LOCATION, STORY_IMAGE);
 
-	public static final String POINTS_TABLE_NAME = "POINTS";
-	public static final String POINTS_USERNAME = "_id";
-	public static final String POINTS_STORY = "PASSWORD";
-	public static final String POINTS_DATE = "DATE";
-	public static final String POINTS_SCORE = "SCORE";
-
-	private static final String STORY_CREATE = "CREATE TABLE "
-			+ STORY_TABLE_NAME + " (" + STORY_ID + " TEXT, " + STORY_AUTHOR
-			+ " TEXT, " + STORY_TITLE + " TEXT, " + STORY_LOCATION + " TEXT, " + STORY_IMAGE + " TEXT);";
-
-	private static final String POINTS_CREATE = "CREATE TABLE "
-			+ POINTS_TABLE_NAME + " (" + POINTS_USERNAME + " TEXT, " + POINTS_STORY
-			+ " TEXT, " + POINTS_DATE + " TEXT, " + POINTS_SCORE + " TEXT);";
+	public static final String STATISTICS_TABLE_NAME = "STATISTICS";
+	public static final String STATISTICS_ID = "_id";
+	public static final String STATISTICS_STORY_ID = "story_id";
+	public static final String STATISTICS_DATE = "date";
+	public static final String STATISTICS_TIME = "time";
+	public static final String STATISTICS_LENGTH = "length";
+	public static final String STATISTICS_CREATE = String.format(Locale.ENGLISH,
+			"CREATE TABLE %s (" +
+					"%s INTEGER PRIMARY KEY AUTOINCREMENT," +
+					"%s TEXT NOT NULL," +
+					"%s TEXT NOT NULL," +
+					"%s REAL NOT NULL," +
+					"%s REAL);",
+			STATISTICS_TABLE_NAME, STATISTICS_ID, STATISTICS_STORY_ID, STATISTICS_DATE, STATISTICS_TIME, STATISTICS_LENGTH);
 
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -46,8 +59,7 @@ public class Database {
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			db.execSQL(STORY_CREATE);
-			db.execSQL(POINTS_CREATE);
-			populate(db);
+			db.execSQL(STATISTICS_CREATE);
 		}
 
 		@Override
@@ -60,39 +72,6 @@ public class Database {
 
 			// Recreates the database with a new version
 			onCreate(db);
-		}
-
-		public void populate(SQLiteDatabase db) {
-			// STORIES
-			/*
-			db.execSQL("INSERT INTO "
-					+ STORY_TABLE_NAME
-					+ " VALUES ('4ff0b8f0-18a6-11e2-892e-0800200c9a66', 'Kyrre Havik Eriksen', 'Skattejakt på Blindern', 'blindern.jpg')");
-			db.execSQL("INSERT INTO "
-					+ STORY_TABLE_NAME
-					+ " VALUES ('ae7fed40-19c4-11e2-892e-0800200c9a66', 'Randall Munroe', 'Pwned (Xkcd.com)', 'sognsvann.jpg')");
-			db.execSQL("INSERT INTO "
-					+ STORY_TABLE_NAME
-					+ " VALUES ('5640553e-8fe9-46d3-b647-6aebb70882a5', 'Thomas Portilla', 'Naturquiz for Sognsvann', 'blindern.jpg')");
-			db.execSQL("INSERT INTO "
-					+ STORY_TABLE_NAME
-					+ " VALUES ('4ef0b8f0-18a6-11e2-892e-0800200c9a66', 'Bao Marianna Nguyen', 'Treasure hunt at Blindern', 'sognsvann.jpg')");
-			db.execSQL("INSERT INTO "
-					+ STORY_TABLE_NAME
-					+ " VALUES ('0dd941f0-c943-11e2-8b8b-0800200c9a66', 'Klima nettverket', 'Oslo klimatur', 'Oslo', 'slottet.jpg')");
-			db.execSQL("INSERT INTO "
-					+ STORY_TABLE_NAME
-					+ " VALUES ('5fee5ee0-e11f-11e3-8b68-0800200c9a66', 'Kine Gjerstad Eide', 'Kiness bursdagsløp', 'Oslo', 'kine_gevaer.jpg')");
-			db.execSQL("INSERT INTO " +
-					STORY_TABLE_NAME +
-					" VALUES ('4ff0b8f0-18a6-11e2-892e-0800200c9a66', 'Kine Gjerstad Eide', 'blindern', 'Oslo', '')");
-			db.execSQL("INSERT INTO " +
-					STORY_TABLE_NAME +
-					" VALUES ('testStory', 'Kine Gjerstad Eide', 'test', 'Oslo', '')");
-			db.execSQL("INSERT INTO " +
-					STORY_TABLE_NAME +
-					" VALUES ('58876600-0df3-11e4-9191-0800200c9a66', 'Kine Gjerstad Eide', 'blindern', 'Oslo', '')");
-			*/
 		}
 	}
 
@@ -123,7 +102,8 @@ public class Database {
 	}
 
 	/**
-	 * @return A Cursor containing a list of stories titles and the author.
+	 * @return A Cursor containing a list of stories titles and the author.<br />
+	 * Sorted descending.
 	 */
 	public Cursor getStoryList() {
 		return db.query(STORY_TABLE_NAME, null, null, null, null, null,
@@ -132,12 +112,26 @@ public class Database {
 
 
 	public boolean deleteStory(String id) {
-		int result = db.delete(STORY_TABLE_NAME, STORY_ID + "=?", new String[]{ id });
+		int result = db.delete(STORY_TABLE_NAME, STORY_ID + "=?", new String[]{id});
 		return result > 0;
 	}
 
 	public boolean hasStory(String id) {
-		int result = db.query(STORY_TABLE_NAME, new String[] { STORY_ID }, STORY_ID + "=?", new String[] { id }, null, null, null).getCount();
+		int result = db.query(STORY_TABLE_NAME, new String[]{STORY_ID}, STORY_ID + "=?", new String[]{id}, null, null, null).getCount();
 		return result == 1;
+	}
+
+	public Cursor getStatistics() {
+		return db.query(STATISTICS_TABLE_NAME, null, null, null, null, null,
+				STATISTICS_DATE + " DESC");
+	}
+
+	public boolean insertStatistic(String storyId, Date date, int time, int length) {
+		ContentValues values = new ContentValues(4);
+		values.put(STATISTICS_STORY_ID, storyId);
+		values.put(STATISTICS_DATE, DateUtils.formatSqliteDate(date));
+		values.put(STATISTICS_TIME, time);
+		values.put(STATISTICS_LENGTH, length);
+		return db.insert(STATISTICS_TABLE_NAME, null, values) != -1;
 	}
 }

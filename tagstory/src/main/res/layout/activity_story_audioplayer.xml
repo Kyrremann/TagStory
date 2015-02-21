@@ -35,36 +35,6 @@
 		</LinearLayout>
 	</ScrollView>
 
-	<LinearLayout
-			android:id="@+id/button_bottom"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_alignParentBottom="true"
-			android:layout_alignParentLeft="true"
-			android:layout_alignParentRight="true">
-
-		<Button
-				android:id="@+id/scan_tag"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				android:background="@color/holo_orange_light"
-				android:enabled="false"
-				android:onClick="scanTag"
-				android:padding="15dp"
-				android:text="@string/story_button_scan_tag"
-				android:textStyle="bold"/>
-
-		<Button
-				android:id="@+id/help_button"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				android:background="@color/holo_orange_dark"
-				android:onClick="scanTag"
-				android:padding="15dp"
-				android:text="@string/story_help_button"
-				android:textStyle="bold"/>
-	</LinearLayout>
+	<include layout="@layout/include_travel_buttonbar"/>
 
 </RelativeLayout>

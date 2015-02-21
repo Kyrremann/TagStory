@@ -1,59 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/activity_map_layout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
 
-    <TextView
-        android:id="@+id/story_option_hint"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/background_border_light_green"
-        android:padding="5dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:visibility="gone"
-        style="@style/TagStoryViewMedium"/>
+	<TextView
+			android:id="@+id/story_option_hint"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:background="@drawable/background_border_light_green"
+			android:padding="5dp"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:visibility="gone"
+			style="@style/TagStoryViewMedium"/>
 
-    <fragment
-        android:id="@+id/story_map_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/button_bottom"
-        android:layout_below="@id/story_option_hint"
-        android:name="com.google.android.gms.maps.SupportMapFragment" />
+	<fragment
+			android:id="@+id/story_map_view"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_above="@+id/button_bottom"
+			android:layout_below="@id/story_option_hint"
+			android:name="com.google.android.gms.maps.SupportMapFragment"/>
 
-    <LinearLayout
-        android:id="@+id/button_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true" >
-
-        <Button
-            android:id="@+id/scan_tag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/holo_orange_light"
-            android:enabled="false"
-            android:onClick="scanTag"
-            android:padding="15dp"
-            android:text="@string/story_button_scan_tag"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/help_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/holo_orange_dark"
-            android:onClick="scanTag"
-            android:padding="15dp"
-            android:text="@string/story_help_button"
-            android:textStyle="bold" />
-    </LinearLayout>
+	<include layout="@layout/include_travel_buttonbar"/>
 
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package no.tagstory.marked;
+package no.tagstory.market;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -37,13 +37,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
-public class StoryMarkedListingActivity extends Activity {
+public class StoryMarketListingActivity extends Activity {
 
-	private static String SERVER_URL = "https://s3-eu-west-1.amazonaws.com/tagstory/";
-	private static String IMAGES_FOLDER = "images/";
-	private static String AUDIO_FOLDER = "audio/";
-	public static String SERVER_URL_IMAGES = SERVER_URL + IMAGES_FOLDER;
-	public static String SERVER_URL_AUDIO = SERVER_URL + AUDIO_FOLDER;
+	private static final String BUCKET = "tagstory";
+	private static final String SERVER_URL = "https://s3-eu-west-1.amazonaws.com/tagstory/";
+	private static final String IMAGES_FOLDER = "images/";
+	private static final String AUDIO_FOLDER = "audio/";
+
+	public static final String SERVER_URL_IMAGES = SERVER_URL + IMAGES_FOLDER;
+	public static final String SERVER_URL_AUDIO = SERVER_URL + AUDIO_FOLDER;
 
 	private static final int MESSAGE_DONE = 0;
 	private static final int MESSAGE_FAIL_JSON = -1;
@@ -68,7 +70,7 @@ public class StoryMarkedListingActivity extends Activity {
 			TextView title = (TextView) findViewById(R.id.title);
 			TextView author = (TextView) findViewById(R.id.author);
 			TextView description = (TextView) findViewById(R.id.description);
-			storyUUID = storyDetailValues.getString("UUID");
+			storyUUID = storyDetailValues.getString(StoryParser.UUID);
 			StoryManager storyManager = new StoryManager(this);
 			if (storyManager.hasStory(storyUUID)) {
 				setButtonToStartStory();
@@ -76,8 +78,8 @@ public class StoryMarkedListingActivity extends Activity {
 			storyManager.closeDatabase();
 
 			String url = "";
-			if (storyDetailValues.has("image")) {
-				url = storyDetailValues.getString("image");
+			if (storyDetailValues.has(StoryParser.IMAGE)) {
+				url = storyDetailValues.getString(StoryParser.IMAGE);
 			}
 			if (url.length() == 0) {
 				url = "placeimg_960_720_nature_1.jpg";
@@ -85,11 +87,12 @@ public class StoryMarkedListingActivity extends Activity {
 
 			ImageLoader.getInstance().displayImage(SERVER_URL_IMAGES + url, imageView);
 
-			title.setText(storyDetailValues.getString("title"));
-			author.setText(storyDetailValues.getString("author"));
-			description.setText(storyDetailValues.getString("description"));
+			String storyTitle = storyDetailValues.getString(StoryParser.TITLE);
+			title.setText(storyTitle);
+			author.setText(storyDetailValues.getString(StoryParser.AUTHOR));
+			description.setText(storyDetailValues.getString(StoryParser.DESCRIPTION));
 
-			setTitle(storyDetailValues.getString("title"));
+			setTitle(storyTitle);
 		} catch (JSONException e) {
 			e.printStackTrace();
 			// TODO
@@ -97,7 +100,7 @@ public class StoryMarkedListingActivity extends Activity {
 	}
 
 	private void setButtonToStartStory() {
-		((TextView) findViewById(R.id.download)).setText(R.string.marked_go_to_story);
+		((TextView) findViewById(R.id.download)).setText(R.string.market_go_to_story);
 		isDownloaded = true;
 	}
 
@@ -119,7 +122,7 @@ public class StoryMarkedListingActivity extends Activity {
 	private void downloadStory() {
 		final ProgressDialog progressDialog = new ProgressDialog(this);
 		progressDialog.setCancelable(false);
-		progressDialog.setMessage("Downloading story");
+		progressDialog.setMessage(getString(R.string.market_info_downloading_story));
 		progressDialog.show();
 		final Handler handler = new Handler(new Handler.Callback() {
 			@Override
@@ -130,13 +133,13 @@ public class StoryMarkedListingActivity extends Activity {
 						setButtonToStartStory();
 						break;
 					case MESSAGE_FAIL_HTTP:
-						Toast.makeText(getApplicationContext(), "Something went wrong with the http-connection", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(), getString(R.string.market_error_http), Toast.LENGTH_SHORT).show();
 						break;
 					case MESSAGE_FAIL_JSON:
-						Toast.makeText(getApplicationContext(), "Something went wrong with the data", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(), getString(R.string.market_error_data), Toast.LENGTH_SHORT).show();
 						break;
 					case MESSAGE_INFO:
-						progressDialog.setMessage("Downloading: " + msg.arg1 + "%");
+						progressDialog.setMessage(getString(R.string.market_info_downloading_assets) + msg.arg1 + "%");
 					default:
 						break;
 				}
@@ -152,14 +155,14 @@ public class StoryMarkedListingActivity extends Activity {
 			public void run() {
 				try {
 					HttpClient client = new DefaultHttpClient();
-					String url = "http://tagstory.herokuapp.com/api/story/" + storyIdServerside + "/json";
+					String url = getString(R.string.market_api_story) + storyIdServerside + "/json";
 					HttpGet get = new HttpGet(url);
 					String content = client.execute(get, new BasicResponseHandler());
 
 					JSONObject storyServerside = new JSONObject(content);
 
-					JSONObject storyObject = storyServerside.getJSONObject("story");
-					String filename = storyObject.getString("UUID");
+					JSONObject storyObject = storyServerside.getJSONObject(StoryParser.STORY);
+					String filename = storyObject.getString(StoryParser.UUID);
 					if (!filename.endsWith(".json")) {
 						filename = filename.concat(".json");
 					}
@@ -167,14 +170,13 @@ public class StoryMarkedListingActivity extends Activity {
 					fileOutputStream.write(storyServerside.toString().getBytes());
 					fileOutputStream.close();
 
-					// TODO: download images
 					downloadAssets(storyObject, handler);
 					// TODO: Change button to 'play story'
 					Database database = new Database(getApplicationContext());
 					database.open();
-					database.insertStory(storyObject.getString("UUID"), storyObject.getString("author"),
-							storyObject.getString("title"), storyObject.getString("area"),
-							storyObject.getString("image"));
+					database.insertStory(storyObject.getString(StoryParser.UUID), storyObject.getString(StoryParser.AUTHOR),
+							storyObject.getString(StoryParser.TITLE), storyObject.getString(StoryParser.AREA),
+							storyObject.getString(StoryParser.IMAGE));
 				} catch (IOException e) {
 					e.printStackTrace();
 					handler.sendEmptyMessage(MESSAGE_FAIL_HTTP);
@@ -227,20 +229,20 @@ public class StoryMarkedListingActivity extends Activity {
 			return false;
 		}
 
-		Download download = transferManager.download("tagstory", serverUrl + name, getFileStreamPath(name));
+		Download download = transferManager.download(BUCKET, serverUrl + name, getFileStreamPath(name));
 		while (!download.isDone()) {
 			Message message = new Message();
 			message.what = MESSAGE_INFO;
 			message.arg1 = (int) download.getProgress().getPercentTransferred();
 			handler.sendMessage(message);
 			try {
-				Thread.sleep(250);
+				Thread.sleep(250); // don't spam the handler
 			} catch (InterruptedException e) {
 			}
 		}
 		Message message = new Message();
 		message.what = MESSAGE_INFO;
-		message.arg1 = 100;
+		message.arg1 = 100; // downloading is done
 		handler.sendMessage(message);
 
 		return true;

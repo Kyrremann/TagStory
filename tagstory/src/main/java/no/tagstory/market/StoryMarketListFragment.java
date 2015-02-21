@@ -1,4 +1,4 @@
-package no.tagstory.marked;
+package no.tagstory.market;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,14 +13,15 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import no.tagstory.R;
 import no.tagstory.StoryApplication;
-import no.tagstory.honeycomb.StoryMarkedListingActivityHoneycomb;
+import no.tagstory.honeycomb.StoryMarketListingActivityHoneycomb;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.ImageLoaderUtils;
+import no.tagstory.utils.StoryParser;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class StoryMarkedListFragment extends Fragment implements OnItemClickListener {
+public class StoryMarketListFragment extends Fragment implements OnItemClickListener {
 
 	private AbsListView listView;
 	private JSONArray stories;
@@ -58,7 +59,7 @@ public class StoryMarkedListFragment extends Fragment implements OnItemClickList
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		Intent intent = ClassVersionFactory.createIntent(getActivity().getApplicationContext(), StoryMarkedListingActivityHoneycomb.class, StoryMarkedListingActivity.class);
+		Intent intent = ClassVersionFactory.createIntent(getActivity().getApplicationContext(), StoryMarketListingActivityHoneycomb.class, StoryMarketListingActivity.class);
 		intent.putExtra("json", stories.optString(position, ""));
 		startActivity(intent);
 	}
@@ -109,19 +110,19 @@ public class StoryMarkedListFragment extends Fragment implements OnItemClickList
 			try {
 				JSONObject jsonObject = stories.getJSONObject(position).getJSONObject("value");
 
-				holder.text.setText(jsonObject.getString("title"));
+				holder.text.setText(jsonObject.getString(StoryParser.TITLE));
 
 				String url = null;
-				if (jsonObject.has("image")) {
-					String imageUrl = jsonObject.getString("image");
+				if (jsonObject.has(StoryParser.IMAGE)) {
+					String imageUrl = jsonObject.getString(StoryParser.IMAGE);
 					if (imageUrl.length() != 0) {
-						url = StoryMarkedListingActivity.SERVER_URL_IMAGES + imageUrl;
+						url = StoryMarketListingActivity.SERVER_URL_IMAGES + imageUrl;
 					}
 				}
 
 				ImageLoader.getInstance().displayImage(url, holder.image, ImageLoaderUtils.options, animateFirstListener);
 			} catch (JSONException e) {
-				holder.text.setText(R.string.marked_error_item_list);
+				holder.text.setText(R.string.market_error_item_list);
 			}
 
 			return view;

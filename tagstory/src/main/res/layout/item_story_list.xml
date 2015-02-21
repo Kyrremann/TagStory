@@ -10,7 +10,7 @@
 			android:layout_margin="3dip"
 			android:adjustViewBounds="true"
 			android:src="@drawable/placeimg_320_240_nature"
-			android:contentDescription="@string/descr_image"
+			android:contentDescription="@string/cd_story_image"
 			android:scaleType="centerCrop"/>
 
 	<TextView

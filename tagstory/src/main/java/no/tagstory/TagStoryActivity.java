@@ -21,7 +21,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import no.tagstory.adapters.StoryCursorAdapter;
 import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
-import no.tagstory.marked.StoryMarkedActivity;
+import no.tagstory.market.StoryMarketActivity;
 import no.tagstory.story.StoryManager;
 import no.tagstory.utils.*;
 
@@ -154,7 +154,7 @@ public class TagStoryActivity extends FragmentActivity implements OnItemClickLis
 	}
 
 	protected void startMarkedActivity() {
-		startActivity(new Intent(this, StoryMarkedActivity.class));
+		startActivity(new Intent(this, StoryMarketActivity.class));
 	}
 
 	private void showAboutTagStoryDialog() {

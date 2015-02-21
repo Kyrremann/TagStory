@@ -5,10 +5,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
-import no.tagstory.marked.StoryMarkedListingActivity;
+import no.tagstory.market.StoryMarketActivity;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class StoryMarkedListingActivityHoneycomb extends StoryMarkedListingActivity {
+public class StoryMarketActivityHoneycomb extends StoryMarketActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

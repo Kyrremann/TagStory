@@ -101,18 +101,18 @@
                 android:label="@string/app_title">
         </activity>
         <activity
-                android:name=".marked.StoryMarkedActivity">
+                android:name=".market.StoryMarketActivity">
         </activity>
         <activity
-                android:name=".honeycomb.StoryMarkedActivityHoneycomb"
+                android:name=".honeycomb.StoryMarketActivityHoneycomb"
                 android:parentActivityName=".honeycomb.TagStoryActivityHoneycomb">
         </activity>
         <activity
-                android:name=".marked.StoryMarkedListingActivity">
+                android:name=".market.StoryMarketListingActivity">
         </activity>
         <activity
-                android:name=".honeycomb.StoryMarkedListingActivityHoneycomb"
-                android:parentActivityName=".honeycomb.StoryMarkedActivityHoneycomb">
+                android:name=".honeycomb.StoryMarketListingActivityHoneycomb"
+                android:parentActivityName=".honeycomb.StoryMarketActivityHoneycomb">
         </activity>
     </application>
 

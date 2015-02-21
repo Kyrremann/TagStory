@@ -7,12 +7,18 @@
 	<string name="front_visit_marked">Visit the marked</string>
 
 	<!-- Market -->
-	<string name="story_marked">Story Marked</string>
-	<string name="descr_image">Test image of story</string>
-	<string name="marked_go_to_story">Go to story</string>
-	<string name="marked_error_item_list">Something went wrong with this story, sorry!</string>
+	<string name="market_actionbar_title">Story Market</string>
+	<string name="market_go_to_story">Go to story</string>
 	<string name="market_story_by">by</string>
 	<string name="market_download">Download</string>
+	<string name="market_info_updating_market">Updating the market</string>
+	<string name="market_info_downloading_assets">Downloading asset(s): </string>
+	<string name="market_info_downloading_story">Downloading story</string>
+	<string name="market_api_stories">http://tagstory.herokuapp.com/api/stories/json</string>
+	<string name="market_api_story">http://tagstory.herokuapp.com/api/story/</string>
+	<string name="market_error_item_list">Something went wrong with this story, sorry!</string>
+	<string name="market_error_http">Something went wrong with the http-connection.</string>
+	<string name="market_error_data">Something went wrong with the data.</string>
 
 	<!-- Story detail -->
 	<string name="title_story_detail">Story Detail</string>
@@ -45,10 +51,11 @@
 	<string name="dummy_statistics">Statistics\nTime used: 21:41\nLength walk: 2km</string>
 	<string name="dummy_map_target">This is your target</string>
 	<string name="dummy_map_snippet">Somewhere here is the next tag</string>
+	<string name="dummy_title">Test The Experience</string>
 
 	<!-- Menu -->
 	<string name="menu_about_app">About Tag Story</string>
-	<string name="menu_story_marked">Story marked</string>
+	<string name="menu_story_market">Story market</string>
 	<string name="menu_update_stories">Update stories</string>
 	<string name="menu_options">Options</string>
 	<string name="menu_delete_story">Delete story</string>
@@ -79,6 +86,5 @@
 	<string name="yes">Yes</string>
 	<string name="no">No</string>
 	<string name="skip">Skip</string>
-	<string name="dummy_title">Test The Experience</string>
 
 </resources>

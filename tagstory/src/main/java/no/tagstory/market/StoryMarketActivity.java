@@ -1,4 +1,4 @@
-package no.tagstory.marked;
+package no.tagstory.market;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -18,7 +18,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
-public class StoryMarkedActivity extends FragmentActivity {
+public class StoryMarketActivity extends FragmentActivity {
 
 	private static final int MESSAGE_DONE = 0;
 	private static final int MESSAGE_FAIL_JSON = -1;
@@ -29,13 +29,13 @@ public class StoryMarkedActivity extends FragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setTitle(R.string.story_marked);
+		setTitle(R.string.market_actionbar_title);
 
 		StoryApplication storyApplication = (StoryApplication) getApplication();
 
 		final ProgressDialog progressDialog = new ProgressDialog(this);
 		progressDialog.setCancelable(false);
-		progressDialog.setMessage("Updating the market");
+		progressDialog.setMessage(getString(R.string.market_info_updating_market));
 		progressDialog.show();
 
 		handler = createHandler(progressDialog);
@@ -52,7 +52,7 @@ public class StoryMarkedActivity extends FragmentActivity {
 			public void run() {
 				try {
 					HttpClient client = new DefaultHttpClient();
-					HttpGet get = new HttpGet("http://tagstory.herokuapp.com/api/stories/json");
+					HttpGet get = new HttpGet(getString(R.string.market_api_stories));
 					String content = client.execute(get, new BasicResponseHandler());
 
 					((StoryApplication) getApplication()).setMarkedstories(new JSONArray(content));
@@ -79,10 +79,10 @@ public class StoryMarkedActivity extends FragmentActivity {
 						showMarkedFragment();
 						break;
 					case MESSAGE_FAIL_HTTP:
-						Toast.makeText(getApplicationContext(), "Something went wrong with the http-connection", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(), getString(R.string.market_error_http), Toast.LENGTH_SHORT).show();
 						break;
 					case MESSAGE_FAIL_JSON:
-						Toast.makeText(getApplicationContext(), "Something went wrong with the data", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(), getString(R.string.market_error_data), Toast.LENGTH_SHORT).show();
 						break;
 					default:
 						break;
@@ -94,10 +94,10 @@ public class StoryMarkedActivity extends FragmentActivity {
 	}
 
 	private void showMarkedFragment() {
-		String tag = StoryMarkedListFragment.class.getSimpleName();
+		String tag = StoryMarketListFragment.class.getSimpleName();
 		Fragment fragment = getSupportFragmentManager().findFragmentByTag(tag);
 		if (fragment == null) {
-			fragment = new StoryMarkedListFragment();
+			fragment = new StoryMarketListFragment();
 		}
 
 		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment, tag).commit();

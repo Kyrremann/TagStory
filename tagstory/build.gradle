@@ -28,6 +28,11 @@ android {
 			minifyEnabled false
 		}
 	}
+	signingConfigs {
+		debug {
+			storeFile file('debug.jks')
+		}
+	}
 }
 
 dependencies {

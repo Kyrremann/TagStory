@@ -39,16 +39,16 @@ public class Database {
 	public static final String STATISTICS_ID = "_id";
 	public static final String STATISTICS_STORY_ID = "story_id";
 	public static final String STATISTICS_DATE = "date";
-	public static final String STATISTICS_TIME = "time";
-	public static final String STATISTICS_LENGTH = "length";
+	public static final String STATISTICS_DURATION = "duration";
+	public static final String STATISTICS_DISTANCE = "distance";
 	public static final String STATISTICS_CREATE = String.format(Locale.ENGLISH,
 			"CREATE TABLE %s (" +
 					"%s INTEGER PRIMARY KEY AUTOINCREMENT," +
 					"%s TEXT NOT NULL," +
 					"%s TEXT NOT NULL," +
-					"%s REAL NOT NULL," +
+					"%s INTEGER NOT NULL," +
 					"%s REAL);",
-			STATISTICS_TABLE_NAME, STATISTICS_ID, STATISTICS_STORY_ID, STATISTICS_DATE, STATISTICS_TIME, STATISTICS_LENGTH);
+			STATISTICS_TABLE_NAME, STATISTICS_ID, STATISTICS_STORY_ID, STATISTICS_DATE, STATISTICS_DURATION, STATISTICS_DISTANCE);
 
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -126,12 +126,12 @@ public class Database {
 				STATISTICS_DATE + " DESC");
 	}
 
-	public boolean insertStatistic(String storyId, Date date, int time, int length) {
+	public boolean insertStatistic(String storyId, Date startTime, long duration, int distance) {
 		ContentValues values = new ContentValues(4);
 		values.put(STATISTICS_STORY_ID, storyId);
-		values.put(STATISTICS_DATE, DateUtils.formatSqliteDate(date));
-		values.put(STATISTICS_TIME, time);
-		values.put(STATISTICS_LENGTH, length);
+		values.put(STATISTICS_DATE, DateUtils.formatSqliteDate(startTime));
+		values.put(STATISTICS_DURATION, duration);
+		values.put(STATISTICS_DISTANCE, distance);
 		return db.insert(STATISTICS_TABLE_NAME, null, values) != -1;
 	}
 }

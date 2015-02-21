@@ -7,6 +7,7 @@ import android.widget.TextView;
 import no.tagstory.StoryApplication;
 import no.tagstory.TagStoryActivity;
 import no.tagstory.R;
+import no.tagstory.statistics.StoryStatistic;
 import no.tagstory.utils.http.ServerCommunication;
 
 public class StoryFinishedActivity extends AbstractStoryActivity {
@@ -21,23 +22,17 @@ public class StoryFinishedActivity extends AbstractStoryActivity {
 	protected void onResume() {
 		super.onResume();
 		setTagDescription();
-//		printStatistics();
+		showStatistics();
 	}
 
-	private void printStatistics() {
-		// String statistics =
-		// getResources().getString(R.string.dummy_statistics);
+	private void showStatistics() {
 		StoryApplication application = (StoryApplication) getApplication();
-		String distance = "" + (int) application.distanceWalked();
-		String time = ""
-				+ (int) (((System.currentTimeMillis() - application.getStartTime()) / 1000) / 60);
-		String statistics = "Statistics:\n";
-		statistics += "Distance: " + distance + "meter\n";
-		statistics += "Time used: " + time + "minutter";
-		// statistics += "Now: " + System.currentTimeMillis();
-		// statistics += "Then: " + application.getStartTime();
-		((TextView) findViewById(R.id.story_statistic)).setText(statistics);
-		ServerCommunication.sendTempStatistic(time, distance);
+		StoryStatistic storyStatistic = application.stopStory();
+		((TextView) findViewById(R.id.story_statistic)).setText(storyStatistic.formatStatistic());
+
+		if (!storyStatistic.isSaved()) {
+			storyStatistic.saveToDatebase(this);
+		}
 	}
 
 	public void endOfStory(View view) {

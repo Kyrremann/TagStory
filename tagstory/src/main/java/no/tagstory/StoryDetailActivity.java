@@ -109,7 +109,7 @@ public class StoryDetailActivity extends Activity {
 	}
 
 	protected void startStory() {
-		storyApplication.getStoryHistory().startStory(story);
+		storyApplication.startStory(story);
 		startStoryActivity();
 	}
 

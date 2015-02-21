@@ -69,16 +69,17 @@ public class StoryApplication extends Application {
 		this.markedstories = markedstories;
 	}
 
-	public JSONArray getMarkedstories() {
+	public JSONArray getMarketStories() {
 		if (markedstories != null) {
 			return markedstories;
 		}
 		return new JSONArray();
 	}
 
-	public boolean isMarkedStoriesEmptyOrOutdated() {
-		return markedstories == null
-				|| markedstories.length() == 0;
+	public boolean isMarketStoriesEmptyOrOutdated() {
+		return true;
+//		markedstories == null
+//				|| markedstories.length() == 0;
 		// TODO add datetracking
 	}
 }

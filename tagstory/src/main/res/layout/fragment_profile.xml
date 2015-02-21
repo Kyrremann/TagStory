@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                tools:context="no.tagstory.profile.ProfileFragment">
+
+	<RelativeLayout
+			android:id="@+id/images"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+
+	<ImageView
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/imageView"
+			android:adjustViewBounds="true"
+			android:src="@drawable/placeimg_960_720_nature_2"
+			android:layout_alignParentTop="true"/>
+
+	<ImageView
+			android:layout_width="100dp"
+			android:layout_height="100dp"
+			android:src="@drawable/placeimg_320_240_nature"
+			android:scaleType="fitXY"
+			android:layout_centerHorizontal="true"
+			android:layout_centerVertical="true"/>
+	</RelativeLayout>
+
+	<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="100 km walked"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:id="@+id/walked"/>
+
+	<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="10 stories read"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:id="@+id/read"/>
+
+	<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="1 story written"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:id="@+id/written"/>
+
+
+</LinearLayout>

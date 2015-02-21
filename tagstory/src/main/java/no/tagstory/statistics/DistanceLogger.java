@@ -38,13 +38,15 @@ public class DistanceLogger extends Service implements GoogleApiClient.Connectio
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		Log.d(TAG, "Received start id " + startId + ": " + intent);
+		mGoogleApiClient.connect();
 		return START_STICKY;
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		startLocationUpdates();
+		Log.d(TAG, "Stopping logger");
+		stopLocationUpdates();
 	}
 
 	protected synchronized void buildGoogleApiClient() {
@@ -57,13 +59,14 @@ public class DistanceLogger extends Service implements GoogleApiClient.Connectio
 
 	protected void createLocationRequest() {
 		mLocationRequest = new LocationRequest();
-		mLocationRequest.setInterval(1000);
-		mLocationRequest.setFastestInterval(5000);
+		mLocationRequest.setInterval(2000);
+		mLocationRequest.setFastestInterval(1000);
 		mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 	}
 
 	@Override
 	public void onConnected(Bundle bundle) {
+		Log.d(TAG, "We have connection");
 		startLocationUpdates();
 	}
 

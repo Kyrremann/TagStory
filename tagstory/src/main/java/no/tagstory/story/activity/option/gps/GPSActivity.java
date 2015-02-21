@@ -74,7 +74,6 @@ public class GPSActivity extends StoryTravelActivity implements
 		mLocationRequest.setInterval(UPDATE_INTERVAL);
 		// Set the fastest update interval to 1 second
 		mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
-		servicesConnected(this);
 		// hintText.setText(R.string.gps_about_button);
 
 		// TODO: Provider should be set in the story json file

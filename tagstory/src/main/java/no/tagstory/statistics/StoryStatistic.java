@@ -4,6 +4,7 @@ import android.content.Context;
 import android.location.Location;
 import no.tagstory.utils.Database;
 import no.tagstory.utils.DateUtils;
+import no.tagstory.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,9 +58,9 @@ public class StoryStatistic {
 	public String formatStatistic() {
 		return String.format(Locale.ENGLISH,
 				"Started: %s%n" +
-						"Distance: %d meter(s)%n" +
-						"Time used: %d seconds",
-				DateUtils.formatStatisticDate(startTime), distance, duration);
+						"Distance: %s%n" +
+						"Time used: %s",
+				DateUtils.formatStatisticDate(startTime), StringUtils.formatDistance(distance), StringUtils.formatDuration(duration));
 	}
 
 	public boolean isSaved() {

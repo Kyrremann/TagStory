@@ -10,7 +10,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 
 public class GooglePlayServiceUtils {
 
-	private final static String TAG = "Location Updates";
+	private final static String TAG = "GOOGLEPLAYSERVICE";
 
 	public final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 

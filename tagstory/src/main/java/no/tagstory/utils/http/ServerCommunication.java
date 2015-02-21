@@ -1,4 +1,4 @@
-package no.tagstory.utils;
+package no.tagstory.utils.http;
 
 import android.annotation.SuppressLint;
 import org.apache.http.*;

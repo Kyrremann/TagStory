@@ -7,7 +7,7 @@ import android.widget.TextView;
 import no.tagstory.StoryApplication;
 import no.tagstory.TagStoryActivity;
 import no.tagstory.R;
-import no.tagstory.utils.ServerCommunication;
+import no.tagstory.utils.http.ServerCommunication;
 
 public class StoryFinishedActivity extends AbstractStoryActivity {
 

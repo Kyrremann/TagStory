@@ -9,34 +9,31 @@ import android.view.ViewGroup;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import no.tagstory.R;
 import no.tagstory.StoryApplication;
+import no.tagstory.adapters.StoryJsonAdapter;
 import no.tagstory.honeycomb.StoryMarketListingActivityHoneycomb;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.ImageLoaderUtils;
-import no.tagstory.utils.StoryParser;
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class StoryMarketListFragment extends Fragment implements OnItemClickListener {
 
-	private AbsListView listView;
+	private ListView listView;
 	private JSONArray stories;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		stories = ((StoryApplication) getActivity().getApplication()).getMarkedstories();
+		stories = ((StoryApplication) getActivity().getApplication()).getMarketStories();
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_image_list, container, false);
 		listView = (ListView) rootView.findViewById(android.R.id.list);
-		((ListView) listView).setAdapter(new ImageAdapter());
+		listView.setAdapter(new StoryJsonAdapter(getActivity(), stories));
 		listView.setOnItemClickListener(this);
 		return rootView;
 	}
@@ -62,70 +59,5 @@ public class StoryMarketListFragment extends Fragment implements OnItemClickList
 		Intent intent = ClassVersionFactory.createIntent(getActivity().getApplicationContext(), StoryMarketListingActivityHoneycomb.class, StoryMarketListingActivity.class);
 		intent.putExtra("json", stories.optString(position, ""));
 		startActivity(intent);
-	}
-
-	private static class ViewHolder {
-		TextView text;
-		ImageView image;
-	}
-
-	class ImageAdapter extends BaseAdapter {
-
-		private LayoutInflater inflater;
-		private ImageLoadingListener animateFirstListener = new ImageLoaderUtils.AnimateFirstDisplayListener();
-
-		ImageAdapter() {
-			inflater = LayoutInflater.from(getActivity());
-		}
-
-		@Override
-		public int getCount() {
-			return stories.length();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return position;
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-
-		@Override
-		public View getView(final int position, View convertView, ViewGroup parent) {
-			View view = convertView;
-			final ViewHolder holder;
-			if (convertView == null) {
-				view = inflater.inflate(R.layout.item_list_image, parent, false);
-				holder = new ViewHolder();
-				holder.text = (TextView) view.findViewById(R.id.title);
-				holder.image = (ImageView) view.findViewById(R.id.image);
-				view.setTag(holder);
-			} else {
-				holder = (ViewHolder) view.getTag();
-			}
-
-			try {
-				JSONObject jsonObject = stories.getJSONObject(position).getJSONObject("value");
-
-				holder.text.setText(jsonObject.getString(StoryParser.TITLE));
-
-				String url = null;
-				if (jsonObject.has(StoryParser.IMAGE)) {
-					String imageUrl = jsonObject.getString(StoryParser.IMAGE);
-					if (imageUrl.length() != 0) {
-						url = StoryMarketListingActivity.SERVER_URL_IMAGES + imageUrl;
-					}
-				}
-
-				ImageLoader.getInstance().displayImage(url, holder.image, ImageLoaderUtils.options, animateFirstListener);
-			} catch (JSONException e) {
-				holder.text.setText(R.string.market_error_item_list);
-			}
-
-			return view;
-		}
 	}
 }

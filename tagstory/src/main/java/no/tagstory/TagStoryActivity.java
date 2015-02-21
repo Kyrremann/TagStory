@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import no.tagstory.adapters.StoryCursorAdapter;
@@ -154,5 +155,11 @@ public class TagStoryActivity extends LoginFragmentActivity implements OnItemCli
 				startMarkedActivity();
 				break;
 		}
+	}
+
+	@Override
+	public void onConnected(Bundle connectionHint) {
+		super.onConnected(connectionHint);
+		Toast.makeText(this, "User is connected!", Toast.LENGTH_LONG).show();
 	}
 }

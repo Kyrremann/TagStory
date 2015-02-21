@@ -103,11 +103,10 @@ public class LoginFragmentActivity extends FragmentActivity implements Connectio
 	@Override
 	public void onConnected(Bundle connectionHint) {
 		mSignInClicked = false;
-		Toast.makeText(this, "User is connected!", Toast.LENGTH_LONG).show();
 	}
 
 	/* A helper method to resolve the current ConnectionResult error. */
-	private void resolveSignInError() {
+	protected void resolveSignInError() {
 		if (mConnectionResult.hasResolution()) {
 			try {
 				mIntentInProgress = true;

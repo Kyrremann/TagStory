@@ -9,6 +9,7 @@
 			android:layout_height="72dip"
 			android:layout_margin="3dip"
 			android:adjustViewBounds="true"
+			android:src="@drawable/placeimg_320_240_nature"
 			android:contentDescription="@string/descr_image"
 			android:scaleType="centerCrop"/>
 
@@ -19,6 +20,7 @@
 			android:layout_toRightOf="@+id/image"
 			android:layout_centerVertical="true"
 			android:layout_marginLeft="20dip"
+			android:text="@string/dummy_title"
 			android:textSize="22sp"/>
 
 	<ImageView

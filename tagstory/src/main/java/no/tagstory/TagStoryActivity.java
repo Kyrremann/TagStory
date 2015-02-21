@@ -100,7 +100,7 @@ public class TagStoryActivity extends FragmentActivity implements OnItemClickLis
 	protected void initializeListView() {
 		setContentView(R.layout.activity_story_list);
 		listView = (ListView) findViewById(R.id.story_list);
-		listView.setAdapter(new StoryCursorAdapter(this, R.layout.story_list_item, storyCursor));
+		listView.setAdapter(new StoryCursorAdapter(this, R.layout.item_story_list, storyCursor));
 		listView.setOnItemClickListener(this);
 		applyScrollListener();
 	}

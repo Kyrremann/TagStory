@@ -79,5 +79,6 @@
 	<string name="yes">Yes</string>
 	<string name="no">No</string>
 	<string name="skip">Skip</string>
+	<string name="dummy_title">Test The Experience</string>
 
 </resources>

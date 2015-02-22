@@ -8,14 +8,16 @@ public class StringUtils {
 		if (distance < 1000) {
 			return distance + " meters";
 		} else {
-			return distance / 1000 + " km";
+			return String.format(Locale.ENGLISH,
+					"%.2f km",
+					distance / 1000.0);
 		}
 	}
 
 	public static String formatDuration(long duration) {
 		long seconds = duration / 1000;
 		long minutes = seconds / 60;
-		long hours = seconds / 60;
+		long hours = minutes / 60;
 		if (seconds < 60) {
 			return seconds + " seconds";
 		} else if (minutes < 60) {

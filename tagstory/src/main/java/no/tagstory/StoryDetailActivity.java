@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import no.tagstory.market.StoryMarketListingActivity;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
 import no.tagstory.story.TagTypeEnum;
@@ -201,9 +203,11 @@ public class StoryDetailActivity extends Activity {
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.menu_delete_story:
-				// TODO: Add transactions
-				if (storyManager.deleteStory(story_id) && deleteFile(story_id + ".json")) {
-					finish();
+                storyManager.deleteAllAssetsRelativeToStoryAndItself(story_id);
+                if (storyManager.deleteStory(story_id)
+                        && deleteFile(story_id+".json")) {
+                    //TODO add shared pref
+                    finish();
 				} else {
 					Toast.makeText(this, "Story was not deleted, please try again.", Toast.LENGTH_SHORT).show();
 				}

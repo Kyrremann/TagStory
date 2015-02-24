@@ -203,9 +203,8 @@ public class StoryDetailActivity extends Activity {
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_delete_story:
-                storyManager.deleteAllAssetsRelativeToStoryAndItself(story_id);
-                if (storyManager.deleteStory(story_id)
-                        && deleteFile(story_id + ".json")) {
+
+                if (storyManager.deleteStory(story_id)) {
                     //TODO add shared pref
                     finish();
                 } else {

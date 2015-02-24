@@ -51,7 +51,8 @@ public class StoryManager {
     }
 
     public boolean deleteStory(String id) {
-        return database.deleteStory(id);
+        return  database.deleteStory(id) && deleteAllAssetsRelativeToStoryAndItself(id) &&
+                  context.deleteFile(id + ".json");
     }
 
     public boolean hasStory(String id) {
@@ -59,7 +60,6 @@ public class StoryManager {
     }
 
     public boolean deleteAllAssetsRelativeToStoryAndItself(String id) {
-        if (hasStory(id)) {
             try {
                 String mFileName = id.concat(".json");
                 String mParsedLine;
@@ -99,7 +99,6 @@ public class StoryManager {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
         return false;
     }
 }

@@ -51,7 +51,7 @@ public class StoryManager {
     }
 
     public boolean deleteStory(String id) {
-        return  database.deleteStory(id) && deleteAllAssetsRelativeToStoryAndItself(id) &&
+        return  database.deleteStory(id) && deleteAllAssetsForStory(id) &&
                   context.deleteFile(id + ".json");
     }
 
@@ -59,19 +59,13 @@ public class StoryManager {
         return database.hasStory(id);
     }
 
-    public boolean deleteAllAssetsRelativeToStoryAndItself(String id) {
+    public boolean deleteAllAssetsForStory(String id) {
             try {
-                String mFileName = id.concat(".json");
-                String mParsedLine;
-                InputStream mInputStream = context.openFileInput(mFileName);
-                InputStreamReader mInputStreamReader = new InputStreamReader(
-                        mInputStream);
+                JSONObject mStoryObject = StoryParser.parseJson(context,id).
+                        getJSONObject(StoryParser.STORY);
 
-                BufferedReader mBufferedReader = new BufferedReader(mInputStreamReader);
-                mParsedLine = mBufferedReader.readLine();
-                JSONObject mStoryObject = new JSONObject(mParsedLine).getJSONObject(StoryParser.STORY);
-                if (mStoryObject.optString(StoryParser.IMAGE, "") != null) {
-                    context.deleteFile((String) mStoryObject.get(StoryParser.IMAGE));
+                if (mStoryObject.has(StoryParser.IMAGE)) {
+                    context.deleteFile(mStoryObject.getString(StoryParser.IMAGE));
                 }
 
                 JSONObject mTagObjects = mStoryObject.getJSONObject(StoryParser.TAGS);
@@ -88,13 +82,11 @@ public class StoryManager {
                                 context.deleteFile((String) mOption.get(StoryParser.HINT_IMAGE_SOURCE));
                             }
                             if (mOption.has(StoryParser.HINT_SOUND_SOURCE)) {
-                                String mFile = (String) mOption.get(StoryParser.HINT_SOUND_SOURCE);
-                                context.deleteFile(mFile);
+                                context.deleteFile((String) mOption.get(StoryParser.HINT_SOUND_SOURCE));
                             }
                         }
                     }
                 }
-                mInputStream.close();
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();

@@ -20,4 +20,9 @@ public class DateUtils {
 	public static String formatStatisticDate(Date date) {
 		return statisticDate.format(date);
 	}
+
+	public static String parseAndFormatCursorDate(String stringDate) throws ParseException {
+		Date date = parseSqliteDate(stringDate);
+		return formatStatisticDate(date);
+	}
 }

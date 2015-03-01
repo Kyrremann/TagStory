@@ -67,7 +67,7 @@
     <string name="menu_options">Options</string>
     <string name="menu_delete_story">Delete story</string>
     <string name="menu_sign_in">Sign in</string>
-	<string name="menu_profile">Profile</string>
+	<string name="menu_statistics">Statistics</string>
 
     <!-- Content description -->
     <string name="cd_tagstory_logo">Tag Story logo</string>
@@ -94,5 +94,8 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="skip">Skip</string>
+	<string name="statistic_read">%d stories read</string>
+	<string name="statistic_walked">%.2f km walked</string>
+	<string name="statistic_empty">Statistics will be shown here</string>
 
 </resources>

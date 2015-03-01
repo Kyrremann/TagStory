@@ -117,7 +117,7 @@
             android:parentActivityName=".honeycomb.StoryMarketActivityHoneycomb" >
         </activity>
         <activity
-            android:name=".profile.ProfileActivity"
+            android:name=".profile.StatisticsActivity"
             android:label="@string/title_activity_profile" >
         </activity>
 

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="fill_parent"
+		android:orientation="vertical">
+
+	<RelativeLayout
+			android:id="@+id/images"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+
+		<ImageView
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/imageView"
+				android:adjustViewBounds="true"
+				android:src="@drawable/placeimg_960_720_nature_2"
+				android:layout_alignParentTop="true"/>
+
+		<ImageView
+				android:layout_width="100dp"
+				android:layout_height="100dp"
+				android:src="@drawable/placeimg_320_240_nature"
+				android:scaleType="fitXY"
+				android:id="@+id/profile_image"
+				android:visibility="gone"
+				android:layout_centerHorizontal="true"
+				android:layout_centerVertical="true"/>
+	</RelativeLayout>
+
+	<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:paddingLeft="5dp"
+			android:paddingRight="5dp"
+			android:gravity="center">
+
+		<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="left"
+				android:text="100 km walked"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:id="@+id/walked"/>
+
+		<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="right"
+				android:text="10 stories read"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:id="@+id/read"/>
+	</LinearLayout>
+
+	<ListView
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:paddingLeft="5dp"
+			android:paddingRight="5dp"
+			android:id="@+id/list_statistics"/>
+
+</LinearLayout>

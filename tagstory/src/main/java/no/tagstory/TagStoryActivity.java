@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +17,7 @@ import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import no.tagstory.adapters.StoryCursorAdapter;
 import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
 import no.tagstory.market.StoryMarketActivity;
-import no.tagstory.profile.ProfileActivity;
+import no.tagstory.profile.StatisticsActivity;
 import no.tagstory.story.StoryManager;
 import no.tagstory.utils.*;
 
@@ -93,17 +92,6 @@ public class TagStoryActivity extends LoginFragmentActivity implements OnItemCli
 	}
 
 	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		if (mGoogleApiClient.isConnected()) {
-			MenuItem profile = menu.findItem(R.id.menu_profile);
-			if (profile != null) {
-				profile.setEnabled(true);
-			}
-		}
-		return super.onPrepareOptionsMenu(menu);
-	}
-
-	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		if (super.onMenuItemSelected(featureId, item)) {
 			return false;
@@ -115,16 +103,16 @@ public class TagStoryActivity extends LoginFragmentActivity implements OnItemCli
 			case R.id.menu_story_marked:
 				startMarkedActivity();
 				break;
-			case R.id.menu_profile:
-				startProfileActivity();
+			case R.id.menu_statistics:
+				startStatisticsActivity();
 				break;
 		}
 
 		return true;
 	}
 
-	private void startProfileActivity() {
-		startActivity(new Intent(this, ProfileActivity.class));
+	private void startStatisticsActivity() {
+		startActivity(new Intent(this, StatisticsActivity.class));
 	}
 
 	protected void startMarkedActivity() {

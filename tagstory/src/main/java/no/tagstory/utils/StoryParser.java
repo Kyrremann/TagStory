@@ -73,7 +73,7 @@ public class StoryParser {
 	// Camera
 	public static final String CAMERA = "camera";
 
-	private static JSONObject parseJson(Context context, String filename) throws IOException, JSONException {
+	public static JSONObject parseJson(Context context, String filename) throws IOException, JSONException {
 		if (!filename.endsWith(".json")) {
 			filename += ".json";
 		}

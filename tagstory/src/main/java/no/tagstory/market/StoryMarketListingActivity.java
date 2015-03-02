@@ -159,15 +159,14 @@ public class StoryMarketListingActivity extends Activity {
 					HttpGet get = new HttpGet(url);
 					String content = client.execute(get, new BasicResponseHandler());
 
-					JSONObject storyServerside = new JSONObject(content);
+					JSONObject storyObject = new JSONObject(content);
 
-					JSONObject storyObject = storyServerside.getJSONObject(StoryParser.STORY);
 					String filename = storyObject.getString(StoryParser.UUID);
 					if (!filename.endsWith(".json")) {
 						filename = filename.concat(".json");
 					}
 					FileOutputStream fileOutputStream = openFileOutput(filename, Context.MODE_PRIVATE);
-					fileOutputStream.write(storyServerside.toString().getBytes());
+					fileOutputStream.write(storyObject.toString().getBytes());
 					fileOutputStream.close();
 
 					downloadAssets(storyObject, handler);

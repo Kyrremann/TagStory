@@ -91,7 +91,7 @@ public class StoryParser {
 
 	public static Story parseJsonToStory(Context context, String UUID)
 			throws JSONException, IOException {
-		JSONObject storyObject = parseJson(context, UUID).getJSONObject(STORY);
+		JSONObject storyObject = parseJson(context, UUID);
 
 		// Required
 		Story story = new Story();

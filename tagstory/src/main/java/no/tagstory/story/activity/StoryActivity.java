@@ -22,12 +22,14 @@ import no.tagstory.honeycomb.TagStoryActivityHoneycomb;
 import no.tagstory.story.StoryTag;
 import no.tagstory.story.StoryTagOption;
 import no.tagstory.utils.ClassVersionFactory;
+import no.tagstory.utils.Database;
 
 import java.io.FileNotFoundException;
 
 import static no.tagstory.story.activity.utils.TravelIntentUtil.*;
 
 public class StoryActivity extends AbstractStoryActivity {
+	Database mDatabase;
 
 	@Override
 	protected void onResume() {
@@ -154,30 +156,42 @@ public class StoryActivity extends AbstractStoryActivity {
 	}
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.tag_menu, menu);
-        return true;
-    }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.tag_menu, menu);
+		return true;
+	}
 
-    @Override
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.quit_story:
-                quitStory();
-                break;
-        }
-        return true;
-    }
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.save_story:
+				saveStory();
+				break;
+			case R.id.quit_story:
+				quitStory();
+				break;
+		}
+		return true;
+	}
 
-    public void quitStory() {
-        this.storyApplication.stopStory();
-        finish();
-    }
+	public void quitStory() {
+		this.storyApplication.stopStory();
+		finish();
+	}
 
-    public void saveStory() {
-        //TODO
-        //pause statistikken, lagre statistikken i databasen og continue i storydetail
-    }
+	public void saveStory() {
+		//TODO
+		//pause statistikken, lagre statistikken i databasen og continue i storydetail
+		mDatabase = new Database(this);
+		mDatabase.open();
+
+		storyApplication.getStoryHistory();
+		storyApplication.getStoryStatistic();
+		this.storyApplication.stopStory();
+
+		finish();
+
+	}
 
 }

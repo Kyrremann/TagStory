@@ -16,11 +16,9 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import no.tagstory.R;
-import no.tagstory.StoryApplication;
 import no.tagstory.story.activity.StoryTravelActivity;
 
 import static no.tagstory.utils.GooglePlayServiceUtils.ErrorDialogFragment;
-import static no.tagstory.utils.GooglePlayServiceUtils.servicesConnected;
 
 public class GPSActivity extends StoryTravelActivity implements
 		LocationListener, GoogleApiClient.ConnectionCallbacks,
@@ -49,6 +47,7 @@ public class GPSActivity extends StoryTravelActivity implements
 	private static final long FASTEST_INTERVAL = MILLISECONDS_PER_SECOND
 			* FASTEST_INTERVAL_IN_SECONDS;
 	private static String TAG = "GPS";
+	protected Location currentLocation;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -180,7 +179,7 @@ public class GPSActivity extends StoryTravelActivity implements
 
 	@Override
 	public void onLocationChanged(Location location) {
-		((StoryApplication) getApplication()).addLocation(location);
+		currentLocation = location;
 		if (goalLocation != null) {
 			Log.d(TAG,
 					"Distance to goal " + location.distanceTo(goalLocation)

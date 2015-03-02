@@ -16,12 +16,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import no.tagstory.honeycomb.TagStoryActivityHoneycomb;
 import no.tagstory.market.StoryMarketListingActivity;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
 import no.tagstory.story.TagTypeEnum;
 import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.story.activity.utils.PhoneRequirementsUtils;
+import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
 
 import java.io.FileNotFoundException;
@@ -205,7 +207,10 @@ public class StoryDetailActivity extends Activity {
             case R.id.menu_delete_story:
 
                 if (storyManager.deleteStory(story_id)) {
-                    //TODO add shared pref
+                    Intent intent = ClassVersionFactory.createIntent(getApplicationContext(),
+                            TagStoryActivityHoneycomb.class, TagStoryActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                     finish();
                 } else {
                     Toast.makeText(this, "Story was not deleted, please try again.", Toast.LENGTH_SHORT).show();

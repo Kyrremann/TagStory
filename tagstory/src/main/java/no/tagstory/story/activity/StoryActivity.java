@@ -6,14 +6,22 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import no.tagstory.R;
+import no.tagstory.StoryApplication;
+import no.tagstory.TagStoryActivity;
+import no.tagstory.honeycomb.TagStoryActivityHoneycomb;
 import no.tagstory.story.StoryTag;
 import no.tagstory.story.StoryTagOption;
+import no.tagstory.utils.ClassVersionFactory;
 
 import java.io.FileNotFoundException;
 
@@ -144,4 +152,32 @@ public class StoryActivity extends AbstractStoryActivity {
 			}
 		});
 	}
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.tag_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.quit_story:
+                quitStory();
+                break;
+        }
+        return true;
+    }
+
+    public void quitStory() {
+        this.storyApplication.stopStory();
+        finish();
+    }
+
+    public void saveStory() {
+        //TODO
+        //pause statistikken, lagre statistikken i databasen og continue i storydetail
+    }
+
 }

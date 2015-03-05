@@ -22,18 +22,20 @@ public class Database {
 
 	private static final String STORY_TABLE_NAME = "STORIES";
 	public static final String STORY_ID = "_id";
-	public static final String STORY_AUTHOR = "AUTHOR";
-	public static final String STORY_TITLE = "TITLE";
-	public static final String STORY_LOCATION = "LOCATION";
-	public static final String STORY_IMAGE = "IMAGE";
+	public static final String STORY_AUTHOR = "author";
+	public static final String STORY_TITLE = "title";
+	public static final String STORY_LOCATION = "location";
+	public static final String STORY_IMAGE = "image";
+	public static final String STORY_VERSION = "version";
 	private static final String STORY_CREATE = String.format(Locale.ENGLISH,
 			"CREATE TABLE %s (" +
 					"%s TEXT NOT NULL," +
 					"%s TEXT NOT NULL," +
 					"%s TEXT NOT NULL," +
 					"%s TEXT NOT NULL," +
-					"%s TEXT NOT NULL);",
-			STORY_TABLE_NAME, STORY_ID, STORY_AUTHOR, STORY_TITLE, STORY_LOCATION, STORY_IMAGE);
+					"%s TEXT NOT NULL," +
+					"%d INTEGER NOT NULL);",
+			STORY_TABLE_NAME, STORY_ID, STORY_AUTHOR, STORY_TITLE, STORY_LOCATION, STORY_IMAGE, STORY_VERSION);
 
 	public static final String STATISTICS_TABLE_NAME = "STATISTICS";
 	public static final String STATISTICS_ID = "_id";
@@ -73,8 +75,8 @@ public class Database {
 			// Recreates the database with a new version
 			onCreate(db);
 		}
-	}
 
+	}
 	public Database(Context context) {
 		this.context = context;
 	}
@@ -110,15 +112,25 @@ public class Database {
 				STORY_TITLE + " DESC");
 	}
 
-
 	public boolean deleteStory(String id) {
 		int result = db.delete(STORY_TABLE_NAME, STORY_ID + "=?", new String[]{id});
 		return result > 0;
 	}
 
+
 	public boolean hasStory(String id) {
 		int result = db.query(STORY_TABLE_NAME, new String[]{STORY_ID}, STORY_ID + "=?", new String[]{id}, null, null, null).getCount();
 		return result == 1;
+	}
+
+	public boolean isStoryOutdated(String id, int version) {
+		Cursor result = db.query(STORY_TABLE_NAME, new String[]{STORY_VERSION}, STORY_ID + "=?", new String[]{id}, null, null, null);
+		if (result.getCount() == 1) {
+			result.moveToFirst();
+			return result.getInt(result.getColumnIndex(STORY_VERSION)) < version;
+		}
+
+		return false;
 	}
 
 	public Cursor getStatistics() {

@@ -199,7 +199,12 @@ public class StoryDetailActivity extends Activity {
         return true;
     }
 
-    @Override
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		return super.onPrepareOptionsMenu(menu);
+	}
+
+	@Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_delete_story:

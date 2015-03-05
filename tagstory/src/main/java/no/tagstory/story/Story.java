@@ -28,6 +28,7 @@ public class Story implements Serializable {
 	private List<GameModeEnum> gameModes;
 	private int estimatedTime;
 	private StoryStatusEnum status;
+	private int version;
 
 	public String getTitle() {
 		return title;
@@ -196,5 +197,13 @@ public class Story implements Serializable {
 
 	public StoryStatusEnum getStatus() {
 		return status;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public int getVersion() {
+		return version;
 	}
 }

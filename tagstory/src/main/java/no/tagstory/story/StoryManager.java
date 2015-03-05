@@ -59,6 +59,10 @@ public class StoryManager {
         return database.hasStory(id);
     }
 
+	public boolean isStoryOutdated(String id) {
+		return database.isStoryOutdated(id);
+	}
+
     public boolean deleteAllAssetsForStory(String id) {
             try {
                 JSONObject mStoryObject = StoryParser.parseJson(context,id).

@@ -55,6 +55,7 @@ public class StoryMarketListingActivity extends Activity {
 
 	private JSONObject storyDetail;
 	private boolean isDownloaded;
+	private boolean isOutdated;
 	private String storyUUID;
 
 	@Override
@@ -73,7 +74,12 @@ public class StoryMarketListingActivity extends Activity {
 			storyUUID = storyDetailValues.getString(StoryParser.UUID);
 			StoryManager storyManager = new StoryManager(this);
 			if (storyManager.hasStory(storyUUID)) {
-				setButtonToStartStory();
+				int storyVersion = storyDetailValues.getInt(StoryParser.VERSION);
+				if (storyManager.isStoryOutdated(storyUUID)) {
+					setButtonToUpdateStory();
+				} else {
+					setButtonToStartStory();
+				}
 			}
 			storyManager.closeDatabase();
 
@@ -97,6 +103,12 @@ public class StoryMarketListingActivity extends Activity {
 			e.printStackTrace();
 			// TODO
 		}
+	}
+
+	private void setButtonToUpdateStory() {
+		((TextView) findViewById(R.id.download)).setText(R.string.market_outdated);
+		isDownloaded = true;
+		isOutdated = true;
 	}
 
 	private void setButtonToStartStory() {

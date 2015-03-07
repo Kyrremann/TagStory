@@ -83,6 +83,7 @@ public class LoginFragmentActivity extends FragmentActivity implements Connectio
 
 	@Override
 	protected void onStart() {
+
 		super.onStart();
 		mGoogleApiClient.connect();
 	}

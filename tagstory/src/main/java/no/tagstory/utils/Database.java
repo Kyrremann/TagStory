@@ -34,7 +34,7 @@ public class Database {
 					"%s TEXT NOT NULL," +
 					"%s TEXT NOT NULL," +
 					"%s TEXT NOT NULL," +
-					"%d INTEGER NOT NULL);",
+					"%s INTEGER NOT NULL);",
 			STORY_TABLE_NAME, STORY_ID, STORY_AUTHOR, STORY_TITLE, STORY_LOCATION, STORY_IMAGE, STORY_VERSION);
 
 	public static final String STATISTICS_TABLE_NAME = "STATISTICS";

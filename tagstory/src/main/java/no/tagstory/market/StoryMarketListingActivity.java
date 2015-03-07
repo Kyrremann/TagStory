@@ -75,7 +75,7 @@ public class StoryMarketListingActivity extends Activity {
 			StoryManager storyManager = new StoryManager(this);
 			if (storyManager.hasStory(storyUUID)) {
 				int storyVersion = storyDetailValues.getInt(StoryParser.VERSION);
-				if (storyManager.isStoryOutdated(storyUUID)) {
+				if (storyManager.isStoryOutdated(storyUUID, storyVersion)) {
 					setButtonToUpdateStory();
 				} else {
 					setButtonToStartStory();

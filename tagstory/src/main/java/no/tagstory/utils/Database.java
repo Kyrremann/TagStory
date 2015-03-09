@@ -124,11 +124,11 @@ public class Database {
 		return result == 1;
 	}
 
-	public boolean isStoryOutdated(String id, int version) {
+	public boolean isStoryOutdated(String id, int latestVersion) {
 		Cursor result = db.query(STORY_TABLE_NAME, new String[]{STORY_VERSION}, STORY_ID + "=?", new String[]{id}, null, null, null);
 		if (result.getCount() == 1) {
 			result.moveToFirst();
-			return result.getInt(result.getColumnIndex(STORY_VERSION)) < version;
+			return result.getInt(result.getColumnIndex(STORY_VERSION)) < latestVersion;
 		}
 
 		return false;

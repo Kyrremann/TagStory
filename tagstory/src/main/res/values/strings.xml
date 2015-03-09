@@ -98,5 +98,6 @@
 	<string name="statistic_walked">%s walked</string>
 	<string name="statistic_empty">Statistics will be shown here</string>
 	<string name="market_outdated">Update story</string>
+	<string name="menu_update_story">Update story</string>
 
 </resources>

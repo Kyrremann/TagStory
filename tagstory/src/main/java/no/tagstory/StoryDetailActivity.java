@@ -16,13 +16,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import no.tagstory.market.StoryMarketListingActivity;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
 import no.tagstory.story.TagTypeEnum;
 import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.story.activity.utils.PhoneRequirementsUtils;
 import no.tagstory.utils.Database;
+import no.tagstory.utils.StoryParser;
+import no.tagstory.utils.http.StoryProtocol;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 
@@ -30,29 +34,32 @@ public class StoryDetailActivity extends Activity {
 
     private final static int ENABLE_GPS = 1001;
 
-    protected String story_id;
-    protected StoryManager storyManager;
+    protected String storyId;
     protected Story story;
     protected AlertDialog enableGPSDialog, enableNFCDialog, enableQRDialog;
     protected StoryApplication storyApplication;
+
+	private boolean isOutdated;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_story_detail);
 
-        storyManager = new StoryManager(this);
         storyApplication = (StoryApplication) getApplication();
 
-        story_id = getIntent().getStringExtra(Database.STORY_ID);
-        if (story_id != null) {
-            story = storyManager.getStory(story_id);
+        storyId = getIntent().getStringExtra(Database.STORY_ID);
+        if (storyId != null) {
+	        StoryManager storyManager = new StoryManager(this);
+            story = storyManager.getStory(storyId);
+	        storyManager.closeDatabase();
         } else {
             story = (Story) getIntent().getSerializableExtra(
                     StoryActivity.EXTRA_STORY);
         }
 
         if (story != null) {
+	        checkIfStoryIsOutdated();
             boolean showDefault = false;
             setTitle(story.getTitle());
             ((TextView) findViewById(R.id.story_detail_desc)).setText(story
@@ -79,7 +86,42 @@ public class StoryDetailActivity extends Activity {
         }
     }
 
-    public void startStory(View v) {
+	private void checkIfStoryIsOutdated() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				JSONArray marketStories = storyApplication.getMarketStories();
+				if (marketStories.length() == 0) {
+					StoryProtocol.downloadNewStoriesToTheStoryApplication(getApplicationContext());
+					marketStories = storyApplication.getMarketStories();
+				}
+				int version = findStoryInJsonArray(marketStories, storyId);
+				StoryManager storyManager = new StoryManager(getApplicationContext());
+				if (storyManager.isStoryOutdated(storyId, version)) {
+					isOutdated = true;
+				} else {
+					isOutdated = false;
+				}
+				storyManager.closeDatabase();
+			}
+
+			private int findStoryInJsonArray(JSONArray marketStories, String storyId) {
+				try {
+					for (int i = 0; i < marketStories.length(); i++) {
+						JSONObject row = marketStories.getJSONObject(i);
+						JSONObject value = row.getJSONObject("value");
+						if (value.getString(StoryParser.UUID).equals(storyId)) {
+							return value.getInt(StoryParser.VERSION);
+						}
+					}
+				} catch (JSONException e) {
+				}
+				return 1;
+			}
+		}).start();
+	}
+
+	public void startStory(View v) {
         if (v.getId() == R.id.start_story_button) {
             if (hasPhoneRequirements()) {
                 return;
@@ -201,6 +243,12 @@ public class StoryDetailActivity extends Activity {
 
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
+		if (isOutdated) {
+			menu.findItem(R.id.menu_update).setVisible(true);
+			return true;
+		} else {
+			menu.findItem(R.id.menu_update).setVisible(false);
+		}
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -208,16 +256,21 @@ public class StoryDetailActivity extends Activity {
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_delete_story:
-
-                if (storyManager.deleteStory(story_id)) {
+	            StoryManager storyManager = new StoryManager(this);
+                if (storyManager.deleteStory(storyId)) {
                     //TODO add shared pref
+	                storyManager.closeDatabase();
                     finish();
                 } else {
                     Toast.makeText(this, "Story was not deleted, please try again.", Toast.LENGTH_SHORT).show();
                 }
-                break;
+	            storyManager.closeDatabase();
+                return true;
+	        case R.id.menu_update:
+
+		        return true;
         }
 
-        return true;
+        return false;
     }
 }

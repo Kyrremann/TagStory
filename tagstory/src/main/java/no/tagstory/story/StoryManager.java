@@ -49,8 +49,8 @@ public class StoryManager {
 		return database.hasStory(id);
 	}
 
-	public boolean isStoryOutdated(String id, int version) {
-		return database.isStoryOutdated(id, version);
+	public boolean isStoryOutdated(String id, int latestVersion) {
+		return database.isStoryOutdated(id, latestVersion);
 	}
 
 	private boolean deleteAllAssetsForStory(String id) {

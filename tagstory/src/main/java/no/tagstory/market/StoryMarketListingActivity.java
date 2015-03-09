@@ -17,10 +17,12 @@ import com.amazonaws.mobileconnectors.s3.transfermanager.Download;
 import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.util.StringUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import no.tagstory.R;
 import no.tagstory.StoryDetailActivity;
 import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
+import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
@@ -72,16 +74,7 @@ public class StoryMarketListingActivity extends Activity {
 			TextView author = (TextView) findViewById(R.id.author);
 			TextView description = (TextView) findViewById(R.id.description);
 			storyUUID = storyDetailValues.getString(StoryParser.UUID);
-			StoryManager storyManager = new StoryManager(this);
-			if (storyManager.hasStory(storyUUID)) {
-				int storyVersion = storyDetailValues.getInt(StoryParser.VERSION);
-				if (storyManager.isStoryOutdated(storyUUID, storyVersion)) {
-					setButtonToUpdateStory();
-				} else {
-					setButtonToStartStory();
-				}
-			}
-			storyManager.closeDatabase();
+			setButtonText(storyDetailValues.getInt(StoryParser.VERSION));
 
 			String url = "";
 			if (storyDetailValues.has(StoryParser.IMAGE)) {
@@ -100,14 +93,25 @@ public class StoryMarketListingActivity extends Activity {
 
 			setTitle(storyTitle);
 		} catch (JSONException e) {
-			e.printStackTrace();
-			// TODO
+			finish();
 		}
+	}
+
+	private void setButtonText(int storyVersion) {
+		StoryManager storyManager = new StoryManager(this);
+		if (storyManager.hasStory(storyUUID)) {
+			if (storyManager.isStoryOutdated(storyUUID, storyVersion)) {
+				setButtonToUpdateStory();
+			} else {
+				setButtonToStartStory();
+			}
+		}
+		storyManager.closeDatabase();
 	}
 
 	private void setButtonToUpdateStory() {
 		((TextView) findViewById(R.id.download)).setText(R.string.market_outdated);
-		isDownloaded = true;
+		isDownloaded = false;
 		isOutdated = true;
 	}
 
@@ -124,11 +128,20 @@ public class StoryMarketListingActivity extends Activity {
 							StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);
 					detailIntent.putExtra(Database.STORY_ID, storyUUID);
 					startActivity(detailIntent);
+				} else if (isOutdated) {
+					deleteStory();
+					downloadStory();
 				} else {
 					downloadStory();
 				}
 				break;
 		}
+	}
+
+	private void deleteStory() {
+		StoryManager storyManager = new StoryManager(this);
+		storyManager.deleteStory(storyUUID);
+		storyManager.closeDatabase();
 	}
 
 	private void downloadStory() {
@@ -161,7 +174,11 @@ public class StoryMarketListingActivity extends Activity {
 		});
 
 		final String storyIdServerside = storyDetail.optString("id", "");
-		// TODO Check for wrong ID
+		if (StringUtil.isBlank(storyIdServerside)) {
+			handler.sendEmptyMessage(MESSAGE_FAILED);
+			return;
+		}
+
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -182,24 +199,20 @@ public class StoryMarketListingActivity extends Activity {
 					fileOutputStream.close();
 
 					downloadAssets(storyObject, handler);
-					// TODO: Change button to 'play story'
 					Database database = new Database(getApplicationContext());
 					database.open();
 					database.insertStory(storyObject.getString(StoryParser.UUID), storyObject.getString(StoryParser.AUTHOR),
 							storyObject.getString(StoryParser.TITLE), storyObject.getString(StoryParser.AREA),
-							storyObject.getString(StoryParser.IMAGE));
+							storyObject.getString(StoryParser.IMAGE), storyObject.getInt(StoryParser.VERSION));
 				} catch (IOException e) {
-					e.printStackTrace();
 					handler.sendEmptyMessage(MESSAGE_FAIL_HTTP);
 				} catch (JSONException e) {
-					e.printStackTrace();
 					handler.sendEmptyMessage(MESSAGE_FAIL_JSON);
 				} catch (Exception e) {
-					e.printStackTrace();
 					handler.sendEmptyMessage(MESSAGE_FAILED);
-				} finally {
-					handler.sendEmptyMessage(MESSAGE_DONE);
 				}
+
+				handler.sendEmptyMessage(MESSAGE_DONE);
 			}
 		}).start();
 	}
@@ -234,7 +247,6 @@ public class StoryMarketListingActivity extends Activity {
 		}
 	}
 
-	// TODO watch out for errors
 	private boolean downloadAsset(String serverUrl, String name, TransferManager transferManager, Handler handler) {
 		if (StringUtil.isBlank(name)) {
 			return false;

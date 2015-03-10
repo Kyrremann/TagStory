@@ -50,6 +50,11 @@ public class StoryProtocol {
 			String content = client.execute(get, new BasicResponseHandler());
 
 			((StoryApplication) context).setMarkedstories(new JSONArray(content));
+
+			if (handler != null) {
+				handler.sendEmptyMessage(SimpleStoryHandler.MESSAGE_DONE);
+			}
+			Log.d("STORYPROTOCOL", "Stories downloaded");
 		} catch (IOException e) {
 			if (handler != null) {
 				handler.sendEmptyMessage(SimpleStoryHandler.MESSAGE_FAIL_HTTP);
@@ -60,18 +65,13 @@ public class StoryProtocol {
 				handler.sendEmptyMessage(SimpleStoryHandler.MESSAGE_FAIL_JSON);
 			}
 			Log.d("STORYPROTOCOL", context.getString(R.string.market_error_data));
-		} finally {
-			if (handler != null) {
-				handler.sendEmptyMessage(SimpleStoryHandler.MESSAGE_DONE);
-			}
-			Log.d("STORYPROTOCOL", "Stories downloaded");
 		}
 	}
 
 	public static void downloadStory(Context context, Handler handler, String storyIdServerside) {
 		try {
 			HttpClient client = new DefaultHttpClient();
-			String url = context.getString(R.string.market_api_story) + storyIdServerside + "/json";
+			String url = context.getString(R.string.market_api_story, storyIdServerside);
 			HttpGet get = new HttpGet(url);
 			String content = client.execute(get, new BasicResponseHandler());
 
@@ -156,5 +156,21 @@ public class StoryProtocol {
 
 		Log.d(LOG, "Done downloading");
 		return true;
+	}
+
+	public static int getStoryVersion(Context context, String uuid) {
+		try {
+			HttpClient client = new DefaultHttpClient();
+			HttpGet get = new HttpGet(context.getString(R.string.market_api_version, uuid));
+			String content = client.execute(get, new BasicResponseHandler());
+			JSONObject jsonObject = new JSONObject(content);
+			return jsonObject.getInt(StoryParser.VERSION);
+		} catch (IOException e) {
+			Log.d("STORYPROTOCOL", context.getString(R.string.market_error_http));
+		} catch (JSONException e) {
+			Log.d("STORYPROTOCOL", context.getString(R.string.market_error_data));
+		}
+
+		return -1;
 	}
 }

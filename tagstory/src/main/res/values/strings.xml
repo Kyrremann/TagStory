@@ -6,6 +6,11 @@
     <string name="front_no_stories">It\'s looks like you haven\'t downloaded any stories yet. Please go to the story marked and see if you find something you like. Visit TagStory.no if you want to make your own stories!</string>
     <string name="front_visit_marked">Visit the marked</string>
 
+	<!-- Statistic -->
+	<string name="statistic_read">%d stories read</string>
+	<string name="statistic_walked">%s walked</string>
+	<string name="statistic_empty">Statistics will be shown here</string>
+
     <!-- Market -->
     <string name="market_actionbar_title">Story Market</string>
     <string name="market_go_to_story">Go to story</string>
@@ -14,11 +19,10 @@
     <string name="market_info_updating_market">Updating the market</string>
     <string name="market_info_downloading_assets">Downloading asset(s): </string>
     <string name="market_info_downloading_story">Downloading story</string>
-    <string name="market_api_stories">http://tagstory.herokuapp.com/api/stories/json</string>
-    <string name="market_api_story">http://tagstory.herokuapp.com/api/story/</string>
     <string name="market_error_item_list">Something went wrong with this story, sorry!</string>
     <string name="market_error_http">Something went wrong with the http-connection.</string>
     <string name="market_error_data">Something went wrong with the data.</string>
+	<string name="market_outdated">Update story</string>
 
 	<!-- Profile -->
 	<string name="title_activity_profile">Profile</string>
@@ -68,6 +72,7 @@
     <string name="menu_delete_story">Delete story</string>
     <string name="menu_sign_in">Sign in</string>
 	<string name="menu_statistics">Statistics</string>
+	<string name="menu_update_story">Update story</string>
 
     <!-- Content description -->
     <string name="cd_tagstory_logo">Tag Story logo</string>
@@ -89,15 +94,15 @@
     <!-- URLs -->
     <string name="barcode_scanner_play_store">com.google.zxing.client.android</string>
 
+	<!-- API -->
+	<string name="market_api_stories">http://tagstory.herokuapp.com/api/stories/json</string>
+	<string name="market_api_story">http://tagstory.herokuapp.com/api/story/%s/json</string>
+	<string name="market_api_version">http://tagstory.herokuapp.com/api/story/%s/version/json</string>
+
     <!-- Single words -->
     <string name="cancel">Cancel</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="skip">Skip</string>
-	<string name="statistic_read">%d stories read</string>
-	<string name="statistic_walked">%s walked</string>
-	<string name="statistic_empty">Statistics will be shown here</string>
-	<string name="market_outdated">Update story</string>
-	<string name="menu_update_story">Update story</string>
 
 </resources>

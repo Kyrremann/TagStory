@@ -14,6 +14,7 @@ import no.tagstory.R;
 import no.tagstory.market.StoryMarketListingActivity;
 import no.tagstory.utils.ImageLoaderUtils;
 import no.tagstory.utils.StoryParser;
+import no.tagstory.utils.http.StoryProtocol;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,7 +68,7 @@ public class StoryJsonAdapter extends BaseAdapter {
 			if (jsonObject.has(StoryParser.IMAGE)) {
 				String imageUrl = jsonObject.getString(StoryParser.IMAGE);
 				if (imageUrl.length() != 0) {
-					url = StoryMarketListingActivity.SERVER_URL_IMAGES + imageUrl;
+					url = StoryProtocol.SERVER_URL_IMAGES + imageUrl;
 				}
 			}
 

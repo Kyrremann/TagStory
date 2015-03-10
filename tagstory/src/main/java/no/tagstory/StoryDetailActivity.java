@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +33,7 @@ import java.io.FileNotFoundException;
 
 public class StoryDetailActivity extends Activity {
 
+	private final static String LOG = "STORYDETAIL";
     private final static int ENABLE_GPS = 1001;
 
     protected String storyId;
@@ -40,8 +42,9 @@ public class StoryDetailActivity extends Activity {
     protected StoryApplication storyApplication;
 
 	private boolean isOutdated;
+	private Menu menu;
 
-    @Override
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_story_detail);
@@ -90,33 +93,22 @@ public class StoryDetailActivity extends Activity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				JSONArray marketStories = storyApplication.getMarketStories();
-				if (marketStories.length() == 0) {
-					StoryProtocol.downloadNewStoriesToTheStoryApplication(getApplicationContext());
-					marketStories = storyApplication.getMarketStories();
-				}
-				int version = findStoryInJsonArray(marketStories, storyId);
+				int version = StoryProtocol.getStoryVersion(getApplicationContext(), storyId);
 				StoryManager storyManager = new StoryManager(getApplicationContext());
 				if (storyManager.isStoryOutdated(storyId, version)) {
+					Log.d(LOG, "Story is outdated");
 					isOutdated = true;
 				} else {
+					Log.d(LOG, "Story is up to date");
 					isOutdated = false;
 				}
 				storyManager.closeDatabase();
-			}
-
-			private int findStoryInJsonArray(JSONArray marketStories, String storyId) {
-				try {
-					for (int i = 0; i < marketStories.length(); i++) {
-						JSONObject row = marketStories.getJSONObject(i);
-						JSONObject value = row.getJSONObject("value");
-						if (value.getString(StoryParser.UUID).equals(storyId)) {
-							return value.getInt(StoryParser.VERSION);
-						}
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						menu.findItem(R.id.menu_update).setVisible(isOutdated);
 					}
-				} catch (JSONException e) {
-				}
-				return 1;
+				});
 			}
 		}).start();
 	}
@@ -237,6 +229,7 @@ public class StoryDetailActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+	    this.menu = menu;
         getMenuInflater().inflate(R.menu.story_detail, menu);
         return true;
     }
@@ -267,7 +260,7 @@ public class StoryDetailActivity extends Activity {
 	            storyManager.closeDatabase();
                 return true;
 	        case R.id.menu_update:
-
+		        System.out.println("click click");
 		        return true;
         }
 

@@ -62,6 +62,10 @@ public class StoryMarketActivity extends FragmentActivity implements SimpleStory
 	}
 
 	@Override
+	public void onMessageInfo(int arg1, int arg2) {
+	}
+
+	@Override
 	public void onMessageFail(int error) {
 		switch (error) {
 			case SimpleStoryHandler.MESSAGE_FAIL_HTTP:

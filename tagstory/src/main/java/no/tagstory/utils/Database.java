@@ -93,13 +93,14 @@ public class Database {
 		dbHelper.close();
 	}
 
-	public boolean insertStory(String uuid, String author, String title, String location, String image) {
+	public boolean insertStory(String uuid, String author, String title, String location, String image, int version) {
 		ContentValues values = new ContentValues(5);
 		values.put(STORY_ID, uuid);
 		values.put(STORY_AUTHOR, author);
 		values.put(STORY_TITLE, title);
 		values.put(STORY_LOCATION, location);
 		values.put(STORY_IMAGE, image);
+		values.put(STORY_VERSION, version);
 		return db.insert(STORY_TABLE_NAME, null, values) != -1;
 	}
 
@@ -123,11 +124,11 @@ public class Database {
 		return result == 1;
 	}
 
-	public boolean isStoryOutdated(String id, int version) {
+	public boolean isStoryOutdated(String id, int latestVersion) {
 		Cursor result = db.query(STORY_TABLE_NAME, new String[]{STORY_VERSION}, STORY_ID + "=?", new String[]{id}, null, null, null);
 		if (result.getCount() == 1) {
 			result.moveToFirst();
-			return result.getInt(result.getColumnIndex(STORY_VERSION)) < version;
+			return result.getInt(result.getColumnIndex(STORY_VERSION)) < latestVersion;
 		}
 
 		return false;

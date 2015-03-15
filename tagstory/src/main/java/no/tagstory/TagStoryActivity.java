@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import no.tagstory.adapters.StoryCursorAdapter;
+import no.tagstory.beacons.BeaconTestActivity;
 import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
 import no.tagstory.market.StoryMarketActivity;
 import no.tagstory.profile.StatisticsActivity;
@@ -106,6 +107,8 @@ public class TagStoryActivity extends LoginFragmentActivity implements OnItemCli
 			case R.id.menu_statistics:
 				startStatisticsActivity();
 				break;
+			case R.id.beacons:
+				startActivity(new Intent(this, BeaconTestActivity.class));
 		}
 
 		return true;

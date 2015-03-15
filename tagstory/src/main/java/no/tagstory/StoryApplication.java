@@ -1,7 +1,9 @@
 package no.tagstory;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
+import com.estimote.sdk.BeaconManager;
 import no.tagstory.statistics.DistanceLogger;
 import no.tagstory.statistics.StoryHistory;
 import no.tagstory.statistics.StoryStatistic;
@@ -16,6 +18,7 @@ public class StoryApplication extends Application {
 	private JSONArray markedstories;
 	private StoryStatistic storyStatistic;
 	private Intent distanceLoggerIntent;
+	private BeaconManager beaconManager;
 
 	@Override
 	public void onCreate() {
@@ -60,5 +63,12 @@ public class StoryApplication extends Application {
 
 	public StoryStatistic getStoryStatistic() {
 		return storyStatistic;
+	}
+
+	public BeaconManager getBeaconManager(Context context) {
+		if (beaconManager == null) {
+			beaconManager = new BeaconManager(context);
+		}
+		return beaconManager;
 	}
 }

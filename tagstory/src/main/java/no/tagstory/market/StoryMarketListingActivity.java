@@ -81,7 +81,7 @@ public class StoryMarketListingActivity extends Activity implements SimpleStoryH
 	}
 
 	private void setButtonToUpdateStory() {
-		((TextView) findViewById(R.id.download)).setText(R.string.market_outdated);
+		((TextView) findViewById(R.id.download)).setText(R.string.market_update_story);
 		isDownloaded = false;
 		isOutdated = true;
 	}

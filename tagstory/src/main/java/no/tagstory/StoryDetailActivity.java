@@ -2,12 +2,14 @@ package no.tagstory;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
@@ -23,15 +25,12 @@ import no.tagstory.story.TagTypeEnum;
 import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.story.activity.utils.PhoneRequirementsUtils;
 import no.tagstory.utils.Database;
-import no.tagstory.utils.StoryParser;
+import no.tagstory.utils.http.SimpleStoryHandler;
 import no.tagstory.utils.http.StoryProtocol;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 
-public class StoryDetailActivity extends Activity {
+public class StoryDetailActivity extends Activity implements SimpleStoryHandler.SimpleCallback {
 
 	private final static String LOG = "STORYDETAIL";
     private final static int ENABLE_GPS = 1001;
@@ -43,6 +42,7 @@ public class StoryDetailActivity extends Activity {
 
 	private boolean isOutdated;
 	private Menu menu;
+	private ProgressDialog progressDialog;
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +97,7 @@ public class StoryDetailActivity extends Activity {
 				StoryManager storyManager = new StoryManager(getApplicationContext());
 				if (storyManager.isStoryOutdated(storyId, version)) {
 					Log.d(LOG, "Story is outdated");
+					Toast.makeText(getApplicationContext(), R.string.market_outdated, Toast.LENGTH_SHORT).show();
 					isOutdated = true;
 				} else {
 					Log.d(LOG, "Story is up to date");
@@ -238,11 +239,10 @@ public class StoryDetailActivity extends Activity {
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		if (isOutdated) {
 			menu.findItem(R.id.menu_update).setVisible(true);
-			return true;
 		} else {
 			menu.findItem(R.id.menu_update).setVisible(false);
 		}
-		return super.onPrepareOptionsMenu(menu);
+		return true;
 	}
 
 	@Override
@@ -260,10 +260,55 @@ public class StoryDetailActivity extends Activity {
 	            storyManager.closeDatabase();
                 return true;
 	        case R.id.menu_update:
-		        System.out.println("click click");
+		        deleteStory();
+		        downloadStory();
 		        return true;
         }
 
         return false;
     }
+
+	private void deleteStory() {
+		StoryManager storyManager = new StoryManager(this);
+		storyManager.deleteStory(storyId);
+		storyManager.closeDatabase();
+	}
+
+	private void downloadStory() {
+		progressDialog = new ProgressDialog(this);
+		progressDialog.setCancelable(false);
+		progressDialog.setMessage(getString(R.string.market_info_downloading_story));
+		progressDialog.show();
+		final Handler handler = new SimpleStoryHandler(this);
+
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				StoryProtocol.downloadStory(getApplicationContext(), handler, storyId);
+			}
+		}).start();
+	}
+
+	@Override
+	public void onMessageDone() {
+		progressDialog.cancel();
+		isOutdated = false;
+	}
+
+	@Override
+	public void onMessageInfo(int arg1, int arg2) {
+		progressDialog.setMessage(getString(R.string.market_info_downloading_assets) + arg1 + "%");
+	}
+
+	@Override
+	public void onMessageFail(int error) {
+		switch (error) {
+			case SimpleStoryHandler.MESSAGE_FAIL_HTTP:
+				Toast.makeText(getApplicationContext(), getString(R.string.market_error_http), Toast.LENGTH_SHORT).show();
+				break;
+			case SimpleStoryHandler.MESSAGE_FAIL_JSON:
+				Toast.makeText(getApplicationContext(), getString(R.string.market_error_data), Toast.LENGTH_SHORT).show();
+				break;
+		}
+	}
 }

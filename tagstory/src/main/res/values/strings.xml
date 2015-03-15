@@ -22,7 +22,8 @@
     <string name="market_error_item_list">Something went wrong with this story, sorry!</string>
     <string name="market_error_http">Something went wrong with the http-connection.</string>
     <string name="market_error_data">Something went wrong with the data.</string>
-	<string name="market_outdated">Update story</string>
+	<string name="market_update_story">Update story</string>
+	<string name="market_outdated">Story is outdated, please update.</string>
 
 	<!-- Profile -->
 	<string name="title_activity_profile">Profile</string>

@@ -102,7 +102,7 @@ public class StoryActivity extends AbstractStoryActivity {
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(), StoryActivity.class);
 				intent.putExtra(StoryActivity.EXTRA_STORY, story);
-				intent.putExtra(StoryActivity.EXTRA_TAG, storyHistory.getNextStory());
+				intent.putExtra(StoryActivity.EXTRA_TAG, storyHistory.getNextStoryId());
 				storyHistory.next();
 				startActivity(intent);
 			}

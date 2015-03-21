@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
@@ -97,7 +98,6 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 				StoryManager storyManager = new StoryManager(getApplicationContext());
 				if (storyManager.isStoryOutdated(storyId, version)) {
 					Log.d(LOG, "Story is outdated");
-					Toast.makeText(getApplicationContext(), R.string.market_outdated, Toast.LENGTH_SHORT).show();
 					isOutdated = true;
 				} else {
 					Log.d(LOG, "Story is up to date");
@@ -107,6 +107,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 				runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
+						Toast.makeText(getApplicationContext(), R.string.market_outdated, Toast.LENGTH_SHORT).show();
 						menu.findItem(R.id.menu_update).setVisible(isOutdated);
 					}
 				});

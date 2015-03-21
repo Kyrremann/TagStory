@@ -110,7 +110,9 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 				runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
-						Toast.makeText(getApplicationContext(), R.string.market_outdated, Toast.LENGTH_SHORT).show();
+						if (isOutdated) {
+							Toast.makeText(getApplicationContext(), R.string.market_outdated, Toast.LENGTH_SHORT).show();
+						}
 						menu.findItem(R.id.menu_update).setVisible(isOutdated);
 					}
 				});

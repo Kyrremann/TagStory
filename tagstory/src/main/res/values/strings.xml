@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
-    <string name="app_name">Tag Story</string>
-    <string name="app_title">Tag Story</string>
-    <string name="front_no_stories">It\'s looks like you haven\'t downloaded any stories yet. Please go to the story marked and see if you find something you like. Visit TagStory.no if you want to make your own stories!</string>
-    <string name="front_visit_marked">Visit the marked</string>
+	<string name="app_name">Tag Story</string>
+	<string name="app_title">Tag Story</string>
+	<string name="front_no_stories">It\'s looks like you haven\'t downloaded any stories yet. Please go to the story marked and see if you find something you like. Visit TagStory.no if you want to make your own stories!</string>
+	<string name="front_visit_marked">Visit the marked</string>
 
 	<!-- Statistic -->
 	<string name="statistic_read">%d stories read</string>
 	<string name="statistic_walked">%s walked</string>
 	<string name="statistic_empty">Statistics will be shown here</string>
 
-    <!-- Market -->
-    <string name="market_actionbar_title">Story Market</string>
-    <string name="market_go_to_story">Go to story</string>
-    <string name="market_story_by">by</string>
-    <string name="market_download">Download</string>
-    <string name="market_info_updating_market">Updating the market</string>
-    <string name="market_info_downloading_assets">Downloading asset(s): </string>
-    <string name="market_info_downloading_story">Downloading story</string>
-    <string name="market_error_item_list">Something went wrong with this story, sorry!</string>
-    <string name="market_error_http">Something went wrong with the http-connection.</string>
-    <string name="market_error_data">Something went wrong with the data.</string>
+	<!-- Market -->
+	<string name="market_actionbar_title">Story Market</string>
+	<string name="market_go_to_story">Go to story</string>
+	<string name="market_story_by">by</string>
+	<string name="market_download">Download</string>
+	<string name="market_info_updating_market">Updating the market</string>
+	<string name="market_info_downloading_assets">Downloading asset(s): </string>
+	<string name="market_info_downloading_story">Downloading story</string>
+	<string name="market_error_item_list">Something went wrong with this story, sorry!</string>
+	<string name="market_error_http">Something went wrong with the http-connection.</string>
+	<string name="market_error_data">Something went wrong with the data.</string>
 	<string name="market_update_story">Update story</string>
 	<string name="market_outdated">Story is outdated, please update.</string>
 
@@ -32,78 +32,85 @@
 	<string name="title_section3">Stories read</string>
 	<string name="hello_world">Hello world!</string>
 
-    <!-- Story detail -->
-    <string name="title_story_detail">Story Detail</string>
-    <string name="story_list_arrow">Click to chose story</string>
-    <string name="story_pick_story">Pick a story from the list below</string>
-    <string name="story_button_finished">The End</string>
-    <string name="story_button_scan_tag">Scan tag</string>
-    <string name="story_button_where_to_go">See where to go next</string>
-    <string name="story_button_start">Start Story</string>
-    <string name="story_button_next_tag">Go to next tag</string>
+	<!-- Story detail -->
+	<string name="title_story_detail">Story Detail</string>
+	<string name="story_list_arrow">Click to chose story</string>
+	<string name="story_pick_story">Pick a story from the list below</string>
+	<string name="story_button_finished">The End</string>
+	<string name="story_button_scan_tag">Scan tag</string>
+	<string name="story_button_where_to_go">See where to go next</string>
+	<string name="story_button_start">Start Story</string>
+	<string name="story_button_next_tag">Go to next tag</string>
 
-    <!-- Travel -->
-    <string name="story_help_button">Help?</string>
-    <string name="story_arrow_gps_is_off">Please turn on your GPS</string>
-    <string name="story_arrow_turn_on">Turn on</string>
-    <string name="story_arrow_no">No thank you</string>
-    <string name="story_arrow_gps_wait">Waiting for GPS. This may take some time. Please position yourself with clear sight to the sky.</string>
+	<!-- Travel -->
+	<string name="story_help_button">Help?</string>
+	<string name="story_arrow_gps_is_off">Please turn on your GPS</string>
+	<string name="story_arrow_turn_on">Turn on</string>
+	<string name="story_arrow_no">No thank you</string>
+	<string name="story_arrow_gps_wait">Waiting for GPS. This may take some time. Please position yourself with clear sight to the sky.</string>
 
-    <!-- Story game modes -->
-    <string name="story_camera_button">Picture taken and sent</string>
-    <string name="story_camera_button_retry">Take a new picture</string>
-    <string name="story_quiz_next_part">Go to next part</string>
-    <string name="story_quiz_ready">I am ready</string>
-    <string name="story_quiz_true">True</string>
-    <string name="story_quiz_false">False</string>
-    <string name="story_quiz_correction">Correction</string>
-    <string name="story_quiz_next">Next question</string>
+	<!-- Story game modes -->
+	<string name="story_camera_button">Picture taken and sent</string>
+	<string name="story_camera_button_retry">Take a new picture</string>
+	<string name="story_quiz_next_part">Go to next part</string>
+	<string name="story_quiz_ready">I am ready</string>
+	<string name="story_quiz_true">True</string>
+	<string name="story_quiz_false">False</string>
+	<string name="story_quiz_correction">Correction</string>
+	<string name="story_quiz_next">Next question</string>
 
-    <!-- Dummy data -->
-    <string name="dummy_statistics">Statistics\nTime used: 21:41\nLength walk: 2km</string>
-    <string name="dummy_map_target">This is your target</string>
-    <string name="dummy_map_snippet">Somewhere here is the next tag</string>
-    <string name="dummy_title">Test The Experience</string>
+	<!-- Dummy data -->
+	<string name="dummy_statistics">Statistics\nTime used: 21:41\nLength walk: 2km</string>
+	<string name="dummy_map_target">This is your target</string>
+	<string name="dummy_map_snippet">Somewhere here is the next tag</string>
+	<string name="dummy_title">Test The Experience</string>
+	<string name="dummy_email_subject">Hello, Tag Story!</string>
 
-    <!-- Menu -->
-    <string name="menu_about_app">About Tag Story</string>
-    <string name="menu_story_market">Story market</string>
-    <string name="menu_update_stories">Update stories</string>
-    <string name="menu_options">Options</string>
-    <string name="menu_delete_story">Delete story</string>
-    <string name="menu_sign_in">Sign in</string>
+	<!-- Menu -->
+	<string name="menu_about_app">About Tag Story</string>
+	<string name="menu_story_market">Story market</string>
+	<string name="menu_update_stories">Update stories</string>
+	<string name="menu_options">Options</string>
+	<string name="menu_delete_story">Delete story</string>
+	<string name="menu_sign_in">Sign in</string>
 	<string name="menu_statistics">Statistics</string>
 	<string name="menu_update_story">Update story</string>
+	<string name="menu_contact_us">Contact us</string>
 
-    <!-- Content description -->
-    <string name="cd_tagstory_logo">Tag Story logo</string>
-    <string name="cd_story_image">Image representing the story</string>
-    <string name="cd_no_market_image">There is no image for this story</string>
-    <string name="cd_tag_image">Image for this tag</string>
+	<!-- Content description -->
+	<string name="cd_tagstory_logo">Tag Story logo</string>
+	<string name="cd_story_image">Image representing the story</string>
+	<string name="cd_no_market_image">There is no image for this story</string>
+	<string name="cd_tag_image">Image for this tag</string>
 
-    <!-- Dialog -->
-    <string name="dialog_download_barcodescanner">To experience this story you need to download the Barcode Scanner app from ZXing Team.</string>
-    <string name="dialog_go_to_play_store">To Play Store</string>
-    <string name="dialog_about_title">About</string>
-    <string name="dialog_about_tagstory">Tag Story combines text based adventure games with NFC technology for an interactive, outdoor woodland adventure.\n\nMade as part of a project in INF5261 at University of Oslo.</string>
-    <string name="dialog_enable_gps">You need GPS enabled to experience this story. Do you want to enable it?\n\nPS: You can not continue without GPS.</string>
-    <string name="dialog_gps_about_title">About GPS tags</string>
-    <string name="dialog_gps_about_content">A GPS tag uses the phone to see where you are. So that it magically can notifie the app and tell you when you are at the goal. So that all you have to do is walk!\n\nAre you a bit tired, or just don\'t find the tag? Then you can use the \"skip\"-button to advance to the next tag.</string>
-    <string name="dialog_qr_about_title">About QR tags</string>
-    <string name="dialog_qr_about_content">A QR-code is a matrix type of barcode.\n\nAre you a bit tired, or just don\'t find the tag? Then you can use the \"skip\"-button to advance to the next tag.</string>
+	<!-- Dialog -->
+	<string name="dialog_download_barcodescanner">To experience this story you need to download the Barcode Scanner app from ZXing Team.</string>
+	<string name="dialog_go_to_play_store">To Play Store</string>
+	<string name="dialog_about_title">About</string>
+	<string name="dialog_about_tagstory">Tag Story is an interactive, social, mobile game, designed to let you experience the psychical environment in a new and exciting way.\n\nThrough narrative stories you can interact with tags using your smartphone. Tags can either be physically visible (NFC and QR-code) or target a GPS position, guiding you from one place to another. Experience stories by you and others.</string>
+	<string name="dialog_about_button_contact">Contact us</string>
+	<string name="dialog_enable_gps">You need GPS enabled to experience this story. Do you want to enable it?\n\nPS: You can not continue without GPS.</string>
+	<string name="dialog_gps_about_title">About GPS tags</string>
+	<string name="dialog_gps_about_content">A GPS tag uses the phone to see where you are. So that it magically can notifie the app and tell you when you are at the goal. So that all you have to do is walk!\n\nAre you a bit tired, or just don\'t find the tag? Then you can use the \"skip\"-button to advance to the next tag.</string>
+	<string name="dialog_qr_about_title">About QR tags</string>
+	<string name="dialog_qr_about_content">A QR-code is a matrix type of barcode.\n\nAre you a bit tired, or just don\'t find the tag? Then you can use the \"skip\"-button to advance to the next tag.</string>
+	<string name="dialog_chooser_email">Send e-mail...</string>
 
-    <!-- URLs -->
-    <string name="barcode_scanner_play_store">com.google.zxing.client.android</string>
+	<!-- URLs -->
+	<string name="barcode_scanner_play_store">com.google.zxing.client.android</string>
+
+	<!-- E-mails -->
+	<string name="contact_tagstory">contact@tagstory.no</string>
 
 	<!-- API -->
 	<string name="market_api_stories">http://tagstory.herokuapp.com/api/stories/json</string>
 	<string name="market_api_story">http://tagstory.herokuapp.com/api/story/%s/json</string>
 	<string name="market_api_version">http://tagstory.herokuapp.com/api/story/%s/version/json</string>
 
-    <!-- Single words -->
-    <string name="cancel">Cancel</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="skip">Skip</string>
+	<!-- Single words -->
+	<string name="cancel">Cancel</string>
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+	<string name="skip">Skip</string>
 
 </resources>

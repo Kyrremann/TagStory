@@ -1,9 +1,12 @@
 package no.tagstory;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -121,8 +124,28 @@ public class TagStoryActivity extends LoginFragmentActivity implements OnItemCli
 
 	private void showAboutTagStoryDialog() {
 		if (aboutTagStoryDialog == null) {
-			aboutTagStoryDialog = DialogFactory.createAboutDialog(this, R.string.dialog_about_title,
-					R.string.dialog_about_tagstory);
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setCancelable(true);
+			builder.setTitle(R.string.dialog_about_title);
+			builder.setMessage(R.string.dialog_about_tagstory);
+			builder.setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+				}
+			});
+			builder.setPositiveButton(R.string.dialog_about_button_contact, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+							"mailto", getString(R.string.contact_tagstory), null));
+					intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.dummy_email_subject));
+					startActivity(Intent.createChooser(intent, getString(R.string.dialog_chooser_email)));
+					dialog.cancel();
+				}
+			});
+
+			aboutTagStoryDialog = builder.create();
 		}
 		aboutTagStoryDialog.show();
 	}

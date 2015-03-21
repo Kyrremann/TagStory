@@ -5,12 +5,10 @@
 	<item
 			android:id="@+id/menu_story_marked"
 			android:title="@string/menu_story_market"/>
-
 	<item
 			android:id="@+id/menu_statistics"
 			android:title="@string/menu_statistics"/>
 	<item
 			android:id="@+id/menu_sign_in"
 			android:title="@string/menu_sign_in"/>
-
 </menu>

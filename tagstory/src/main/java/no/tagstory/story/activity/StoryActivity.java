@@ -168,7 +168,7 @@ public class StoryActivity extends AbstractStoryActivity {
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.save_story:
+			case R.id.save_and_quit_story:
 				saveAndQuitStory();
 				break;
 		}

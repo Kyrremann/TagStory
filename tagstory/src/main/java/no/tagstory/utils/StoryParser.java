@@ -33,10 +33,11 @@ public class StoryParser {
 	public static final String LANGUAGE = "language"; // Use ISO 639-1
 	public static final String STATUS = "status";
 	public static final String TAGS = "tags";
+	public static final String VERSION = "version";
 	// Optinal
 	public static final String URL = "url";
-	public static final String ESTIMATED_TIME = "estimated_time";
 
+	public static final String ESTIMATED_TIME = "estimated_time";
 	// Tags
 	public static final String TAG_TITLE = "title";
 	public static final String TAG_DESCRIPTION = "description";
@@ -47,8 +48,8 @@ public class StoryParser {
 	// Optional
 	public static final String QUESTION = "question";
 	public static final String TAG_IMAGE = "image";
-	public static final String ENDPOINT = "isEndPoint"; // Last tag has to have this sat to true
 
+	public static final String ENDPOINT = "isEndPoint"; // Last tag has to have this sat to true
 	// Options
 	public static final String ANSWER = "answer";
 	public static final String HINT_METHOD = "method";
@@ -62,14 +63,14 @@ public class StoryParser {
 	public static final String HINT_SOUND_SOURCE = "sound_source";
 	public static final String ARROW_LENGTH = "arrow_length";
 	public static final String PROPAGATING_TEXT = "propagatingText";
-	public static final String HINT_TEXT = "text";
 
+	public static final String HINT_TEXT = "text";
 	// Quiz
 	public static final String QUIZ = "quiz";
 	public static final String QUIZ_Q = "quizQ";
 	public static final String QUIZ_A = "quizA";
-	public static final String QUIZ_C = "quizC";
 
+	public static final String QUIZ_C = "quizC";
 	// Camera
 	public static final String CAMERA = "camera";
 
@@ -91,7 +92,7 @@ public class StoryParser {
 
 	public static Story parseJsonToStory(Context context, String UUID)
 			throws JSONException, IOException {
-		JSONObject storyObject = parseJson(context, UUID).getJSONObject(STORY);
+		JSONObject storyObject = parseJson(context, UUID);
 
 		// Required
 		Story story = new Story();
@@ -111,6 +112,7 @@ public class StoryParser {
 		story.setCountry(storyObject.getString(COUNTRY));
 		story.setKeywords(storyObject.getString(KEYWORDS).split(";"));
 		story.setStatus(StoryStatusEnum.fromString(storyObject.getString(STATUS).toLowerCase()));
+		story.setVersion(storyObject.getInt(StoryParser.VERSION));
 
 		// Optional
 		story.setUrl(storyObject.optString(URL));

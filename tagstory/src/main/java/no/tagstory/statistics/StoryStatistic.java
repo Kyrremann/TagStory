@@ -2,6 +2,7 @@ package no.tagstory.statistics;
 
 import android.content.Context;
 import android.location.Location;
+
 import no.tagstory.utils.Database;
 import no.tagstory.utils.DateUtils;
 import no.tagstory.utils.StringUtils;
@@ -75,11 +76,15 @@ public class StoryStatistic {
 		return storyId;
 	}
 
-	public double getLastLocationLatitude() {
-		return locations.get(0).getLatitude();
+	public List<Location> getLocations() {
+		return locations;
 	}
 
-	public double getLastLocationLongitude() {
-		return locations.get(0).getLongitude();
+	public double getLocationLatitude(int index) {
+		return locations.get(index).getLatitude();
+	}
+
+	public double getLocationLongitude(int index) {
+		return locations.get(index).getLongitude();
 	}
 }

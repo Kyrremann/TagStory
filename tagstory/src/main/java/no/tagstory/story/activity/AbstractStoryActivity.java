@@ -46,7 +46,7 @@ public abstract class AbstractStoryActivity extends Activity {
 		if (storyHistory.hasPrevious()) {
 			Intent intent = new Intent(this, StoryActivity.class);
 			intent.putExtra(StoryActivity.EXTRA_STORY, story);
-			intent.putExtra(StoryActivity.EXTRA_TAG, storyHistory.getPreviousStory().getUUID());
+			intent.putExtra(StoryActivity.EXTRA_TAG, storyHistory.getPreviousStory());
 			storyHistory.previous();
 			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);

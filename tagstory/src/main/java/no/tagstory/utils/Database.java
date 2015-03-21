@@ -60,15 +60,15 @@ public class Database {
 	public static final String SAVE_QUIT_CREATE = String.format(Locale.ENGLISH,
 			"CREATE TABLE %s (" +
 					"%s INTEGER PRIMARY KEY AUTOINCREMENT," +
-					"%s INTEGER NOT NULL" +
-					"%s INTEGER NOT NULL);",
+					"%s TEXT NOT NULL, " +
+					"%s TEXT NOT NULL);",
 			SAVE_QUIT_TABLE_NAME, SAVE_QUIT_ID, SAVE_QUIT_STATISTIC_ID,
 			SAVE_QUIT_HISTORY_ROOT_ID);
 
 
 	private static final String LOCATIONS_TABLE_NAME = "LOCATION";
 	public static final String LOCATIONS_ID = "_id";
-	public static final String LOCATIONS_SQ_ID = "sq_id";
+	public static final String LOCATIONS_SAVE_QUIT_ID = "sq_id";
 	public static final String LOCATIONS_LATITUDE = "latitude";
 	public static final String LOCATIONS_LONGITUDE = "longitude";
 	public static final String LOCATIONS_CREATE = String.format(Locale.ENGLISH,
@@ -77,7 +77,7 @@ public class Database {
 					"%s INTEGER NOT NULL," +
 					"%s DOUBLE," +
 					"%s DOUBLE);",
-			LOCATIONS_TABLE_NAME,LOCATIONS_ID, LOCATIONS_SQ_ID, LOCATIONS_LATITUDE,
+			LOCATIONS_TABLE_NAME, LOCATIONS_ID, LOCATIONS_SAVE_QUIT_ID, LOCATIONS_LATITUDE,
 			LOCATIONS_LONGITUDE);
 
 	private static final String HISTORY_TABLE_NAME = "HISTORY";
@@ -89,8 +89,8 @@ public class Database {
 			"CREATE TABLE %s (" +
 					"%s INTEGER PRIMARY KEY AUTOINCREMENT," +
 					"%s TEXT NOT NULL," +
-					"%s TEXT NOT NULL," +
-					"%s TEXT_NOT_NULL);",
+					"%s TEXT," +
+					"%s TEXT);",
 			HISTORY_TABLE_NAME, HISTORY_ID, HISTORY_STORY_ID, HISTORY_PREVIOUS_TAG_ID,
 			HISTORY_NEXT_TAG_ID);
 
@@ -123,6 +123,7 @@ public class Database {
 		}
 
 	}
+
 	public Database(Context context) {
 		this.context = context;
 	}
@@ -194,36 +195,36 @@ public class Database {
 		return db.insert(STATISTICS_TABLE_NAME, null, values) != -1;
 	}
 
-	public boolean insertSQ(String statisticId, String historyRootId) {
-			ContentValues mValues = new ContentValues(2);
-			mValues.put(SAVE_QUIT_STATISTIC_ID, statisticId);
-			mValues.put(SAVE_QUIT_HISTORY_ROOT_ID, historyRootId);
-			return db.insert(SAVE_QUIT_TABLE_NAME, null, mValues) != -1;
+	public boolean insertSaveAndQuit(String statisticId, String historyRootId) {
+		ContentValues mValues = new ContentValues(2);
+		mValues.put(SAVE_QUIT_STATISTIC_ID, statisticId);
+		mValues.put(SAVE_QUIT_HISTORY_ROOT_ID, historyRootId);
+		return db.insert(SAVE_QUIT_TABLE_NAME, null, mValues) != -1;
 	}
 
-	public Cursor getSQ(String historyRootId) {
-		return db.rawQuery("select * from " +
-				SAVE_QUIT_TABLE_NAME + " where "
-				+ SAVE_QUIT_HISTORY_ROOT_ID + "=?", new String[]{historyRootId});
+	public Cursor getSaveAndQuit(String historyRootId) {
+		return db.query(
+				SAVE_QUIT_TABLE_NAME, new String[] {SAVE_QUIT_ID},
+				SAVE_QUIT_HISTORY_ROOT_ID + "=?", new String[]{historyRootId},
+				null, null, null);
 	}
 
-	public boolean deleteSQ(String sqId) {
+	public boolean deleteSaveAndQuit(String sqId) {
 		int result = db.delete(SAVE_QUIT_TABLE_NAME, SAVE_QUIT_HISTORY_ROOT_ID
 				+ "=?", new String[]{sqId});
 		return result > 0;
 	}
 
-	public boolean insertLocation(String sqId,
-	                              double latitude, double longitude) {
+	public boolean insertLocation(String sqId, double latitude, double longitude) {
 		ContentValues mValues = new ContentValues(3);
-		mValues.put(LOCATIONS_SQ_ID, sqId);
+		mValues.put(LOCATIONS_SAVE_QUIT_ID, sqId);
 		mValues.put(LOCATIONS_LATITUDE, latitude);
 		mValues.put(LOCATIONS_LONGITUDE, longitude);
 		return db.insert(LOCATIONS_TABLE_NAME, null, mValues) != -1;
 	}
 
 	public Cursor getLocation() {
-		return db.query(LOCATIONS_TABLE_NAME,null,null,null,null,null,
+		return db.query(LOCATIONS_TABLE_NAME, null, null, null, null, null,
 				null);
 	}
 
@@ -242,7 +243,7 @@ public class Database {
 	}
 
 	public Cursor getHistory() {
-		return db.query(HISTORY_TABLE_NAME,null,null,null,null,null,
+		return db.query(HISTORY_TABLE_NAME, null, null, null, null, null,
 				null);
 	}
 
@@ -250,8 +251,6 @@ public class Database {
 		return db.delete(HISTORY_TABLE_NAME, HISTORY_ID + "=?",
 				new String[]{historyId}) > 0;
 	}
-
-
 
 
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/button_start_resume_bottom"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal"
+	android:layout_alignParentBottom="true"
+	android:layout_alignParentLeft="true"
+	android:layout_alignParentRight="true">
+
+	<Button
+		android:id="@+id/start_new_story_button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+	    android:layout_weight="1"
+	    android:padding="15dp"
+	    android:background="@color/holo_orange_dark"
+	    android:textStyle="bold"
+		android:text="@string/story_button_start"
+		/>
+	<Button
+		android:id="@+id/resume_story_button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:padding="15dp"
+		android:background="@color/holo_orange_dark"
+		android:textStyle="bold"
+		android:text="Resume Story"/>
+
+</LinearLayout>

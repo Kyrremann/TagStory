@@ -71,14 +71,12 @@ public class StoryHistory {
 		return story;
 	}
 
-	public String getNextStory() {
-		return current.next != null ? current.next.getTagUUID()
-				: null;
+	public String getNextStoryId() {
+		return current.next != null ? current.next.getTagUUID(): null;
 	}
 
-	public String getPreviousStory() {
-		return current.previous != null ? current.previous.getTagUUID()
-				: null;
+	public String getPreviousStoryId() {
+		return current.previous != null ? current.previous.getTagUUID() : null;
 	}
 
 	public int getSize() {

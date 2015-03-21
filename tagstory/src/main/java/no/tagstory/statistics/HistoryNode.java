@@ -20,4 +20,8 @@ public class HistoryNode {
     public boolean hasPrevious() {
         return previous != null;
     }
+
+	public String getTagUUID() {
+		return tag.getUUID();
+	}
 }

@@ -97,7 +97,6 @@
 	<string name="statistic_read">%d stories read</string>
 	<string name="statistic_walked">%s walked</string>
 	<string name="statistic_empty">Statistics will be shown here</string>
-    <string name="quit_story">Quit</string>
-    <string name="save_story">Save</string>
+    <string name="save_and_quit_story_text">Save And Quit</string>
 
 </resources>

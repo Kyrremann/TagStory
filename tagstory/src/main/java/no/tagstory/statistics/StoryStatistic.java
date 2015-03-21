@@ -70,4 +70,16 @@ public class StoryStatistic {
 	public void addLocation(Location location) {
 		locations.add(location);
 	}
+
+	public String getStoryId() {
+		return storyId;
+	}
+
+	public double getLastLocationLatitude() {
+		return locations.get(0).getLatitude();
+	}
+
+	public double getLastLocationLongitude() {
+		return locations.get(0).getLongitude();
+	}
 }

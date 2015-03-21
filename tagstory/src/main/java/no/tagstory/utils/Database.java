@@ -66,19 +66,16 @@ public class Database {
 
 	private static final String LOCATIONS_TABLE_NAME = "LOCATION";
 	public static final String LOCATIONS_ID = "_id";
-	public static final String LOCATIONS_INDEX = "index";
 	public static final String LOCATIONS_SQ_ID = "sq_id";
 	public static final String LOCATIONS_LATITUDE = "latitude";
 	public static final String LOCATIONS_LONGITUDE = "longitude";
 	public static final String LOCATIONS_CREATE = String.format(Locale.ENGLISH,
 			"CREATE TABLE %s (" +
 					"%s INTEGER PRIMARY KEY AUTOINCREMENT," +
-					"%s INTEGER," +
 					"%s INTEGER NOT NULL," +
 					"%s DOUBLE," +
 					"%s DOUBLE);",
-			LOCATIONS_TABLE_NAME,
-			LOCATIONS_INDEX, LOCATIONS_ID, LOCATIONS_SQ_ID, LOCATIONS_LATITUDE,
+			LOCATIONS_TABLE_NAME,LOCATIONS_ID, LOCATIONS_SQ_ID, LOCATIONS_LATITUDE,
 			LOCATIONS_LONGITUDE);
 
 	private static final String HISTORY_TABLE_NAME = "HISTORY";
@@ -184,17 +181,17 @@ public class Database {
 		return db.insert(STATISTICS_TABLE_NAME, null, values) != -1;
 	}
 
-	public boolean insertSQ(int sqId, String statisticId, String historyRootId) {
-		ContentValues mValues = new ContentValues(3);
-		mValues.put(SAVE_QUIT_ID, sqId);
-		mValues.put(SAVE_QUIT_STATISTIC_ID, statisticId);
-		mValues.put(SAVE_QUIT_HISTORY_ROOT_ID, historyRootId);
-		return db.insert(SAVE_QUIT_TABLE_NAME, null, mValues) != -1;
+	public boolean insertSQ(String statisticId, String historyRootId) {
+			ContentValues mValues = new ContentValues(2);
+			mValues.put(SAVE_QUIT_STATISTIC_ID, statisticId);
+			mValues.put(SAVE_QUIT_HISTORY_ROOT_ID, historyRootId);
+			return db.insert(SAVE_QUIT_TABLE_NAME, null, mValues) != -1;
 	}
 
 	public Cursor getSQ(String historyRootId) {
-		return db.query(SAVE_QUIT_TABLE_NAME, null, null, null, null, null,
-				 historyRootId + " DESC");
+		return db.rawQuery("select * from " +
+				SAVE_QUIT_TABLE_NAME + " where "
+				+ SAVE_QUIT_HISTORY_ROOT_ID + "=?", new String[]{historyRootId});
 	}
 
 	public boolean deleteSQ(String sqId) {
@@ -203,17 +200,45 @@ public class Database {
 		return result > 0;
 	}
 
-	public boolean insertLocation(int locationId, String index, String sqId,
+	public boolean insertLocation(String sqId,
 	                              double latitude, double longitude) {
-		ContentValues mValues = new ContentValues(5);
-		mValues.put(LOCATIONS_ID, locationId);
-		mValues.put(LOCATIONS_INDEX, index);
+		ContentValues mValues = new ContentValues(3);
 		mValues.put(LOCATIONS_SQ_ID, sqId);
 		mValues.put(LOCATIONS_LATITUDE, latitude);
 		mValues.put(LOCATIONS_LONGITUDE, longitude);
 		return db.insert(LOCATIONS_TABLE_NAME, null, mValues) != -1;
 	}
 
-	
+	public Cursor getLocation() {
+		return db.query(LOCATIONS_TABLE_NAME,null,null,null,null,null,
+				null);
+	}
+
+	public boolean deleteLocation(String locationId) {
+		return db.delete(LOCATIONS_TABLE_NAME, LOCATIONS_ID + "=?",
+				new String[]{locationId}) > 0;
+	}
+
+	public boolean insertHistory(String storyId, String historyPrevious,
+	                             String historyNext) {
+		ContentValues mValues = new ContentValues(3);
+		mValues.put(HISTORY_STORY_ID, storyId);
+		mValues.put(HISTORY_PREVIOUS_TAG_ID, historyPrevious);
+		mValues.put(HISTORY_NEXT_TAG_ID, historyNext);
+		return db.insert(HISTORY_TABLE_NAME, null, mValues) != -1;
+	}
+
+	public Cursor getHistory() {
+		return db.query(HISTORY_TABLE_NAME,null,null,null,null,null,
+				null);
+	}
+
+	public boolean deleteHistory(String historyId) {
+		return db.delete(HISTORY_TABLE_NAME, HISTORY_ID + "=?",
+				new String[]{historyId}) > 0;
+	}
+
+
+
 
 }

@@ -205,7 +205,6 @@ public class StoryDetailActivity extends Activity {
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_delete_story:
-
                 if (storyManager.deleteStory(story_id)) {
                     Intent intent = ClassVersionFactory.createIntent(getApplicationContext(),
                             TagStoryActivityHoneycomb.class, TagStoryActivity.class);

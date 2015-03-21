@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.Menu;
@@ -19,6 +20,8 @@ import no.tagstory.R;
 import no.tagstory.StoryApplication;
 import no.tagstory.TagStoryActivity;
 import no.tagstory.honeycomb.TagStoryActivityHoneycomb;
+import no.tagstory.statistics.StoryHistory;
+import no.tagstory.statistics.StoryStatistic;
 import no.tagstory.story.StoryTag;
 import no.tagstory.story.StoryTagOption;
 import no.tagstory.utils.ClassVersionFactory;
@@ -166,28 +169,27 @@ public class StoryActivity extends AbstractStoryActivity {
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.save_story:
-				saveStory();
-				break;
-			case R.id.quit_story:
-				quitStory();
+				saveAndQuitStory();
 				break;
 		}
 		return true;
 	}
 
-	public void quitStory() {
-		this.storyApplication.stopStory();
-		finish();
-	}
-
-	public void saveStory() {
+	public void saveAndQuitStory() {
 		//TODO
 		//pause statistikken, lagre statistikken i databasen og continue i storydetail
 		mDatabase = new Database(this);
 		mDatabase.open();
 
-		storyApplication.getStoryHistory();
-		storyApplication.getStoryStatistic();
+		StoryHistory mStoryNode = storyApplication.getStoryHistory();
+		StoryStatistic mStoryStatistic = storyApplication.getStoryStatistic();
+		mDatabase.insertSQ(mStoryStatistic.getStoryId(), mStoryNode.getRootNode().getTagUUID());
+		Cursor cursor = mDatabase.getSQ(mStoryNode.getRootNode().getTagUUID());
+
+		mDatabase.insertLocation(cursor.getString(1),
+				mStoryStatistic.getLastLocationLatitude(),mStoryStatistic.getLastLocationLongitude());
+		mDatabase.insertHistory(mStoryNode.getStory().getUUID(), mStoryNode.getPreviousStory().getUUID()
+				, mStoryNode.getNextStory().getUUID());
 		this.storyApplication.stopStory();
 
 		finish();

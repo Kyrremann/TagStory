@@ -63,6 +63,14 @@ public class StoryHistory {
         return current.hasPrevious();
     }
 
+	public HistoryNode getRootNode() {
+		return root;
+	}
+
+	public Story getStory() {
+		return story;
+	}
+
     public StoryTag getNextStory() {
         return current.next.tag;
     }

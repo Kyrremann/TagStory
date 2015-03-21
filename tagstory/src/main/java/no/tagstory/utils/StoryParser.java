@@ -48,6 +48,7 @@ public class StoryParser {
 	// Optional
 	public static final String QUESTION = "question";
 	public static final String TAG_IMAGE = "image";
+	public static final String SKIPABLE = "skipable";
 
 	public static final String ENDPOINT = "isEndPoint"; // Last tag has to have this sat to true
 	// Options
@@ -140,6 +141,8 @@ public class StoryParser {
 				storyTag.setTitle(jsonTag.getString(TAG_TITLE));
 				storyTag.setTravelButton(jsonTag.getString(TRAVEL_BUTTON));
 
+				storyTag.setSkipable(jsonTag.optBoolean(SKIPABLE, false));
+
 				if (jsonTag.has(GAME_MODE)) {
 					storyTag.setGameMode(GameModeEnum.fromString(jsonTag.getString(GAME_MODE)));
 					parseGameMode(storyTag, jsonTag);
@@ -171,8 +174,6 @@ public class StoryParser {
 			storyTag.initQuizMode();
 			JSONArray quiz = jsonTag.getJSONArray(QUIZ);
 			JSONObject question;
-			int location;
-			String quizKey;
 
 			for (int index = 0; index < quiz.length(); index++) {
 				question = quiz.getJSONObject(index);

@@ -88,18 +88,21 @@ public class StoryTravelActivity extends FragmentActivity {
 		}
 	}
 
-	protected void showHelpDialog() {
+	private void showHelpDialog() {
 		if (helpDialog == null) {
 			helpDialog = createHelpDialog();
 		}
 		helpDialog.show();
 	}
 
-	private AlertDialog createHelpDialog() {
+	protected AlertDialog createHelpDialog() {
+		return createHelpDialog(R.string.dialog_qr_about_title, R.string.dialog_qr_about_content);
+	}
+
+	protected AlertDialog createHelpDialog(int title, int message) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle(R.string.dialog_qr_about_title);
-		builder.setMessage(R.string.dialog_qr_about_content);
-		builder.setCancelable(true);
+		builder.setTitle(title);
+		builder.setMessage(message);
 		builder.setNeutralButton(R.string.cancel,
 				new DialogInterface.OnClickListener() {
 
@@ -108,14 +111,16 @@ public class StoryTravelActivity extends FragmentActivity {
 						dialog.cancel();
 					}
 				});
-		builder.setNegativeButton(R.string.skip,
-				new DialogInterface.OnClickListener() {
+		if (story.getTag(tagId).isSkipable()) {
+			builder.setNegativeButton(R.string.skip,
+					new DialogInterface.OnClickListener() {
 
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						skipTag();
-					}
-				});
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							skipTag();
+						}
+					});
+		}
 		return builder.create();
 	}
 

@@ -29,6 +29,7 @@ import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.story.activity.utils.PhoneRequirementsUtils;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
+import no.tagstory.utils.StoryParser;
 import no.tagstory.utils.http.SimpleStoryHandler;
 import no.tagstory.utils.http.StoryProtocol;
 
@@ -55,7 +56,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 
 		storyApplication = (StoryApplication) getApplication();
 
-		storyId = getIntent().getStringExtra(Database.STORY_ID);
+		storyId = getIntent().getStringExtra(StoryParser.UUID);
 		if (storyId != null) {
 			StoryManager storyManager = new StoryManager(this);
 			story = storyManager.getStory(storyId);

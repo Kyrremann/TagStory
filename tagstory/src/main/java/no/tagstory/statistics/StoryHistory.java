@@ -1,7 +1,11 @@
 package no.tagstory.statistics;
 
+import android.content.Context;
+import no.tagstory.R;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
+import no.tagstory.story.activity.StoryActivity;
+import no.tagstory.utils.Database;
 
 public class StoryHistory {
 
@@ -83,5 +87,16 @@ public class StoryHistory {
 
 	public int getSize() {
 		return size;
+	}
+
+	public void saveToDatabase(Context context, int statisticsId) {
+		Database database = new Database(context);
+		database.open();
+		HistoryNode current = root;
+		do {
+			database.insertHistory(statisticsId, current);
+			current = current.next;
+		} while (current != null);
+		database.close();
 	}
 }

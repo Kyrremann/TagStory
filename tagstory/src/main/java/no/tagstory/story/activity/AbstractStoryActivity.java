@@ -13,6 +13,7 @@ import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
+import no.tagstory.utils.StoryParser;
 
 public abstract class AbstractStoryActivity extends Activity {
 
@@ -57,7 +58,7 @@ public abstract class AbstractStoryActivity extends Activity {
 			Intent intent = ClassVersionFactory.createIntent(this,
 					StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);
 			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			intent.putExtra(Database.STORY_ID, story.getUUID());
+			intent.putExtra(StoryParser.UUID, story.getUUID());
 			startActivity(intent);
 			finish();
 		}

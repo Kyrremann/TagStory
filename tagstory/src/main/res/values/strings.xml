@@ -113,5 +113,6 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="skip">Skip</string>
+	<string name="resume_story_button">Resume Story</string>
 
 </resources>

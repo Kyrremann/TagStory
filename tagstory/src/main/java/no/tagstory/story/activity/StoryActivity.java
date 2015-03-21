@@ -108,7 +108,7 @@ public class StoryActivity extends AbstractStoryActivity {
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(), StoryActivity.class);
 				intent.putExtra(StoryActivity.EXTRA_STORY, story);
-				intent.putExtra(StoryActivity.EXTRA_TAG, storyHistory.getNextStory());
+				intent.putExtra(StoryActivity.EXTRA_TAG, storyHistory.getNextStoryId());
 				storyHistory.next();
 				startActivity(intent);
 			}
@@ -191,8 +191,8 @@ public class StoryActivity extends AbstractStoryActivity {
 			mDatabase.insertLocation(cursor.getString(0),
 					mStoryStatistic.getLocationLatitude(i), mStoryStatistic.getLocationLongitude(i));
 		}
-		mDatabase.insertHistory(mStoryNode.getStory().getUUID(), mStoryNode.getPreviousStory()
-				, mStoryNode.getNextStory());
+		mDatabase.insertHistory(mStoryNode.getStory().getUUID(), mStoryNode.getPreviousStoryId()
+				, mStoryNode.getNextStoryId());
 		this.storyApplication.stopStory();
 		cursor.close();
 		mDatabase.close();

@@ -27,6 +27,6 @@
 		android:padding="15dp"
 		android:background="@color/holo_orange_dark"
 		android:textStyle="bold"
-		android:text="Resume Story"/>
+		android:text="@string/resume_story_button"/>
 
 </LinearLayout>

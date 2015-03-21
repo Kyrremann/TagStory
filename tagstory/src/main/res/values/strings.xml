@@ -64,6 +64,7 @@
     <string name="dummy_map_target">This is your target</string>
     <string name="dummy_map_snippet">Somewhere here is the next tag</string>
     <string name="dummy_title">Test The Experience</string>
+	<string name="dummy_email_subject">Hello, Tag Story!</string>
 
     <!-- Menu -->
     <string name="menu_about_app">About Tag Story</string>
@@ -74,6 +75,7 @@
     <string name="menu_sign_in">Sign in</string>
 	<string name="menu_statistics">Statistics</string>
 	<string name="menu_update_story">Update story</string>
+	<string name="menu_contact_us">Contact us</string>
 
     <!-- Content description -->
     <string name="cd_tagstory_logo">Tag Story logo</string>
@@ -85,15 +87,20 @@
     <string name="dialog_download_barcodescanner">To experience this story you need to download the Barcode Scanner app from ZXing Team.</string>
     <string name="dialog_go_to_play_store">To Play Store</string>
     <string name="dialog_about_title">About</string>
-    <string name="dialog_about_tagstory">Tag Story combines text based adventure games with NFC technology for an interactive, outdoor woodland adventure.\n\nMade as part of a project in INF5261 at University of Oslo.</string>
+    <string name="dialog_about_tagstory">Tag Story is an interactive, social, mobile game, designed to let you experience the psychical environment in a new and exciting way.\n\nThrough narrative stories you can interact with tags using your smartphone. Tags can either be physically visible (NFC and QR-code) or target a GPS position, guiding you from one place to another. Experience stories by you and others.</string>
+	<string name="dialog_about_button_contact">Contact us</string>
     <string name="dialog_enable_gps">You need GPS enabled to experience this story. Do you want to enable it?\n\nPS: You can not continue without GPS.</string>
     <string name="dialog_gps_about_title">About GPS tags</string>
     <string name="dialog_gps_about_content">A GPS tag uses the phone to see where you are. So that it magically can notifie the app and tell you when you are at the goal. So that all you have to do is walk!\n\nAre you a bit tired, or just don\'t find the tag? Then you can use the \"skip\"-button to advance to the next tag.</string>
     <string name="dialog_qr_about_title">About QR tags</string>
     <string name="dialog_qr_about_content">A QR-code is a matrix type of barcode.\n\nAre you a bit tired, or just don\'t find the tag? Then you can use the \"skip\"-button to advance to the next tag.</string>
+	<string name="dialog_chooser_email">Send e-mail...</string>
 
     <!-- URLs -->
     <string name="barcode_scanner_play_store">com.google.zxing.client.android</string>
+
+	<!-- E-mails -->
+	<string name="contact_tagstory">contact@tagstory.no</string>
 
 	<!-- API -->
 	<string name="market_api_stories">http://tagstory.herokuapp.com/api/stories/json</string>

@@ -15,7 +15,7 @@ public class DialogFactory {
 	 * @param message The main message of the dialog
 	 * @return a Dialog-object
 	 */
-	public static Dialog createAboutDialog(Context context, int title, int message) {
+	public static Dialog createSimpleDialog(Context context, int title, int message) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setTitle(title);
 		builder.setCancelable(true);

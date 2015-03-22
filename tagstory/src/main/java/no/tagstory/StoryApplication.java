@@ -83,37 +83,49 @@ public class StoryApplication extends Application {
 		}
 		locations.close();
 		Cursor histories = database.getHistories(statisticsId);
+		HistoryNode root = null;
 		if (histories.getCount() > 0) {
 			histories.moveToFirst();
-			StoryHistory root = findHistoryRoot(histories);
-			StoryHistory current = root;
-			while (current.hasNext()) {
-				String nextId = current.getNextStoryId();
-				StoryHistory next = findNextHistoryNode(histories, current.getStoryId(), nextId);
+			root = findHistoryRoot(histories);
+			HistoryNode current = root;
+			while (current != null) {
+				current = findNextHistoryNode(histories, current);
 			}
 		}
+		getStoryHistory().resumeStory(storyId, root, histories.getCount());
 		histories.close();
-
-		//getStoryHistory().startStory();
 	}
 
-	private StoryHistory findNextHistoryNode(Cursor histories, String storyId, String nextId) {
+	private HistoryNode findNextHistoryNode(Cursor histories, HistoryNode current) {
 		histories.moveToFirst();
+		String currentId = current.getTagUUID();
+		String nextId = current.next.getTagUUID();
 		while (!histories.isAfterLast()) {
-
+			if (histories.getString(3).equals(currentId)
+				&& histories.getString(2).equals(nextId)) {
+				HistoryNode next = new HistoryNode(histories.getString(2));
+				next.previous = current;
+				next.next = null;
+				current.next = next;
+				return next;
+			}
 		}
 		return null;
 	}
 
-	private StoryHistory findHistoryRoot(Cursor histories) {
+	private HistoryNode findHistoryRoot(Cursor histories) {
 		histories.moveToFirst();
 		while (!histories.isAfterLast()) {
-
-			if (histories.getInt(4) == 1) {
-				//HistoryNode historyNode = new HistoryNode();
-				//return historyNode;
+			if (histories.getInt(5) == 1) {
+				HistoryNode root = new HistoryNode(histories.getString(2));
+				HistoryNode next = new HistoryNode(histories.getString(4));
+				root.previous = null;
+				next.previous = root;
+				root.next = next;
+				return root;
 			}
 		}
+
 		return null;
 	}
 

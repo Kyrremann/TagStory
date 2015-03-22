@@ -21,6 +21,13 @@ public class StoryHistory {
 		size++;
 	}
 
+	public void resumeStory(String storyId, HistoryNode root, int size) {
+		this.storyId = storyId;
+		this.root = root;
+		this.size = size;
+		current = this.root;
+	}
+
 	public void push(StoryTag tag) {
 		HistoryNode temp = current;
 		current = new HistoryNode(tag.getUUID());

@@ -91,7 +91,7 @@ public class Database {
 	private static final String HISTORY_TABLE_NAME = "HISTORY";
 	private static final String HISTORY_ID = "_id";
 	private static final String HISTORY_STATISTICS_ID = "statistics_id";
-	private static final String HISTORY_STORY_ID = "story_id";
+	private static final String HISTORY_TAG_ID = "tag_id";
 	private static final String HISTORY_PREVIOUS_TAG = "previous_tag";
 	private static final String HISTORY_NEXT_TAG = "next_tag";
 	private static final String HISTORY_ROOT = "root";
@@ -103,8 +103,8 @@ public class Database {
 					"%s TEXT," +
 					"%s TEXT," +
 					"%s INTEGER DEFAULT 0);",
-			HISTORY_TABLE_NAME, HISTORY_ID, HISTORY_STATISTICS_ID, HISTORY_STORY_ID,
-			HISTORY_PREVIOUS_TAG, HISTORY_NEXT_TAG);
+			HISTORY_TABLE_NAME, HISTORY_ID, HISTORY_STATISTICS_ID, HISTORY_TAG_ID,
+			HISTORY_PREVIOUS_TAG, HISTORY_NEXT_TAG, HISTORY_ROOT);
 
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -265,7 +265,7 @@ public class Database {
 	public boolean insertHistory(int statisticsId, HistoryNode node) {
 		ContentValues mValues = new ContentValues(4);
 		mValues.put(HISTORY_STATISTICS_ID, statisticsId);
-		mValues.put(HISTORY_STORY_ID, node.getTagUUID());
+		mValues.put(HISTORY_TAG_ID, node.getTagUUID());
 		if (node.hasPrevious()) {
 			mValues.put(HISTORY_PREVIOUS_TAG, node.previous.getTagUUID());
 		}

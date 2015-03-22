@@ -177,6 +177,10 @@ public class StoryActivity extends AbstractStoryActivity {
 		StoryHistory mStoryHistory = storyApplication.getStoryHistory();
 		int statisticsId = mStoryStatistic.saveToDatebase(this);
 		mStoryHistory.saveToDatabase(this, statisticsId);
+		Database database = new Database(this);
+		database.open();
+		database.insertSaveTravel(statisticsId, story.getUUID());
+		database.close();
 
 		Intent intent = ClassVersionFactory.createIntent(getApplicationContext(),
 				StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);

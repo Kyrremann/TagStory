@@ -5,23 +5,20 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 import no.tagstory.honeycomb.TagStoryActivityHoneycomb;
-import no.tagstory.market.StoryMarketListingActivity;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
 import no.tagstory.story.TagTypeEnum;
@@ -91,6 +88,11 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 				((ImageView) findViewById(R.id.story_detail_image))
 						.setImageResource(R.drawable.placeimg_960_720_nature_1);
 			}
+			Database database = new Database(this);
+			if (database.hasSaveTravels(storyId)) {
+				Button resume = (Button) findViewById(R.id.resume_story);
+				resume.setVisibility(View.VISIBLE);
+			}
 		}
 	}
 
@@ -122,11 +124,16 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 	}
 
 	public void startStory(View v) {
-		if (v.getId() == R.id.start_story_button) {
-			if (hasPhoneRequirements()) {
-				return;
-			}
-			startStory();
+		switch (v.getId()) {
+			case R.id.start_story:
+				if (hasPhoneRequirements()) {
+					return;
+				}
+				startStory();
+				break;
+			case R.id.resume_story:
+				resumeStory();
+				break;
 		}
 	}
 
@@ -150,6 +157,17 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 		}
 
 		return false;
+	}
+
+	protected void resumeStory() {
+		Database database = new Database(this);
+		Cursor saveTravels = database.getSaveTravels(storyId);
+		if (saveTravels.getCount() > 1) {
+			// show list of stories to resume
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		} else {
+
+		}
 	}
 
 	protected void startStory() {

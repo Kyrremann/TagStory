@@ -6,13 +6,10 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.location.Location;
 import android.util.Log;
 import no.tagstory.statistics.HistoryNode;
-import no.tagstory.statistics.StoryHistory;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class Database {
@@ -63,14 +60,14 @@ public class Database {
 	private static final String SAVE_TRAVEL_ID = "_id";
 	private static final String SAVE_TRAVEL_STATISTIC_ID = "statistic_id";
 	private static final String SAVE_TRAVEL_STORY_ID = "story_id";
-	private static final String SAVE_TRAVEL_SAVED = "saved";
+	public static final String SAVE_TRAVEL_TIME_SAVED = "time_saved";
 	private static final String SAVE_TRAVEL_CREATE = String.format(Locale.ENGLISH,
 			"CREATE TABLE %s (" +
 					"%s INTEGER PRIMARY KEY AUTOINCREMENT," +
 					"%s INTEGER NOT NULL, " +
 					"%s INTEGER NOT NULL," +
 					"%s TEXT NOT NULL);",
-			SAVE_TRAVEL_TABLE_NAME, SAVE_TRAVEL_ID, SAVE_TRAVEL_STATISTIC_ID, SAVE_TRAVEL_STORY_ID, SAVE_TRAVEL_SAVED);
+			SAVE_TRAVEL_TABLE_NAME, SAVE_TRAVEL_ID, SAVE_TRAVEL_STATISTIC_ID, SAVE_TRAVEL_STORY_ID, SAVE_TRAVEL_TIME_SAVED);
 
 
 	private static final String LOCATIONS_TABLE_NAME = "LOCATIONS";
@@ -240,5 +237,32 @@ public class Database {
 			mValues.put(HISTORY_NEXT_TAG, node.next.getTagUUID());
 		}
 		return db.insert(HISTORY_TABLE_NAME, null, mValues) != -1;
+	}
+
+	public boolean insertSaveTravel(int statisticsId, String storyId) {
+		ContentValues values = new ContentValues();
+		values.put(SAVE_TRAVEL_STATISTIC_ID, statisticsId);
+		values.put(SAVE_TRAVEL_STORY_ID, storyId);
+		values.put(SAVE_TRAVEL_TIME_SAVED, DateUtils.formatSqliteDate(new Date()));
+		return db.insert(SAVE_TRAVEL_TABLE_NAME, null, values) != -1;
+	}
+
+	public boolean hasSaveTravels(String storyId) {
+		boolean hasStory = false;
+		Cursor cursor = db.query(SAVE_TRAVEL_TABLE_NAME, new String[]{SAVE_TRAVEL_STORY_ID},
+				SAVE_TRAVEL_STORY_ID + "=?", new String[]{storyId},
+				null, null, null);
+		if (cursor.getCount() > 1) {
+			hasStory = true;
+		}
+		cursor.close();
+
+		return hasStory;
+	}
+
+	public Cursor getSaveTravels(String storyId) {
+		return db.query(SAVE_TRAVEL_TABLE_NAME, new String[]{SAVE_TRAVEL_STORY_ID},
+				SAVE_TRAVEL_STORY_ID + "=?", new String[]{storyId},
+				null, null, null);
 	}
 }

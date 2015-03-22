@@ -8,7 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import no.tagstory.statistics.HistoryNode;
+import no.tagstory.statistics.StoryStatistic;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.Locale;
 
@@ -75,6 +77,8 @@ public class Database {
 	private static final String LOCATIONS_STATISTIC_ID = "statistic_id";
 	private static final String LOCATIONS_LATITUDE = "latitude";
 	private static final String LOCATIONS_LONGITUDE = "longitude";
+	private static final String LOCATIONS_PROVIDER = "provider";
+	private static final String LOCATIONS_TIMESTAMP = ""; // TODO
 	private static final String LOCATIONS_CREATE = String.format(Locale.ENGLISH,
 			"CREATE TABLE %s (" +
 					"%s INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -90,13 +94,15 @@ public class Database {
 	private static final String HISTORY_STORY_ID = "story_id";
 	private static final String HISTORY_PREVIOUS_TAG = "previous_tag";
 	private static final String HISTORY_NEXT_TAG = "next_tag";
+	private static final String HISTORY_ROOT = "root";
 	private static final String HISTORY_CREATE = String.format(Locale.ENGLISH,
 			"CREATE TABLE %s (" +
 					"%s INTEGER PRIMARY KEY AUTOINCREMENT," +
 					"%s INTEGER NOT NULL," +
 					"%s TEXT NOT NULL," +
 					"%s TEXT," +
-					"%s TEXT);",
+					"%s TEXT," +
+					"%s INTEGER DEFAULT 0);",
 			HISTORY_TABLE_NAME, HISTORY_ID, HISTORY_STATISTICS_ID, HISTORY_STORY_ID,
 			HISTORY_PREVIOUS_TAG, HISTORY_NEXT_TAG);
 
@@ -202,6 +208,24 @@ public class Database {
 		return id;
 	}
 
+	public StoryStatistic getStatistic(int statisticsId) {
+		Cursor cursor = db.query(STATISTICS_TABLE_NAME, null, STATISTICS_ID + "=?", new String[]{ Integer.toString(statisticsId) },
+				null, null, null);
+		cursor.moveToFirst();
+
+		Date startDate;
+		try {
+			startDate = DateUtils.parseSqliteDate(cursor.getString(2));
+		} catch (ParseException e) {
+			startDate = null;
+		}
+		StoryStatistic statistic = new StoryStatistic(cursor.getString(1), startDate);
+		statistic.setDuration(cursor.getLong(4));
+		statistic.setDistance(cursor.getInt(5));
+		statistic.setSaved(false);
+		return statistic;
+	}
+
 	// TODO should maybe only retrieved finish stories?
 	public Cursor getStatistics() {
 		return db.query(STATISTICS_TABLE_NAME, null, null, null, null, null,
@@ -218,12 +242,24 @@ public class Database {
 		return db.insert(STATISTICS_TABLE_NAME, null, values) != -1;
 	}
 
-	public boolean insertLocation(int statisticId, double latitude, double longitude) {
+	public Cursor getLocations(int statisticsId) {
+		return db.query(LOCATIONS_TABLE_NAME, new String[]{ LOCATIONS_LATITUDE, LOCATIONS_LONGITUDE },
+				LOCATIONS_STATISTIC_ID + "=?", new String[]{Integer.toString(statisticsId)},
+				null, null, null);
+	}
+
+	public boolean insertLocation(int statisticId, double latitude, double longitude, String provider) {
 		ContentValues mValues = new ContentValues(3);
 		mValues.put(LOCATIONS_STATISTIC_ID, statisticId);
 		mValues.put(LOCATIONS_LATITUDE, latitude);
 		mValues.put(LOCATIONS_LONGITUDE, longitude);
+		mValues.put(LOCATIONS_PROVIDER, provider);
 		return db.insert(LOCATIONS_TABLE_NAME, null, mValues) != -1;
+	}
+
+	public Cursor getHistories(int statisticsId) {
+		return db.query(HISTORY_TABLE_NAME, null, HISTORY_STATISTICS_ID + "=?", new String[]{ HISTORY_STATISTICS_ID },
+				null, null, null);
 	}
 
 	public boolean insertHistory(int statisticsId, HistoryNode node) {

@@ -166,7 +166,10 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 			// show list of stories to resume
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		} else {
-
+			storyApplication.resumeStory(database, saveTravels);
+			saveTravels.close();
+			database.close();
+			startStoryActivity();
 		}
 	}
 

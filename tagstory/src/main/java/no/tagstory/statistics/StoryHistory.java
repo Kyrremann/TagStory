@@ -9,13 +9,13 @@ import no.tagstory.utils.Database;
 
 public class StoryHistory {
 
-	private Story story;
+	private String storyId;
 	private HistoryNode root;
 	private HistoryNode current;
 	private int size;
 
 	public void startStory(Story story) {
-		this.story = story;
+		this.storyId = story.getUUID();
 		current = new HistoryNode(story.getStartTag().getUUID());
 		root = current;
 		size++;
@@ -71,8 +71,8 @@ public class StoryHistory {
 		return root;
 	}
 
-	public Story getStory() {
-		return story;
+	public String getStoryId() {
+		return storyId;
 	}
 
 	public String getNextStoryId() {

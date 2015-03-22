@@ -63,7 +63,7 @@ public class StoryStatistic {
 
 	private void saveLocations(Database database, int statisticId) {
 		for (Location location : locations) {
-			database.insertLocation(statisticId, location.getLatitude(), location.getLongitude());
+			database.insertLocation(statisticId, location.getLatitude(), location.getLongitude(), location.getProvider());
 		}
 	}
 
@@ -97,5 +97,25 @@ public class StoryStatistic {
 
 	public double getLocationLongitude(int index) {
 		return locations.get(index).getLongitude();
+	}
+
+	public void setDuration(long duration) {
+		this.duration = duration;
+	}
+
+	public long getDuration() {
+		return duration;
+	}
+
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
+
+	public int getDistance() {
+		return distance;
+	}
+
+	public void setSaved(boolean saved) {
+		this.isSaved = saved;
 	}
 }

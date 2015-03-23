@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 
+import no.tagstory.adapters.SavedTravelsListAdapter;
+import no.tagstory.adapters.StoryJsonAdapter;
 import no.tagstory.honeycomb.TagStoryActivityHoneycomb;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
@@ -29,6 +31,7 @@ import no.tagstory.utils.Database;
 import no.tagstory.utils.StoryParser;
 import no.tagstory.utils.http.SimpleStoryHandler;
 import no.tagstory.utils.http.StoryProtocol;
+import org.json.JSONArray;
 
 import java.io.FileNotFoundException;
 
@@ -89,6 +92,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 						.setImageResource(R.drawable.placeimg_960_720_nature_1);
 			}
 			Database database = new Database(this);
+			database.open();
 			if (database.hasSaveTravels(storyId)) {
 				Button resume = (Button) findViewById(R.id.resume_story);
 				resume.setVisibility(View.VISIBLE);
@@ -163,8 +167,17 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 		Database database = new Database(this);
 		Cursor saveTravels = database.getSaveTravels(storyId);
 		if (saveTravels.getCount() > 1) {
-			// show list of stories to resume
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setAdapter(new SavedTravelsListAdapter(this, saveTravels), new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					System.out.println(which);
+					dialog.cancel();
+				}
+			});
+			saveTravels.close();
+			database.close();
 		} else {
 			storyApplication.resumeStory(database, saveTravels);
 			saveTravels.close();

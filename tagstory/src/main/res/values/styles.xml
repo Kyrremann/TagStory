@@ -34,4 +34,10 @@
 
     <style name="ProgressBarStyle" parent="@android:style/Widget.ProgressBar.Horizontal"/>
 
+	<style name="TextAppearanceButton" >
+		<item name="android:textColor">@color/text_color_white</item>
+		<item name="android:textSize">@dimen/text_size_medium</item>
+		<item name="textAllCaps">true</item>
+		<item name="android:textStyle">bold</item>
+	</style>
 </resources>

@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import no.tagstory.R;
 import no.tagstory.story.StoryTagOption;
@@ -19,15 +18,13 @@ public class QuizActivity extends AbstractGameModeActivity {
 
 	private int quizIndex;
 	private int quizPoint;
-	private LinearLayout layout;
 	private TextView textView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_story_quiz);
+		setContentView(R.layout.activity_story_quiz_single);
 
-		layout = (LinearLayout) findViewById(R.id.activity_layout_quiz);
 		quizIndex = 0;
 
 		addQuestion();
@@ -39,12 +36,9 @@ public class QuizActivity extends AbstractGameModeActivity {
 			return;
 		}
 
-		textView = new TextView(this);
+		textView = (TextView) findViewById(R.id.question);
 		textView.setText(tag.getQuizNode(quizIndex).getQuestion());
-		textView.setBackgroundResource(R.drawable.background_border_light_green);
-		textView.setTextSize(21);
-		textView.setPadding(16, 16, 16, 16);
-		layout.addView(textView, 0);
+		//TODO add answerbuttons based on quizxtype
 	}
 
 	public void quizAnswer(View view) {

@@ -4,6 +4,10 @@
 	<!-- Tag Story colors -->
 	<color name="hs_green">#27a056</color>
 
+	<!-- Text colors -->
+	<color name="text_color_white">#ffffff</color>
+
+
 	<!-- Android Holo style -->
 	<color name="holo_blue_bright">#ff00ddff</color>
 	<color name="holo_blue_dark">#ff0099cc</color>

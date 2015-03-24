@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- text sizes-->
+	<dimen name="text_size_medium">18sp</dimen>
+	<dimen name="text_size_large">21sp</dimen>
+
+	<!-- text margin -->
+	<dimen name="default_margin">16dp</dimen>
+	<!-- text padding -->
+	<dimen name="default_padding">18dp</dimen>
+
+	<!-- car view size -->
+	<dimen name="card_view_width">103dp</dimen>
+	<dimen name="card_view_height">102dp</dimen>
+
+</resources>

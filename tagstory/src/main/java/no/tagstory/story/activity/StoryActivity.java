@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.location.Location;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,27 +14,22 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import no.tagstory.R;
-import no.tagstory.StoryApplication;
 import no.tagstory.StoryDetailActivity;
-import no.tagstory.TagStoryActivity;
 import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
-import no.tagstory.honeycomb.TagStoryActivityHoneycomb;
 import no.tagstory.statistics.StoryHistory;
 import no.tagstory.statistics.StoryStatistic;
 import no.tagstory.story.StoryTag;
 import no.tagstory.story.StoryTagOption;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
+import no.tagstory.utils.StoryParser;
 
 import java.io.FileNotFoundException;
 
 import static no.tagstory.story.activity.utils.TravelIntentUtil.*;
 
 public class StoryActivity extends AbstractStoryActivity {
-	private Database mDatabase;
 
 	@Override
 	protected void onResume() {
@@ -179,31 +173,21 @@ public class StoryActivity extends AbstractStoryActivity {
 	}
 
 	public void saveAndQuitStory() {
-		mDatabase = new Database(this);
-		mDatabase.open();
-
-		StoryHistory mStoryNode = storyApplication.getStoryHistory();
-		StoryStatistic mStoryStatistic = storyApplication.getStoryStatistic();
-		mDatabase.insertSaveAndQuit(mStoryStatistic.getStoryId(), mStoryNode.getRootNode().getTagUUID());
-		Cursor cursor = mDatabase.getSaveAndQuit(mStoryNode.getRootNode().getTagUUID());
-		cursor.moveToFirst();
-		for(int i = 0; i < mStoryStatistic.getLocations().size(); i++) {
-			mDatabase.insertLocation(cursor.getString(0),
-					mStoryStatistic.getLocationLatitude(i), mStoryStatistic.getLocationLongitude(i));
-		}
-		mDatabase.insertHistory(mStoryNode.getStory().getUUID(), mStoryNode.getPreviousStoryId()
-				, mStoryNode.getNextStoryId());
-		this.storyApplication.stopStory();
-		cursor.close();
-		mDatabase.close();
+		StoryStatistic mStoryStatistic = storyApplication.stopStory();
+		StoryHistory mStoryHistory = storyApplication.getStoryHistory();
+		int statisticsId = mStoryStatistic.saveToDatebase(this);
+		mStoryHistory.saveToDatabase(this, statisticsId);
+		Database database = new Database(this);
+		database.open();
+		database.insertSaveTravel(statisticsId, story.getUUID());
+		database.close();
 
 		Intent intent = ClassVersionFactory.createIntent(getApplicationContext(),
 				StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		intent.putExtra(Database.STORY_ID, story.getUUID());
+		intent.putExtra(StoryParser.UUID, story.getUUID());
 		startActivity(intent);
 		finish();
-
 	}
 
 }

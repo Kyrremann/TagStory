@@ -40,6 +40,7 @@
 	<string name="story_button_scan_tag">Scan tag</string>
 	<string name="story_button_where_to_go">See where to go next</string>
 	<string name="story_button_start">Start Story</string>
+	<string name="resume_story_button">Resume Story</string>
 	<string name="story_button_next_tag">Go to next tag</string>
 
 	<!-- Travel -->
@@ -114,6 +115,5 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="skip">Skip</string>
-	<string name="resume_story_button">Resume Story</string>
 
 </resources>

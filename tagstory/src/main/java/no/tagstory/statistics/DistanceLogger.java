@@ -89,6 +89,8 @@ public class DistanceLogger extends Service implements GoogleApiClient.Connectio
 	@Override
 	public void onLocationChanged(Location location) {
 		Log.d(TAG, "Got location: " + location.getTime());
-		storyApplication.getStoryStatistic().addLocation(location);
+		if(storyApplication.getStoryStatistic() != null) {
+			storyApplication.getStoryStatistic().addLocation(location);
+		}
 	}
 }

@@ -155,7 +155,8 @@ public class TagStoryActivity extends LoginFragmentActivity implements OnItemCli
 		storyCursor.moveToPosition(position);
 		Intent detailIntent = ClassVersionFactory.createIntent(getApplicationContext(),
 				StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);
-		detailIntent.putExtra(StoryParser.UUID, storyCursor.getString(0));
+		detailIntent.putExtra(Database.STORY_ID,
+				storyCursor.getString(0));
 		startActivity(detailIntent);
 	}
 

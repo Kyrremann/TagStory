@@ -3,46 +3,33 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
 
-	<LinearLayout
-			xmlns:android="http://schemas.android.com/apk/res/android"
-			android:id="@+id/button_bottom_bar"
-			android:layout_width="match_parent"
+	<Button
+			android:id="@+id/start_story_button"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:orientation="horizontal"
 			android:layout_alignParentBottom="true"
 			android:layout_alignParentLeft="true"
-			android:layout_alignParentRight="true">
-
-		<Button
-				android:id="@+id/start_story"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				android:padding="15dp"
-				android:onClick="startStory"
-				android:background="@color/holo_orange_light"
-				android:textStyle="bold"
-				android:text="@string/story_button_start"
-				/>
-		<Button
-				android:id="@+id/resume_story"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				android:padding="15dp"
-				android:onClick="startStory"
-				android:background="@color/holo_orange_light"
-				android:textStyle="bold"
-				android:visibility="gone"
-				android:text="@string/resume_story_button"/>
-
-	</LinearLayout>
+			android:layout_alignParentRight="true"
+			android:background="@color/holo_orange_light"
+			android:onClick="startStory"
+			android:padding="15dp"
+			android:text="@string/story_button_start"
+			android:textStyle="bold"/>
+	<include
+		android:id="@+id/start_resume_story_button"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentBottom="true"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentRight="true"
+	    android:visibility="gone"
+	    layout="@layout/include_start_resume_buttonbar"/>
 
 	<ScrollView
 			android:id="@+id/scrollView1"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_above="@+id/button_bottom_bar"
+			android:layout_above="@+id/start_story_button"
 			android:layout_alignParentTop="true"
 			android:layout_centerHorizontal="true"
 			android:layout_margin="15dp">

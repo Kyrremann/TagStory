@@ -41,7 +41,7 @@ public class StatisticsActivity extends LoginFragmentActivity {
 		ListView listView = (ListView) findViewById(R.id.list_statistics);
 		SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(this, R.layout.item_statistics,
 				statistics,
-				new String[]{Database.STATISTICS_START_DATE, Database.STATISTICS_DISTANCE}, new int[]{R.id.date, R.id.distance},
+				new String[]{Database.STATISTICS_DATE, Database.STATISTICS_DISTANCE}, new int[]{R.id.date, R.id.distance},
 				CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 
 		cursorAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {

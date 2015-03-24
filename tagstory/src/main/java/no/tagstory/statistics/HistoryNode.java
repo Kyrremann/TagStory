@@ -1,5 +1,7 @@
 package no.tagstory.statistics;
 
+import no.tagstory.story.StoryTag;
+
 public class HistoryNode {
 
 	protected String tagId;

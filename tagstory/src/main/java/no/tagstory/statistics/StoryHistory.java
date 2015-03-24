@@ -1,31 +1,20 @@
 package no.tagstory.statistics;
 
-import android.content.Context;
-import no.tagstory.R;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
-import no.tagstory.story.activity.StoryActivity;
-import no.tagstory.utils.Database;
 
 public class StoryHistory {
 
-	private String storyId;
+	private Story story;
 	private HistoryNode root;
 	private HistoryNode current;
 	private int size;
 
 	public void startStory(Story story) {
-		this.storyId = story.getUUID();
+		this.story = story;
 		current = new HistoryNode(story.getStartTag().getUUID());
 		root = current;
 		size++;
-	}
-
-	public void resumeStory(String storyId, HistoryNode root, int size) {
-		this.storyId = storyId;
-		this.root = root;
-		this.size = size;
-		current = this.root;
 	}
 
 	public void push(StoryTag tag) {
@@ -78,8 +67,8 @@ public class StoryHistory {
 		return root;
 	}
 
-	public String getStoryId() {
-		return storyId;
+	public Story getStory() {
+		return story;
 	}
 
 	public String getNextStoryId() {
@@ -92,16 +81,5 @@ public class StoryHistory {
 
 	public int getSize() {
 		return size;
-	}
-
-	public void saveToDatabase(Context context, int statisticsId) {
-		Database database = new Database(context);
-		database.open();
-		HistoryNode current = root;
-		do {
-			database.insertHistory(statisticsId, current);
-			current = current.next;
-		} while (current != null);
-		database.close();
 	}
 }

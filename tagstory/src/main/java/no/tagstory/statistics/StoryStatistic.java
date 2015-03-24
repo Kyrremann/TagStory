@@ -3,7 +3,6 @@ package no.tagstory.statistics;
 import android.content.Context;
 import android.location.Location;
 
-import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.utils.Database;
 import no.tagstory.utils.DateUtils;
 import no.tagstory.utils.StringUtils;
@@ -17,7 +16,6 @@ public class StoryStatistic {
 
 	private String storyId;
 	private Date startTime;
-	private Date endTime;
 	private long duration;
 	private int distance;
 	private boolean isSaved;
@@ -51,20 +49,11 @@ public class StoryStatistic {
 		return distance;
 	}
 
-	public int saveToDatebase(Context context) {
+	public void saveToDatebase(Context context) {
 		Database database = new Database(context);
 		database.open();
-		isSaved = database.insertStatistic(storyId, startTime, endTime, duration, distance);
-		int id = database.getStatisticId(storyId, startTime);
-		saveLocations(database, id);
+		isSaved = database.insertStatistic(storyId, startTime, duration, distance);
 		database.close();
-		return id;
-	}
-
-	private void saveLocations(Database database, int statisticId) {
-		for (Location location : locations) {
-			database.insertLocation(statisticId, location.getLatitude(), location.getLongitude(), location.getProvider());
-		}
 	}
 
 	public String formatStatistic() {
@@ -97,25 +86,5 @@ public class StoryStatistic {
 
 	public double getLocationLongitude(int index) {
 		return locations.get(index).getLongitude();
-	}
-
-	public void setDuration(long duration) {
-		this.duration = duration;
-	}
-
-	public long getDuration() {
-		return duration;
-	}
-
-	public void setDistance(int distance) {
-		this.distance = distance;
-	}
-
-	public int getDistance() {
-		return distance;
-	}
-
-	public void setSaved(boolean saved) {
-		this.isSaved = saved;
 	}
 }

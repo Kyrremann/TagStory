@@ -13,7 +13,6 @@ import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
-import no.tagstory.utils.StoryParser;
 
 public abstract class AbstractStoryActivity extends Activity {
 
@@ -47,7 +46,7 @@ public abstract class AbstractStoryActivity extends Activity {
 		if (storyHistory.hasPrevious()) {
 			Intent intent = new Intent(this, StoryActivity.class);
 			intent.putExtra(StoryActivity.EXTRA_STORY, story);
-			intent.putExtra(StoryActivity.EXTRA_TAG, storyHistory.getPreviousStoryId());
+			intent.putExtra(StoryActivity.EXTRA_TAG, storyHistory.getPreviousStory());
 			storyHistory.previous();
 			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);
@@ -58,7 +57,7 @@ public abstract class AbstractStoryActivity extends Activity {
 			Intent intent = ClassVersionFactory.createIntent(this,
 					StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);
 			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			intent.putExtra(StoryParser.UUID, story.getUUID());
+			intent.putExtra(Database.STORY_ID, story.getUUID());
 			startActivity(intent);
 			finish();
 		}

@@ -10,10 +10,6 @@ public class DateUtils {
 	private static SimpleDateFormat statisticDate = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 	public static String formatSqliteDate(Date date) {
-		if (date == null) {
-			return "";
-		}
-
 		return sqliteDate.format(date);
 	}
 
@@ -22,10 +18,6 @@ public class DateUtils {
 	}
 
 	public static String formatStatisticDate(Date date) {
-		if (date == null) {
-			return "";
-		}
-
 		return statisticDate.format(date);
 	}
 

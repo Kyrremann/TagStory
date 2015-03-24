@@ -97,7 +97,7 @@ public class StoryMarketListingActivity extends Activity implements SimpleStoryH
 				if (isDownloaded) {
 					Intent detailIntent = ClassVersionFactory.createIntent(getApplicationContext(),
 							StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);
-					detailIntent.putExtra(StoryParser.UUID, storyUUID);
+					detailIntent.putExtra(Database.STORY_ID, storyUUID);
 					startActivity(detailIntent);
 				} else if (isOutdated) {
 					deleteStory();

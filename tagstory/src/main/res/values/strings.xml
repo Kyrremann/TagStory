@@ -56,7 +56,6 @@
 	<string name="story_quiz_ready">I am ready</string>
 	<string name="story_quiz_true">True</string>
 	<string name="story_quiz_false">False</string>
-	<string name="story_quiz_multiple">Choose Answers</string>
 	<string name="story_quiz_correction">Correction</string>
 	<string name="story_quiz_next">Next question</string>
 

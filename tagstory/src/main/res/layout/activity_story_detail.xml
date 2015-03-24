@@ -15,15 +15,6 @@
 			android:padding="15dp"
 			android:text="@string/story_button_start"
 			android:textStyle="bold"/>
-	<include
-		android:id="@+id/start_resume_story_button"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentBottom="true"
-	    android:layout_alignParentLeft="true"
-	    android:layout_alignParentRight="true"
-	    android:visibility="gone"
-	    layout="@layout/include_start_resume_buttonbar"/>
 
 	<ScrollView
 			android:id="@+id/scrollView1"

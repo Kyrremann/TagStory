@@ -4,24 +4,20 @@ import no.tagstory.story.StoryTag;
 
 public class HistoryNode {
 
-	protected String tagId;
+    protected StoryTag tag;
 
-	public HistoryNode next;
-	public HistoryNode previous;
+    public HistoryNode next;
+    public HistoryNode previous;
 
-	public HistoryNode(String tagId) {
-		this.tagId = tagId;
-	}
+    public HistoryNode(StoryTag tag) {
+        this.tag = tag;
+    }
 
-	public boolean hasNext() {
-		return next != null;
-	}
+    public boolean hasNext() {
+        return next != null;
+    }
 
-	public boolean hasPrevious() {
-		return previous != null;
-	}
-
-	public String getTagUUID() {
-		return tagId;
-	}
+    public boolean hasPrevious() {
+        return previous != null;
+    }
 }

@@ -26,6 +26,7 @@ public class StoryTag implements Serializable {
 	private String title;
 	private List<StoryTagOption> options;
 	private HashMap<Integer, QuizNode> quiz;
+	private boolean skipable;
 
 	public StoryTag(String UUID, String description, boolean endpoint) {
 		this.UUID = UUID;
@@ -169,5 +170,13 @@ public class StoryTag implements Serializable {
 
 	public void initQuizMode() {
 		quiz = new HashMap<>();
+	}
+
+	public void setSkipable(boolean skipable) {
+		this.skipable = skipable;
+	}
+
+	public boolean isSkipable() {
+		return skipable;
 	}
 }

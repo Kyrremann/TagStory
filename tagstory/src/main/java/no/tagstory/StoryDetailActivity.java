@@ -5,23 +5,22 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import no.tagstory.honeycomb.TagStoryActivityHoneycomb;
-import no.tagstory.market.StoryMarketListingActivity;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
 import no.tagstory.story.TagTypeEnum;
@@ -55,7 +54,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 
 		storyApplication = (StoryApplication) getApplication();
 
-		storyId = getIntent().getStringExtra(Database.STORY_ID);
+		storyId = getIntent().getStringExtra(StoryParser.UUID);
 		if (storyId != null) {
 			StoryManager storyManager = new StoryManager(this);
 			story = storyManager.getStory(storyId);
@@ -90,6 +89,12 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 				((ImageView) findViewById(R.id.story_detail_image))
 						.setImageResource(R.drawable.placeimg_960_720_nature_1);
 			}
+			Database database = new Database(this);
+			database.open();
+			if (database.hasSaveTravels(storyId)) {
+				Button resume = (Button) findViewById(R.id.resume_story);
+				resume.setVisibility(View.VISIBLE);
+			}
 		}
 	}
 
@@ -121,11 +126,16 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 	}
 
 	public void startStory(View v) {
-		if (v.getId() == R.id.start_story_button) {
-			if (hasPhoneRequirements()) {
-				return;
-			}
-			startStory();
+		switch (v.getId()) {
+			case R.id.start_story:
+				if (hasPhoneRequirements()) {
+					return;
+				}
+				startStory();
+				break;
+			case R.id.resume_story:
+				resumeStory();
+				break;
 		}
 	}
 
@@ -149,6 +159,29 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 		}
 
 		return false;
+	}
+
+	protected void resumeStory() {
+		Database database = new Database(this);
+		Cursor saveTravels = database.getSaveTravels(storyId);
+		if (saveTravels.getCount() > 1) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setAdapter(new SavedTravelsListAdapter(this, saveTravels), new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					System.out.println(which);
+					dialog.cancel();
+				}
+			});
+			saveTravels.close();
+			database.close();
+		} else {
+			storyApplication.resumeStory(database, saveTravels);
+			saveTravels.close();
+			database.close();
+			startStoryActivity();
+		}
 	}
 
 	protected void startStory() {

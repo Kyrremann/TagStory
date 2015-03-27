@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import no.tagstory.adapters.SavedTravelsListAdapter;
 import no.tagstory.honeycomb.TagStoryActivityHoneycomb;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryManager;
@@ -28,6 +29,7 @@ import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.story.activity.utils.PhoneRequirementsUtils;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
+import no.tagstory.utils.StoryParser;
 import no.tagstory.utils.http.SimpleStoryHandler;
 import no.tagstory.utils.http.StoryProtocol;
 

@@ -2,10 +2,12 @@ package no.tagstory;
 
 import android.app.Application;
 import android.content.Intent;
+
 import no.tagstory.statistics.DistanceLogger;
 import no.tagstory.statistics.StoryHistory;
 import no.tagstory.statistics.StoryStatistic;
 import no.tagstory.story.Story;
+
 import org.json.JSONArray;
 
 import java.util.Date;

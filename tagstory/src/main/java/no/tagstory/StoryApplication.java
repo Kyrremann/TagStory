@@ -61,6 +61,7 @@ public class StoryApplication extends Application {
 	}
 
 	public void resumeStory(Database database, Cursor saveTravels) {
+		saveTravels.moveToFirst();
 		int id = saveTravels.getInt(0);
 		int statisticsId = saveTravels.getInt(1);
 		String storyId = saveTravels.getString(2);
@@ -101,9 +102,11 @@ public class StoryApplication extends Application {
 		String currentId = current.getTagUUID();
 		String nextId = current.next.getTagUUID();
 		while (!histories.isAfterLast()) {
+			System.out.println(histories.getString(3));
+			System.out.println(histories.getString(4));
 			if (histories.getString(3).equals(currentId)
-					&& histories.getString(2).equals(nextId)) {
-				HistoryNode next = new HistoryNode(histories.getString(2));
+					&& histories.getString(4).equals(nextId)) {
+				HistoryNode next = new HistoryNode(histories.getString(4));
 				next.previous = current;
 				next.next = null;
 				current.next = next;
@@ -122,6 +125,7 @@ public class StoryApplication extends Application {
 				root.previous = null;
 				next.previous = root;
 				root.next = next;
+				root.root = true;
 				return root;
 			}
 		}

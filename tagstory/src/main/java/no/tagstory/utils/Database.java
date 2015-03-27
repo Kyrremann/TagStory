@@ -179,7 +179,9 @@ public class Database {
 
 
 	public boolean hasStory(String id) {
-		int result = db.query(STORY_TABLE_NAME, new String[]{STORY_ID}, STORY_ID + "=?", new String[]{id}, null, null, null).getCount();
+		Cursor cursor = db.query(STORY_TABLE_NAME, new String[]{STORY_ID}, STORY_ID + "=?", new String[]{id}, null, null, null);
+		int result = cursor.getCount();
+		cursor.close();
 		return result == 1;
 	}
 
@@ -189,8 +191,8 @@ public class Database {
 		if (result.getCount() == 1) {
 			result.moveToFirst();
 			isOutdated = result.getInt(result.getColumnIndex(STORY_VERSION)) < latestVersion;
-			result.close();
 		}
+		result.close();
 
 		return isOutdated;
 	}
@@ -203,8 +205,8 @@ public class Database {
 		if (cursor.getCount() == 1) {
 			cursor.moveToFirst();
 			id = cursor.getInt(0);
-			cursor.close();
 		}
+		cursor.close();
 
 		return id;
 	}
@@ -274,6 +276,7 @@ public class Database {
 		if (node.hasNext()) {
 			mValues.put(HISTORY_NEXT_TAG, node.next.getTagUUID());
 		}
+		mValues.put(HISTORY_ROOT, node.root);
 		return db.insert(HISTORY_TABLE_NAME, null, mValues) != -1;
 	}
 
@@ -288,9 +291,9 @@ public class Database {
 	public boolean hasSaveTravels(String storyId) {
 		boolean hasStory = false;
 		Cursor cursor = db.query(SAVE_TRAVEL_TABLE_NAME, new String[]{SAVE_TRAVEL_STORY_ID},
-				SAVE_TRAVEL_STORY_ID + "=?", new String[]{storyId},
+				SAVE_TRAVEL_STORY_ID + "=?", new String[]{ storyId },
 				null, null, null);
-		if (cursor.getCount() > 1) {
+		if (cursor.getCount() > 0) {
 			hasStory = true;
 		}
 		cursor.close();
@@ -299,7 +302,7 @@ public class Database {
 	}
 
 	public Cursor getSaveTravels(String storyId) {
-		return db.query(SAVE_TRAVEL_TABLE_NAME, new String[]{SAVE_TRAVEL_STORY_ID},
+		return db.query(SAVE_TRAVEL_TABLE_NAME, null,
 				SAVE_TRAVEL_STORY_ID + "=?", new String[]{storyId},
 				null, null, null);
 	}

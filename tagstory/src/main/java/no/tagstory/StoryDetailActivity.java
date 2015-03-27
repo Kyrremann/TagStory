@@ -97,6 +97,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 				Button resume = (Button) findViewById(R.id.resume_story);
 				resume.setVisibility(View.VISIBLE);
 			}
+			database.close();
 		}
 	}
 
@@ -165,6 +166,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 
 	protected void resumeStory() {
 		Database database = new Database(this);
+		database.open();
 		Cursor saveTravels = database.getSaveTravels(storyId);
 		if (saveTravels.getCount() > 1) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);

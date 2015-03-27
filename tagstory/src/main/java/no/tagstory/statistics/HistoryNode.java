@@ -6,6 +6,7 @@ public class HistoryNode {
 
 	public HistoryNode next;
 	public HistoryNode previous;
+	public boolean root = false;
 
 	public HistoryNode(String tagId) {
 		this.tagId = tagId;

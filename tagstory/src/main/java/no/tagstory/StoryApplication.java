@@ -85,14 +85,18 @@ public class StoryApplication extends Application {
 		locations.close();
 		Cursor histories = database.getHistories(statisticsId);
 		HistoryNode root = null;
+		System.out.println("Nodes " + histories.getCount());
 		if (histories.getCount() > 0) {
 			histories.moveToFirst();
 			root = findHistoryRoot(histories);
 			HistoryNode current = root;
-			while (current != null) {
+			while (current.next != null) {
 				current = findNextHistoryNode(histories, current);
 			}
 		}
+		System.out.println("Root " + root.getTagUUID());
+		System.out.println("2 " + root.next.getTagUUID());
+		System.out.println("3 " + root.next.next.getTagUUID());
 		getStoryHistory().resumeStory(storyId, root, histories.getCount());
 		histories.close();
 	}
@@ -102,18 +106,33 @@ public class StoryApplication extends Application {
 		String currentId = current.getTagUUID();
 		String nextId = current.next.getTagUUID();
 		while (!histories.isAfterLast()) {
-			System.out.println(histories.getString(3));
-			System.out.println(histories.getString(4));
-			if (histories.getString(3).equals(currentId)
-					&& histories.getString(4).equals(nextId)) {
-				HistoryNode next = new HistoryNode(histories.getString(4));
-				next.previous = current;
-				next.next = null;
-				current.next = next;
-				return next;
+			if (hasThisHistoryNodeCurrentAsPrevious(histories, currentId)
+				&& isThisHistoryNodeTheNextOne(histories, nextId)) {
+				HistoryNode newCurrent = new HistoryNode(histories.getString(2));
+				if (!histories.isNull(4)) {
+					HistoryNode next = new HistoryNode(histories.getString(4));
+					newCurrent.next = next;
+				} else {
+					newCurrent.next = null;
+				}
+				newCurrent.previous = current;
+				current.next = newCurrent;
+				return newCurrent;
 			}
+			histories.moveToNext();
 		}
 		return null;
+	}
+
+	private boolean hasThisHistoryNodeCurrentAsPrevious(Cursor cursor, String currentId) {
+		if (cursor.isNull(3)) {
+			return false;
+		}
+		return cursor.getString(3).equals(currentId);
+	}
+
+	private boolean isThisHistoryNodeTheNextOne(Cursor histories, String nextId) {
+		return histories.getString(2).equals(nextId);
 	}
 
 	private HistoryNode findHistoryRoot(Cursor histories) {

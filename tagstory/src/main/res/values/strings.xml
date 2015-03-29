@@ -78,6 +78,7 @@
 	<string name="menu_update_story">Update story</string>
 	<string name="menu_contact_us">Contact us</string>
 	<string name="menu_save_and_quit">Save And Quit</string>
+	<string name="menu_quit">Quit</string>
 
 	<!-- Content description -->
 	<string name="cd_tagstory_logo">Tag Story logo</string>

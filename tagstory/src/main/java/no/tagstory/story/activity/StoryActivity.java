@@ -4,10 +4,8 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.location.Location;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,14 +13,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import no.tagstory.R;
-import no.tagstory.StoryApplication;
 import no.tagstory.StoryDetailActivity;
-import no.tagstory.TagStoryActivity;
 import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
-import no.tagstory.honeycomb.TagStoryActivityHoneycomb;
 import no.tagstory.statistics.StoryHistory;
 import no.tagstory.statistics.StoryStatistic;
 import no.tagstory.story.StoryTag;
@@ -160,40 +154,4 @@ public class StoryActivity extends AbstractStoryActivity {
 			}
 		});
 	}
-
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.tag_menu, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onMenuItemSelected(int featureId, MenuItem item) {
-		switch (item.getItemId()) {
-			case R.id.menu_save_and_quit_story:
-				saveAndQuitStory();
-				break;
-		}
-		return true;
-	}
-
-	public void saveAndQuitStory() {
-		StoryStatistic mStoryStatistic = storyApplication.stopStory();
-		StoryHistory mStoryHistory = storyApplication.getStoryHistory();
-		int statisticsId = mStoryStatistic.saveToDatebase(this);
-		mStoryHistory.saveToDatabase(this, statisticsId);
-		Database database = new Database(this);
-		database.open();
-		database.insertSaveTravel(statisticsId, story.getUUID());
-		database.close();
-
-		Intent intent = ClassVersionFactory.createIntent(getApplicationContext(),
-				StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		intent.putExtra(StoryParser.UUID, story.getUUID());
-		startActivity(intent);
-		finish();
-	}
-
 }

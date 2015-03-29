@@ -3,15 +3,19 @@ package no.tagstory.story.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import no.tagstory.R;
 import no.tagstory.StoryApplication;
 import no.tagstory.StoryDetailActivity;
 import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
 import no.tagstory.statistics.StoryHistory;
+import no.tagstory.statistics.StoryStatistic;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
 import no.tagstory.utils.ClassVersionFactory;
+import no.tagstory.utils.Database;
 import no.tagstory.utils.StoryParser;
 
 public abstract class AbstractStoryActivity extends Activity {
@@ -54,12 +58,49 @@ public abstract class AbstractStoryActivity extends Activity {
 		} else {
 			// super.onBackPressed();
 			// This is the root node, go back to StoryDetails
-			Intent intent = ClassVersionFactory.createIntent(this,
-					StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);
-			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			intent.putExtra(StoryParser.UUID, story.getUUID());
-			startActivity(intent);
-			finish();
+			// TODO: Ask user to save the story
+			quitStory();
 		}
+	}
+
+	private void quitStory() {
+		storyApplication.stopStory();
+		Intent intent = ClassVersionFactory.createIntent(this,
+				StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intent.putExtra(StoryParser.UUID, story.getUUID());
+		startActivity(intent);
+		finish();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.tag_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.menu_save_and_quit:
+				saveStory();
+				quitStory();
+				break;
+			case R.id.menu_quit:
+				quitStory();
+				break;
+		}
+		return true;
+	}
+
+	public void saveStory() {
+		StoryStatistic mStoryStatistic = storyApplication.stopStory();
+		StoryHistory mStoryHistory = storyApplication.getStoryHistory();
+		int statisticsId = mStoryStatistic.saveToDatebase(this);
+		mStoryHistory.saveToDatabase(this, statisticsId);
+		Database database = new Database(this);
+		database.open();
+		database.insertSaveTravel(statisticsId, story.getUUID());
+		database.close();
 	}
 }

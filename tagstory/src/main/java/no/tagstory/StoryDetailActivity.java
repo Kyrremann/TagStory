@@ -137,6 +137,9 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 				startStory();
 				break;
 			case R.id.resume_story:
+				if (hasPhoneRequirements()) {
+					return;
+				}
 				resumeStory();
 				break;
 		}
@@ -265,6 +268,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+		// TODO this is not really working
 		if (resultCode == ENABLE_GPS) {
 			startStory();
 		}

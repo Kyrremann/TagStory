@@ -60,7 +60,7 @@ public class StoryApplication extends Application {
 		this.storyStatistic = new StoryStatistic(story.getUUID(), new Date());
 	}
 
-	public void resumeStory(Database database, Cursor saveTravels) {
+	public void resumeStory(Story story, Database database, Cursor saveTravels) {
 		saveTravels.moveToFirst();
 		int id = saveTravels.getInt(0);
 		int statisticsId = saveTravels.getInt(1);
@@ -85,7 +85,6 @@ public class StoryApplication extends Application {
 		locations.close();
 		Cursor histories = database.getHistories(statisticsId);
 		HistoryNode root = null;
-		System.out.println("Nodes " + histories.getCount());
 		if (histories.getCount() > 0) {
 			histories.moveToFirst();
 			root = findHistoryRoot(histories);
@@ -94,11 +93,12 @@ public class StoryApplication extends Application {
 				current = findNextHistoryNode(histories, current);
 			}
 		}
-		System.out.println("Root " + root.getTagUUID());
-		System.out.println("2 " + root.next.getTagUUID());
-		System.out.println("3 " + root.next.next.getTagUUID());
 		getStoryHistory().resumeStory(storyId, root, histories.getCount());
 		histories.close();
+
+		this.distanceLoggerIntent = new Intent(this, DistanceLogger.class);
+		startService(distanceLoggerIntent);
+		this.storyStatistic = statistic;
 	}
 
 	private HistoryNode findNextHistoryNode(Cursor histories, HistoryNode current) {

@@ -1,6 +1,8 @@
 package no.tagstory.story.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,7 +20,7 @@ import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
 import no.tagstory.utils.StoryParser;
 
-public abstract class AbstractStoryActivity extends Activity {
+public abstract class AbstractStoryActivity extends Activity implements AlertDialog.OnClickListener {
 
 	public static final String EXTRA_STORY = "EXTRA_STORY";
 	public static final String EXTRA_TAG = "TAG";
@@ -58,8 +60,13 @@ public abstract class AbstractStoryActivity extends Activity {
 		} else {
 			// super.onBackPressed();
 			// This is the root node, go back to StoryDetails
-			// TODO: Ask user to save the story
-			quitStory();
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle(R.string.dialog_leave_story_title);
+			builder.setMessage(R.string.dialog_leave_story_message);
+			builder.setPositiveButton(R.string.yes, this);
+			builder.setNeutralButton(R.string.cancel, this);
+			builder.setNegativeButton(R.string.no, this);
+			builder.create().show();
 		}
 	}
 
@@ -102,5 +109,21 @@ public abstract class AbstractStoryActivity extends Activity {
 		database.open();
 		database.insertSaveTravel(statisticsId, story.getUUID());
 		database.close();
+	}
+
+	@Override
+	public void onClick(DialogInterface dialog, int which) {
+		switch (which) {
+			case DialogInterface.BUTTON_POSITIVE:
+				saveStory();
+				quitStory();
+				break;
+			case DialogInterface.BUTTON_NEUTRAL:
+				break;
+			case DialogInterface.BUTTON_NEGATIVE:
+				quitStory();
+				break;
+		}
+		dialog.dismiss();
 	}
 }

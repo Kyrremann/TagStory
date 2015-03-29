@@ -181,7 +181,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 			saveTravels.close();
 			database.close();
 		} else {
-			storyApplication.resumeStory(database, saveTravels);
+			storyApplication.resumeStory(story, database, saveTravels);
 			saveTravels.close();
 			database.close();
 			startStoryActivity();

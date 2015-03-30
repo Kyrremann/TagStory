@@ -1,11 +1,14 @@
 package no.tagstory.story;
 
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.StringUtil;
-import no.tagstory.story.game.QuizNode;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import no.tagstory.story.game.QuizModeEnum;
+import no.tagstory.story.game.QuizNode;
 
 public class StoryTag implements Serializable {
 
@@ -25,6 +28,7 @@ public class StoryTag implements Serializable {
 	private boolean endpoint;
 	private String title;
 	private List<StoryTagOption> options;
+	private QuizModeEnum quizType;
 	private HashMap<Integer, QuizNode> quiz;
 	private boolean skipable;
 
@@ -120,6 +124,12 @@ public class StoryTag implements Serializable {
 		quiz.put(location, new QuizNode(question, answer));
 	}
 
+	public void addToMultiQuiz(int location, String question, ArrayList<String> answer) {
+		if(!answer.isEmpty()) {
+			quiz.put(location, new QuizNode(question, answer));
+		}
+	}
+
 	public void addCorrectionToQuiz(int location, String correction) {
 		quiz.get(location).setCorrection(correction);
 	}
@@ -166,6 +176,18 @@ public class StoryTag implements Serializable {
 
 	public StoryTagOption getFirstOption() {
 		return getOptions().get(0);
+	}
+
+	public QuizModeEnum getQuizType() {
+		return quizType;
+	}
+
+	public void setQuizType(QuizModeEnum quizType) {
+		this.quizType = quizType;
+	}
+
+	public boolean isQuizTypeSingle() {
+		return QuizModeEnum.SINGLEQUIZ == this.quizType;
 	}
 
 	public void initQuizMode() {

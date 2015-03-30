@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+
 import no.tagstory.R;
 import no.tagstory.StoryApplication;
 import no.tagstory.StoryDetailActivity;
@@ -13,6 +14,8 @@ import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
+
+import no.tagstory.utils.StoryParser;
 
 public abstract class AbstractStoryActivity extends Activity {
 

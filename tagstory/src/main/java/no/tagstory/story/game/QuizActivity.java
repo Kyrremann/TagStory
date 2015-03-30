@@ -7,11 +7,14 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import no.tagstory.R;
-import no.tagstory.story.StoryTagOption;
+import android.widget.Toast;
 
 import java.util.List;
+
+import no.tagstory.R;
+import no.tagstory.story.StoryTagOption;
 
 import static no.tagstory.story.activity.utils.TravelIntentUtil.createTravelIntent;
 
@@ -25,11 +28,14 @@ public class QuizActivity extends AbstractGameModeActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_story_quiz);
-
-		layout = (LinearLayout) findViewById(R.id.activity_layout_quiz);
+		if (tag.isQuizTypeSingle()) {
+			setContentView(R.layout.activity_story_quiz_single);
+			textView = (TextView) findViewById(R.id.question);
+		} else {
+			setContentView(R.layout.activity_quiz_multiple);
+			textView = (TextView) findViewById(R.id.question_multiple);
+		}
 		quizIndex = 0;
-
 		addQuestion();
 	}
 
@@ -39,13 +45,36 @@ public class QuizActivity extends AbstractGameModeActivity {
 			return;
 		}
 
-		textView = new TextView(this);
 		textView.setText(tag.getQuizNode(quizIndex).getQuestion());
 		textView.setBackgroundResource(R.drawable.background_border_light_green);
 		textView.setTextSize(21);
 		textView.setPadding(16, 16, 16, 16);
-		layout.addView(textView, 0);
 	}
+
+	public void quizAnswerMMultiple(View view) {
+		QuizNode node = tag.getQuizNode(quizIndex);
+
+		//TODO loop list of answers and build an alertdialog
+
+		AlertDialog.Builder mBuildAnswers = new Builder(this);
+		mBuildAnswers.setCancelable(false);
+		mBuildAnswers.setAdapter(createListOfAnswers(node), new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int item) {
+				Toast.makeText(getApplicationContext(), "hello man, IMPLEMENT CORRECT ANSWER?", Toast.LENGTH_LONG).show();
+				nextQuestion();
+			}
+		});
+		mBuildAnswers.show();
+
+
+	}
+
+	private ArrayAdapter<String> createListOfAnswers(QuizNode node) {
+		ArrayAdapter<String> mAnswers = new ArrayAdapter<>(this, android.R.layout.select_dialog_multichoice,
+				node.getMultipleAnswer());
+		return mAnswers;
+	}
+
 
 	public void quizAnswer(View view) {
 		// TODO: Add points to the story/user if the user answer correct
@@ -56,22 +85,7 @@ public class QuizActivity extends AbstractGameModeActivity {
 					quizPoint++;
 					nextQuestion();
 				} else {
-					AlertDialog.Builder builder = new Builder(this);
-					builder.setCancelable(false);
-					builder.setTitle(R.string.story_quiz_correction);
-					if (node.getCorrection() != null) {
-						builder.setMessage(node.getCorrection());
-					} else {
-						builder.setMessage("Du svarte feil");
-					}
-					builder.setNeutralButton(R.string.story_quiz_next, new OnClickListener() {
-
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();
-							nextQuestion();
-						}
-					});
+					AlertDialog.Builder builder = createResultDialog(R.string.story_quiz_correction, node);
 					builder.create().show();
 				}
 				break;
@@ -80,26 +94,31 @@ public class QuizActivity extends AbstractGameModeActivity {
 					quizPoint++;
 					nextQuestion();
 				} else {
-					AlertDialog.Builder builder = new Builder(this);
-					builder.setTitle(R.string.story_quiz_correction);
-					builder.setCancelable(false);
-					if (node.getCorrection() != null) {
-						builder.setMessage(node.getCorrection());
-					} else {
-						builder.setMessage("Du svarte feil");
-					}
-					builder.setNeutralButton(R.string.story_quiz_next, new OnClickListener() {
-
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();
-							nextQuestion();
-						}
-					});
+					AlertDialog.Builder builder = createResultDialog(R.string.story_quiz_correction, node);
 					builder.create().show();
 				}
 				break;
 		}
+	}
+
+	private AlertDialog.Builder createResultDialog(int title, QuizNode node) {
+		AlertDialog.Builder builder = new Builder(this);
+		builder.setTitle(title);
+		builder.setCancelable(false);
+		if (node.getCorrection() != null) {
+			builder.setMessage(node.getCorrection());
+		} else {
+			builder.setMessage("Du svarte feil");
+		}
+		builder.setNeutralButton(R.string.story_quiz_next, new OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+				nextQuestion();
+			}
+		});
+		return builder;
 	}
 
 	private void nextQuestion() {

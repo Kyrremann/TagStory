@@ -11,13 +11,16 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.FileNotFoundException;
+
 import no.tagstory.R;
 import no.tagstory.story.StoryTag;
 import no.tagstory.story.StoryTagOption;
 
-import java.io.FileNotFoundException;
-
-import static no.tagstory.story.activity.utils.TravelIntentUtil.*;
+import static no.tagstory.story.activity.utils.TravelIntentUtil.createCameraActivity;
+import static no.tagstory.story.activity.utils.TravelIntentUtil.createQuizActivity;
+import static no.tagstory.story.activity.utils.TravelIntentUtil.createTravelIntent;
 
 public class StoryActivity extends AbstractStoryActivity {
 
@@ -134,7 +137,7 @@ public class StoryActivity extends AbstractStoryActivity {
 			public void onClick(View view) {
 				Intent intent;
 				if (tag.isQuiz()) {
-					intent = createQuizActivity(getApplicationContext(), story, tagId);
+					intent = createQuizActivity(getApplicationContext(), story, tagId, tag.isQuizTypeSingle());
 				} else if (tag.isCamera()) {
 					intent = createCameraActivity(getApplicationContext(), story, tagId);
 				} else {

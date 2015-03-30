@@ -2,7 +2,12 @@ package no.tagstory.story.activity.utils;
 
 import android.content.Context;
 import android.content.Intent;
-import no.tagstory.story.*;
+
+import no.tagstory.story.HintMethodEnum;
+import no.tagstory.story.Story;
+import no.tagstory.story.StoryTag;
+import no.tagstory.story.StoryTagOption;
+import no.tagstory.story.TagTypeEnum;
 import no.tagstory.story.activity.StoryPropagatingActivity;
 import no.tagstory.story.activity.StoryTravelActivity;
 import no.tagstory.story.activity.option.AudioPlayerActivity;
@@ -27,7 +32,7 @@ public class TravelIntentUtil {
 		return intent;
 	}
 
-	public static Intent createQuizActivity(Context context, Story story, String tagId) {
+	public static Intent createQuizActivity(Context context, Story story, String tagId, boolean quiztypeSingle) {
 		Intent intent;
 		intent = new Intent(context, QuizActivity.class);
 		intent.putExtra(EXTRA_STORY, story);

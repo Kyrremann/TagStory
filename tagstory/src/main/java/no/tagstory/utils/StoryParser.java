@@ -1,7 +1,7 @@
 package no.tagstory.utils;
 
 import android.content.Context;
-import no.tagstory.story.*;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,7 +10,20 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
+import no.tagstory.story.GameModeEnum;
+import no.tagstory.story.HintMethodEnum;
+import no.tagstory.story.Story;
+import no.tagstory.story.StoryStatusEnum;
+import no.tagstory.story.StoryTag;
+import no.tagstory.story.StoryTagOption;
+import no.tagstory.story.TagTypeEnum;
+import no.tagstory.story.game.QuizModeEnum;
 
 public class StoryParser {
 
@@ -67,6 +80,7 @@ public class StoryParser {
 
 	public static final String HINT_TEXT = "text";
 	// Quiz
+	public static final String QUIZ_TYPE = "quiz_type";
 	public static final String QUIZ = "quiz";
 	public static final String QUIZ_Q = "quizQ";
 	public static final String QUIZ_A = "quizA";
@@ -74,6 +88,8 @@ public class StoryParser {
 	public static final String QUIZ_C = "quizC";
 	// Camera
 	public static final String CAMERA = "camera";
+
+	static int quizCounter = 1;
 
 	public static JSONObject parseJson(Context context, String filename) throws IOException, JSONException {
 		if (!filename.endsWith(".json")) {
@@ -145,9 +161,13 @@ public class StoryParser {
 
 				if (jsonTag.has(GAME_MODE)) {
 					storyTag.setGameMode(GameModeEnum.fromString(jsonTag.getString(GAME_MODE)));
-					parseGameMode(storyTag, jsonTag);
 				} else {
 					storyTag.setGameMode(GameModeEnum.NONE);
+				}
+
+				if(jsonTag.has(QUIZ_TYPE)) {
+					storyTag.setQuizType(QuizModeEnum.fromString(jsonTag.getString(QUIZ_TYPE)));
+					parseGameMode(storyTag, jsonTag);
 				}
 
 				if (jsonTag.has(QUESTION)) {
@@ -174,14 +194,34 @@ public class StoryParser {
 			storyTag.initQuizMode();
 			JSONArray quiz = jsonTag.getJSONArray(QUIZ);
 			JSONObject question;
+			ArrayList<String> multiQuizAnswers = new ArrayList<String>();
+			int location;
+			String quizKey;
+			//TODO, add a list of answers for quiz
 
 			for (int index = 0; index < quiz.length(); index++) {
 				question = quiz.getJSONObject(index);
+				checkQuizType(index,storyTag,jsonTag,question, multiQuizAnswers);
+			}
+			quizCounter = 1;
+		}
+	}
+
+	private static void checkQuizType(int index, StoryTag storyTag,JSONObject jsonTag,
+	                                  JSONObject question, ArrayList<String> multiQuizAnswers) throws JSONException{
+		String quiztType = jsonTag.getString(QUIZ_TYPE);
+		switch(QuizModeEnum.fromString(quiztType)) {
+			case SINGLEQUIZ:
 				storyTag.addToQuiz(index, question.getString(QUIZ_Q), question.getBoolean(QUIZ_A));
 				if (question.has(QUIZ_C)) {
 					storyTag.addCorrectionToQuiz(index, question.getString(QUIZ_C));
 				}
-			}
+				break;
+			default:
+				for(quizCounter = 1; quizCounter < question.length(); quizCounter++) {
+					multiQuizAnswers.add(question.getString(QUIZ_A + quizCounter));
+				}
+				storyTag.addToMultiQuiz(index,question.getString(QUIZ_Q),multiQuizAnswers);
 		}
 	}
 

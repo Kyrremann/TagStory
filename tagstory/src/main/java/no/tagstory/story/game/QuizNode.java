@@ -1,17 +1,25 @@
 package no.tagstory.story.game;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class QuizNode implements Serializable {
 
 	private static final long serialVersionUID = 782243272221115589L;
 	private String question;
 	private String correction;
-	private boolean answer;
+	private boolean singleAnswer;
+	private ArrayList<String> multipleAnswer;
 
-	public QuizNode(String question, boolean answer) {
+	public QuizNode(String question, boolean singleAnswer) {
 		this.question = question;
-		this.answer = answer;
+		this.singleAnswer = singleAnswer;
+	}
+
+	public QuizNode(String question, ArrayList<String> multipleAnswer) {
+		this.question = question;
+		this.multipleAnswer = new ArrayList<>();
+		this.multipleAnswer.addAll(multipleAnswer);
 	}
 
 	/**
@@ -39,6 +47,10 @@ public class QuizNode implements Serializable {
 	 * @return the answer
 	 */
 	public boolean isAnswer() {
-		return answer;
+		return singleAnswer;
+	}
+
+	public ArrayList<String> getMultipleAnswer() {
+		return multipleAnswer;
 	}
 }

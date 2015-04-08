@@ -21,5 +21,6 @@
 			android:textAppearance="?android:attr/textAppearanceLarge"
 			android:layout_weight="1"
 			android:text="X"
+			android:layout_gravity="center"
 			android:id="@+id/delete"/>
 </LinearLayout>

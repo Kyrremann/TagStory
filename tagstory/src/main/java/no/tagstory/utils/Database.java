@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.location.Location;
 import android.os.IInterface;
 import android.util.Log;
 import no.tagstory.statistics.HistoryNode;
@@ -79,15 +80,17 @@ public class Database {
 	private static final String LOCATIONS_LATITUDE = "latitude";
 	private static final String LOCATIONS_LONGITUDE = "longitude";
 	private static final String LOCATIONS_PROVIDER = "provider";
-	private static final String LOCATIONS_TIMESTAMP = ""; // TODO
+	private static final String LOCATIONS_TIMESTAMP = "timestamp";
 	private static final String LOCATIONS_CREATE = String.format(Locale.ENGLISH,
 			"CREATE TABLE %s (" +
 					"%s INTEGER PRIMARY KEY AUTOINCREMENT," +
 					"%s INTEGER NOT NULL," +
 					"%s DOUBLE NOT NULL," +
-					"%s DOUBLE NOT NULL);",
+					"%s DOUBLE NOT NULL," +
+					"%s STRING NOT NULL," +
+					"%s INTEGER NOT NULL);",
 			LOCATIONS_TABLE_NAME, LOCATIONS_ID, LOCATIONS_STATISTIC_ID,
-			LOCATIONS_LATITUDE, LOCATIONS_LONGITUDE);
+			LOCATIONS_LATITUDE, LOCATIONS_LONGITUDE, LOCATIONS_PROVIDER, LOCATIONS_TIMESTAMP);
 
 	private static final String HISTORY_TABLE_NAME = "HISTORY";
 	private static final String HISTORY_ID = "_id";
@@ -252,12 +255,13 @@ public class Database {
 				null, null, null);
 	}
 
-	public boolean insertLocation(int statisticId, double latitude, double longitude, String provider) {
+	public boolean insertLocation(int statisticId, Location location) {
 		ContentValues mValues = new ContentValues(3);
 		mValues.put(LOCATIONS_STATISTIC_ID, statisticId);
-		mValues.put(LOCATIONS_LATITUDE, latitude);
-		mValues.put(LOCATIONS_LONGITUDE, longitude);
-		mValues.put(LOCATIONS_PROVIDER, provider);
+		mValues.put(LOCATIONS_LATITUDE, location.getLatitude());
+		mValues.put(LOCATIONS_LONGITUDE, location.getLongitude());
+		mValues.put(LOCATIONS_PROVIDER, location.getProvider());
+		mValues.put(LOCATIONS_TIMESTAMP, location.getTime());
 		return db.insert(LOCATIONS_TABLE_NAME, null, mValues) != -1;
 	}
 
@@ -305,5 +309,9 @@ public class Database {
 		return db.query(SAVE_TRAVEL_TABLE_NAME, null,
 				SAVE_TRAVEL_STORY_ID + "=?", new String[]{storyId},
 				null, null, null);
+	}
+
+	public void deleteSavedTravel(String id) {
+		db.delete(SAVE_TRAVEL_TABLE_NAME, SAVE_TRAVEL_ID + "=?", new String[]{ id });
 	}
 }

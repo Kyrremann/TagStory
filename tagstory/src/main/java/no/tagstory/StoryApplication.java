@@ -73,16 +73,17 @@ public class StoryApplication extends Application {
 		}
 
 		StoryStatistic statistic = database.getStatistic(statisticsId);
-		Cursor locations = database.getLocations(statisticsId);
+		Cursor locationCursor = database.getLocations(statisticsId);
 		// TODO: Sort by timestamp
-		if (locations.getCount() > 0) {
-			locations.moveToFirst();
-			Location location = new Location(locations.getString(3));
-			location.setLatitude(locations.getDouble(1));
-			location.setLongitude(2);
+		if (locationCursor.getCount() > 0) {
+			locationCursor.moveToFirst();
+			Location location = new Location(locationCursor.getString(4));
+			location.setLatitude(locationCursor.getDouble(2));
+			location.setLongitude(locationCursor.getDouble(3));
+			location.setTime(locationCursor.getInt(5));
 			statistic.addLocation(location);
 		}
-		locations.close();
+		locationCursor.close();
 		Cursor histories = database.getHistories(statisticsId);
 		HistoryNode root = null;
 		if (histories.getCount() > 0) {

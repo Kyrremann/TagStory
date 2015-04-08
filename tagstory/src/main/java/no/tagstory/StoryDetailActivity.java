@@ -181,6 +181,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 					dialog.cancel();
 				}
 			});
+			builder.create().show();
 			saveTravels.close();
 			database.close();
 		} else {

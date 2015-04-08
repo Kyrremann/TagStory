@@ -61,7 +61,7 @@ public class StoryStatistic {
 
 	private void saveLocations(Database database, int statisticId) {
 		for (Location location : locations) {
-			database.insertLocation(statisticId, location.getLatitude(), location.getLongitude(), location.getProvider());
+			database.insertLocation(statisticId, location);
 		}
 	}
 

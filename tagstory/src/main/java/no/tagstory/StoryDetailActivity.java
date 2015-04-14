@@ -30,10 +30,13 @@ import no.tagstory.story.activity.utils.PhoneRequirementsUtils;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
 import no.tagstory.utils.StoryParser;
+import no.tagstory.utils.Tuple;
 import no.tagstory.utils.http.SimpleStoryHandler;
 import no.tagstory.utils.http.StoryProtocol;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StoryDetailActivity extends Activity implements SimpleStoryHandler.SimpleCallback {
 
@@ -48,6 +51,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 	private boolean isOutdated;
 	private Menu menu;
 	private ProgressDialog progressDialog;
+	private List<Tuple> savedTravels;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -172,8 +176,9 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 		database.open();
 		Cursor saveTravels = database.getSaveTravels(storyId);
 		if (saveTravels.getCount() > 1) {
+			savedTravels = generateListBasedOnCursor(saveTravels);
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setAdapter(new SavedTravelsListAdapter(this, saveTravels), new DialogInterface.OnClickListener() {
+			builder.setAdapter(new SavedTravelsListAdapter(this, savedTravels), new DialogInterface.OnClickListener() {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
@@ -190,6 +195,19 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 			database.close();
 			startStoryActivity();
 		}
+	}
+
+
+
+	private List<Tuple> generateListBasedOnCursor(Cursor cursor) {
+		List<Tuple> tuples = new ArrayList<>(cursor.getCount());
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			tuples.add(new Tuple(cursor.getString(0), cursor.getString(3)));
+			cursor.moveToNext();
+		}
+
+		return tuples;
 	}
 
 	protected void startStory() {

@@ -9,19 +9,23 @@ import android.widget.TextView;
 import no.tagstory.R;
 import no.tagstory.utils.Database;
 import no.tagstory.utils.DateUtils;
+import no.tagstory.utils.Tuple;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
-public class SavedTravelsListAdapter extends ArrayAdapter<SavedTravelsListAdapter.Node> {
+public class SavedTravelsListAdapter extends ArrayAdapter<Tuple> {
 
 	private final Context context;
 
-	public SavedTravelsListAdapter(Context context, Cursor cursor) {
+	public SavedTravelsListAdapter(Context context, List<Tuple> tuples) {
 		super(context, R.layout.item_saved_travels, R.id.timestamp);
 		this.context = context;
-		generateListBasedOnCursor(cursor);
+		for (Tuple tuple : tuples) {
+			add(tuple);
+		}
 	}
 
 	@Override
@@ -38,20 +42,21 @@ public class SavedTravelsListAdapter extends ArrayAdapter<SavedTravelsListAdapte
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.timestamp.setText(formatTimestamp(getItem(position).timestamp));
+		String timestamp = formatTimestamp(String.valueOf(getItem(position).o2));
+		holder.timestamp.setText(timestamp);
 		holder.delete.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Node node = getItem(position);
+				Tuple tuple = getItem(position);
 				Database database = new Database(context);
 				database.open();
-				database.deleteSavedTravel(node.id);
+				database.deleteSavedTravel(String.valueOf(tuple.o1));
 				database.close();
-				remove(node);
+				remove(tuple);
 			}
 		});
 
-		return super.getView(position, convertView, parent);
+		return convertView;
 	}
 
 	private String formatTimestamp(String timestamp) {
@@ -69,29 +74,5 @@ public class SavedTravelsListAdapter extends ArrayAdapter<SavedTravelsListAdapte
 	private class ViewHolder {
 		TextView timestamp;
 		TextView delete;
-	}
-
-	private void generateListBasedOnCursor(Cursor cursor) {
-		cursor.moveToFirst();
-		while (!cursor.isAfterLast()) {
-			add(new Node(cursor.getString(0), cursor.getString(3)));
-			cursor.moveToNext();
-		}
-	}
-
-	protected class Node {
-
-		public final String id;
-		public final String timestamp;
-
-		public Node(String id, String timestamp) {
-			this.id = id;
-			this.timestamp = timestamp;
-		}
-
-		@Override
-		public String toString() {
-			return timestamp;
-		}
 	}
 }

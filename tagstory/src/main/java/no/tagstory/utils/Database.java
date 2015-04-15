@@ -214,9 +214,12 @@ public class Database {
 		return id;
 	}
 
-	public StoryStatistic getStatistic(int statisticsId) {
+	public StoryStatistic getStatistic(int statisticsId) throws RuntimeException {
 		Cursor cursor = db.query(STATISTICS_TABLE_NAME, null, STATISTICS_ID + "=?", new String[]{ Integer.toString(statisticsId) },
 				null, null, null);
+		if (cursor.getCount() == 0) {
+			throw new RuntimeException("No statistics for id " + statisticsId);
+		}
 		cursor.moveToFirst();
 
 		Date startDate;

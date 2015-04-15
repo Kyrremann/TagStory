@@ -172,26 +172,41 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 	}
 
 	protected void resumeStory() {
-		Database database = new Database(this);
+		final Database database = new Database(this);
 		database.open();
-		Cursor saveTravels = database.getSaveTravels(storyId);
-		if (saveTravels.getCount() > 1) {
-			savedTravels = generateListBasedOnCursor(saveTravels);
+		final Cursor saveTravelCursor = database.getSaveTravels(storyId);
+		if (saveTravelCursor.getCount() > 1) {
+			savedTravels = generateListBasedOnCursor(saveTravelCursor);
+			saveTravelCursor.close();
+			database.close();
+
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setAdapter(new SavedTravelsListAdapter(this, savedTravels), new DialogInterface.OnClickListener() {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					System.out.println(which);
+					if (savedTravels != null
+							&& savedTravels.size() > which
+							&& which >= 0) {
+						Tuple tuple = savedTravels.get(which);
+						Database database = new Database(getApplicationContext());
+						database.open();
+						try {
+							storyApplication.resumeStory(database, (Integer) tuple.o1, story.getUUID());
+							startStoryActivity();
+						} catch (RuntimeException e) {
+						} finally {
+							database.close();
+						}
+					}
 					dialog.cancel();
 				}
 			});
 			builder.create().show();
-			saveTravels.close();
-			database.close();
 		} else {
-			storyApplication.resumeStory(story, database, saveTravels);
-			saveTravels.close();
+			saveTravelCursor.moveToFirst();
+			storyApplication.resumeStory(database, saveTravelCursor.getInt(1), story.getUUID());
+			saveTravelCursor.close();
 			database.close();
 			startStoryActivity();
 		}
@@ -203,7 +218,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 		List<Tuple> tuples = new ArrayList<>(cursor.getCount());
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
-			tuples.add(new Tuple(cursor.getString(0), cursor.getString(3)));
+			tuples.add(new Tuple(cursor.getInt(1), cursor.getString(3)));
 			cursor.moveToNext();
 		}
 
@@ -216,7 +231,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 	}
 
 	protected void startStoryActivity() {
-		Intent intent = new Intent(this, StoryActivity.class);
+		Intent intent = new Intent(getApplicationContext(), StoryActivity.class);
 		intent.putExtra(StoryActivity.EXTRA_STORY, story);
 		intent.putExtra(StoryActivity.EXTRA_TAG, story.getStartTagId());
 		startActivity(intent);

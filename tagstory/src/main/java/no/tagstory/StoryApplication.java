@@ -60,28 +60,20 @@ public class StoryApplication extends Application {
 		this.storyStatistic = new StoryStatistic(story.getUUID(), new Date());
 	}
 
-	public void resumeStory(Story story, Database database, Cursor saveTravels) {
-		saveTravels.moveToFirst();
-		int id = saveTravels.getInt(0);
-		int statisticsId = saveTravels.getInt(1);
-		String storyId = saveTravels.getString(2);
-		Date saved;
-		try {
-			saved = DateUtils.parseSqliteDate(saveTravels.getString(3));
-		} catch (ParseException e) {
-			saved = null;
-		}
-
+	public void resumeStory(Database database, int statisticsId, String storyId) throws RuntimeException {
 		StoryStatistic statistic = database.getStatistic(statisticsId);
 		Cursor locationCursor = database.getLocations(statisticsId);
 		// TODO: Sort by timestamp
+		locationCursor.moveToFirst();
 		if (locationCursor.getCount() > 0) {
-			locationCursor.moveToFirst();
-			Location location = new Location(locationCursor.getString(4));
-			location.setLatitude(locationCursor.getDouble(2));
-			location.setLongitude(locationCursor.getDouble(3));
-			location.setTime(locationCursor.getInt(5));
-			statistic.addLocation(location);
+			while (locationCursor.isAfterLast()) {
+				Location location = new Location(locationCursor.getString(4));
+				location.setLatitude(locationCursor.getDouble(2));
+				location.setLongitude(locationCursor.getDouble(3));
+				location.setTime(locationCursor.getInt(5));
+				statistic.addLocation(location);
+				locationCursor.moveToNext();
+			}
 		}
 		locationCursor.close();
 		Cursor histories = database.getHistories(statisticsId);

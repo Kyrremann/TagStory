@@ -32,7 +32,6 @@ public class GPSActivity extends StoryTravelActivity implements
 	private boolean mUpdatesRequested;
 	private SharedPreferences mPrefs;
 	private Editor mEditor;
-	private AlertDialog gpsInfoDialog;
 
 	// Milliseconds per second
 	private static final int MILLISECONDS_PER_SECOND = 1000;
@@ -82,37 +81,8 @@ public class GPSActivity extends StoryTravelActivity implements
 	}
 
 	@Override
-	protected void showHelpDialog() {
-		if (gpsInfoDialog == null) {
-			gpsInfoDialog = createGpsDialog();
-		}
-		gpsInfoDialog.show();
-	}
-
-	private AlertDialog createGpsDialog() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle(R.string.dialog_gps_about_title);
-		builder.setMessage(R.string.dialog_gps_about_content);
-		builder.setCancelable(true);
-		builder.setNeutralButton(R.string.cancel,
-				new OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog,
-					                    int which) {
-						dialog.cancel();
-					}
-				});
-		builder.setNegativeButton(R.string.skip,
-				new OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog,
-					                    int which) {
-						skipTag();
-					}
-				});
-		return builder.create();
+	protected AlertDialog createHelpDialog() {
+		return createHelpDialog(R.string.dialog_gps_about_title, R.string.dialog_gps_about_content);
 	}
 
 	@Override

@@ -315,6 +315,6 @@ public class Database {
 	}
 
 	public void deleteSavedTravel(String id) {
-		db.delete(SAVE_TRAVEL_TABLE_NAME, SAVE_TRAVEL_ID + "=?", new String[]{ id });
+		db.delete(SAVE_TRAVEL_TABLE_NAME, SAVE_TRAVEL_STATISTIC_ID + "=?", new String[]{ id });
 	}
 }

@@ -40,6 +40,7 @@
 	<string name="story_button_scan_tag">Scan tag</string>
 	<string name="story_button_where_to_go">See where to go next</string>
 	<string name="story_button_start">Start Story</string>
+	<string name="resume_story_button">Resume Story</string>
 	<string name="story_button_next_tag">Go to next tag</string>
 
 	<!-- Travel -->
@@ -76,6 +77,8 @@
 	<string name="menu_statistics">Statistics</string>
 	<string name="menu_update_story">Update story</string>
 	<string name="menu_contact_us">Contact us</string>
+	<string name="menu_save_and_quit">Save And Quit</string>
+	<string name="menu_quit">Quit</string>
 
 	<!-- Content description -->
 	<string name="cd_tagstory_logo">Tag Story logo</string>
@@ -95,6 +98,8 @@
 	<string name="dialog_qr_about_title">About QR tags</string>
 	<string name="dialog_qr_about_content">A QR-code is a matrix type of barcode.\n\nAre you a bit tired, or just don\'t find the tag? Then you can use the \"skip\"-button to advance to the next tag.</string>
 	<string name="dialog_chooser_email">Send e-mail...</string>
+	<string name="dialog_leave_story_title">Save and quit?</string>
+	<string name="dialog_leave_story_message">Would you like to save your travel, before you quit?</string>
 
 	<!-- URLs -->
 	<string name="barcode_scanner_play_store">com.google.zxing.client.android</string>

@@ -1,77 +1,100 @@
 package no.tagstory.statistics;
 
+import android.content.Context;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
+import no.tagstory.utils.Database;
 
 public class StoryHistory {
 
-    private Story story;
-    private HistoryNode root;
-    private HistoryNode current;
-    private int size;
+	private String storyId;
+	private HistoryNode root;
+	private HistoryNode current;
+	private int size;
 
-    public void startStory(Story story) {
-        this.story = story;
-        current = new HistoryNode(story.getStartTag());
-        root = current;
-        size++;
-    }
+	public void startStory(Story story) {
+		this.storyId = story.getUUID();
+		current = new HistoryNode(story.getStartTag().getUUID());
+		current.root = true;
+		root = current;
+		size++;
+	}
 
-    public void push(StoryTag tag) {
-        HistoryNode temp = current;
-        current = new HistoryNode(tag);
-        temp.next = current;
-        current.previous = temp;
-        size++;
-    }
+	public void resumeStory(String storyId, HistoryNode root, int size) {
+		this.storyId = storyId;
+		this.root = root;
+		this.size = size;
+		current = this.root;
+	}
 
-    public boolean previous() {
-        if (current.hasPrevious()) {
-            current = current.previous;
-            return true;
-        }
+	public void push(StoryTag tag) {
+		HistoryNode temp = current;
+		current = new HistoryNode(tag.getUUID());
+		temp.next = current;
+		current.previous = temp;
+		size++;
+	}
 
-        return false;
-    }
+	public boolean previous() {
+		if (current.hasPrevious()) {
+			current = current.previous;
+			return true;
+		}
 
-    public boolean next() {
-        if (current.hasNext()) {
-            current = current.next;
-            return true;
-        }
+		return false;
+	}
 
-        return false;
-    }
+	public boolean next() {
+		if (current.hasNext()) {
+			current = current.next;
+			return true;
+		}
 
-    /**
-     * @return true if current has a next
-     */
-    public boolean hasNext() {
-	    if (current == null) {
-		    current = root;
-	    }
-        return current.hasNext();
-    }
+		return false;
+	}
 
-    /**
-     * @return true if current has a previous
-     */
-    public boolean hasPrevious() {
-	    if (current == null) {
-		    current = root;
-	    }
-        return current.hasPrevious();
-    }
+	public boolean hasNext() {
+		if (current == null) {
+			current = root;
+		}
+		return current.hasNext();
+	}
 
-    public StoryTag getNextStory() {
-        return current.next.tag;
-    }
+	public boolean hasPrevious() {
+		if (current == null) {
+			current = root;
+		}
+		return current.hasPrevious();
+	}
 
-    public StoryTag getPreviousStory() {
-        return current.previous.tag;
-    }
+	public HistoryNode getRootNode() {
+		return root;
+	}
 
-    public int getSize() {
-        return size;
-    }
+	public String getStoryId() {
+		return storyId;
+	}
+
+	public String getNextStoryId() {
+		return current.next != null ? current.next.getTagUUID() : null;
+	}
+
+	public String getPreviousStoryId() {
+		return current.previous != null ? current.previous.getTagUUID() : null;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void saveToDatabase(Context context, int statisticsId) {
+		Database database = new Database(context);
+		database.open();
+		HistoryNode current = root;
+		do {
+			database.insertHistory(statisticsId, current);
+			current = current.next;
+		} while (current != null);
+		database.close();
+	}
 }

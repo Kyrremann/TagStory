@@ -112,10 +112,10 @@
 	<string name="market_api_story">http://tagstory.herokuapp.com/api/story/%s/json</string>
 	<string name="market_api_version">http://tagstory.herokuapp.com/api/story/%s/version/json</string>
 
-    <!-- Single words -->
-    <string name="cancel">Cancel</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="skip">Skip</string>
+	<!-- Single words -->
+	<string name="cancel">Cancel</string>
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+	<string name="skip">Skip</string>
 
 </resources>

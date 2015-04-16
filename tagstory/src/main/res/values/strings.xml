@@ -101,6 +101,9 @@
 	<string name="dialog_leave_story_title">Save and quit?</string>
 	<string name="dialog_leave_story_message">Would you like to save your travel, before you quit?</string>
 
+	<!-- Toasts -->
+	<string name="toast_cant_save_start_tag">Can\'t save the first tag</string>
+
 	<!-- URLs -->
 	<string name="barcode_scanner_play_store">com.google.zxing.client.android</string>
 

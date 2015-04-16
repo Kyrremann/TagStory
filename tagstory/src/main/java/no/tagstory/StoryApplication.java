@@ -142,6 +142,7 @@ public class StoryApplication extends Application {
 			}
 		}
 
+		// TODO Should throw an exception
 		return null;
 	}
 

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 import no.tagstory.R;
 import no.tagstory.StoryApplication;
 import no.tagstory.StoryDetailActivity;
@@ -101,6 +102,12 @@ public abstract class AbstractStoryActivity extends Activity implements AlertDia
 	}
 
 	public void saveStory() {
+		// TODO Should check if you have just gone back, and is not actually on the first tag
+		if (isStartTag()) {
+			Toast.makeText(this, R.string.toast_cant_save_start_tag, Toast.LENGTH_SHORT).show();
+			return;
+		}
+
 		StoryStatistic mStoryStatistic = storyApplication.stopStory();
 		StoryHistory mStoryHistory = storyApplication.getStoryHistory();
 		int statisticsId = mStoryStatistic.saveToDatebase(this);
@@ -125,5 +132,9 @@ public abstract class AbstractStoryActivity extends Activity implements AlertDia
 				break;
 		}
 		dialog.dismiss();
+	}
+
+	private boolean isStartTag() {
+		return story.getStartTagId().equals(tagId);
 	}
 }

@@ -95,14 +95,21 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 				((ImageView) findViewById(R.id.story_detail_image))
 						.setImageResource(R.drawable.placeimg_960_720_nature_1);
 			}
-			Database database = new Database(this);
-			database.open();
-			if (database.hasSaveTravels(storyId)) {
-				Button resume = (Button) findViewById(R.id.resume_story);
-				resume.setVisibility(View.VISIBLE);
-			}
-			database.close();
+
+			checkIfThereAreSavedTravels();
 		}
+	}
+
+	private void checkIfThereAreSavedTravels() {
+		Database database = new Database(getApplicationContext());
+		database.open();
+		Button resume = (Button) findViewById(R.id.resume_story);
+		if (database.hasSaveTravels(storyId)) {
+			resume.setVisibility(View.VISIBLE);
+		} else {
+			resume.setVisibility(View.GONE);
+		}
+		database.close();
 	}
 
 	private void checkIfStoryIsOutdated() {
@@ -201,6 +208,12 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 					dialog.cancel();
 				}
 			});
+			builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+				@Override
+				public void onCancel(DialogInterface dialog) {
+					checkIfThereAreSavedTravels();
+				}
+			});
 			builder.create().show();
 		} else {
 			saveTravelCursor.moveToFirst();
@@ -210,8 +223,6 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 			startStoryActivity();
 		}
 	}
-
-
 
 	private List<Tuple> generateListBasedOnCursor(Cursor cursor) {
 		List<Tuple> tuples = new ArrayList<>(cursor.getCount());
@@ -306,7 +317,6 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 			startStory();
 		}
 	}
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

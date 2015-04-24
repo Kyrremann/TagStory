@@ -1,4 +1,4 @@
-package no.tagstory.story.game;
+package no.tagstory.story.game.quiz;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -15,6 +15,7 @@ import java.util.List;
 
 import no.tagstory.R;
 import no.tagstory.story.StoryTagOption;
+import no.tagstory.story.game.AbstractGameModeActivity;
 
 import static no.tagstory.story.activity.utils.TravelIntentUtil.createTravelIntent;
 
@@ -28,7 +29,7 @@ public class QuizActivity extends AbstractGameModeActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (tag.isQuizTypeSingle()) {
+		if (tag.isQuiztypeTrueFalse()) {
 			setContentView(R.layout.activity_story_quiz_single);
 			textView = (TextView) findViewById(R.id.question);
 		} else {
@@ -52,7 +53,7 @@ public class QuizActivity extends AbstractGameModeActivity {
 	}
 
 	public void quizAnswerMMultiple(View view) {
-		QuizNode node = tag.getQuizNode(quizIndex);
+		QuizNodeInterface node = tag.getQuizNode(quizIndex);
 
 		//TODO loop list of answers and build an alertdialog
 
@@ -69,7 +70,7 @@ public class QuizActivity extends AbstractGameModeActivity {
 
 	}
 
-	private ArrayAdapter<String> createListOfAnswers(QuizNode node) {
+	private ArrayAdapter<String> createListOfAnswers(QuizNodeInterface node) {
 		ArrayAdapter<String> mAnswers = new ArrayAdapter<>(this, android.R.layout.select_dialog_multichoice,
 				node.getMultipleAnswer());
 		return mAnswers;
@@ -78,7 +79,7 @@ public class QuizActivity extends AbstractGameModeActivity {
 
 	public void quizAnswer(View view) {
 		// TODO: Add points to the story/user if the user answer correct
-		QuizNode node = tag.getQuizNode(quizIndex);
+		QuizNodeInterface node = tag.getQuizNode(quizIndex);
 		switch (view.getId()) {
 			case R.id.quiz_true:
 				if (node.isAnswer()) {
@@ -101,7 +102,7 @@ public class QuizActivity extends AbstractGameModeActivity {
 		}
 	}
 
-	private AlertDialog.Builder createResultDialog(int title, QuizNode node) {
+	private AlertDialog.Builder createResultDialog(int title, QuizNodeInterface node) {
 		AlertDialog.Builder builder = new Builder(this);
 		builder.setTitle(title);
 		builder.setCancelable(false);

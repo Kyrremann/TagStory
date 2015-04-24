@@ -137,7 +137,7 @@ public class StoryActivity extends AbstractStoryActivity {
 			public void onClick(View view) {
 				Intent intent;
 				if (tag.isQuiz()) {
-					intent = createQuizActivity(getApplicationContext(), story, tagId, tag.isQuizTypeSingle());
+					intent = createQuizActivity(getApplicationContext(), story, tagId, tag.isQuiztypeTrueFalse());
 				} else if (tag.isCamera()) {
 					intent = createCameraActivity(getApplicationContext(), story, tagId);
 				} else {

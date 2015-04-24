@@ -2,6 +2,8 @@ package no.tagstory.utils;
 
 import android.content.Context;
 
+import no.tagstory.story.game.quiz.QuizFactory;
+import no.tagstory.story.game.quiz.QuizNodeInterface;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,7 +25,7 @@ import no.tagstory.story.StoryStatusEnum;
 import no.tagstory.story.StoryTag;
 import no.tagstory.story.StoryTagOption;
 import no.tagstory.story.TagTypeEnum;
-import no.tagstory.story.game.QuizModeEnum;
+import no.tagstory.story.game.quiz.QuizTypeEnum;
 
 public class StoryParser {
 
@@ -82,14 +84,13 @@ public class StoryParser {
 	// Quiz
 	public static final String QUIZ_TYPE = "quiz_type";
 	public static final String QUIZ = "quiz";
-	public static final String QUIZ_Q = "quizQ";
-	public static final String QUIZ_A = "quizA";
-
-	public static final String QUIZ_C = "quizC";
+	public static final String QUIZ_QUESTION = "question";
+	public static final String QUIZ_ANSWER = "answer";
+	public static final String QUIZ_ANSWERS = "answers";
+	// Optional
+	public static final String QUIZ_CORRECTION = "correction";
 	// Camera
 	public static final String CAMERA = "camera";
-
-	static int quizCounter = 1;
 
 	public static JSONObject parseJson(Context context, String filename) throws IOException, JSONException {
 		if (!filename.endsWith(".json")) {
@@ -161,13 +162,9 @@ public class StoryParser {
 
 				if (jsonTag.has(GAME_MODE)) {
 					storyTag.setGameMode(GameModeEnum.fromString(jsonTag.getString(GAME_MODE)));
+					parseGameMode(storyTag, jsonTag);
 				} else {
 					storyTag.setGameMode(GameModeEnum.NONE);
-				}
-
-				if(jsonTag.has(QUIZ_TYPE)) {
-					storyTag.setQuizType(QuizModeEnum.fromString(jsonTag.getString(QUIZ_TYPE)));
-					parseGameMode(storyTag, jsonTag);
 				}
 
 				if (jsonTag.has(QUESTION)) {
@@ -190,39 +187,27 @@ public class StoryParser {
 	@SuppressWarnings("unchecked")
 	private static void parseGameMode(StoryTag storyTag, JSONObject jsonTag) throws JSONException {
 		if (storyTag.isQuiz()) {
-			// TODO Implement better quiz
-			storyTag.initQuizMode();
+			storyTag.setQuiztype(QuizTypeEnum.fromString(jsonTag.getString(QUIZ_TYPE)));
+
 			JSONArray quiz = jsonTag.getJSONArray(QUIZ);
-			JSONObject question;
-			ArrayList<String> multiQuizAnswers = new ArrayList<String>();
-			int location;
-			String quizKey;
-			//TODO, add a list of answers for quiz
 
 			for (int index = 0; index < quiz.length(); index++) {
-				question = quiz.getJSONObject(index);
-				checkQuizType(index,storyTag,jsonTag,question, multiQuizAnswers);
+				QuizNodeInterface node = creatQuizObject(storyTag.getQuiztype(), quiz.getJSONObject(index));
+				storyTag.addQuizNode(node);
 			}
-			quizCounter = 1;
 		}
 	}
 
-	private static void checkQuizType(int index, StoryTag storyTag,JSONObject jsonTag,
-	                                  JSONObject question, ArrayList<String> multiQuizAnswers) throws JSONException{
-		String quiztType = jsonTag.getString(QUIZ_TYPE);
-		switch(QuizModeEnum.fromString(quiztType)) {
-			case SINGLEQUIZ:
-				storyTag.addToQuiz(index, question.getString(QUIZ_Q), question.getBoolean(QUIZ_A));
-				if (question.has(QUIZ_C)) {
-					storyTag.addCorrectionToQuiz(index, question.getString(QUIZ_C));
-				}
-				break;
-			default:
-				for(quizCounter = 1; quizCounter < question.length(); quizCounter++) {
-					multiQuizAnswers.add(question.getString(QUIZ_A + quizCounter));
-				}
-				storyTag.addToMultiQuiz(index,question.getString(QUIZ_Q),multiQuizAnswers);
+	private static QuizNodeInterface creatQuizObject(QuizTypeEnum quizType, JSONObject jsonQuestion) throws JSONException {
+		switch(quizType) {
+			case TRUEFALSEQUIZ:
+				return QuizFactory.createTrueFalseQuiz(jsonQuestion);
+			case MULTIQUIZLONG:
+				return QuizFactory.createMultiquizLong(jsonQuestion);
+			case MULTIQUIZSHORT:
+				return QuizFactory.createMultiquizShort(jsonQuestion);
 		}
+		return null;
 	}
 
 	@SuppressWarnings("unchecked")

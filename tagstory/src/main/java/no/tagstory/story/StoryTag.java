@@ -4,18 +4,12 @@ import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.S
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import no.tagstory.story.game.QuizModeEnum;
-import no.tagstory.story.game.QuizNode;
+import no.tagstory.story.game.quiz.QuizTypeEnum;
+import no.tagstory.story.game.quiz.QuizNodeInterface;
 
 public class StoryTag implements Serializable {
-
-	public static final String TAG_GPS = "gps";
-	public static final String TAG_QR = "qr";
-	public static final String TAG_NFC = "nfc";
-	public static final String TAG_QR_NFC = "qr_nfc";
 
 	private static final long serialVersionUID = -8334768426662100348L;
 	private String UUID;
@@ -28,8 +22,8 @@ public class StoryTag implements Serializable {
 	private boolean endpoint;
 	private String title;
 	private List<StoryTagOption> options;
-	private QuizModeEnum quizType;
-	private HashMap<Integer, QuizNode> quiz;
+	private QuizTypeEnum quiztype;
+	private List<QuizNodeInterface> quiz;
 	private boolean skipable;
 
 	public StoryTag(String UUID, String description, boolean endpoint) {
@@ -71,18 +65,6 @@ public class StoryTag implements Serializable {
 		return gameMode;
 	}
 
-	public HashMap<Integer, QuizNode> getQuiz() {
-		return quiz;
-	}
-
-	public int getQuizSize() {
-		return quiz.size();
-	}
-
-	public QuizNode getQuizNode(int location) {
-		return quiz.get(location);
-	}
-
 	public String getTravelButton() {
 		return travelButton;
 	}
@@ -118,20 +100,6 @@ public class StoryTag implements Serializable {
 
 	public void setUUID(String uUID) {
 		UUID = uUID;
-	}
-
-	public void addToQuiz(int location, String question, boolean answer) {
-		quiz.put(location, new QuizNode(question, answer));
-	}
-
-	public void addToMultiQuiz(int location, String question, ArrayList<String> answer) {
-		if(!answer.isEmpty()) {
-			quiz.put(location, new QuizNode(question, answer));
-		}
-	}
-
-	public void addCorrectionToQuiz(int location, String correction) {
-		quiz.get(location).setCorrection(correction);
 	}
 
 	public String getImage() {
@@ -178,20 +146,16 @@ public class StoryTag implements Serializable {
 		return getOptions().get(0);
 	}
 
-	public QuizModeEnum getQuizType() {
-		return quizType;
+	public QuizTypeEnum getQuiztype() {
+		return quiztype;
 	}
 
-	public void setQuizType(QuizModeEnum quizType) {
-		this.quizType = quizType;
+	public void setQuiztype(QuizTypeEnum quiztype) {
+		this.quiztype = quiztype;
 	}
 
-	public boolean isQuizTypeSingle() {
-		return QuizModeEnum.SINGLEQUIZ == this.quizType;
-	}
-
-	public void initQuizMode() {
-		quiz = new HashMap<>();
+	public boolean isQuiztypeTrueFalse() {
+		return QuizTypeEnum.TRUEFALSEQUIZ == this.quiztype;
 	}
 
 	public void setSkipable(boolean skipable) {
@@ -200,5 +164,12 @@ public class StoryTag implements Serializable {
 
 	public boolean isSkipable() {
 		return skipable;
+	}
+
+	public void addQuizNode(QuizNodeInterface node) {
+		if (quiz == null) {
+			quiz = new ArrayList<>();
+		}
+		quiz.add(node);
 	}
 }

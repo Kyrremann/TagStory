@@ -68,7 +68,7 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-        <activity android:name="no.tagstory.story.game.QuizActivity"></activity>
+        <activity android:name=".story.game.quiz.QuizActivity"></activity>
         <activity android:name="no.tagstory.story.activity.StoryFinishedActivity"></activity>
 
         <meta-data

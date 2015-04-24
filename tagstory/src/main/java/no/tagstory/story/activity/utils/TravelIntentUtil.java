@@ -15,7 +15,7 @@ import no.tagstory.story.activity.option.MapNavigationActivity;
 import no.tagstory.story.activity.option.gps.GPSActivity;
 import no.tagstory.story.activity.option.gps.GPSMapNavigationActivity;
 import no.tagstory.story.game.CameraActivity;
-import no.tagstory.story.game.QuizActivity;
+import no.tagstory.story.game.quiz.QuizActivity;
 
 import static no.tagstory.story.activity.StoryActivity.EXTRA_STORY;
 import static no.tagstory.story.activity.StoryActivity.EXTRA_TAG;

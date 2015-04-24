@@ -1,0 +1,29 @@
+package no.tagstory.story.game.quiz;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class TrueFalseQuizNode implements QuizNodeInterface {
+
+	private String question;
+	private String correction;
+	private boolean answer;
+
+	public TrueFalseQuizNode(String question, boolean answer, String correction) {
+		this.question = question;
+		this.answer = answer;
+		this.correction = correction;
+	}
+
+	public String getQuestion() {
+		return question;
+	}
+
+	public String getCorrection() {
+		return correction;
+	}
+
+	public boolean isCorrect() {
+		return answer;
+	}
+}

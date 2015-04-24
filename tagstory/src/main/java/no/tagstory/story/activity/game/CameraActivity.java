@@ -1,4 +1,4 @@
-package no.tagstory.story.game;
+package no.tagstory.story.activity.game;
 
 import android.app.Activity;
 import android.content.Intent;

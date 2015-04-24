@@ -8,6 +8,7 @@ import java.util.List;
 
 import no.tagstory.story.game.quiz.QuizTypeEnum;
 import no.tagstory.story.game.quiz.QuizNodeInterface;
+import no.tagstory.story.game.quiz.TrueFalseQuizNode;
 
 public class StoryTag implements Serializable {
 
@@ -171,5 +172,9 @@ public class StoryTag implements Serializable {
 			quiz = new ArrayList<>();
 		}
 		quiz.add(node);
+	}
+
+	public List<QuizNodeInterface> getQuizQuestions() {
+		return quiz;
 	}
 }

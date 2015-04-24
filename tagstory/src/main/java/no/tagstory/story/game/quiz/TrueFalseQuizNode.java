@@ -1,5 +1,8 @@
 package no.tagstory.story.game.quiz;
 
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.StringUtil;
+import no.tagstory.utils.StringUtils;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -23,7 +26,11 @@ public class TrueFalseQuizNode implements QuizNodeInterface {
 		return correction;
 	}
 
-	public boolean isCorrect() {
-		return answer;
+	public boolean isCorrect(boolean answer) {
+		return this.answer == answer;
+	}
+
+	public boolean hasCorrection() {
+		return StringUtil.isBlank(correction);
 	}
 }

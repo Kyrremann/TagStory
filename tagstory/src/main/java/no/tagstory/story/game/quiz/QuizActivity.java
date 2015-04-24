@@ -30,7 +30,7 @@ public class QuizActivity extends AbstractGameModeActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if (tag.isQuiztypeTrueFalse()) {
-			setContentView(R.layout.activity_story_quiz_single);
+			setContentView(R.layout.activity_story_quiz_true_false);
 			textView = (TextView) findViewById(R.id.question);
 		} else {
 			setContentView(R.layout.activity_quiz_multiple);

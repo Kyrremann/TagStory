@@ -2,20 +2,17 @@ package no.tagstory.story.activity.utils;
 
 import android.content.Context;
 import android.content.Intent;
-
-import no.tagstory.story.HintMethodEnum;
-import no.tagstory.story.Story;
-import no.tagstory.story.StoryTag;
-import no.tagstory.story.StoryTagOption;
-import no.tagstory.story.TagTypeEnum;
+import no.tagstory.story.*;
 import no.tagstory.story.activity.StoryPropagatingActivity;
 import no.tagstory.story.activity.StoryTravelActivity;
+import no.tagstory.story.activity.game.CameraActivity;
+import no.tagstory.story.activity.game.quiz.MultiLongQuizActivity;
+import no.tagstory.story.activity.game.quiz.MultiShortQuizActivity;
+import no.tagstory.story.activity.game.quiz.TrueFalseQuizActivity;
 import no.tagstory.story.activity.option.AudioPlayerActivity;
 import no.tagstory.story.activity.option.MapNavigationActivity;
 import no.tagstory.story.activity.option.gps.GPSActivity;
 import no.tagstory.story.activity.option.gps.GPSMapNavigationActivity;
-import no.tagstory.story.game.CameraActivity;
-import no.tagstory.story.game.quiz.QuizActivity;
 
 import static no.tagstory.story.activity.StoryActivity.EXTRA_STORY;
 import static no.tagstory.story.activity.StoryActivity.EXTRA_TAG;
@@ -33,8 +30,19 @@ public class TravelIntentUtil {
 	}
 
 	public static Intent createQuizActivity(Context context, Story story, String tagId, boolean quiztypeSingle) {
-		Intent intent;
-		intent = new Intent(context, QuizActivity.class);
+
+		Intent intent = null;
+		switch (story.getTag(tagId).getQuiztype()) {
+			case TRUEFALSEQUIZ:
+				intent = new Intent(context, TrueFalseQuizActivity.class);
+				break;
+			case MULTIQUIZSHORT:
+				intent = new Intent(context, MultiShortQuizActivity.class);
+				break;
+			case MULTIQUIZLONG:
+				intent = new Intent(context, MultiLongQuizActivity.class);
+				break;
+		}
 		intent.putExtra(EXTRA_STORY, story);
 		intent.putExtra(EXTRA_TAG, tagId);
 		return intent;

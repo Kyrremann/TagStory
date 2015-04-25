@@ -8,6 +8,8 @@ public class HistoryNode {
 
     public HistoryNode next;
     public HistoryNode previous;
+    // TODO Save this variable to the database
+    public boolean finishedGame;
 
     public HistoryNode(StoryTag tag) {
         this.tag = tag;

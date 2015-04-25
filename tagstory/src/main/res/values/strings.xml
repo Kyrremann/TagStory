@@ -52,13 +52,16 @@
 	<!-- Story game modes -->
 	<string name="story_camera_button">Picture taken and sent</string>
 	<string name="story_camera_button_retry">Take a new picture</string>
-	<string name="story_quiz_next_part">Go to next part</string>
-	<string name="story_quiz_ready">I am ready</string>
-	<string name="story_quiz_true">True</string>
-	<string name="story_quiz_false">False</string>
-	<string name="story_quiz_multiple">Choose Answers</string>
-	<string name="story_quiz_correction">Correction</string>
-	<string name="story_quiz_next">Next question</string>
+	<!-- Quiz -->
+	<string name="quiz_next_part">Go to next part</string>
+	<string name="quiz_ready">I am ready</string>
+	<string name="quiz_true">True</string>
+	<string name="quiz_false">False</string>
+	<string name="quiz_multiple">Choose Answers</string>
+	<string name="quiz_correction">Correction</string>
+	<string name="quiz_next">Next question</string>
+	<string name="quiz_correct_answer">You answered correct!</string>
+	<string name="quiz_wrong_answer">You answered wrong.</string>
 
 	<!-- Dummy data -->
 	<string name="dummy_statistics">Statistics\nTime used: 21:41\nLength walk: 2km</string>
@@ -96,6 +99,9 @@
 	<string name="dialog_qr_about_title">About QR tags</string>
 	<string name="dialog_qr_about_content">A QR-code is a matrix type of barcode.\n\nAre you a bit tired, or just don\'t find the tag? Then you can use the \"skip\"-button to advance to the next tag.</string>
 	<string name="dialog_chooser_email">Send e-mail...</string>
+	<string name="dialog_quiz_continue_title">End of quiz</string>
+	<string name="dialog_quiz_continue_message">You scored %1$d of %2$d.</string>
+	<string name="dialog_quiz_continue">Continue story</string>
 
 	<!-- URLs -->
 	<string name="barcode_scanner_play_store">com.google.zxing.client.android</string>
@@ -105,8 +111,8 @@
 
 	<!-- API -->
 	<string name="market_api_stories">http://tagstory.herokuapp.com/api/stories/json</string>
-	<string name="market_api_story">http://tagstory.herokuapp.com/api/story/%s/json</string>
-	<string name="market_api_version">http://tagstory.herokuapp.com/api/story/%s/version/json</string>
+	<string name="market_api_story">http://tagstory.herokuapp.com/api/story/%1$s/json</string>
+	<string name="market_api_version">http://tagstory.herokuapp.com/api/story/%1$s/version/json</string>
 
 	<!-- Single words -->
 	<string name="cancel">Cancel</string>

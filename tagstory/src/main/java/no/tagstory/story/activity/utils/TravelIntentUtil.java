@@ -30,7 +30,6 @@ public class TravelIntentUtil {
 	}
 
 	public static Intent createQuizActivity(Context context, Story story, String tagId, boolean quiztypeSingle) {
-
 		Intent intent = null;
 		switch (story.getTag(tagId).getQuiztype()) {
 			case TRUEFALSEQUIZ:

@@ -6,6 +6,8 @@ import java.util.List;
 
 public class MultipleAnswersQuizNode implements QuizNodeInterface {
 
+	public static final long serialVersionID = 8577629238L;
+
 	private final String question;
 	private final String answer;
 	private final List<String> answers;

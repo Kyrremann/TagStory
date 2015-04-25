@@ -30,7 +30,7 @@
 		android:background="@color/holo_orange_light"
 		android:onClick="quizAnswerMMultiple"
 		android:padding="15dp"
-		android:text="@string/story_quiz_multiple"
+		android:text="@string/quiz_multiple"
 		android:textAppearance="@style/TextAppearanceButton"
 		/>
 </RelativeLayout>

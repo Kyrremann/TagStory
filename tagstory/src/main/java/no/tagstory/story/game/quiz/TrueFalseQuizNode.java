@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class TrueFalseQuizNode implements QuizNodeInterface {
 
+	public static final long serialVerisonID = 5751722078L;
 	private String question;
 	private String correction;
 	private boolean answer;

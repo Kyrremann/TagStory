@@ -1,16 +1,20 @@
 package no.tagstory.story.activity.game.quiz;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 import no.tagstory.R;
+import no.tagstory.StoryApplication;
 import no.tagstory.story.activity.game.AbstractGameModeActivity;
 import no.tagstory.story.game.quiz.QuizNodeInterface;
 import no.tagstory.story.game.quiz.TrueFalseQuizNode;
-import org.w3c.dom.Text;
 
-import java.io.StringBufferInputStream;
 import java.util.List;
+
+import static no.tagstory.story.activity.utils.TravelIntentUtil.createTravelIntent;
 
 public class TrueFalseQuizActivity extends AbstractGameModeActivity {
 
@@ -27,6 +31,11 @@ public class TrueFalseQuizActivity extends AbstractGameModeActivity {
 		questionView = (TextView) findViewById(R.id.question);
 		questionIndex = 0;
 		questions = tag.getQuizQuestions();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
 		nextQuestion();
 	}
 
@@ -53,19 +62,34 @@ public class TrueFalseQuizActivity extends AbstractGameModeActivity {
 	private void checkCorrectAnswer(boolean answer) {
 		if (currentQuestion.isCorrect(answer)) {
 			quizScore++;
+			Toast.makeText(this, R.string.quiz_correct_answer, Toast.LENGTH_SHORT).show();
 		} else {
-			quizScore--;
+			Toast.makeText(this, R.string.quiz_wrong_answer, Toast.LENGTH_SHORT).show();
 		}
 		questionIndex++;
 
 		if (currentQuestion.hasCorrection()) {
 			// TODO show a dialog for correction
+			nextQuestion();
 		} else {
 			nextQuestion();
 		}
 	}
 
 	private void showQuizScoreAndEnd() {
-
+		// TODO Save quiz score to database
+		finishedGame();
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle(R.string.dialog_quiz_continue_title);
+		builder.setMessage(getString(R.string.dialog_quiz_continue_message, quizScore, questions.size()));
+		builder.setNeutralButton(R.string.dialog_quiz_continue, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				endGame();
+				dialog.cancel();
+			}
+		});
+		builder.setCancelable(false);
+		builder.create().show();
 	}
 }

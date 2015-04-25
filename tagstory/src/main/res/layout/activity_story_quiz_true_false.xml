@@ -38,7 +38,7 @@
 				android:background="@color/holo_orange_light"
 				android:onClick="answer"
 				android:padding="15dp"
-				android:text="@string/story_quiz_true"
+				android:text="@string/quiz_true"
 				android:textAppearance="@style/TextAppearanceButton"/>
 
 		<Button
@@ -49,7 +49,7 @@
 				android:background="@color/holo_orange_dark"
 				android:onClick="answer"
 				android:padding="15dp"
-				android:text="@string/story_quiz_false"
+				android:text="@string/quiz_false"
 				android:textAppearance="@style/TextAppearanceButton"/>
 	</LinearLayout>
 

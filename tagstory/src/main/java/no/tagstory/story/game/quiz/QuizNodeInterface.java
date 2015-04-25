@@ -1,4 +1,6 @@
 package no.tagstory.story.game.quiz;
 
-public interface QuizNodeInterface {
+import java.io.Serializable;
+
+public interface QuizNodeInterface extends Serializable {
 }

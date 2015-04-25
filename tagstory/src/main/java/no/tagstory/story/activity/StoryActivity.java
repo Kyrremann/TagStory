@@ -37,7 +37,7 @@ public class StoryActivity extends AbstractStoryActivity {
 			if (tag.hasSingleQuestion()) {
 				initializeSingleQuestion();
 			}
-			setTravelButton(tag);
+			setTravelButton();
 		}
 	}
 
@@ -71,24 +71,37 @@ public class StoryActivity extends AbstractStoryActivity {
 		}
 	}
 
-	private void setTravelButton(StoryTag tag) {
+	private void setTravelButton() {
 		Button travelButton = (Button) findViewById(R.id.story_activity_travel);
 
 		if (hasUserAlreadyVisitedTag()) {
-			goDirectlyToNextTag(travelButton);
+			travelButton.setText(R.string.story_button_next_tag);
+			goDirectlyToNextTagClickListener(travelButton);
+		} else if (hasUserPlayedTheGame()) {
+			travelButton.setText(R.string.story_button_next_tag);
+			goDirectlyToTravelActivityClickListener();
 		} else if (tag.hasOnlyOneOption()) {
-			onlyOneOption(tag, travelButton);
+			travelButton.setText(tag.getTravelButton());
+			onlyOneOptionClickListener(travelButton);
 		} else {
-			severalOptions(tag, travelButton);
+			travelButton.setText(tag.getTravelButton());
+			severalOptionsClickListener(travelButton);
 		}
+	}
+
+	private void goDirectlyToTravelActivityClickListener() {
+
+	}
+
+	private boolean hasUserPlayedTheGame() {
+		return storyHistory.hasFinishedGame();
 	}
 
 	private boolean hasUserAlreadyVisitedTag() {
 		return storyHistory.hasNext();
 	}
 
-	private void goDirectlyToNextTag(Button travelButton) {
-		travelButton.setText(R.string.story_button_next_tag);
+	private void goDirectlyToNextTagClickListener(Button travelButton) {
 		travelButton.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -102,7 +115,7 @@ public class StoryActivity extends AbstractStoryActivity {
 		});
 	}
 
-	private void severalOptions(final StoryTag tag, Button button) {
+	private void severalOptionsClickListener(Button travelButton) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setSingleChoiceItems(tag.getOptionsAnswers(), -1, new DialogInterface.OnClickListener() {
 
@@ -114,10 +127,8 @@ public class StoryActivity extends AbstractStoryActivity {
 			}
 		});
 
-		button.setText(this.tag.getTravelButton());
-
 		final Dialog dialog = builder.create();
-		button.setOnClickListener(new OnClickListener() {
+		travelButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
@@ -126,12 +137,9 @@ public class StoryActivity extends AbstractStoryActivity {
 		});
 	}
 
-	private void onlyOneOption(final StoryTag tag, Button button) {
+	private void onlyOneOptionClickListener(Button travelButton) {
 		final StoryTagOption option = tag.getFirstOption();
-
-		button.setText(tag.getTravelButton());
-
-		button.setOnClickListener(new OnClickListener() {
+		travelButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View view) {

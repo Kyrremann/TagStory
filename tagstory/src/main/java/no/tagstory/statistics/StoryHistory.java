@@ -74,4 +74,12 @@ public class StoryHistory {
     public int getSize() {
         return size;
     }
+
+    public void setFinishedGame(boolean finished) {
+        current.finishedGame = finished;
+    }
+
+    public boolean hasFinishedGame() {
+        return current.finishedGame;
+    }
 }

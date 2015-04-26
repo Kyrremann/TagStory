@@ -1,7 +1,5 @@
 package no.tagstory.story.game.quiz;
 
-import org.json.JSONArray;
-
 import java.util.List;
 
 public class MultipleAnswersQuizNode implements QuizNodeInterface {
@@ -10,16 +8,19 @@ public class MultipleAnswersQuizNode implements QuizNodeInterface {
 
 	private final String question;
 	private final String answer;
-	private final List<String> answers;
+	private final String[] answers;
 	private final String correction;
-	private final boolean shortQuiz;
 
-	public MultipleAnswersQuizNode(String question, String answer, List<String> answers, String correction, boolean shortQuiz) {
+	public MultipleAnswersQuizNode(String question, String answer, List<String> answers, String correction) {
 		this.question = question;
 		this.answer = answer;
-		this.answers = answers;
+		this.answers = answers.toArray(new String[answers.size()]);
 		this.correction = correction;
-		this.shortQuiz = shortQuiz;
+	}
+
+	@Override
+	public boolean hasCorrection() {
+		return false;
 	}
 
 	public String getQuestion() {
@@ -30,15 +31,11 @@ public class MultipleAnswersQuizNode implements QuizNodeInterface {
 		return this.answer.equals(answer);
 	}
 
-	public List<String> getAnswers() {
+	public String[] getAnswers() {
 		return answers;
 	}
 
 	public String getCorrection() {
 		return correction;
-	}
-
-	public boolean isShortQuiz() {
-		return shortQuiz;
 	}
 }

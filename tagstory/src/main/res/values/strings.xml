@@ -57,7 +57,7 @@
 	<string name="quiz_ready">I am ready</string>
 	<string name="quiz_true">True</string>
 	<string name="quiz_false">False</string>
-	<string name="quiz_multiple">Choose Answers</string>
+	<string name="quiz_multiple">See answers</string>
 	<string name="quiz_correction">Correction</string>
 	<string name="quiz_next">Next question</string>
 	<string name="quiz_correct_answer">You answered correct!</string>
@@ -119,5 +119,6 @@
 	<string name="yes">Yes</string>
 	<string name="no">No</string>
 	<string name="skip">Skip</string>
+	<string name="dialog_quiz_answers_title">Pick your answer</string>
 
 </resources>

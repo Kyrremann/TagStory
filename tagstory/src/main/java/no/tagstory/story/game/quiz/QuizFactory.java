@@ -20,16 +20,16 @@ public class QuizFactory {
 		return new MultipleAnswersQuizNode(jsonQuestion.getString(StoryParser.QUIZ_QUESTION),
 				jsonQuestion.getString(StoryParser.QUIZ_ANSWER),
 				generateList(jsonQuestion.getJSONArray(StoryParser.QUIZ_ANSWERS)),
-				jsonQuestion.optString(StoryParser.QUIZ_CORRECTION),
-				true);
+				jsonQuestion.optString(StoryParser.QUIZ_CORRECTION)
+		);
 	}
 
 	public static MultipleAnswersQuizNode createMultiquizShort(JSONObject jsonQuestion) throws JSONException {
 		return new MultipleAnswersQuizNode(jsonQuestion.getString(StoryParser.QUIZ_QUESTION),
 				jsonQuestion.getString(StoryParser.QUIZ_ANSWER),
 				generateList(jsonQuestion.getJSONArray(StoryParser.QUIZ_ANSWERS)),
-				jsonQuestion.optString(StoryParser.QUIZ_CORRECTION),
-				false);
+				jsonQuestion.optString(StoryParser.QUIZ_CORRECTION)
+		);
 	}
 
 	private static List<String> generateList(JSONArray jsonArray) {

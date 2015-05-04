@@ -31,7 +31,8 @@ public class StoryFinishedActivity extends AbstractStoryActivity {
 		((TextView) findViewById(R.id.story_statistic)).setText(storyStatistic.formatStatistic());
 
 		if (!storyStatistic.isSaved()) {
-			storyStatistic.saveToDatebase(this);
+			int id = storyStatistic.saveToDatebase(this);
+			application.getStoryHistory().saveToDatabase(this, id);
 		}
 	}
 

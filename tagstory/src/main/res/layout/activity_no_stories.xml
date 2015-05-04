@@ -36,7 +36,7 @@
 			android:background="@color/holo_orange_light"
 			android:onClick="onClick"
 			android:padding="15dp"
-			android:text="@string/front_visit_marked"
+			android:text="@string/front_visit_market"
 			android:textStyle="bold"/>
 
 </RelativeLayout>

@@ -15,6 +15,7 @@ public class StoryStatistic {
 
 	private String storyId;
 	private Date startTime;
+	private Date endTime;
 	private long duration;
 	private int distance;
 	private boolean isSaved;
@@ -48,11 +49,20 @@ public class StoryStatistic {
 		return distance;
 	}
 
-	public void saveToDatebase(Context context) {
+	public int saveToDatebase(Context context) {
 		Database database = new Database(context);
 		database.open();
-		isSaved = database.insertStatistic(storyId, startTime, duration, distance);
+		isSaved = database.insertStatistic(storyId, startTime, endTime, duration, distance);
+		int id = database.getStatisticId(storyId, startTime);
+		saveLocations(database, id);
 		database.close();
+		return id;
+	}
+
+	private void saveLocations(Database database, int statisticId) {
+		for (Location location : locations) {
+			database.insertLocation(statisticId, location);
+		}
 	}
 
 	public String formatStatistic() {
@@ -69,5 +79,41 @@ public class StoryStatistic {
 
 	public void addLocation(Location location) {
 		locations.add(location);
+	}
+
+	public String getStoryId() {
+		return storyId;
+	}
+
+	public List<Location> getLocations() {
+		return locations;
+	}
+
+	public double getLocationLatitude(int index) {
+		return locations.get(index).getLatitude();
+	}
+
+	public double getLocationLongitude(int index) {
+		return locations.get(index).getLongitude();
+	}
+
+	public void setDuration(long duration) {
+		this.duration = duration;
+	}
+
+	public long getDuration() {
+		return duration;
+	}
+
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
+
+	public int getDistance() {
+		return distance;
+	}
+
+	public void setSaved(boolean saved) {
+		this.isSaved = saved;
 	}
 }

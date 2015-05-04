@@ -16,7 +16,6 @@ import no.tagstory.StoryDetailActivity;
 import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
 import no.tagstory.story.StoryManager;
 import no.tagstory.utils.ClassVersionFactory;
-import no.tagstory.utils.Database;
 import no.tagstory.utils.StoryParser;
 import no.tagstory.utils.http.SimpleStoryHandler;
 import no.tagstory.utils.http.StoryProtocol;
@@ -97,7 +96,7 @@ public class StoryMarketListingActivity extends Activity implements SimpleStoryH
 				if (isDownloaded) {
 					Intent detailIntent = ClassVersionFactory.createIntent(getApplicationContext(),
 							StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);
-					detailIntent.putExtra(Database.STORY_ID, storyUUID);
+					detailIntent.putExtra(StoryParser.UUID, storyUUID);
 					startActivity(detailIntent);
 				} else if (isOutdated) {
 					deleteStory();

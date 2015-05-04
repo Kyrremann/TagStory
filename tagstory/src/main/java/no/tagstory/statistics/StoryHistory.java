@@ -87,6 +87,14 @@ public class StoryHistory {
 		return size;
 	}
 
+	public void setFinishedGame(boolean finished) {
+		current.finishedGame = finished;
+	}
+
+	public boolean hasFinishedGame() {
+		return current.finishedGame;
+	}
+
 	public void saveToDatabase(Context context, int statisticsId) {
 		Database database = new Database(context);
 		database.open();

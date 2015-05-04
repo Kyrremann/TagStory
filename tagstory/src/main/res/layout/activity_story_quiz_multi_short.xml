@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="@dimen/default_padding">
+
+
+	<TextView
+			android:id="@+id/question"
+			style="@style/TagStoryViewMedium"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			tools:text="Lorem Ipsum is simply dummy"/>
+
+	<LinearLayout
+			android:id="@+id/first_row"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:layout_below="@+id/question"
+			android:paddingTop="@dimen/default_padding"
+			android:weightSum="2">
+
+
+		<TextView
+				android:id="@+id/answer_1"
+				style="@style/TagStoryViewMedium"
+				android:layout_width="wrap_content"
+				android:layout_weight="1"
+				android:onClick="answer"
+				android:gravity="center"
+				tools:text="Santa Clause"/>
+
+
+		<TextView
+				android:id="@+id/answer_2"
+				style="@style/TagStoryViewMedium"
+				android:layout_width="wrap_content"
+				android:layout_weight="1"
+				android:onClick="answer"
+				android:gravity="center"
+				tools:text="Bunny"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+			android:id="@+id/second_row"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:layout_below="@+id/first_row"
+			android:paddingTop="@dimen/default_padding"
+			android:weightSum="2">
+
+
+		<TextView
+				android:id="@+id/answer_3"
+				style="@style/TagStoryViewMedium"
+				android:layout_width="wrap_content"
+				android:layout_weight="1"
+				android:onClick="answer"
+				android:gravity="center"
+				tools:text="Santa Clause"/>
+
+
+		<TextView
+				android:id="@+id/answer_4"
+				style="@style/TagStoryViewMedium"
+				android:layout_width="wrap_content"
+				android:layout_weight="1"
+				android:onClick="answer"
+				android:gravity="center"
+				tools:text="Bunny"/>
+
+	</LinearLayout>
+
+</RelativeLayout>

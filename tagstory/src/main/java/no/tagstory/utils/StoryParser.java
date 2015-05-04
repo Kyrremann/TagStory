@@ -1,7 +1,9 @@
 package no.tagstory.utils;
 
 import android.content.Context;
-import no.tagstory.story.*;
+
+import no.tagstory.story.game.quiz.QuizFactory;
+import no.tagstory.story.game.quiz.QuizNodeInterface;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,7 +12,20 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
+import no.tagstory.story.GameModeEnum;
+import no.tagstory.story.HintMethodEnum;
+import no.tagstory.story.Story;
+import no.tagstory.story.StoryStatusEnum;
+import no.tagstory.story.StoryTag;
+import no.tagstory.story.StoryTagOption;
+import no.tagstory.story.TagTypeEnum;
+import no.tagstory.story.game.quiz.QuizTypeEnum;
 
 public class StoryParser {
 
@@ -67,11 +82,13 @@ public class StoryParser {
 
 	public static final String HINT_TEXT = "text";
 	// Quiz
+	public static final String QUIZ_TYPE = "quiz_type";
 	public static final String QUIZ = "quiz";
-	public static final String QUIZ_Q = "quizQ";
-	public static final String QUIZ_A = "quizA";
-
-	public static final String QUIZ_C = "quizC";
+	public static final String QUIZ_QUESTION = "question";
+	public static final String QUIZ_ANSWER = "answer";
+	public static final String QUIZ_ANSWERS = "answers";
+	// Optional
+	public static final String QUIZ_CORRECTION = "correction";
 	// Camera
 	public static final String CAMERA = "camera";
 
@@ -170,19 +187,27 @@ public class StoryParser {
 	@SuppressWarnings("unchecked")
 	private static void parseGameMode(StoryTag storyTag, JSONObject jsonTag) throws JSONException {
 		if (storyTag.isQuiz()) {
-			// TODO Implement better quiz
-			storyTag.initQuizMode();
+			storyTag.setQuiztype(QuizTypeEnum.fromString(jsonTag.getString(QUIZ_TYPE)));
+
 			JSONArray quiz = jsonTag.getJSONArray(QUIZ);
-			JSONObject question;
 
 			for (int index = 0; index < quiz.length(); index++) {
-				question = quiz.getJSONObject(index);
-				storyTag.addToQuiz(index, question.getString(QUIZ_Q), question.getBoolean(QUIZ_A));
-				if (question.has(QUIZ_C)) {
-					storyTag.addCorrectionToQuiz(index, question.getString(QUIZ_C));
-				}
+				QuizNodeInterface node = creatQuizObject(storyTag.getQuiztype(), quiz.getJSONObject(index));
+				storyTag.addQuizNode(node);
 			}
 		}
+	}
+
+	private static QuizNodeInterface creatQuizObject(QuizTypeEnum quizType, JSONObject jsonQuestion) throws JSONException {
+		switch(quizType) {
+			case TRUEFALSEQUIZ:
+				return QuizFactory.createTrueFalseQuiz(jsonQuestion);
+			case MULTIQUIZLONG:
+				return QuizFactory.createMultiquizLong(jsonQuestion);
+			case MULTIQUIZSHORT:
+				return QuizFactory.createMultiquizShort(jsonQuestion);
+		}
+		return null;
 	}
 
 	@SuppressWarnings("unchecked")

@@ -68,7 +68,6 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-        <activity android:name="no.tagstory.story.game.QuizActivity"></activity>
         <activity android:name="no.tagstory.story.activity.StoryFinishedActivity"></activity>
 
         <meta-data
@@ -82,7 +81,10 @@
             android:name=".honeycomb.TagStoryActivityHoneycomb"
             android:label="@string/app_title"></activity>
         <activity android:name="no.tagstory.story.activity.StoryPropagatingActivity"></activity>
-        <activity android:name="no.tagstory.story.game.CameraActivity"></activity>
+        <activity android:name="no.tagstory.story.activity.game.CameraActivity"></activity>
+        <activity android:name=".story.activity.game.quiz.TrueFalseQuizActivity"></activity>
+        <activity android:name=".story.activity.game.quiz.MultiShortQuizActivity"></activity>
+        <activity android:name=".story.activity.game.quiz.MultiLongQuizActivity"></activity>
         <activity
             android:name="no.tagstory.TagStoryActivity"
             android:label="@string/app_title"></activity>

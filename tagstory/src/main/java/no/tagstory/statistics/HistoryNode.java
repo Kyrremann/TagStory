@@ -7,6 +7,8 @@ public class HistoryNode {
 	public HistoryNode next;
 	public HistoryNode previous;
 	public boolean root = false;
+    // TODO Save this variable to the database
+    public boolean finishedGame;
 
 	public HistoryNode(String tagId) {
 		this.tagId = tagId;

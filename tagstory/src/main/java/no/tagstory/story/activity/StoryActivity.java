@@ -6,24 +6,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import no.tagstory.R;
-import no.tagstory.StoryDetailActivity;
-import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
-import no.tagstory.statistics.StoryHistory;
-import no.tagstory.statistics.StoryStatistic;
-import no.tagstory.story.StoryTag;
 import no.tagstory.story.StoryTagOption;
-import no.tagstory.utils.ClassVersionFactory;
-import no.tagstory.utils.Database;
-import no.tagstory.utils.StoryParser;
 
 import java.io.FileNotFoundException;
 
@@ -44,7 +33,7 @@ public class StoryActivity extends AbstractStoryActivity {
 			if (tag.hasSingleQuestion()) {
 				initializeSingleQuestion();
 			}
-			setTravelButton(tag);
+			setTravelButton();
 		}
 	}
 
@@ -78,24 +67,37 @@ public class StoryActivity extends AbstractStoryActivity {
 		}
 	}
 
-	private void setTravelButton(StoryTag tag) {
+	private void setTravelButton() {
 		Button travelButton = (Button) findViewById(R.id.story_activity_travel);
 
 		if (hasUserAlreadyVisitedTag()) {
-			goDirectlyToNextTag(travelButton);
+			travelButton.setText(R.string.story_button_next_tag);
+			goDirectlyToNextTagClickListener(travelButton);
+		} else if (hasUserPlayedTheGame()) {
+			travelButton.setText(R.string.story_button_next_tag);
+			goDirectlyToTravelActivityClickListener();
 		} else if (tag.hasOnlyOneOption()) {
-			onlyOneOption(tag, travelButton);
+			travelButton.setText(tag.getTravelButton());
+			onlyOneOptionClickListener(travelButton);
 		} else {
-			severalOptions(tag, travelButton);
+			travelButton.setText(tag.getTravelButton());
+			severalOptionsClickListener(travelButton);
 		}
+	}
+
+	private void goDirectlyToTravelActivityClickListener() {
+
+	}
+
+	private boolean hasUserPlayedTheGame() {
+		return storyHistory.hasFinishedGame();
 	}
 
 	private boolean hasUserAlreadyVisitedTag() {
 		return storyHistory.hasNext();
 	}
 
-	private void goDirectlyToNextTag(Button travelButton) {
-		travelButton.setText(R.string.story_button_next_tag);
+	private void goDirectlyToNextTagClickListener(Button travelButton) {
 		travelButton.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -109,7 +111,7 @@ public class StoryActivity extends AbstractStoryActivity {
 		});
 	}
 
-	private void severalOptions(final StoryTag tag, Button button) {
+	private void severalOptionsClickListener(Button travelButton) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setSingleChoiceItems(tag.getOptionsAnswers(), -1, new DialogInterface.OnClickListener() {
 
@@ -121,10 +123,8 @@ public class StoryActivity extends AbstractStoryActivity {
 			}
 		});
 
-		button.setText(this.tag.getTravelButton());
-
 		final Dialog dialog = builder.create();
-		button.setOnClickListener(new OnClickListener() {
+		travelButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
@@ -133,18 +133,15 @@ public class StoryActivity extends AbstractStoryActivity {
 		});
 	}
 
-	private void onlyOneOption(final StoryTag tag, Button button) {
+	private void onlyOneOptionClickListener(Button travelButton) {
 		final StoryTagOption option = tag.getFirstOption();
-
-		button.setText(tag.getTravelButton());
-
-		button.setOnClickListener(new OnClickListener() {
+		travelButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
 				Intent intent;
 				if (tag.isQuiz()) {
-					intent = createQuizActivity(getApplicationContext(), story, tagId);
+					intent = createQuizActivity(getApplicationContext(), story, tagId, tag.isQuiztypeTrueFalse());
 				} else if (tag.isCamera()) {
 					intent = createCameraActivity(getApplicationContext(), story, tagId);
 				} else {

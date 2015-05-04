@@ -35,7 +35,7 @@ public class StoryParser {
 	public static final String AUTHOR = "author";
 	public static final String TITLE = "title";
 	public static final String RELEASE_DATE = "release_date";
-	public static final String AGEGROUP = "agegroup";
+	public static final String AGEGROUP = "age_group";
 	public static final String GENRE = "genre";
 	public static final String DESCRIPTION = "description";
 	public static final String START_TAG = "start_tag";
@@ -63,7 +63,7 @@ public class StoryParser {
 	// Optional
 	public static final String QUESTION = "question";
 	public static final String TAG_IMAGE = "image";
-	public static final String SKIPABLE = "skipable";
+	public static final String SKIPABLE = "skippable";
 
 	public static final String ENDPOINT = "isEndPoint"; // Last tag has to have this sat to true
 	// Options

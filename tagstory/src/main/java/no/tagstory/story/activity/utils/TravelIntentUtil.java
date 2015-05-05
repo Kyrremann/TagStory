@@ -29,7 +29,7 @@ public class TravelIntentUtil {
 		return intent;
 	}
 
-	public static Intent createQuizActivity(Context context, Story story, String tagId, boolean quiztypeSingle) {
+	public static Intent createQuizActivity(Context context, Story story, String tagId) {
 		Intent intent = null;
 		switch (story.getTag(tagId).getQuiztype()) {
 			case TRUEFALSEQUIZ:

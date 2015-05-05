@@ -75,7 +75,7 @@ public class StoryActivity extends AbstractStoryActivity {
 			goDirectlyToNextTagClickListener(travelButton);
 		} else if (hasUserPlayedTheGame()) {
 			travelButton.setText(R.string.story_button_next_tag);
-			goDirectlyToTravelActivityClickListener();
+			goDirectlyToTravelActivityClickListener(travelButton);
 		} else if (tag.hasOnlyOneOption()) {
 			travelButton.setText(tag.getTravelButton());
 			onlyOneOptionClickListener(travelButton);
@@ -85,8 +85,13 @@ public class StoryActivity extends AbstractStoryActivity {
 		}
 	}
 
-	private void goDirectlyToTravelActivityClickListener() {
-
+	private void goDirectlyToTravelActivityClickListener(Button travelButton) {
+		travelButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(createTravelIntent(getApplicationContext(), story, tag, tag.getFirstOption()));
+			}
+		});
 	}
 
 	private boolean hasUserPlayedTheGame() {
@@ -141,7 +146,7 @@ public class StoryActivity extends AbstractStoryActivity {
 			public void onClick(View view) {
 				Intent intent;
 				if (tag.isQuiz()) {
-					intent = createQuizActivity(getApplicationContext(), story, tagId, tag.isQuiztypeTrueFalse());
+					intent = createQuizActivity(getApplicationContext(), story, tagId);
 				} else if (tag.isCamera()) {
 					intent = createCameraActivity(getApplicationContext(), story, tagId);
 				} else {

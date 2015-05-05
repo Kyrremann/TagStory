@@ -277,7 +277,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 
 	private void showNoNfcDialog() {
 		if (enableNFCDialog == null) {
-			// TODO
+			// TODO implement NFC dialog
 		}
 	}
 

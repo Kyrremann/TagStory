@@ -102,8 +102,7 @@ public abstract class AbstractStoryActivity extends Activity implements AlertDia
 	}
 
 	public void saveStory() {
-		// TODO Should check if you have just gone back, and is not actually on the first tag
-		if (isStartTag()) {
+		if (isStartTag() && hasNotFinishedTheFirstTag()) {
 			Toast.makeText(this, R.string.toast_cant_save_start_tag, Toast.LENGTH_SHORT).show();
 			return;
 		}
@@ -132,6 +131,10 @@ public abstract class AbstractStoryActivity extends Activity implements AlertDia
 				break;
 		}
 		dialog.dismiss();
+	}
+
+	private boolean hasNotFinishedTheFirstTag() {
+		return storyHistory.getSize() == 0;
 	}
 
 	private boolean isStartTag() {

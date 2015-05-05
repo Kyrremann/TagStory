@@ -6,10 +6,7 @@ import no.tagstory.utils.Database;
 import no.tagstory.utils.DateUtils;
 import no.tagstory.utils.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class StoryStatistic {
 
@@ -115,5 +112,14 @@ public class StoryStatistic {
 
 	public void setSaved(boolean saved) {
 		this.isSaved = saved;
+	}
+
+	public void sortLocations() {
+		Collections.sort(locations, new Comparator<Location>() {
+			@Override
+			public int compare(Location l1, Location t2) {
+				return new Long(l1.getTime()).compareTo(new Long(t2.getTime()));
+			}
+		});
 	}
 }

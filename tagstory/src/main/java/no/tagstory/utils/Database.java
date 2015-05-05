@@ -98,6 +98,7 @@ public class Database {
 	private static final String HISTORY_TAG_ID = "tag_id";
 	private static final String HISTORY_PREVIOUS_TAG = "previous_tag";
 	private static final String HISTORY_NEXT_TAG = "next_tag";
+	private static final String HISTORY_FINISHED_GAME = "finished_game";
 	private static final String HISTORY_ROOT = "root";
 	private static final String HISTORY_CREATE = String.format(Locale.ENGLISH,
 			"CREATE TABLE %s (" +
@@ -106,9 +107,24 @@ public class Database {
 					"%s TEXT NOT NULL," +
 					"%s TEXT," +
 					"%s TEXT," +
+					"%s INTEGER DEFAULT 0," +
 					"%s INTEGER DEFAULT 0);",
 			HISTORY_TABLE_NAME, HISTORY_ID, HISTORY_STATISTICS_ID, HISTORY_TAG_ID,
-			HISTORY_PREVIOUS_TAG, HISTORY_NEXT_TAG, HISTORY_ROOT);
+			HISTORY_PREVIOUS_TAG, HISTORY_NEXT_TAG, HISTORY_FINISHED_GAME, HISTORY_ROOT);
+
+	private static final String QUIZ_SCORE_TABLE_NAME = "QUIZ_SCORE";
+	private static final String QUIZ_SCORE_ID = "_id";
+	private static final String QUIZ_SCORE_SCORE = "score";
+	private static final String QUIZ_SCORE_TAG_ID = "tag";
+	private static final String QUIZ_SCORE_STORY_ID = "story";
+	private static final String QUIZ_SCORE_CREATE = String.format(Locale.ENGLISH,
+			"CREATE TABLE %s (" +
+					"%s INTEGER PRIMARY KEY AUTOINCREMENT," +
+					"%s INTEGER NOT NULL," +
+					"%s TEXT NOT NULL," +
+					"%s TEXT NOT NULL);",
+			QUIZ_SCORE_TABLE_NAME, QUIZ_SCORE_ID, QUIZ_SCORE_SCORE,
+			QUIZ_SCORE_TAG_ID, QUIZ_SCORE_STORY_ID);
 
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -236,10 +252,9 @@ public class Database {
 		return statistic;
 	}
 
-	// TODO should maybe only retrieved finish stories?
 	public Cursor getStatistics() {
-		return db.query(STATISTICS_TABLE_NAME, null, null, null, null, null,
-				STATISTICS_START_DATE + " DESC");
+		return db.query(STATISTICS_TABLE_NAME, null, STATISTICS_END_DATE + "IS NOT NULL",
+				null, null, null, STATISTICS_START_DATE + " DESC");
 	}
 
 	public boolean insertStatistic(String storyId, Date startTime, Date endTime, long duration, int distance) {
@@ -277,6 +292,7 @@ public class Database {
 		ContentValues mValues = new ContentValues(4);
 		mValues.put(HISTORY_STATISTICS_ID, statisticsId);
 		mValues.put(HISTORY_TAG_ID, node.getTagUUID());
+		mValues.put(HISTORY_FINISHED_GAME, node.finishedGame);
 		if (node.hasPrevious()) {
 			mValues.put(HISTORY_PREVIOUS_TAG, node.previous.getTagUUID());
 		}
@@ -316,5 +332,12 @@ public class Database {
 
 	public void deleteSavedTravel(String id) {
 		db.delete(SAVE_TRAVEL_TABLE_NAME, SAVE_TRAVEL_STATISTIC_ID + "=?", new String[]{ id });
+	}
+
+	public void saveQuizScore(int quizScore, String tagId, String storyId) {
+		ContentValues values = new ContentValues(3);
+		values.put(QUIZ_SCORE_SCORE, quizScore);
+		values.put(QUIZ_SCORE_TAG_ID, tagId);
+		values.put(QUIZ_SCORE_STORY_ID, storyId);
 	}
 }

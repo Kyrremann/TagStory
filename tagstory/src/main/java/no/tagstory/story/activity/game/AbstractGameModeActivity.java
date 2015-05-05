@@ -15,6 +15,7 @@ import no.tagstory.story.StoryTag;
 import no.tagstory.story.activity.StoryActivity;
 import no.tagstory.story.game.quiz.QuizNodeInterface;
 import no.tagstory.story.game.quiz.TrueFalseQuizNode;
+import no.tagstory.utils.Database;
 
 import java.util.List;
 
@@ -102,8 +103,15 @@ public abstract class AbstractGameModeActivity extends Activity {
 		finish();
 	}
 
+	protected void saveQuizScore() {
+		Database database = new Database(this);
+		database.open();
+		database.saveQuizScore(quizScore, tagId, story.getUUID());
+		database.close();
+	}
+
 	protected void showQuizScoreAndEnd() {
-		// TODO Save quiz score to database
+		saveQuizScore();
 		finishedGame();
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle(R.string.dialog_quiz_continue_title);

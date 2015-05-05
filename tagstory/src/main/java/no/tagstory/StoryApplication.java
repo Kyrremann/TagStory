@@ -63,7 +63,6 @@ public class StoryApplication extends Application {
 	public void resumeStory(Database database, int statisticsId, String storyId) throws RuntimeException {
 		StoryStatistic statistic = database.getStatistic(statisticsId);
 		Cursor locationCursor = database.getLocations(statisticsId);
-		// TODO: Sort by timestamp
 		locationCursor.moveToFirst();
 		if (locationCursor.getCount() > 0) {
 			while (locationCursor.isAfterLast()) {
@@ -75,6 +74,7 @@ public class StoryApplication extends Application {
 				locationCursor.moveToNext();
 			}
 		}
+		statistic.sortLocations();
 		locationCursor.close();
 		Cursor histories = database.getHistories(statisticsId);
 		HistoryNode root = null;

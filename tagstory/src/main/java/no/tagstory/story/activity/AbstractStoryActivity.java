@@ -71,16 +71,6 @@ public abstract class AbstractStoryActivity extends Activity implements AlertDia
 		}
 	}
 
-	private void quitStory() {
-		storyApplication.stopStory();
-		Intent intent = ClassVersionFactory.createIntent(this,
-				StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		intent.putExtra(StoryParser.UUID, story.getUUID());
-		startActivity(intent);
-		finish();
-	}
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.tag_menu, menu);
@@ -117,6 +107,24 @@ public abstract class AbstractStoryActivity extends Activity implements AlertDia
 		database.close();
 	}
 
+	private boolean hasNotFinishedTheFirstTag() {
+		return storyHistory.getSize() == 0;
+	}
+
+	private boolean isStartTag() {
+		return story.getStartTagId().equals(tagId);
+	}
+
+	private void quitStory() {
+		storyApplication.stopStory();
+		Intent intent = ClassVersionFactory.createIntent(this,
+				StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intent.putExtra(StoryParser.UUID, story.getUUID());
+		startActivity(intent);
+		finish();
+	}
+
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 		switch (which) {
@@ -131,13 +139,5 @@ public abstract class AbstractStoryActivity extends Activity implements AlertDia
 				break;
 		}
 		dialog.dismiss();
-	}
-
-	private boolean hasNotFinishedTheFirstTag() {
-		return storyHistory.getSize() == 0;
-	}
-
-	private boolean isStartTag() {
-		return story.getStartTagId().equals(tagId);
 	}
 }

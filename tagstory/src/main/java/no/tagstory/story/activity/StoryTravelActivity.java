@@ -9,6 +9,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,9 +18,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import no.tagstory.R;
 import no.tagstory.StoryApplication;
+import no.tagstory.StoryDetailActivity;
+import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
 import no.tagstory.statistics.StoryHistory;
+import no.tagstory.statistics.StoryStatistic;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTagOption;
+import no.tagstory.utils.ClassVersionFactory;
+import no.tagstory.utils.Database;
+import no.tagstory.utils.StoryParser;
 
 import java.io.FileNotFoundException;
 
@@ -31,6 +39,7 @@ public class StoryTravelActivity extends FragmentActivity {
 	protected String tagId;
 	protected TextView hintText;
 	private Dialog helpDialog;
+	private StoryApplication storyApplication;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +50,7 @@ public class StoryTravelActivity extends FragmentActivity {
 		option = (StoryTagOption) bundle.getSerializable(OPTION);
 		story = (Story) bundle.getSerializable(StoryActivity.EXTRA_STORY);
 		tagId = bundle.getString(StoryActivity.EXTRA_TAG);
-
+		storyApplication = (StoryApplication) getApplication();
 		setTitle(option.getTitle());
 	}
 
@@ -160,6 +169,62 @@ public class StoryTravelActivity extends FragmentActivity {
 		intent.putExtra(StoryActivity.EXTRA_TAG, option.getNext());
 		StoryHistory storyHistory = ((StoryApplication) getApplication()).getStoryHistory();
 		storyHistory.push(story.getTag(option.getNext()));
+		startActivity(intent);
+		finish();
+	}
+
+	// TODO The following code is the same as the one in AbstractStoryActivity.java
+	// It should be possible to share it...
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.tag_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.menu_save_and_quit:
+				saveStory();
+				quitStory();
+				break;
+			case R.id.menu_quit:
+				quitStory();
+				break;
+		}
+		return true;
+	}
+
+	public void saveStory() {
+		if (isStartTag() && hasNotFinishedTheFirstTag()) {
+			Toast.makeText(this, R.string.toast_cant_save_start_tag, Toast.LENGTH_SHORT).show();
+			return;
+		}
+
+		StoryStatistic mStoryStatistic = storyApplication.stopStory();
+		StoryHistory mStoryHistory = storyApplication.getStoryHistory();
+		int statisticsId = mStoryStatistic.saveToDatebase(this);
+		mStoryHistory.saveToDatabase(this, statisticsId);
+		Database database = new Database(this);
+		database.open();
+		database.insertSaveTravel(statisticsId, story.getUUID());
+		database.close();
+	}
+
+	private boolean hasNotFinishedTheFirstTag() {
+		return storyApplication.getStoryHistory().getSize() == 0;
+	}
+
+	private boolean isStartTag() {
+		return story.getStartTagId().equals(tagId);
+	}
+
+	private void quitStory() {
+		storyApplication.stopStory();
+		Intent intent = ClassVersionFactory.createIntent(this,
+				StoryDetailActivityHoneycomb.class, StoryDetailActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intent.putExtra(StoryParser.UUID, story.getUUID());
 		startActivity(intent);
 		finish();
 	}

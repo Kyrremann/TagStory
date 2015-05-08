@@ -97,14 +97,7 @@ public abstract class AbstractStoryActivity extends Activity implements AlertDia
 			return;
 		}
 
-		StoryStatistic mStoryStatistic = storyApplication.stopStory();
-		StoryHistory mStoryHistory = storyApplication.getStoryHistory();
-		int statisticsId = mStoryStatistic.saveToDatebase(this);
-		mStoryHistory.saveToDatabase(this, statisticsId);
-		Database database = new Database(this);
-		database.open();
-		database.insertSaveTravel(statisticsId, story.getUUID());
-		database.close();
+		storyApplication.saveStory(story.getUUID());
 	}
 
 	private boolean hasNotFinishedTheFirstTag() {

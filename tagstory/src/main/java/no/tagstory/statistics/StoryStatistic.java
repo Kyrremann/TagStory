@@ -10,6 +10,7 @@ import java.util.*;
 
 public class StoryStatistic {
 
+	private int id;
 	private String storyId;
 	private Date startTime;
 	private Date endTime;
@@ -22,13 +23,16 @@ public class StoryStatistic {
 		this.storyId = storyId;
 		this.startTime = startTime;
 		locations = new ArrayList<>();
+		duration = 0;
+		distance = 0;
+		id = -1;
 	}
 
 	public void stop() {
 		Date stopTime = new Date();
-		this.duration = stopTime.getTime() - startTime.getTime();
+		this.duration += stopTime.getTime() - startTime.getTime();
 		if (locations.size() > 0) {
-			this.distance = calculateDistance();
+			this.distance += calculateDistance();
 		} else {
 			this.distance = 0;
 		}
@@ -49,8 +53,12 @@ public class StoryStatistic {
 	public int saveToDatebase(Context context) {
 		Database database = new Database(context);
 		database.open();
-		isSaved = database.insertStatistic(storyId, startTime, endTime, duration, distance);
-		int id = database.getStatisticId(storyId, startTime);
+		if (id == -1) {
+			isSaved = database.insertStatistic(storyId, startTime, endTime, duration, distance);
+			id = database.getStatisticId(storyId, startTime);
+		} else {
+			isSaved = database.updateStatistic(storyId, startTime, endTime, duration, distance);
+		}
 		saveLocations(database, id);
 		database.close();
 		return id;
@@ -121,5 +129,13 @@ public class StoryStatistic {
 				return new Long(l1.getTime()).compareTo(new Long(t2.getTime()));
 			}
 		});
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

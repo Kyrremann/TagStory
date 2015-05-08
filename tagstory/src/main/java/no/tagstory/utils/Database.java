@@ -258,13 +258,24 @@ public class Database {
 	}
 
 	public boolean insertStatistic(String storyId, Date startTime, Date endTime, long duration, int distance) {
+		return db.insert(STATISTICS_TABLE_NAME, null,
+				generateStatisticValues(storyId, startTime, endTime, duration, distance)) != -1;
+	}
+
+	public boolean updateStatistic(String storyId, Date startTime, Date endTime, long duration, int distance) {
+		return db.update(STATISTICS_TABLE_NAME,
+				generateStatisticValues(storyId, startTime, endTime, duration, distance),
+				null, null) != 0;
+	}
+
+	private ContentValues generateStatisticValues(String storyId, Date startTime, Date endTime, long duration, int distance) {
 		ContentValues values = new ContentValues(5);
 		values.put(STATISTICS_STORY_ID, storyId);
 		values.put(STATISTICS_START_DATE, DateUtils.formatSqliteDate(startTime));
 		values.put(STATISTICS_END_DATE, DateUtils.formatSqliteDate(endTime));
 		values.put(STATISTICS_DURATION, duration);
 		values.put(STATISTICS_DISTANCE, distance);
-		return db.insert(STATISTICS_TABLE_NAME, null, values) != -1;
+		return values;
 	}
 
 	public Cursor getLocations(int statisticsId) {

@@ -192,8 +192,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					if (savedTravels.size() > which
-							&& which >= 0) {
+					if (savedTravels.size() > which && which >= 0) {
 						Tuple tuple = savedTravels.get(which);
 						Database database = new Database(getApplicationContext());
 						database.open();
@@ -265,8 +264,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 			});
 			builder.setNegativeButton(R.string.cancel,
 					new DialogInterface.OnClickListener() {
-						public void onClick(final DialogInterface dialog,
-						                    final int id) {
+						public void onClick(final DialogInterface dialog, final int id) {
 							dialog.cancel();
 						}
 					});

@@ -62,6 +62,7 @@ public class StoryApplication extends Application {
 
 	public void resumeStory(Database database, int statisticsId, String storyId) throws RuntimeException {
 		StoryStatistic statistic = database.getStatistic(statisticsId);
+		statistic.setId(statisticsId);
 		Cursor locationCursor = database.getLocations(statisticsId);
 		locationCursor.moveToFirst();
 		if (locationCursor.getCount() > 0) {
@@ -154,5 +155,16 @@ public class StoryApplication extends Application {
 
 	public StoryStatistic getStoryStatistic() {
 		return storyStatistic;
+	}
+
+	public void saveStory(String storyId) {
+		StoryStatistic mStoryStatistic = stopStory();
+		StoryHistory mStoryHistory = getStoryHistory();
+		int statisticsId = mStoryStatistic.saveToDatebase(this);
+		mStoryHistory.saveToDatabase(this, statisticsId);
+		Database database = new Database(this);
+		database.open();
+		database.insertSaveTravel(statisticsId, storyId);
+		database.close();
 	}
 }

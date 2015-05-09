@@ -104,7 +104,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 		Database database = new Database(getApplicationContext());
 		database.open();
 		Button resume = (Button) findViewById(R.id.resume_story);
-		if (database.hasSaveTravels(storyId)) {
+		if (database.hasStorySaveTravels(storyId)) {
 			resume.setVisibility(View.VISIBLE);
 		} else {
 			resume.setVisibility(View.GONE);

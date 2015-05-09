@@ -100,6 +100,7 @@ public class StoryHistory {
 		database.open();
 		HistoryNode current = root;
 		do {
+			// TODO Avoid inserting historyNodes already saved!
 			database.insertHistory(statisticsId, current);
 			current = current.next;
 		} while (current != null);

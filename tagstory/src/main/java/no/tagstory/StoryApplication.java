@@ -12,10 +12,8 @@ import no.tagstory.statistics.StoryStatistic;
 import no.tagstory.story.Story;
 
 import no.tagstory.utils.Database;
-import no.tagstory.utils.DateUtils;
 import org.json.JSONArray;
 
-import java.text.ParseException;
 import java.util.Date;
 
 public class StoryApplication extends Application {
@@ -147,10 +145,8 @@ public class StoryApplication extends Application {
 		return null;
 	}
 
-	public StoryStatistic stopStory() {
-		storyStatistic.stop();
+	public void stopStory() {
 		stopService(distanceLoggerIntent);
-		return storyStatistic;
 	}
 
 	public StoryStatistic getStoryStatistic() {
@@ -158,13 +154,17 @@ public class StoryApplication extends Application {
 	}
 
 	public void saveStory(String storyId) {
-		StoryStatistic mStoryStatistic = stopStory();
+		StoryStatistic storyStatistic = getStoryStatistic();
 		StoryHistory mStoryHistory = getStoryHistory();
-		int statisticsId = mStoryStatistic.saveToDatebase(this);
+		int statisticsId = storyStatistic.saveToDatebase(this);
 		mStoryHistory.saveToDatabase(this, statisticsId);
 		Database database = new Database(this);
 		database.open();
-		database.insertSaveTravel(statisticsId, storyId);
+		if (database.hasSaveTravel(statisticsId, storyId)) {
+			database.updateSaveTravel(statisticsId);
+		} else {
+			database.insertSaveTravel(statisticsId, storyId);
+		}
 		database.close();
 	}
 }

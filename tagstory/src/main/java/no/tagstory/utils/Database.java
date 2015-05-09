@@ -314,6 +314,17 @@ public class Database {
 		return db.insert(HISTORY_TABLE_NAME, null, mValues) != -1;
 	}
 
+	public boolean hasSaveTravel(int statisticsId, String storyId) {
+		return false;
+	}
+
+	public boolean updateSaveTravel(int statisticsId) {
+		ContentValues values = new ContentValues();
+		values.put(SAVE_TRAVEL_TIME_SAVED, DateUtils.formatSqliteDate(new Date()));
+		return db.update(SAVE_TRAVEL_TABLE_NAME, values,
+				STATISTICS_ID + "=?", new String[] { Integer.toString(statisticsId) }) != -1;
+	}
+
 	public boolean insertSaveTravel(int statisticsId, String storyId) {
 		ContentValues values = new ContentValues();
 		values.put(SAVE_TRAVEL_STATISTIC_ID, statisticsId);
@@ -322,7 +333,7 @@ public class Database {
 		return db.insert(SAVE_TRAVEL_TABLE_NAME, null, values) != -1;
 	}
 
-	public boolean hasSaveTravels(String storyId) {
+	public boolean hasStorySaveTravels(String storyId) {
 		boolean hasStory = false;
 		Cursor cursor = db.query(SAVE_TRAVEL_TABLE_NAME, new String[]{SAVE_TRAVEL_STORY_ID},
 				SAVE_TRAVEL_STORY_ID + "=?", new String[]{ storyId },

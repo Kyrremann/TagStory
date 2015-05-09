@@ -28,31 +28,11 @@ public class StoryStatistic {
 		id = -1;
 	}
 
-	public void stop() {
-		Date stopTime = new Date();
-		this.duration += stopTime.getTime() - startTime.getTime();
-		if (locations.size() > 0) {
-			this.distance += calculateDistance();
-		} else {
-			this.distance = 0;
-		}
-	}
-
-	private int calculateDistance() {
-		Location lastLocation = locations.get(0);
-		int distance = 0;
-		for (int i = 0; i < locations.size(); i++) {
-			Location location = locations.get(i);
-			distance += lastLocation.distanceTo(location);
-			lastLocation = location;
-		}
-
-		return distance;
-	}
-
 	public int saveToDatebase(Context context) {
 		Database database = new Database(context);
 		database.open();
+		Date stopTime = new Date();
+		this.duration = stopTime.getTime() - startTime.getTime();
 		if (id == -1) {
 			isSaved = database.insertStatistic(storyId, startTime, endTime, duration, distance);
 			id = database.getStatisticId(storyId, startTime);
@@ -66,6 +46,7 @@ public class StoryStatistic {
 
 	private void saveLocations(Database database, int statisticId) {
 		for (Location location : locations) {
+			// TODO Avoid inserting already saved locations!
 			database.insertLocation(statisticId, location);
 		}
 	}
@@ -83,6 +64,9 @@ public class StoryStatistic {
 	}
 
 	public void addLocation(Location location) {
+		if (!locations.isEmpty()) {
+			distance += locations.get(locations.size()).distanceTo(location);
+		}
 		locations.add(location);
 	}
 

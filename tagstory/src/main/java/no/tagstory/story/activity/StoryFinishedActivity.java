@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import no.tagstory.StoryApplication;
 import no.tagstory.TagStoryActivity;
 import no.tagstory.R;
 import no.tagstory.statistics.StoryStatistic;
-import no.tagstory.utils.http.ServerCommunication;
 
 public class StoryFinishedActivity extends AbstractStoryActivity {
 
@@ -26,17 +24,21 @@ public class StoryFinishedActivity extends AbstractStoryActivity {
 	}
 
 	private void showStatistics() {
-		StoryApplication application = (StoryApplication) getApplication();
-		StoryStatistic storyStatistic = application.stopStory();
-		((TextView) findViewById(R.id.story_statistic)).setText(storyStatistic.formatStatistic());
+		storyApplication.stopStory();
 
+		StoryStatistic storyStatistic = storyApplication.getStoryStatistic();
 		if (!storyStatistic.isSaved()) {
 			int id = storyStatistic.saveToDatebase(this);
-			application.getStoryHistory().saveToDatabase(this, id);
+			storyApplication.getStoryHistory().saveToDatabase(this, id);
 		}
+
+		((TextView) findViewById(R.id.story_statistic)).setText(storyStatistic.formatStatistic());
 	}
 
 	public void endOfStory(View view) {
+		if (storyApplication.getStoryStatistic().hasId()) {
+			storyApplication.deleteSavedStory();
+		}
 		Intent intent = new Intent(this, TagStoryActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		startActivity(intent);

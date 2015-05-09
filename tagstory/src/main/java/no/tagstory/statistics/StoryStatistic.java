@@ -122,4 +122,8 @@ public class StoryStatistic {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public boolean hasId() {
+		return id != -1;
+	}
 }

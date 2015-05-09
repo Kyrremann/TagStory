@@ -126,6 +126,14 @@ public class Database {
 			QUIZ_SCORE_TABLE_NAME, QUIZ_SCORE_ID, QUIZ_SCORE_SCORE,
 			QUIZ_SCORE_TAG_ID, QUIZ_SCORE_STORY_ID);
 
+	public void deleteSaveTravel(int storyStatisticId, String storyId) {
+		db.delete(SAVE_TRAVEL_TABLE_NAME,
+				String.format(Locale.ENGLISH,
+						"%s = ? AND %s = '?'    ",
+						SAVE_TRAVEL_STORY_ID, SAVE_TRAVEL_STATISTIC_ID),
+				new String[] { Integer.toString(storyStatisticId), storyId });
+	}
+
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 
 		public DatabaseHelper(Context context) {

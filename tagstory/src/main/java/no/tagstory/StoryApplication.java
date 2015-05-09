@@ -1,6 +1,7 @@
 package no.tagstory;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 
 import android.database.Cursor;
@@ -165,6 +166,13 @@ public class StoryApplication extends Application {
 		} else {
 			database.insertSaveTravel(statisticsId, storyId);
 		}
+		database.close();
+	}
+
+	public void deleteSavedStory() {
+		Database database = new Database(this);
+		database.open();
+		database.deleteSaveTravel(storyStatistic.getId(), storyStatistic.getStoryId());
 		database.close();
 	}
 }

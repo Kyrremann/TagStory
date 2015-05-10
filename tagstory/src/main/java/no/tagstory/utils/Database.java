@@ -318,7 +318,8 @@ public class Database {
 		if (node.hasNext()) {
 			mValues.put(HISTORY_NEXT_TAG, node.next.getTagUUID());
 		}
-		mValues.put(HISTORY_ROOT, node.root);
+		System.out.println("Root " + node.root);
+		mValues.put(HISTORY_ROOT, node.root ? 1 : 0);
 		return db.insert(HISTORY_TABLE_NAME, null, mValues) != -1;
 	}
 

@@ -96,7 +96,7 @@ public class StoryDetailActivity extends Activity implements SimpleStoryHandler.
 						.setImageResource(R.drawable.placeimg_960_720_nature_1);
 			}
 
-			checkIfThereAreSavedTravels();
+//			checkIfThereAreSavedTravels();
 		}
 	}
 

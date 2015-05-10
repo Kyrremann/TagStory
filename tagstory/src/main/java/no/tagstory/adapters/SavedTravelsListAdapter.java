@@ -19,6 +19,7 @@ import java.util.List;
 public class SavedTravelsListAdapter extends ArrayAdapter<Tuple> {
 
 	private final Context context;
+	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
 	public SavedTravelsListAdapter(Context context, List<Tuple> tuples) {
 		super(context, R.layout.item_saved_travels, R.id.timestamp);
@@ -64,10 +65,8 @@ public class SavedTravelsListAdapter extends ArrayAdapter<Tuple> {
 		try {
 			date = DateUtils.parseSqliteDate(timestamp);
 		} catch (ParseException e) {
-			e.printStackTrace();
 			return timestamp;
 		}
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:MM");
 		return simpleDateFormat.format(date);
 	}
 

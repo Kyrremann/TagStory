@@ -84,6 +84,7 @@ public class StoryApplication extends Application {
 			HistoryNode current = root;
 			while (current.next != null) {
 				current = findNextHistoryNode(histories, current);
+				current = current.next;
 			}
 		}
 		getStoryHistory().resumeStory(storyId, root, histories.getCount());
@@ -131,6 +132,7 @@ public class StoryApplication extends Application {
 	private HistoryNode findHistoryRoot(Cursor histories) {
 		histories.moveToFirst();
 		while (!histories.isAfterLast()) {
+			System.out.println(histories.getInt(5));
 			if (histories.getInt(5) == 1) {
 				HistoryNode root = new HistoryNode(histories.getString(2));
 				HistoryNode next = new HistoryNode(histories.getString(4));
@@ -140,10 +142,10 @@ public class StoryApplication extends Application {
 				root.root = true;
 				return root;
 			}
+			histories.moveToNext();
 		}
 
-		// TODO Should throw an exception
-		return null;
+		throw new RuntimeException("Can't find root HistoryNode");
 	}
 
 	public void stopStory() {

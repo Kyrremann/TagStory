@@ -28,7 +28,6 @@
 	<string name="menu_delete_story">Изтрий историята</string>
 	<string name="menu_options">Опции</string>
 	<string name="menu_sign_in">Излез от профила си</string>
-	<string name="menu_story_marked">Магазин за истории</string>
 	<string name="menu_update_stories">Обнови историите</string>
 	<string name="no">Не</string>
 	<string name="skip">Прескочи</string>
@@ -46,12 +45,6 @@
 	<string name="story_help_button">Помощ</string>
 	<string name="story_list_arrow">Натисни и избери история</string>
 	<string name="story_pick_story">Избери история от списъка</string>
-	<string name="story_quiz_correction">Корекция</string>
-	<string name="story_quiz_false">Погрешно</string>
-	<string name="story_quiz_next">Следващ въпрос</string>
-	<string name="story_quiz_next_part">Мини към следващо</string>
-	<string name="story_quiz_ready">Готов съм</string>
-	<string name="story_quiz_true">Вярно</string>
 	<string name="title_story_detail">Елементи на историята</string>
 	<string name="yes">Да</string>
 	<string name="contact_tagstory">contact@tagstory.no</string>

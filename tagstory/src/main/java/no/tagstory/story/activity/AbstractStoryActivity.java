@@ -101,7 +101,7 @@ public abstract class AbstractStoryActivity extends Activity implements AlertDia
 	}
 
 	private boolean hasNotFinishedTheFirstTag() {
-		return storyHistory.getSize() == 0;
+		return storyHistory.getSize() == 1;
 	}
 
 	private boolean isStartTag() {

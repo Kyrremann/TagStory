@@ -17,6 +17,7 @@ public class StoryHistory {
 		current = new HistoryNode(story.getStartTag().getUUID());
 		current.root = true;
 		root = current;
+		size = 0;
 		size++;
 	}
 

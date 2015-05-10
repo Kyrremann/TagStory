@@ -65,7 +65,7 @@ public class StoryStatistic {
 
 	public void addLocation(Location location) {
 		if (!locations.isEmpty()) {
-			distance += locations.get(locations.size()).distanceTo(location);
+			distance += locations.get(locations.size() - 1).distanceTo(location);
 		}
 		locations.add(location);
 	}

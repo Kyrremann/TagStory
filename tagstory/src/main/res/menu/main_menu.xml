@@ -10,5 +10,6 @@
 			android:title="@string/menu_statistics"/>
 	<item
 			android:id="@+id/menu_sign_in"
-			android:title="@string/menu_sign_in"/>
+			android:title="@string/menu_sign_in"
+			android:visible="false"/>
 </menu>

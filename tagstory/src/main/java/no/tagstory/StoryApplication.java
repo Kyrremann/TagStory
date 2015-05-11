@@ -1,7 +1,6 @@
 package no.tagstory;
 
 import android.app.Application;
-import android.content.Context;
 import android.content.Intent;
 
 import android.database.Cursor;
@@ -80,7 +79,7 @@ public class StoryApplication extends Application {
 		HistoryNode root = null;
 		if (histories.getCount() > 0) {
 			histories.moveToFirst();
-			root = findHistoryRoot(histories);
+			root = findHistoryRootNode(histories);
 			HistoryNode current = root;
 			while (current.next != null) {
 				current = findNextHistoryNode(histories, current);
@@ -106,6 +105,7 @@ public class StoryApplication extends Application {
 				if (!histories.isNull(4)) {
 					HistoryNode next = new HistoryNode(histories.getString(4));
 					newCurrent.next = next;
+					next.previous = newCurrent;
 				} else {
 					newCurrent.next = null;
 				}
@@ -115,7 +115,7 @@ public class StoryApplication extends Application {
 			}
 			histories.moveToNext();
 		}
-		return null;
+		throw new RuntimeException("Can't find the next history node. Looking for " + currentId + " and " + nextId);
 	}
 
 	private boolean hasThisHistoryNodeCurrentAsPrevious(Cursor cursor, String currentId) {
@@ -125,11 +125,14 @@ public class StoryApplication extends Application {
 		return cursor.getString(3).equals(currentId);
 	}
 
-	private boolean isThisHistoryNodeTheNextOne(Cursor histories, String nextId) {
-		return histories.getString(2).equals(nextId);
+	private boolean isThisHistoryNodeTheNextOne(Cursor cursor, String nextId) {
+		if (cursor.isNull(2)) {
+			return false;
+		}
+		return cursor.getString(2).equals(nextId);
 	}
 
-	private HistoryNode findHistoryRoot(Cursor histories) {
+	private HistoryNode findHistoryRootNode(Cursor histories) {
 		histories.moveToFirst();
 		while (!histories.isAfterLast()) {
 			if (histories.getInt(6) == 1) {

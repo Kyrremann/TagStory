@@ -89,6 +89,7 @@ public class StoryActivity extends AbstractStoryActivity {
 		travelButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
+				storyHistory.next();
 				startActivity(createTravelIntent(getApplicationContext(), story, tag, tag.getFirstOption()));
 			}
 		});

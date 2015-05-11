@@ -147,6 +147,7 @@ public class Database {
 			db.execSQL(SAVE_TRAVEL_CREATE);
 			db.execSQL(LOCATIONS_CREATE);
 			db.execSQL(HISTORY_CREATE);
+			db.execSQL(QUIZ_SCORE_CREATE);
 		}
 
 		@Override
@@ -318,8 +319,7 @@ public class Database {
 		if (node.hasNext()) {
 			mValues.put(HISTORY_NEXT_TAG, node.next.getTagUUID());
 		}
-		System.out.println("Root " + node.root);
-		mValues.put(HISTORY_ROOT, node.root ? 1 : 0);
+		mValues.put(HISTORY_ROOT, node.root);
 		return db.insert(HISTORY_TABLE_NAME, null, mValues) != -1;
 	}
 

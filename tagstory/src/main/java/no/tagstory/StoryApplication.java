@@ -83,7 +83,6 @@ public class StoryApplication extends Application {
 			HistoryNode current = root;
 			while (current.next != null) {
 				current = findNextHistoryNode(histories, current);
-				current = current.next;
 			}
 		}
 		getStoryHistory().resumeStory(storyId, root, histories.getCount());
@@ -102,6 +101,8 @@ public class StoryApplication extends Application {
 			if (hasThisHistoryNodeCurrentAsPrevious(histories, currentId)
 				&& isThisHistoryNodeTheNextOne(histories, nextId)) {
 				HistoryNode newCurrent = new HistoryNode(histories.getString(2));
+				newCurrent.finishedGame = histories.getInt(5) == 1 ? true : false;
+				newCurrent.root = histories.getInt(6) == 1 ? true : false;
 				if (!histories.isNull(4)) {
 					HistoryNode next = new HistoryNode(histories.getString(4));
 					newCurrent.next = next;
@@ -141,7 +142,8 @@ public class StoryApplication extends Application {
 				root.previous = null;
 				next.previous = root;
 				root.next = next;
-				root.root = true;
+				root.finishedGame = histories.getInt(5) == 1 ? true : false;
+				root.root = histories.getInt(6) == 1 ? true : false;
 				return root;
 			}
 			histories.moveToNext();

@@ -1,6 +1,7 @@
 package no.tagstory.statistics;
 
 import android.content.Context;
+import android.database.Cursor;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTag;
 import no.tagstory.utils.Database;
@@ -99,9 +100,9 @@ public class StoryHistory {
 	public void saveToDatabase(Context context, int statisticsId) {
 		Database database = new Database(context);
 		database.open();
+		database.clearOldHistoryNodes(statisticsId);
 		HistoryNode current = root;
 		do {
-			// TODO Avoid inserting historyNodes already saved!
 			database.insertHistory(statisticsId, current);
 			current = current.next;
 		} while (current != null);

@@ -228,7 +228,8 @@ public class Database {
 	public int getStatisticId(String storyId, Date startTime) {
 		int id = -1;
 		Cursor cursor = db.query(STATISTICS_TABLE_NAME, new String[]{ STATISTICS_ID },
-				String.format(Locale.ENGLISH, "%s = ? AND %s = ?", STATISTICS_STORY_ID, STATISTICS_START_DATE), new String[]{ storyId, DateUtils.formatSqliteDate(startTime) },
+				String.format(Locale.ENGLISH, "%s = ? AND %s = ?", STATISTICS_STORY_ID, STATISTICS_START_DATE),
+				new String[]{ storyId, DateUtils.formatSqliteDate(startTime) },
 				null, null, null);
 		if (cursor.getCount() == 1) {
 			cursor.moveToFirst();
@@ -271,10 +272,10 @@ public class Database {
 				generateStatisticValues(storyId, startTime, endTime, duration, distance)) != -1;
 	}
 
-	public boolean updateStatistic(String storyId, Date startTime, Date endTime, long duration, int distance) {
+	public boolean updateStatistic(int id, String storyId, Date startTime, Date endTime, long duration, int distance) {
 		return db.update(STATISTICS_TABLE_NAME,
 				generateStatisticValues(storyId, startTime, endTime, duration, distance),
-				null, null) != 0;
+				STATISTICS_ID + "=?", new String[]{Integer.toString(id)}) != 0;
 	}
 
 	private ContentValues generateStatisticValues(String storyId, Date startTime, Date endTime, long duration, int distance) {
@@ -303,6 +304,10 @@ public class Database {
 		return db.insert(LOCATIONS_TABLE_NAME, null, mValues) != -1;
 	}
 
+	public int clearOldLocations(int statisticsId) {
+		return db.delete(LOCATIONS_TABLE_NAME, LOCATIONS_STATISTIC_ID + "=?", new String[] { Integer.toString(statisticsId) });
+	}
+
 	public Cursor getHistories(int statisticsId) {
 		return db.query(HISTORY_TABLE_NAME, null, HISTORY_STATISTICS_ID + "=?", new String[]{ Integer.toString(statisticsId) },
 				null, null, null);
@@ -323,8 +328,18 @@ public class Database {
 		return db.insert(HISTORY_TABLE_NAME, null, mValues) != -1;
 	}
 
+	public int clearOldHistoryNodes(int statisticsId) {
+		return db.delete(HISTORY_TABLE_NAME, HISTORY_STATISTICS_ID + "=?", new String[] { Integer.toString(statisticsId) });
+	}
+
 	public boolean hasSaveTravel(int statisticsId, String storyId) {
-		return false;
+		Cursor cursor = db.query(SAVE_TRAVEL_TABLE_NAME, new String[]{SAVE_TRAVEL_ID},
+				String.format(Locale.ENGLISH, "%s = ? AND %s = ?", SAVE_TRAVEL_STATISTIC_ID, SAVE_TRAVEL_STORY_ID),
+				new String[]{Integer.toString(statisticsId), storyId},
+				null, null, null);
+		boolean hasSaveTravel = cursor.getCount() > 0 ? true : false;
+		cursor.close();
+		return hasSaveTravel;
 	}
 
 	public boolean updateSaveTravel(int statisticsId) {

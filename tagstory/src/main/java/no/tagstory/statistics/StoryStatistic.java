@@ -37,17 +37,17 @@ public class StoryStatistic {
 			isSaved = database.insertStatistic(storyId, startTime, endTime, duration, distance);
 			id = database.getStatisticId(storyId, startTime);
 		} else {
-			isSaved = database.updateStatistic(storyId, startTime, endTime, duration, distance);
+			isSaved = database.updateStatistic(id, storyId, startTime, endTime, duration, distance);
 		}
 		saveLocations(database, id);
 		database.close();
 		return id;
 	}
 
-	private void saveLocations(Database database, int statisticId) {
+	private void saveLocations(Database database, int statisticsId) {
+		database.clearOldLocations(statisticsId);
 		for (Location location : locations) {
-			// TODO Avoid inserting already saved locations!
-			database.insertLocation(statisticId, location);
+			database.insertLocation(statisticsId, location);
 		}
 	}
 

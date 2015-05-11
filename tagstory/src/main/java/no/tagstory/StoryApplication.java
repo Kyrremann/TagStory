@@ -132,8 +132,7 @@ public class StoryApplication extends Application {
 	private HistoryNode findHistoryRoot(Cursor histories) {
 		histories.moveToFirst();
 		while (!histories.isAfterLast()) {
-			System.out.println(histories.getInt(5));
-			if (histories.getInt(5) == 1) {
+			if (histories.getInt(6) == 1) {
 				HistoryNode root = new HistoryNode(histories.getString(2));
 				HistoryNode next = new HistoryNode(histories.getString(4));
 				root.previous = null;

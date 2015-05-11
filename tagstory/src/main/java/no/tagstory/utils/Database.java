@@ -129,8 +129,8 @@ public class Database {
 	public void deleteSaveTravel(int storyStatisticId, String storyId) {
 		db.delete(SAVE_TRAVEL_TABLE_NAME,
 				String.format(Locale.ENGLISH,
-						"%s = ? AND %s = '?'    ",
-						SAVE_TRAVEL_STORY_ID, SAVE_TRAVEL_STATISTIC_ID),
+						"%s = ? AND %s = ?",
+						SAVE_TRAVEL_STATISTIC_ID, SAVE_TRAVEL_STORY_ID),
 				new String[] { Integer.toString(storyStatisticId), storyId });
 	}
 
@@ -262,7 +262,7 @@ public class Database {
 	}
 
 	public Cursor getStatistics() {
-		return db.query(STATISTICS_TABLE_NAME, null, STATISTICS_END_DATE + "IS NOT NULL",
+		return db.query(STATISTICS_TABLE_NAME, null, STATISTICS_END_DATE + " IS NOT NULL",
 				null, null, null, STATISTICS_START_DATE + " DESC");
 	}
 

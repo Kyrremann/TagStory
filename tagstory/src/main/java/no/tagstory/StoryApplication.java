@@ -4,11 +4,7 @@ import android.app.Application;
 import android.content.Intent;
 
 import android.database.Cursor;
-import android.location.Location;
-import no.tagstory.statistics.DistanceLogger;
-import no.tagstory.statistics.HistoryNode;
-import no.tagstory.statistics.StoryHistory;
-import no.tagstory.statistics.StoryStatistic;
+import no.tagstory.statistics.*;
 import no.tagstory.story.Story;
 
 import no.tagstory.utils.Database;
@@ -66,6 +62,7 @@ public class StoryApplication extends Application {
 		if (locationCursor.getCount() > 0) {
 			while (locationCursor.isAfterLast()) {
 				Location location = new Location(locationCursor.getString(4));
+				location.setId(locationCursor.getInt(0));
 				location.setLatitude(locationCursor.getDouble(2));
 				location.setLongitude(locationCursor.getDouble(3));
 				location.setTime(locationCursor.getInt(5));
@@ -101,6 +98,7 @@ public class StoryApplication extends Application {
 			if (hasThisHistoryNodeCurrentAsPrevious(histories, currentId)
 				&& isThisHistoryNodeTheNextOne(histories, nextId)) {
 				HistoryNode newCurrent = new HistoryNode(histories.getString(2));
+				newCurrent.id = histories.getInt(0);
 				newCurrent.finishedGame = histories.getInt(5) == 1 ? true : false;
 				newCurrent.root = histories.getInt(6) == 1 ? true : false;
 				if (!histories.isNull(4)) {
@@ -142,6 +140,7 @@ public class StoryApplication extends Application {
 				root.previous = null;
 				next.previous = root;
 				root.next = next;
+				root.id = histories.getInt(0);
 				root.finishedGame = histories.getInt(5) == 1 ? true : false;
 				root.root = histories.getInt(6) == 1 ? true : false;
 				return root;

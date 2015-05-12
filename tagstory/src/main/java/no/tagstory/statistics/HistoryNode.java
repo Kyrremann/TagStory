@@ -2,6 +2,7 @@ package no.tagstory.statistics;
 
 public class HistoryNode {
 
+	public int id = -1;
 	protected String tagId;
 
 	public HistoryNode next;
@@ -23,5 +24,9 @@ public class HistoryNode {
 
 	public String getTagUUID() {
 		return tagId;
+	}
+
+	public boolean isSaved() {
+		return id != -1;
 	}
 }

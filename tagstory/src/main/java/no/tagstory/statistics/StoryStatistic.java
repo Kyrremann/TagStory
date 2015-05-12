@@ -1,7 +1,6 @@
 package no.tagstory.statistics;
 
 import android.content.Context;
-import android.location.Location;
 import no.tagstory.utils.Database;
 import no.tagstory.utils.DateUtils;
 import no.tagstory.utils.StringUtils;
@@ -45,9 +44,10 @@ public class StoryStatistic {
 	}
 
 	private void saveLocations(Database database, int statisticsId) {
-		database.clearOldLocations(statisticsId);
 		for (Location location : locations) {
-			database.insertLocation(statisticsId, location);
+			if (!location.isSaved()) {
+				database.insertLocation(statisticsId, location);
+			}
 		}
 	}
 

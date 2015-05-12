@@ -304,10 +304,6 @@ public class Database {
 		return db.insert(LOCATIONS_TABLE_NAME, null, mValues) != -1;
 	}
 
-	public int clearOldLocations(int statisticsId) {
-		return db.delete(LOCATIONS_TABLE_NAME, LOCATIONS_STATISTIC_ID + "=?", new String[] { Integer.toString(statisticsId) });
-	}
-
 	public Cursor getHistories(int statisticsId) {
 		return db.query(HISTORY_TABLE_NAME, null, HISTORY_STATISTICS_ID + "=?", new String[]{ Integer.toString(statisticsId) },
 				null, null, null);
@@ -326,10 +322,6 @@ public class Database {
 		}
 		mValues.put(HISTORY_ROOT, node.root);
 		return db.insert(HISTORY_TABLE_NAME, null, mValues) != -1;
-	}
-
-	public int clearOldHistoryNodes(int statisticsId) {
-		return db.delete(HISTORY_TABLE_NAME, HISTORY_STATISTICS_ID + "=?", new String[] { Integer.toString(statisticsId) });
 	}
 
 	public boolean hasSaveTravel(int statisticsId, String storyId) {

@@ -100,10 +100,11 @@ public class StoryHistory {
 	public void saveToDatabase(Context context, int statisticsId) {
 		Database database = new Database(context);
 		database.open();
-		database.clearOldHistoryNodes(statisticsId);
 		HistoryNode current = root;
 		do {
-			database.insertHistory(statisticsId, current);
+			if (!current.isSaved()) {
+				database.insertHistory(statisticsId, current);
+			}
 			current = current.next;
 		} while (current != null);
 		database.close();

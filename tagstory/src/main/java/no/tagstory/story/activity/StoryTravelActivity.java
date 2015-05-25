@@ -64,6 +64,10 @@ public class StoryTravelActivity extends FragmentActivity {
 		if (option.hasHintImage()) {
 			setHintImage();
 		}
+
+		if (story.getTag(tagId).getTagType().isQR()) {
+			findViewById(R.id.scan_tag).setEnabled(true);
+		}
 	}
 
 	private void setHintImage() {

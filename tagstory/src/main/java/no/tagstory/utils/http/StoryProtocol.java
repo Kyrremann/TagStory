@@ -89,7 +89,7 @@ public class StoryProtocol {
 			Database database = new Database(context);
 			database.open();
 			database.insertStory(storyObject.getString(StoryParser.UUID), storyObject.getString(StoryParser.AUTHOR),
-					storyObject.getString(StoryParser.TITLE), storyObject.getString(StoryParser.CITY),
+					storyObject.getString(StoryParser.TITLE), storyObject.getString(StoryParser.AREA),
 					storyObject.getString(StoryParser.IMAGE), storyObject.getInt(StoryParser.VERSION));
 			database.close();
 		} catch (IOException e) {

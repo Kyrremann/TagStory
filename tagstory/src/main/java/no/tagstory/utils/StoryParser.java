@@ -44,7 +44,8 @@ public class StoryParser {
 	public static final String IMAGE = "image"; // This image needs to be public
 	public static final String TAG_TYPES = "tag_types"; // List seperated with ;
 	public static final String GAME_MODES = "game_modes"; // List seperated with ;
-	public static final String AREA = "area"; // Should be a Google Maps location
+	public static final String CITY = "city";
+	public static final String PLACE = "place";
 	public static final String LANGUAGE = "language"; // Use ISO 639-1
 	public static final String STATUS = "status";
 	public static final String TAGS = "tags";
@@ -126,7 +127,8 @@ public class StoryParser {
 		story.setTagTypes(TagTypeEnum.convert(Arrays.asList((storyObject.getString(TAG_TYPES).toLowerCase().split(";")))));
 		story.setGameModes(GameModeEnum.convert(Arrays.asList(storyObject.getString(GAME_MODES).toLowerCase().split(";"))));
 		story.setGenre(storyObject.getString(GENRE));
-		story.setArea(storyObject.getString(AREA));
+		story.setCity(storyObject.getString(CITY));
+		story.setPlace(storyObject.getString(PLACE));
 		story.setCountry(storyObject.getString(COUNTRY));
 		story.setKeywords(storyObject.getString(KEYWORDS).split(";"));
 		story.setStatus(StoryStatusEnum.fromString(storyObject.getString(STATUS).toLowerCase()));

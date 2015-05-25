@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="no.tagstory"
-          android:versionCode="2"
-          android:versionName="0.5">
+          package="no.tagstory">
 
 	<permission
 			android:name="no.tagstory.permission.MAPS_RECEIVE"
@@ -74,7 +72,7 @@
 
 		<meta-data
 				android:name="com.google.android.maps.v2.API_KEY"
-				android:value="AIzaSyByKXuVHU689kOp8MqN_pTBNoUW3fJsgz0"/>
+				android:value="AIzaSyB6-H-eGM23rzpXrIJX_hQPFuypdD68V1c"/>
 		<meta-data
 				android:name="com.google.android.gms.version"
 				android:value="@integer/google_play_services_version"/>

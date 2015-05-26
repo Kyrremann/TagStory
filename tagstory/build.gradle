@@ -20,8 +20,8 @@ android {
         applicationId "no.tagstory"
         minSdkVersion 10
         targetSdkVersion 22
-        versionCode 3
-        versionName "0.5.1"
+        versionCode 4
+        versionName "0.5.2"
         multiDexEnabled true
     }
     buildTypes {

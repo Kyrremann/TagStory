@@ -71,8 +71,11 @@ public class StoryManager {
 					JSONArray mOptions = mTag.getJSONArray(StoryParser.TAG_OPTIONS);
 					for (int index = 0; index < mOptions.length(); index++) {
 						JSONObject mOption = mOptions.getJSONObject(index);
-						if (mOption.has(StoryParser.HINT_IMAGE_SOURCE)) {
-							context.deleteFile((String) mOption.get(StoryParser.HINT_IMAGE_SOURCE));
+						if (mOption.has(StoryParser.HINT_IMAGE_SOURCE_TOP)) {
+							context.deleteFile((String) mOption.get(StoryParser.HINT_IMAGE_SOURCE_TOP));
+						}
+						if (mOption.has(StoryParser.HINT_IMAGE_SOURCE_BOTTOM)) {
+							context.deleteFile((String) mOption.get(StoryParser.HINT_IMAGE_SOURCE_BOTTOM));
 						}
 						if (mOption.has(StoryParser.HINT_SOUND_SOURCE)) {
 							context.deleteFile((String) mOption.get(StoryParser.HINT_SOUND_SOURCE));

@@ -21,11 +21,9 @@ import no.tagstory.StoryApplication;
 import no.tagstory.StoryDetailActivity;
 import no.tagstory.honeycomb.StoryDetailActivityHoneycomb;
 import no.tagstory.statistics.StoryHistory;
-import no.tagstory.statistics.StoryStatistic;
 import no.tagstory.story.Story;
 import no.tagstory.story.StoryTagOption;
 import no.tagstory.utils.ClassVersionFactory;
-import no.tagstory.utils.Database;
 import no.tagstory.utils.StoryParser;
 
 import java.io.FileNotFoundException;
@@ -62,7 +60,7 @@ public class StoryTravelActivity extends FragmentActivity {
 		}
 
 		if (option.hasHintImage()) {
-			setHintImage();
+			setImages();
 		}
 
 		if (story.getTag(tagId).getTagType().isQR()) {
@@ -70,14 +68,26 @@ public class StoryTravelActivity extends FragmentActivity {
 		}
 	}
 
-	private void setHintImage() {
-		try {
-			ImageView imageView = new ImageView(this);
-			Bitmap myBitmap = BitmapFactory.decodeStream(openFileInput(option.getImageSrc()));
-			imageView.setImageBitmap(myBitmap);
-			((LinearLayout) findViewById(R.id.story_option_layout))
-					.addView(imageView);
-		} catch (FileNotFoundException e) {
+
+	private void setImages() {
+		if (option.hasImageTop()) {
+			setImage(option.getImageTop(), R.id.image_top);
+		}
+		if (option.hasImageBottom()) {
+			setImage(option.getImageBottom(), R.id.image_bottom);
+		}
+	}
+
+	private void setImage(String imagefile, int viewId) {
+		if (imagefile != null && imagefile.length() != 0) {
+			ImageView imageView = (ImageView) findViewById(viewId);
+			imageView.setVisibility(View.VISIBLE);
+			try {
+				Bitmap myBitmap = BitmapFactory.decodeStream(openFileInput(imagefile));
+				imageView.setImageBitmap(myBitmap);
+			} catch (FileNotFoundException e) {
+				imageView.setVisibility(View.GONE);
+			}
 		}
 	}
 

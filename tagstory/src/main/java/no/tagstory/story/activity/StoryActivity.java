@@ -33,7 +33,33 @@ public class StoryActivity extends AbstractStoryActivity {
 			if (tag.hasSingleQuestion()) {
 				initializeSingleQuestion();
 			}
+			checkAndSetImages();
 			setTravelButton();
+		}
+	}
+
+	private void checkAndSetImages() {
+		if (tag.hasImageTop()) {
+			setImage(tag.getImageTop(), R.id.story_tag_image_top);
+		}
+		if (tag.hasImageMiddle()) {
+			setImage(tag.getImageMiddle(), R.id.story_tag_image_middle);
+		}
+		if (tag.hasImageBottom()) {
+			setImage(tag.getImageBottom(), R.id.story_tag_image_bottom);
+		}
+	}
+
+	private void setImage(String imagefile, int viewId) {
+		ImageView imageView = (ImageView) findViewById(viewId);
+		imageView.setVisibility(View.VISIBLE);
+		if (imagefile != null && imagefile.length() != 0) {
+			try {
+				Bitmap myBitmap = BitmapFactory.decodeStream(openFileInput(imagefile));
+				imageView.setImageBitmap(myBitmap);
+			} catch (FileNotFoundException e) {
+				imageView.setVisibility(View.GONE);
+			}
 		}
 	}
 
@@ -50,21 +76,6 @@ public class StoryActivity extends AbstractStoryActivity {
 		TextView questionView = (TextView) findViewById(R.id.story_part_choice);
 		questionView.setText(tag.getQuestion());
 		questionView.setVisibility(View.VISIBLE);
-
-		if (tag.hasSingleQuestionImage()) {
-			ImageView imageView = (ImageView) findViewById(R.id.story_tag_image);
-			imageView.setVisibility(View.VISIBLE);
-			String imagefile = tag.getImage();
-			if (imagefile != null
-					&& imagefile.length() != 0) {
-				try {
-					Bitmap myBitmap = BitmapFactory.decodeStream(openFileInput(imagefile));
-					((ImageView) findViewById(R.id.story_detail_image))
-							.setImageBitmap(myBitmap);
-				} catch (FileNotFoundException e) {
-				}
-			}
-		}
 	}
 
 	private void setTravelButton() {

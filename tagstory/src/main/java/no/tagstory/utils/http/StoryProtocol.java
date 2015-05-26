@@ -89,7 +89,7 @@ public class StoryProtocol {
 			Database database = new Database(context);
 			database.open();
 			database.insertStory(storyObject.getString(StoryParser.UUID), storyObject.getString(StoryParser.AUTHOR),
-					storyObject.getString(StoryParser.TITLE), storyObject.getString(StoryParser.AREA),
+					storyObject.getString(StoryParser.TITLE), storyObject.getString(StoryParser.PLACE),
 					storyObject.getString(StoryParser.IMAGE), storyObject.getInt(StoryParser.VERSION));
 			database.close();
 		} catch (IOException e) {
@@ -118,12 +118,24 @@ public class StoryProtocol {
 		while (keys.hasNext()) {
 			String key = keys.next();
 			JSONObject tag = tags.getJSONObject(key);
+			if (tag.has(StoryParser.TAG_IMAGE_TOP)) {
+				downloadAsset(context, IMAGES_FOLDER, tag.getString(StoryParser.TAG_IMAGE_TOP), transferManager, handler);
+			}
+			if (tag.has(StoryParser.TAG_IMAGE_MIDDLE)) {
+				downloadAsset(context, IMAGES_FOLDER, tag.getString(StoryParser.TAG_IMAGE_MIDDLE), transferManager, handler);
+			}
+			if (tag.has(StoryParser.TAG_IMAGE_BOTTOM)) {
+				downloadAsset(context, IMAGES_FOLDER, tag.getString(StoryParser.TAG_IMAGE_BOTTOM), transferManager, handler);
+			}
 			if (tag.has(StoryParser.TAG_OPTIONS)) {
 				JSONArray options = tag.getJSONArray(StoryParser.TAG_OPTIONS);
 				for(int index = 0; index < options.length(); index++) {
 					JSONObject option = options.getJSONObject(index);
-					if (option.has(StoryParser.HINT_IMAGE_SOURCE)) {
-						downloadAsset(context, IMAGES_FOLDER, option.optString(StoryParser.HINT_IMAGE_SOURCE, ""), transferManager, handler);
+					if (option.has(StoryParser.HINT_IMAGE_SOURCE_TOP)) {
+						downloadAsset(context, IMAGES_FOLDER, option.optString(StoryParser.HINT_IMAGE_SOURCE_TOP, ""), transferManager, handler);
+					}
+					if (option.has(StoryParser.HINT_IMAGE_SOURCE_BOTTOM)) {
+						downloadAsset(context, IMAGES_FOLDER, option.optString(StoryParser.HINT_IMAGE_SOURCE_BOTTOM, ""), transferManager, handler);
 					}
 					if (option.has(StoryParser.HINT_SOUND_SOURCE)) {
 						downloadAsset(context, AUDIO_FOLDER, option.optString(StoryParser.HINT_SOUND_SOURCE, ""), transferManager, handler);

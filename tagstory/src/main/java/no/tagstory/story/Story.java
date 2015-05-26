@@ -17,7 +17,7 @@ public class Story implements Serializable {
 	private List<String> keywords;
 	private String ageGroup;
 	private String genre;
-	private String area;
+	private String city;
 	private String startTag;
 	private String image;
 	private String language;
@@ -29,6 +29,7 @@ public class Story implements Serializable {
 	private int estimatedTime;
 	private StoryStatusEnum status;
 	private int version;
+	private String place;
 
 	public String getTitle() {
 		return title;
@@ -62,8 +63,8 @@ public class Story implements Serializable {
 		return genre;
 	}
 
-	public String getArea() {
-		return area;
+	public String getCity() {
+		return city;
 	}
 
 	public String getStartTagId() {
@@ -142,8 +143,8 @@ public class Story implements Serializable {
 		this.startTag = startTag;
 	}
 
-	public void setArea(String area) {
-		this.area = area;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public void setGenre(String genre) {
@@ -205,5 +206,13 @@ public class Story implements Serializable {
 
 	public int getVersion() {
 		return version;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
+
+	public String getPlace() {
+		return place;
 	}
 }

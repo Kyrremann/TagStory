@@ -13,13 +13,14 @@ public class StoryTagOption implements Serializable {
 	private String hintText;
 	private String next;
 	private String title;
-	private String imageSrc;
 	private String soundSrc;
 	private String propagatingText;
 	private double longitude;
 	private double latitude;
 	private String arrowLength;
 	private int zoomLevel;
+	private String imageTop;
+	private String imageBottom;
 
 	public StoryTagOption(String answer, HintMethodEnum method, String next) {
 		this.answer = answer;
@@ -49,10 +50,6 @@ public class StoryTagOption implements Serializable {
 
 	public String getNext() {
 		return next;
-	}
-
-	public String getImageSrc() {
-		return imageSrc;
 	}
 
 	public String getSoundSrc() {
@@ -85,10 +82,6 @@ public class StoryTagOption implements Serializable {
 
 	public String getArrowLength() {
 		return arrowLength;
-	}
-
-	public void setImageSrc(String imageSrc) {
-		this.imageSrc = imageSrc;
 	}
 
 	
@@ -148,5 +141,29 @@ public class StoryTagOption implements Serializable {
 
 	public boolean isImage() {
 		return method.isImage();
+	}
+
+	public void setImageTop(String imageTop) {
+		this.imageTop = imageTop;
+	}
+
+	public String getImageTop() {
+		return imageTop;
+	}
+
+	public void setImageBottom(String imageBottom) {
+		this.imageBottom = imageBottom;
+	}
+
+	public String getImageBottom() {
+		return imageBottom;
+	}
+
+	public boolean hasImageTop() {
+		return !StringUtil.isBlank(imageTop);
+	}
+
+	public boolean hasImageBottom() {
+		return !StringUtil.isBlank(imageBottom);
 	}
 }

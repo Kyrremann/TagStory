@@ -8,7 +8,6 @@ import java.util.List;
 
 import no.tagstory.story.game.quiz.QuizTypeEnum;
 import no.tagstory.story.game.quiz.QuizNodeInterface;
-import no.tagstory.story.game.quiz.TrueFalseQuizNode;
 
 public class StoryTag implements Serializable {
 
@@ -16,7 +15,6 @@ public class StoryTag implements Serializable {
 	private String UUID;
 	private String description;
 	private String question;
-	private String image;
 	private GameModeEnum gameMode;
 	private String travelButton;
 	private TagTypeEnum tagType;
@@ -26,6 +24,9 @@ public class StoryTag implements Serializable {
 	private QuizTypeEnum quiztype;
 	private List<QuizNodeInterface> quiz;
 	private boolean skipable;
+	private String imageBottom;
+	private String imageMiddle;
+	private String imageTop;
 
 	public StoryTag(String UUID, String description, boolean endpoint) {
 		this.UUID = UUID;
@@ -103,20 +104,20 @@ public class StoryTag implements Serializable {
 		UUID = uUID;
 	}
 
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
 	public boolean hasSingleQuestion() {
 		return !StringUtil.isBlank(question);
 	}
 
-	public boolean hasSingleQuestionImage() {
-		return !StringUtil.isBlank(image);
+	public boolean hasImageTop() {
+		return !StringUtil.isBlank(imageTop);
+	}
+
+	public boolean hasImageMiddle() {
+		return !StringUtil.isBlank(imageMiddle);
+	}
+
+	public boolean hasImageBottom() {
+		return !StringUtil.isBlank(imageBottom);
 	}
 
 	public boolean isQuiz() {
@@ -176,5 +177,29 @@ public class StoryTag implements Serializable {
 
 	public List<QuizNodeInterface> getQuizQuestions() {
 		return quiz;
+	}
+
+	public void setImageBottom(String imageBottom) {
+		this.imageBottom = imageBottom;
+	}
+
+	public String getImageBottom() {
+		return imageBottom;
+	}
+
+	public void setImageMiddle(String imageMiddle) {
+		this.imageMiddle = imageMiddle;
+	}
+
+	public String getImageMiddle() {
+		return imageMiddle;
+	}
+
+	public void setImageTop(String imageTop) {
+		this.imageTop = imageTop;
+	}
+
+	public String getImageTop() {
+		return imageTop;
 	}
 }

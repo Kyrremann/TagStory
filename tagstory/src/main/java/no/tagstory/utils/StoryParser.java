@@ -41,10 +41,11 @@ public class StoryParser {
 	public static final String START_TAG = "start_tag";
 	public static final String KEYWORDS = "keywords";
 	public static final String COUNTRY = "country"; // Use ISO 3166-1 alpha-2
+	public static final String CITY = "city";
+	public static final String PLACE = "place";
 	public static final String IMAGE = "image"; // This image needs to be public
 	public static final String TAG_TYPES = "tag_types"; // List seperated with ;
 	public static final String GAME_MODES = "game_modes"; // List seperated with ;
-	public static final String AREA = "area"; // Should be a Google Maps location
 	public static final String LANGUAGE = "language"; // Use ISO 639-1
 	public static final String STATUS = "status";
 	public static final String TAGS = "tags";
@@ -62,7 +63,9 @@ public class StoryParser {
 	public static final String TAG_OPTIONS = "options";
 	// Optional
 	public static final String QUESTION = "question";
-	public static final String TAG_IMAGE = "image";
+	public static final String TAG_IMAGE_TOP = "tag_image_top";
+	public static final String TAG_IMAGE_MIDDLE = "tag_image_middle";
+	public static final String TAG_IMAGE_BOTTOM = "tag_image_bottom";
 	public static final String SKIPABLE = "skippable";
 
 	public static final String ENDPOINT = "isEndPoint"; // Last tag has to have this sat to true
@@ -75,7 +78,8 @@ public class StoryParser {
 	public static final String LONG = "long";
 	public static final String LAT = "lat";
 	public static final String ZOOM_LEVEL = "zoom_level";
-	public static final String HINT_IMAGE_SOURCE = "image_source";
+	public static final String HINT_IMAGE_SOURCE_TOP = "image_source_top";
+	public static final String HINT_IMAGE_SOURCE_BOTTOM = "image_source_bottom";
 	public static final String HINT_SOUND_SOURCE = "sound_source";
 	public static final String ARROW_LENGTH = "arrow_length";
 	public static final String PROPAGATING_TEXT = "propagatingText";
@@ -126,7 +130,8 @@ public class StoryParser {
 		story.setTagTypes(TagTypeEnum.convert(Arrays.asList((storyObject.getString(TAG_TYPES).toLowerCase().split(";")))));
 		story.setGameModes(GameModeEnum.convert(Arrays.asList(storyObject.getString(GAME_MODES).toLowerCase().split(";"))));
 		story.setGenre(storyObject.getString(GENRE));
-		story.setArea(storyObject.getString(AREA));
+		story.setCity(storyObject.getString(CITY));
+		story.setPlace(storyObject.getString(PLACE));
 		story.setCountry(storyObject.getString(COUNTRY));
 		story.setKeywords(storyObject.getString(KEYWORDS).split(";"));
 		story.setStatus(StoryStatusEnum.fromString(storyObject.getString(STATUS).toLowerCase()));
@@ -171,8 +176,14 @@ public class StoryParser {
 					storyTag.setQuestion(jsonTag.getString(QUESTION));
 				}
 
-				if (jsonTag.has(TAG_IMAGE)) {
-					storyTag.setImage(jsonTag.optString(TAG_IMAGE));
+				if (jsonTag.has(TAG_IMAGE_TOP)) {
+					storyTag.setImageTop(jsonTag.getString(TAG_IMAGE_TOP));
+				}
+				if (jsonTag.has(TAG_IMAGE_MIDDLE)) {
+					storyTag.setImageMiddle(jsonTag.getString(TAG_IMAGE_MIDDLE));
+				}
+				if (jsonTag.has(TAG_IMAGE_BOTTOM)) {
+					storyTag.setImageBottom(jsonTag.getString(TAG_IMAGE_BOTTOM));
 				}
 
 				storyTag.setOptions(parseOptions(jsonTag.getJSONArray(TAG_OPTIONS)));
@@ -224,7 +235,12 @@ public class StoryParser {
 			option.setZoomLevel(jsonOption.optInt(ZOOM_LEVEL, 15));
 
 			if (option.isImage()) {
-				option.setImageSrc(jsonOption.getString(HINT_IMAGE_SOURCE));
+				if (jsonOption.has(HINT_IMAGE_SOURCE_TOP)) {
+					option.setImageTop(jsonOption.getString(HINT_IMAGE_SOURCE_TOP));
+				}
+				if (jsonOption.has(HINT_IMAGE_SOURCE_BOTTOM)) {
+					option.setImageBottom(jsonOption.getString(HINT_IMAGE_SOURCE_BOTTOM));
+				}
 			} else if (option.isMap()) {
 				option.setLatitude(jsonOption.getDouble(LAT));
 				option.setLongitude(jsonOption.getDouble(LONG));

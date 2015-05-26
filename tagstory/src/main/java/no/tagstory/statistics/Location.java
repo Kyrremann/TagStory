@@ -8,8 +8,8 @@ public class Location extends android.location.Location {
 		super(provider);
 	}
 
-	public Location(android.location.Location l) {
-		super(l);
+	public Location(android.location.Location location) {
+		super(location);
 	}
 
 	public void setId(int id) {

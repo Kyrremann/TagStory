@@ -55,9 +55,10 @@
 
 			<ImageView
 					android:id="@+id/story_detail_image"
-					android:layout_width="fill_parent"
+					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:contentDescription="@string/cd_story_image"
+					android:layout_gravity="center_horizontal"
 					android:scaleType="fitStart"
 					android:adjustViewBounds="true"
 					android:src="@drawable/placeimg_960_720_nature_1"/>

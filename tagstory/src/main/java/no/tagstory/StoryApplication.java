@@ -49,9 +49,13 @@ public class StoryApplication extends Application {
 
 	public void startStory(Story story) {
 		getStoryHistory().startStory(story);
-		distanceLoggerIntent = new Intent(this, DistanceLogger.class);
-		startService(distanceLoggerIntent);
+		startDistanceLogger();
 		this.storyStatistic = new StoryStatistic(story.getUUID(), new Date());
+	}
+
+	private void startDistanceLogger() {
+		//distanceLoggerIntent = new Intent(this, DistanceLogger.class);
+		//startService(distanceLoggerIntent);
 	}
 
 	public void resumeStory(Database database, int statisticsId, String storyId) throws RuntimeException {
@@ -85,8 +89,7 @@ public class StoryApplication extends Application {
 		getStoryHistory().resumeStory(storyId, root, histories.getCount());
 		histories.close();
 
-		this.distanceLoggerIntent = new Intent(this, DistanceLogger.class);
-		startService(distanceLoggerIntent);
+		startDistanceLogger();
 		this.storyStatistic = statistic;
 	}
 

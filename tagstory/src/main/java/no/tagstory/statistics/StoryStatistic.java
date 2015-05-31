@@ -52,11 +52,13 @@ public class StoryStatistic {
 	}
 
 	public String formatStatistic() {
-		return String.format(Locale.ENGLISH,
-				"Started: %s%n" +
-						"Distance: %s%n" +
-						"Time used: %s",
-				DateUtils.formatStatisticDate(startTime), StringUtils.formatDistance(distance), StringUtils.formatDuration(duration));
+		StringBuilder builder = new StringBuilder();
+		builder.append("Started: ").append(DateUtils.formatStatisticDate(startTime)).append("\n");
+		if (distance > 0) {
+			builder.append("Distance: ").append(StringUtils.formatDistance(distance)).append("\n");
+		}
+		builder.append("Time used: ").append(StringUtils.formatDuration(duration));
+		return builder.toString();
 	}
 
 	public boolean isSaved() {

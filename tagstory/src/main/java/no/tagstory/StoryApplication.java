@@ -155,7 +155,9 @@ public class StoryApplication extends Application {
 	}
 
 	public void stopStory() {
-		stopService(distanceLoggerIntent);
+		if (distanceLoggerIntent != null) {
+			stopService(distanceLoggerIntent);
+		}
 	}
 
 	public StoryStatistic getStoryStatistic() {

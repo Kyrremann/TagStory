@@ -154,9 +154,9 @@ public class GPSActivity extends StoryTravelActivity implements
 			Log.d(TAG,
 					"Distance to goal " + location.distanceTo(goalLocation)
 							+ " meters");
-			if (location.distanceTo(goalLocation) < 20) {
-				Log.d("GPS", "Closer then 20 meters to location");
-				checkTagData(option.getNext());
+			if (location.distanceTo(goalLocation) < option.getGPSRadius()) {
+				Log.d("GPS", "Closer then " + option.getGPSRadius() + " meters to location");
+						checkTagData(option.getNext());
 			}
 		}
 	}

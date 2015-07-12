@@ -21,6 +21,7 @@ public class StoryTagOption implements Serializable {
 	private int zoomLevel;
 	private String imageTop;
 	private String imageBottom;
+	private double GPSRadius;
 
 	public StoryTagOption(String answer, HintMethodEnum method, String next) {
 		this.answer = answer;
@@ -165,5 +166,13 @@ public class StoryTagOption implements Serializable {
 
 	public boolean hasImageBottom() {
 		return !StringUtil.isBlank(imageBottom);
+	}
+
+	public double getGPSRadius() {
+		return GPSRadius;
+	}
+
+	public void setGPSRadius(double GPSRadius) {
+		this.GPSRadius = GPSRadius;
 	}
 }

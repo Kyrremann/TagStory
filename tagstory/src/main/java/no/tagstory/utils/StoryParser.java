@@ -78,6 +78,7 @@ public class StoryParser {
 	public static final String LONG = "long";
 	public static final String LAT = "lat";
 	public static final String ZOOM_LEVEL = "zoom_level";
+	public static final String GPS_RADIUS = "gps_radius";
 	public static final String HINT_IMAGE_SOURCE_TOP = "image_source_top";
 	public static final String HINT_IMAGE_SOURCE_BOTTOM = "image_source_bottom";
 	public static final String HINT_SOUND_SOURCE = "sound_source";
@@ -233,6 +234,7 @@ public class StoryParser {
 			option.setTitle(jsonOption.optString(HINT_TITLE));
 			option.setHintText(jsonOption.optString(HINT_TEXT));
 			option.setZoomLevel(jsonOption.optInt(ZOOM_LEVEL, 15));
+			option.setGPSRadius(jsonOption.optDouble(GPS_RADIUS, 20));
 
 			if (option.isImage()) {
 				if (jsonOption.has(HINT_IMAGE_SOURCE_TOP)) {

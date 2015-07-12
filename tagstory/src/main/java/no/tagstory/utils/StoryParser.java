@@ -158,10 +158,20 @@ public class StoryParser {
 
 			// Required
 			StoryTag storyTag = new StoryTag(tagKey, jsonTag.getString(TAG_DESCRIPTION), jsonTag.optBoolean(ENDPOINT, false));
+			storyTag.setTitle(jsonTag.getString(TAG_TITLE));
+
+			if (jsonTag.has(TAG_IMAGE_TOP)) {
+				storyTag.setImageTop(jsonTag.getString(TAG_IMAGE_TOP));
+			}
+			if (jsonTag.has(TAG_IMAGE_MIDDLE)) {
+				storyTag.setImageMiddle(jsonTag.getString(TAG_IMAGE_MIDDLE));
+			}
+			if (jsonTag.has(TAG_IMAGE_BOTTOM)) {
+				storyTag.setImageBottom(jsonTag.getString(TAG_IMAGE_BOTTOM));
+			}
 
 			if (!storyTag.isEndpoint()) { // Not the last tag
 				storyTag.setTagType(TagTypeEnum.fromString(jsonTag.getString(TAG_TYPE)));
-				storyTag.setTitle(jsonTag.getString(TAG_TITLE));
 				storyTag.setTravelButton(jsonTag.getString(TRAVEL_BUTTON));
 
 				storyTag.setSkipable(jsonTag.optBoolean(SKIPABLE, false));
@@ -175,16 +185,6 @@ public class StoryParser {
 
 				if (jsonTag.has(QUESTION)) {
 					storyTag.setQuestion(jsonTag.getString(QUESTION));
-				}
-
-				if (jsonTag.has(TAG_IMAGE_TOP)) {
-					storyTag.setImageTop(jsonTag.getString(TAG_IMAGE_TOP));
-				}
-				if (jsonTag.has(TAG_IMAGE_MIDDLE)) {
-					storyTag.setImageMiddle(jsonTag.getString(TAG_IMAGE_MIDDLE));
-				}
-				if (jsonTag.has(TAG_IMAGE_BOTTOM)) {
-					storyTag.setImageBottom(jsonTag.getString(TAG_IMAGE_BOTTOM));
 				}
 
 				storyTag.setOptions(parseOptions(jsonTag.getJSONArray(TAG_OPTIONS)));

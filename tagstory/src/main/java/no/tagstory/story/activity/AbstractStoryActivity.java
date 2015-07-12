@@ -4,9 +4,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import no.tagstory.R;
@@ -20,6 +25,8 @@ import no.tagstory.story.StoryTag;
 import no.tagstory.utils.ClassVersionFactory;
 import no.tagstory.utils.Database;
 import no.tagstory.utils.StoryParser;
+
+import java.io.FileNotFoundException;
 
 public abstract class AbstractStoryActivity extends Activity implements AlertDialog.OnClickListener {
 
@@ -46,6 +53,32 @@ public abstract class AbstractStoryActivity extends Activity implements AlertDia
 
 	protected void setTagDescription() {
 		((TextView) findViewById(R.id.description)).setText(tag.getDescription());
+	}
+
+	protected void checkAndSetImages() {
+		if (tag.hasImageTop()) {
+			setImage(tag.getImageTop(), R.id.story_tag_image_top);
+		}
+		if (tag.hasImageMiddle()) {
+			setImage(tag.getImageMiddle(), R.id.story_tag_image_middle);
+		}
+		if (tag.hasImageBottom()) {
+			setImage(tag.getImageBottom(), R.id.story_tag_image_bottom);
+		}
+	}
+
+	private void setImage(String imagefile, int viewId) {
+		ImageView imageView = (ImageView) findViewById(viewId);
+		imageView.setVisibility(View.VISIBLE);
+		if (imagefile != null && imagefile.length() != 0) {
+			try {
+				Bitmap myBitmap = BitmapFactory.decodeStream(openFileInput(imagefile));
+				imageView.setImageBitmap(myBitmap);
+			} catch (FileNotFoundException e) {
+				Log.d("TAG_IMAGE", "Can't find the image, hiding view");
+				imageView.setVisibility(View.GONE);
+			}
+		}
 	}
 
 	@Override

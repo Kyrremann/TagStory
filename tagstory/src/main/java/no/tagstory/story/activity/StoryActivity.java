@@ -38,31 +38,6 @@ public class StoryActivity extends AbstractStoryActivity {
 		}
 	}
 
-	private void checkAndSetImages() {
-		if (tag.hasImageTop()) {
-			setImage(tag.getImageTop(), R.id.story_tag_image_top);
-		}
-		if (tag.hasImageMiddle()) {
-			setImage(tag.getImageMiddle(), R.id.story_tag_image_middle);
-		}
-		if (tag.hasImageBottom()) {
-			setImage(tag.getImageBottom(), R.id.story_tag_image_bottom);
-		}
-	}
-
-	private void setImage(String imagefile, int viewId) {
-		ImageView imageView = (ImageView) findViewById(viewId);
-		imageView.setVisibility(View.VISIBLE);
-		if (imagefile != null && imagefile.length() != 0) {
-			try {
-				Bitmap myBitmap = BitmapFactory.decodeStream(openFileInput(imagefile));
-				imageView.setImageBitmap(myBitmap);
-			} catch (FileNotFoundException e) {
-				imageView.setVisibility(View.GONE);
-			}
-		}
-	}
-
 	// TODO: Should be handled by the travel activity
 	private void switchToEndpointActivity() {
 		Intent intent = new Intent(this, StoryFinishedActivity.class);

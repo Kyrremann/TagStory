@@ -21,6 +21,8 @@ public class StoryFinishedActivity extends AbstractStoryActivity {
 		super.onResume();
 		setTagDescription();
 		showStatistics();
+
+		checkAndSetImages();
 	}
 
 	private void showStatistics() {

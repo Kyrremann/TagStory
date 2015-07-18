@@ -19,7 +19,7 @@ public class TagStoryActivityHoneycomb extends TagStoryActivity implements OnIte
 	}
 
 	@Override
-	protected void startMarkedActivity() {
+	protected void startMarketActivity() {
 		startActivity(new Intent(this, StoryMarketActivityHoneycomb.class));
 	}
 }

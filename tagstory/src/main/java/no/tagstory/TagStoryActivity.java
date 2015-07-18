@@ -103,8 +103,8 @@ public class TagStoryActivity extends LoginFragmentActivity implements OnItemCli
 			case R.id.menu_about:
 				showAboutTagStoryDialog();
 				break;
-			case R.id.menu_story_marked:
-				startMarkedActivity();
+			case R.id.menu_story_market:
+				startMarketActivity();
 				break;
 			case R.id.menu_statistics:
 				startStatisticsActivity();
@@ -118,7 +118,7 @@ public class TagStoryActivity extends LoginFragmentActivity implements OnItemCli
 		startActivity(new Intent(this, StatisticsActivity.class));
 	}
 
-	protected void startMarkedActivity() {
+	protected void startMarketActivity() {
 		startActivity(new Intent(this, StoryMarketActivity.class));
 	}
 
@@ -161,8 +161,8 @@ public class TagStoryActivity extends LoginFragmentActivity implements OnItemCli
 
 	public void onClick(View v) {
 		switch (v.getId()) {
-			case R.id.visit_marked:
-				startMarkedActivity();
+			case R.id.visit_market:
+				startMarketActivity();
 				break;
 		}
 	}

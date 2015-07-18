@@ -7,7 +7,7 @@
 			android:id="@+id/scrollView1"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_above="@+id/visit_marked"
+			android:layout_above="@+id/visit_market"
 			android:layout_alignParentTop="true"
 			android:layout_centerHorizontal="true"
 			android:padding="15dp">
@@ -27,7 +27,7 @@
 
 
 	<Button
-			android:id="@+id/visit_marked"
+			android:id="@+id/visit_market"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_alignParentBottom="true"

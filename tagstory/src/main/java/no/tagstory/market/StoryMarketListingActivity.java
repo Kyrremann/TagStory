@@ -33,7 +33,7 @@ public class StoryMarketListingActivity extends Activity implements SimpleStoryH
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_marked_listing);
+		setContentView(R.layout.activity_market_listing);
 
 		try {
 			storyDetail = new JSONObject(getIntent().getStringExtra("json"));

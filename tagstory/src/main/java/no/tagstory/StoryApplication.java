@@ -15,7 +15,7 @@ import java.util.Date;
 public class StoryApplication extends Application {
 
 	private StoryHistory storyHistory;
-	private JSONArray markedstories;
+	private JSONArray marketstories;
 	private StoryStatistic storyStatistic;
 	private Intent distanceLoggerIntent;
 
@@ -29,21 +29,21 @@ public class StoryApplication extends Application {
 		return storyHistory;
 	}
 
-	public void setMarkedstories(JSONArray markedstories) {
-		this.markedstories = markedstories;
+	public void setMarketstories(JSONArray marketstories) {
+		this.marketstories = marketstories;
 	}
 
 	public JSONArray getMarketStories() {
-		if (markedstories != null) {
-			return markedstories;
+		if (marketstories != null) {
+			return marketstories;
 		}
 		return new JSONArray();
 	}
 
 	public boolean isMarketStoriesEmptyOrOutdated() {
 		return true;
-//		markedstories == null
-//				|| markedstories.length() == 0;
+//		marketstories == null
+//				|| marketstories.length() == 0;
 		// TODO add datetracking
 	}
 

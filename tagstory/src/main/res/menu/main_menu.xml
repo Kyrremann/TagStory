@@ -3,7 +3,7 @@
 			android:id="@+id/menu_about"
 			android:title="@string/menu_about_app"/>
 	<item
-			android:id="@+id/menu_story_marked"
+			android:id="@+id/menu_story_market"
 			android:title="@string/menu_story_market"/>
 	<item
 			android:id="@+id/menu_statistics"

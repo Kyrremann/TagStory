@@ -3,7 +3,7 @@
 
 	<string name="app_name">Tag Story</string>
 	<string name="app_title">Tag Story</string>
-	<string name="front_no_stories">It\'s looks like you haven\'t downloaded any stories yet. Please go to the story marked and see if you find something you like. Visit TagStory.no if you want to make your own stories!</string>
+	<string name="front_no_stories">It\'s looks like you haven\'t downloaded any stories yet. Please go to the story market and see if you find something you like. Visit TagStory.no if you want to make your own stories!</string>
 	<string name="front_visit_market">Visit the market</string>
 
 	<!-- Statistic -->

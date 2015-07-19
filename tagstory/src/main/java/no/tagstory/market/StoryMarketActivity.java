@@ -30,13 +30,13 @@ public class StoryMarketActivity extends FragmentActivity implements SimpleStory
 
 		handler = new SimpleStoryHandler(this);
 		if (storyApplication.isMarketStoriesEmptyOrOutdated()) {
-			downloadNewStoriesForMarked();
+			downloadNewStoriesForMarket();
 		} else {
 			handler.sendEmptyMessage(SimpleStoryHandler.MESSAGE_DONE);
 		}
 	}
 
-	private void downloadNewStoriesForMarked() {
+	private void downloadNewStoriesForMarket() {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -45,7 +45,7 @@ public class StoryMarketActivity extends FragmentActivity implements SimpleStory
 		}).start();
 	}
 
-	private void showMarkedFragment() {
+	private void showMarketFragment() {
 		String tag = StoryMarketListFragment.class.getSimpleName();
 		Fragment fragment = getSupportFragmentManager().findFragmentByTag(tag);
 		if (fragment == null) {
@@ -58,7 +58,7 @@ public class StoryMarketActivity extends FragmentActivity implements SimpleStory
 	@Override
 	public void onMessageDone() {
 		progressDialog.cancel();
-		showMarkedFragment();
+		showMarketFragment();
 	}
 
 	@Override
@@ -75,5 +75,6 @@ public class StoryMarketActivity extends FragmentActivity implements SimpleStory
 				Toast.makeText(this, getString(R.string.market_error_data), Toast.LENGTH_SHORT).show();
 				break;
 		}
+		progressDialog.cancel();
 	}
 }

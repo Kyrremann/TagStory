@@ -49,7 +49,7 @@ public class StoryProtocol {
 			HttpGet get = new HttpGet(context.getString(R.string.market_api_stories));
 			String content = client.execute(get, new BasicResponseHandler());
 
-			((StoryApplication) context).setMarkedstories(new JSONArray(content));
+			((StoryApplication) context).setMarketstories(new JSONArray(content));
 
 			if (handler != null) {
 				handler.sendEmptyMessage(SimpleStoryHandler.MESSAGE_DONE);
@@ -114,31 +114,33 @@ public class StoryProtocol {
 		downloadAsset(context, IMAGES_FOLDER, storyObject.optString(StoryParser.IMAGE, ""), transferManager, handler);
 
 		JSONObject tags = storyObject.getJSONObject(StoryParser.TAGS);
+		String storyId = storyObject.getString(StoryParser.UUID);
+		String serverUrl = String.format("stories/%s/", storyId);
 		Iterator<String> keys = tags.keys();
 		while (keys.hasNext()) {
 			String key = keys.next();
 			JSONObject tag = tags.getJSONObject(key);
 			if (tag.has(StoryParser.TAG_IMAGE_TOP)) {
-				downloadAsset(context, IMAGES_FOLDER, tag.getString(StoryParser.TAG_IMAGE_TOP), transferManager, handler);
+				downloadAsset(context, serverUrl + IMAGES_FOLDER, tag.getString(StoryParser.TAG_IMAGE_TOP), transferManager, handler);
 			}
 			if (tag.has(StoryParser.TAG_IMAGE_MIDDLE)) {
-				downloadAsset(context, IMAGES_FOLDER, tag.getString(StoryParser.TAG_IMAGE_MIDDLE), transferManager, handler);
+				downloadAsset(context, serverUrl + IMAGES_FOLDER, tag.getString(StoryParser.TAG_IMAGE_MIDDLE), transferManager, handler);
 			}
 			if (tag.has(StoryParser.TAG_IMAGE_BOTTOM)) {
-				downloadAsset(context, IMAGES_FOLDER, tag.getString(StoryParser.TAG_IMAGE_BOTTOM), transferManager, handler);
+				downloadAsset(context, serverUrl + IMAGES_FOLDER, tag.getString(StoryParser.TAG_IMAGE_BOTTOM), transferManager, handler);
 			}
 			if (tag.has(StoryParser.TAG_OPTIONS)) {
 				JSONArray options = tag.getJSONArray(StoryParser.TAG_OPTIONS);
 				for(int index = 0; index < options.length(); index++) {
 					JSONObject option = options.getJSONObject(index);
 					if (option.has(StoryParser.HINT_IMAGE_SOURCE_TOP)) {
-						downloadAsset(context, IMAGES_FOLDER, option.optString(StoryParser.HINT_IMAGE_SOURCE_TOP, ""), transferManager, handler);
+						downloadAsset(context, serverUrl + IMAGES_FOLDER, option.optString(StoryParser.HINT_IMAGE_SOURCE_TOP, ""), transferManager, handler);
 					}
 					if (option.has(StoryParser.HINT_IMAGE_SOURCE_BOTTOM)) {
-						downloadAsset(context, IMAGES_FOLDER, option.optString(StoryParser.HINT_IMAGE_SOURCE_BOTTOM, ""), transferManager, handler);
+						downloadAsset(context, serverUrl + IMAGES_FOLDER, option.optString(StoryParser.HINT_IMAGE_SOURCE_BOTTOM, ""), transferManager, handler);
 					}
 					if (option.has(StoryParser.HINT_SOUND_SOURCE)) {
-						downloadAsset(context, AUDIO_FOLDER, option.optString(StoryParser.HINT_SOUND_SOURCE, ""), transferManager, handler);
+						downloadAsset(context, serverUrl + AUDIO_FOLDER, option.optString(StoryParser.HINT_SOUND_SOURCE, ""), transferManager, handler);
 					}
 				}
 			}
@@ -150,7 +152,7 @@ public class StoryProtocol {
 			return false;
 		}
 
-		Log.d(LOG, String.format(Locale.ENGLISH, "Downloading %s", name));
+		Log.d(LOG, String.format(Locale.ENGLISH, "Downloading %s from %s", name, serverUrl + name));
 		Download download = transferManager.download(BUCKET, serverUrl + name, context.getFileStreamPath(name));
 		while (!download.isDone()) {
 			Message message = new Message();

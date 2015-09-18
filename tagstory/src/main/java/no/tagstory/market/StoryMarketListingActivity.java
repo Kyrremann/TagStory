@@ -49,12 +49,13 @@ public class StoryMarketListingActivity extends Activity implements SimpleStoryH
 			String url = "";
 			if (storyDetailValues.has(StoryParser.IMAGE)) {
 				url = storyDetailValues.getString(StoryParser.IMAGE);
+				ImageLoader.getInstance().displayImage(StoryProtocol.SERVER_URL + storyUUID + StoryProtocol.IMAGES_FOLDER + url, imageView);
 			}
 			if (url.length() == 0) {
 				url = "placeimg_960_720_nature_1.jpg";
+				ImageLoader.getInstance().displayImage(StoryProtocol.SERVER_URL + url, imageView);
 			}
 
-			ImageLoader.getInstance().displayImage(StoryProtocol.SERVER_URL_IMAGES + url, imageView);
 
 			String storyTitle = storyDetailValues.getString(StoryParser.TITLE);
 			title.setText(storyTitle);

@@ -118,9 +118,9 @@
 	<string name="contact_tagstory">contact@tagstory.no</string>
 
 	<!-- API -->
-	<string name="market_api_stories">http://tagstory.herokuapp.com/api/stories/json</string>
-	<string name="market_api_story">http://tagstory.herokuapp.com/api/story/%1$s/json</string>
-	<string name="market_api_version">http://tagstory.herokuapp.com/api/story/%1$s/version/json</string>
+	<string name="market_api_stories">http://tagstoryapi.herokuapp.com/v1/stories?source=android-app&amp;language=%1$s&amp;&amp;country=%2$s&amp;android_version=%3$s&amp;app_version_code=%4$s&amp;app_version_name=%5$s</string>
+	<string name="market_api_story">http://tagstoryapi.herokuapp.com/v1/stories/%1$s?source=android-app&amp;language=%2$s&amp;&amp;country=%3$s&amp;android_version=%4$s&amp;app_version_code=%5$s&amp;app_version_name=%6$s</string>
+	<string name="market_api_version">http://tagstoryapi.herokuapp.com/v1/stories/%1$s/version?source=android-app&amp;language=%2$s&amp;&amp;country=%3$s&amp;android_version=%4$s&amp;app_version_code=%5$s&amp;app_version_name=%6$s</string>
 
 	<!-- Single words -->
 	<string name="cancel">Cancel</string>

@@ -68,7 +68,7 @@ public class StoryJsonAdapter extends BaseAdapter {
 			if (jsonObject.has(StoryParser.IMAGE)) {
 				String imageUrl = jsonObject.getString(StoryParser.IMAGE);
 				if (imageUrl.length() != 0) {
-					url = StoryProtocol.SERVER_URL_IMAGES + imageUrl;
+					url = StoryProtocol.SERVER_URL + stories.getJSONObject(position).getString("id") + StoryProtocol.IMAGES_FOLDER + imageUrl;
 				}
 			}
 

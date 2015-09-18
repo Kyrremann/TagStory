@@ -1,6 +1,7 @@
 package no.tagstory.utils.http;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -10,9 +11,11 @@ import com.amazonaws.mobileconnectors.s3.transfermanager.Download;
 import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
+import no.tagstory.BuildConfig;
 import no.tagstory.R;
 import no.tagstory.StoryApplication;
 import no.tagstory.utils.Database;
+import no.tagstory.utils.LocaleUtil;
 import no.tagstory.utils.StoryParser;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -32,12 +35,10 @@ public class StoryProtocol {
 	private static final String LOG = "STORYPROTOCOL";
 
 	private static final String BUCKET = "tagstory";
-	private static final String SERVER_URL = "https://s3-eu-west-1.amazonaws.com/tagstory/";
-	private static final String IMAGES_FOLDER = "images/";
-	private static final String AUDIO_FOLDER = "audio/";
 
-	public static final String SERVER_URL_IMAGES = SERVER_URL + IMAGES_FOLDER;
-	public static final String SERVER_URL_AUDIO = SERVER_URL + AUDIO_FOLDER;
+	public static final String IMAGES_FOLDER = "/images/";
+	public static final String AUDIO_FOLDER = "/audio/";
+	public static final String SERVER_URL = "https://s3-eu-west-1.amazonaws.com/tagstory/stories/";
 
 	public static void downloadNewStoriesToTheStoryApplication(Context context) {
 		downloadNewStoriesToTheStoryApplication(context, null);
@@ -46,7 +47,9 @@ public class StoryProtocol {
 	public static void downloadNewStoriesToTheStoryApplication(Context context, Handler handler) {
 		try {
 			HttpClient client = new DefaultHttpClient();
-			HttpGet get = new HttpGet(context.getString(R.string.market_api_stories));
+			HttpGet get = new HttpGet(context.getString(R.string.market_api_stories,
+					LocaleUtil.getUserCountry(context), Locale.getDefault().toString(), Build.VERSION.RELEASE,
+					BuildConfig.VERSION_CODE, BuildConfig.VERSION_NAME));
 			String content = client.execute(get, new BasicResponseHandler());
 
 			((StoryApplication) context).setMarketstories(new JSONArray(content));
@@ -71,7 +74,9 @@ public class StoryProtocol {
 	public static void downloadStory(Context context, Handler handler, String storyIdServerside) {
 		try {
 			HttpClient client = new DefaultHttpClient();
-			String url = context.getString(R.string.market_api_story, storyIdServerside);
+			String url = context.getString(R.string.market_api_story, storyIdServerside,
+					LocaleUtil.getUserCountry(context), Locale.getDefault().toString(), Build.VERSION.RELEASE,
+					BuildConfig.VERSION_CODE, BuildConfig.VERSION_NAME);
 			HttpGet get = new HttpGet(url);
 			String content = client.execute(get, new BasicResponseHandler());
 
@@ -111,33 +116,35 @@ public class StoryProtocol {
 		TransferManager transferManager = new TransferManager(cognitoProvider);
 		transferManager.getAmazonS3Client().setRegion(Region.getRegion(Regions.EU_WEST_1));
 
-		downloadAsset(context, IMAGES_FOLDER, storyObject.optString(StoryParser.IMAGE, ""), transferManager, handler);
+		String storyId = storyObject.getString(StoryParser.UUID);
+		String serverUrl = "stories/" + storyId;
+		String imageUrl = serverUrl + IMAGES_FOLDER;
+
+		downloadAsset(context, imageUrl, storyObject.optString(StoryParser.IMAGE, ""), transferManager, handler);
 
 		JSONObject tags = storyObject.getJSONObject(StoryParser.TAGS);
-		String storyId = storyObject.getString(StoryParser.UUID);
-		String serverUrl = String.format("stories/%s/", storyId);
 		Iterator<String> keys = tags.keys();
 		while (keys.hasNext()) {
 			String key = keys.next();
 			JSONObject tag = tags.getJSONObject(key);
 			if (tag.has(StoryParser.TAG_IMAGE_TOP)) {
-				downloadAsset(context, serverUrl + IMAGES_FOLDER, tag.getString(StoryParser.TAG_IMAGE_TOP), transferManager, handler);
+				downloadAsset(context, imageUrl, tag.getString(StoryParser.TAG_IMAGE_TOP), transferManager, handler);
 			}
 			if (tag.has(StoryParser.TAG_IMAGE_MIDDLE)) {
-				downloadAsset(context, serverUrl + IMAGES_FOLDER, tag.getString(StoryParser.TAG_IMAGE_MIDDLE), transferManager, handler);
+				downloadAsset(context, imageUrl, tag.getString(StoryParser.TAG_IMAGE_MIDDLE), transferManager, handler);
 			}
 			if (tag.has(StoryParser.TAG_IMAGE_BOTTOM)) {
-				downloadAsset(context, serverUrl + IMAGES_FOLDER, tag.getString(StoryParser.TAG_IMAGE_BOTTOM), transferManager, handler);
+				downloadAsset(context, imageUrl, tag.getString(StoryParser.TAG_IMAGE_BOTTOM), transferManager, handler);
 			}
 			if (tag.has(StoryParser.TAG_OPTIONS)) {
 				JSONArray options = tag.getJSONArray(StoryParser.TAG_OPTIONS);
 				for(int index = 0; index < options.length(); index++) {
 					JSONObject option = options.getJSONObject(index);
 					if (option.has(StoryParser.HINT_IMAGE_SOURCE_TOP)) {
-						downloadAsset(context, serverUrl + IMAGES_FOLDER, option.optString(StoryParser.HINT_IMAGE_SOURCE_TOP, ""), transferManager, handler);
+						downloadAsset(context, imageUrl, option.optString(StoryParser.HINT_IMAGE_SOURCE_TOP, ""), transferManager, handler);
 					}
 					if (option.has(StoryParser.HINT_IMAGE_SOURCE_BOTTOM)) {
-						downloadAsset(context, serverUrl + IMAGES_FOLDER, option.optString(StoryParser.HINT_IMAGE_SOURCE_BOTTOM, ""), transferManager, handler);
+						downloadAsset(context, imageUrl, option.optString(StoryParser.HINT_IMAGE_SOURCE_BOTTOM, ""), transferManager, handler);
 					}
 					if (option.has(StoryParser.HINT_SOUND_SOURCE)) {
 						downloadAsset(context, serverUrl + AUDIO_FOLDER, option.optString(StoryParser.HINT_SOUND_SOURCE, ""), transferManager, handler);
@@ -176,7 +183,9 @@ public class StoryProtocol {
 	public static int getStoryVersion(Context context, String uuid) {
 		try {
 			HttpClient client = new DefaultHttpClient();
-			HttpGet get = new HttpGet(context.getString(R.string.market_api_version, uuid));
+			HttpGet get = new HttpGet(context.getString(R.string.market_api_version, uuid,
+					LocaleUtil.getUserCountry(context), Locale.getDefault().toString(), Build.VERSION.RELEASE,
+					BuildConfig.VERSION_CODE, BuildConfig.VERSION_NAME));
 			String content = client.execute(get, new BasicResponseHandler());
 			JSONObject jsonObject = new JSONObject(content);
 			return jsonObject.getInt(StoryParser.VERSION);

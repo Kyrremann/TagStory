@@ -56,9 +56,9 @@
 	<string name="dummy_title">Изпробвай</string>
 	<string name="hello_world">Здравей!</string>
 	<string name="market_actionbar_title">Магазин за истории</string>
-	<string name="market_api_stories">http://tagstory.herokuapp.com/api/stories/json</string>
-	<string name="market_api_story">http://tagstory.herokuapp.com/api/story/%s/json</string>
-	<string name="market_api_version">http://tagstory.herokuapp.com/api/story/%s/version/json</string>
+	<string name="market_api_stories">http://tagstoryapi.herokuapp.com/v1/stories?source=android-app&amp;language=%1$s&amp;&amp;country=%2$s&amp;android_version=%3$s&amp;app_version_code=%4$s&amp;app_version_name=%5$s</string>
+	<string name="market_api_story">http://tagstoryapi.herokuapp.com/v1/stories/%1$s?source=android-app&amp;language=%2$s&amp;&amp;country=%3$s&amp;android_version=%4$s&amp;app_version_code=%5$s&amp;app_version_name=%6$s</string>
+	<string name="market_api_version">http://tagstoryapi.herokuapp.com/v1/stories/%1$s/version?source=android-app&amp;language=%2$s&amp;&amp;country=%3$s&amp;android_version=%4$s&amp;app_version_code=%5$s&amp;app_version_name=%6$s</string>
 	<string name="market_error_data">Грешка в данните.</string>
 	<string name="market_error_http">Грешка при http-връзка.</string>
 	<string name="market_error_item_list">Грешка. Извинете!</string>
